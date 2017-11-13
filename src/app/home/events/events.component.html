@@ -1,0 +1,742 @@
+<div class="row center">
+  <div class="card-panel">
+    <div class="row">
+        <div class="col s12"><h5>Generate CSV For The Python Script</h5></div>
+    </div>
+    <div class="divider"></div>
+    <div class="row">
+      <a class="waves-effect waves-light btn btn-evt"
+          *ngFor="let event of events"
+          (click)="whichEvent(event)"
+          [ngClass]="{'btn-selected' : event.active}"
+          >{{event.type | uppercase}}
+      </a>
+    </div>
+    <div class="divider"></div>
+    <div class="row">
+        <div class="col s6">
+          <h5>Add Details For: <span class="e-name">{{eventName}}</span></h5>
+        </div>
+        <div class="col s6">
+            <h5>UTC: {{utcDateNow}} - {{utcTimeNow}}</h5>
+        </div>
+      </div>
+
+
+      <!-- out -->
+      <div *ngIf="[eventName] == 'OUT'">
+        <form (submit)="submitOUT()">
+          <div class="row" >
+            <div class="input-field col s6">
+              <input placeholder="Flight Number"
+                      type="text"
+                      [(ngModel)]="flight_number"
+                      name="flight_number"
+                      #flightNum="ngModel"
+                      required minlength="1" maxlength="4" pattern="^[0-9]*$">
+            </div>
+            <div class="input-field col s6">
+              <input placeholder="Desired OUT Time in UTC (hhmm)"
+                     type="text"
+                     [(ngModel)]="actual_out_time_utc"
+                     name="actual_out_time_utc"
+                     #time="ngModel"
+                     required minlength="1" maxlength="4" pattern="^[0-9]*$">
+            </div>
+          </div>
+          <!-- submit -->
+          <div class="row">
+            <input class="waves-effect waves-light btn"
+                   type="submit" value="Add To Que"
+                   [disabled]="flightNum.invalid || time.invalid">
+          </div>
+        </form>
+      </div>
+
+      <!-- off -->
+      <div *ngIf="[eventName] == 'OFF'">
+        <form (submit)="submitOFF()">
+          <div class="row" >
+            <div class="input-field col s6">
+              <input placeholder="Flight Number"
+                     type="text"
+                     [(ngModel)]="flight_number"
+                     name="flight_number"
+                     #flightNum="ngModel"
+                     required minlength="1" maxlength="4" pattern="^[0-9]*$">
+            </div>
+            <div class="input-field col s6">
+              <input placeholder="Desired OFF Time in UTC (hhmm)"
+                     type="text"
+                     [(ngModel)]="actual_off_time_utc"
+                     name="actual_off_time_utc"
+                     #time="ngModel"
+                     required minlength="1" maxlength="4" pattern="^[0-9]*$">
+            </div>
+          </div>
+          <!-- submit -->
+          <div class="row">
+            <input class="waves-effect waves-light btn"
+                   type="submit"
+                   value="Add To Que"
+                   [disabled]="flightNum.invalid || time.invalid">
+          </div>
+        </form>
+      </div>
+
+      <!-- on -->
+      <div *ngIf="[eventName] == 'ON'">
+        <form (submit)="submitON()">
+          <div class="row" >
+            <div class="input-field col s6">
+              <input placeholder="Flight Number"
+                     type="text"
+                     [(ngModel)]="flight_number"
+                     name="flight_number"
+                     #flightNum="ngModel"
+                     required minlength="1" maxlength="4" pattern="^[0-9]*$">
+            </div>
+            <div class="input-field col s6">
+              <input placeholder="Desired ON Time in UTC (hhmm)"
+                     type="text"
+                     [(ngModel)]="actual_on_time_utc"
+                     name="actual_on_time_utc"
+                     #time="ngModel"
+                     required minlength="1" maxlength="4" pattern="^[0-9]*$">
+            </div>
+          </div>
+          <!-- submit -->
+          <div class="row">
+            <input class="waves-effect waves-light btn"
+                   type="submit"
+                   value="Add To Que"
+                   [disabled]="flightNum.invalid || time.invalid">
+          </div>
+        </form>
+      </div>
+
+      <!-- in -->
+      <div *ngIf="[eventName] == 'IN'">
+        <form (submit)="submitIN()">
+          <div class="row" >
+            <div class="input-field col s6">
+              <input placeholder="Flight Number"
+                     type="text"
+                     [(ngModel)]="flight_number"
+                     name="flight_number"
+                     #flightNum="ngModel"
+                     required minlength="1" maxlength="4" pattern="^[0-9]*$">
+            </div>
+            <div class="input-field col s6">
+              <input placeholder="Desired IN Time in UTC (hhmm)"
+                     type="text"
+                     [(ngModel)]="actual_in_time_utc"
+                     name="actual_in_time_utc"
+                     #time="ngModel"
+                     required minlength="1" maxlength="4" pattern="^[0-9]*$">
+            </div>
+          </div>
+          <!-- submit -->
+          <div class="row">
+            <input class="waves-effect waves-light btn"
+                   type="submit"
+                   value="Add To Que"
+                   [disabled]="flightNum.invalid || time.invalid">
+          </div>
+        </form>
+      </div>
+
+      <!-- eta -->
+      <div *ngIf="[eventName] == 'ETA'">
+        <form (submit)="submitETA()">
+          <div class="row" >
+            <div class="input-field col s6">
+              <input placeholder="Flight Number"
+                     type="text"
+                     [(ngModel)]="flight_number"
+                     name="flight_number"
+                     #flightNum="ngModel"
+                     required minlength="1" maxlength="4" pattern="^[0-9]*$">
+            </div>
+            <div class="input-field col s6">
+              <input placeholder="Desired ETA Time in UTC (hhmm)"
+                     type="text"
+                     [(ngModel)]="actual_eta_time_utc"
+                     name="actual_eta_time_utc"
+                     #time="ngModel"
+                     required minlength="1" maxlength="4" pattern="^[0-9]*$">
+            </div>
+          </div>
+          <!-- submit -->
+          <div class="row">
+            <input class="waves-effect waves-light btn"
+                   type="submit"
+                   value="Add To Que"
+                   [disabled]="flightNum.invalid || time.invalid">
+          </div>
+        </form>
+      </div>
+
+      <!-- etd -->
+      <div *ngIf="[eventName] == 'ETD'">
+        <form (submit)="submitETD()">
+          <div class="row" >
+            <div class="input-field col s6">
+              <input placeholder="Flight Number"
+                     type="text"
+                     [(ngModel)]="flight_number"
+                     name="flight_number"
+                     #flightNum="ngModel"
+                     required minlength="1" maxlength="4" pattern="^[0-9]*$">
+            </div>
+            <div class="input-field col s6">
+              <input placeholder="Desired ETD Time in UTC (hhmm)"
+                     type="text"
+                     [(ngModel)]="actual_etd_time_utc"
+                     name="actual_etd_time_utc"
+                     #time="ngModel"
+                     required minlength="1" maxlength="4" pattern="^[0-9]*$">
+            </div>
+          </div>
+          <!-- submit -->
+          <div class="row">
+            <input class="waves-effect waves-light btn"
+                   type="submit"
+                   value="Add To Que"
+                   [disabled]="flightNum.invalid || time.invalid">
+          </div>
+        </form>
+      </div>
+
+      <!-- eto -->
+      <div *ngIf="[eventName] == 'ETO'">
+        <form (submit)="submitETO()">
+          <div class="row" >
+            <div class="input-field col s6">
+              <input placeholder="Flight Number"
+                     type="text"
+                     [(ngModel)]="flight_number"
+                     name="flight_number"
+                     #flightNum="ngModel"
+                     required minlength="1" maxlength="4" pattern="^[0-9]*$">
+            </div>
+            <div class="input-field col s6">
+              <input placeholder="Desired ETO Time in UTC (hhmm)"
+                     type="text"
+                     [(ngModel)]="actual_eto_time_utc"
+                     name="actual_eto_time_utc"
+                     #time="ngModel"
+                     required minlength="1" maxlength="4" pattern="^[0-9]*$">
+            </div>
+          </div>
+          <!-- submit -->
+          <div class="row">
+            <input class="waves-effect waves-light btn"
+                   type="submit"
+                   value="Add To Que"
+                   [disabled]="flightNum.invalid || time.invalid">
+          </div>
+        </form>
+      </div>
+
+      <!-- eon -->
+      <div *ngIf="[eventName] == 'EON'">
+        <form (submit)="submitEON()">
+          <div class="row" >
+            <div class="input-field col s6">
+              <input placeholder="Flight Number"
+                     type="text"
+                     [(ngModel)]="flight_number"
+                     name="flight_number"
+                     #flightNum="ngModel"
+                     required minlength="1" maxlength="4" pattern="^[0-9]*$">
+            </div>
+            <div class="input-field col s6">
+              <input placeholder="Desired EON Time in UTC (hhmm)"
+                     type="text"
+                     [(ngModel)]="actual_eon_time_utc"
+                     name="actual_eon_time_utc"
+                     #time="ngModel"
+                     required minlength="1" maxlength="4" pattern="^[0-9]*$">
+            </div>
+          </div>
+          <!-- submit -->
+          <div class="row">
+            <input class="waves-effect waves-light btn"
+                   type="submit"
+                   value="Add To Que"
+                   [disabled]="flightNum.invalid || time.invalid">
+          </div>
+        </form>
+      </div>
+
+      <!-- sub -->
+      <div *ngIf="[eventName] == 'SUB'">
+        <form (submit)="submitSUB()">
+          <div class="row" >
+            <div class="input-field col s6">
+              <input placeholder="Flight Number"
+                     type="text"
+                     [(ngModel)]="flight_number"
+                     name="flight_number"
+                     #flightNum="ngModel"
+                     required minlength="1" maxlength="4" pattern="^[0-9]*$">
+            </div>
+            <div class="input-field col s6">
+              <input placeholder="Desired Tail Number (3 digit)"
+                     type="text"
+                     [(ngModel)]="new_tail_number"
+                     name="new_tail_number"
+                     #tailNum="ngModel"
+                     required minlength="3" maxlength="3" pattern="^[0-9]*$">
+            </div>
+          </div>
+          <!-- submit -->
+          <div class="row">
+            <input class="waves-effect waves-light btn"
+                   type="submit"
+                   value="Add To Que"
+                   [disabled]="flightNum.invalid || tailNum.invalid">
+          </div>
+        </form>
+      </div>
+
+      <!-- cnl -->
+      <div *ngIf="[eventName] == 'CNL'">
+        <form (submit)="submitCNL()">
+          <div class="row" >
+            <div class="input-field col s6 offset-s3">
+              <input placeholder="Flight Number"
+                     type="text"
+                     [(ngModel)]="flight_number"
+                     name="flight_number"
+                     #flightNum="ngModel"
+                     required minlength="1" maxlength="4" pattern="^[0-9]*$">
+            </div>
+          </div>
+          <!-- submit -->
+          <div class="row">
+            <input class="waves-effect waves-light btn"
+                   type="submit"
+                   value="Add To Que"
+                   [disabled]="flightNum.invalid">
+          </div>
+        </form>
+      </div>
+
+      <!-- del -->
+      <div *ngIf="[eventName] == 'DEL'">
+        <form (submit)="submitDEL()">
+          <div class="row" >
+            <div class="input-field col s6 offset-s3">
+              <input placeholder="Flight Number"
+                     type="text"
+                     [(ngModel)]="flight_number"
+                     name="flight_number"
+                     #flightNum="ngModel"
+                     required minlength="1" maxlength="4" pattern="^[0-9]*$">
+            </div>
+          </div>
+          <!-- submit -->
+          <div class="row">
+            <input class="waves-effect waves-light btn"
+                   type="submit"
+                   value="Add To Que"
+                   [disabled]="flightNum.invalid">
+          </div>
+        </form>
+      </div>
+
+      <!-- GTA -->
+      <div *ngIf="[eventName] == 'GTA'">
+        <form (submit)="submitGTA()">
+          <div class="row" >
+            <div class="input-field col s6">
+              <input placeholder="Flight Number"
+                     type="text"
+                     [(ngModel)]="flight_number"
+                     name="flight_number"
+                     #flightNum="ngModel"
+                     required minlength="1" maxlength="4" pattern="^[0-9]*$">
+            </div>
+            <div class="input-field col s6">
+              <input placeholder="Arrival Gate (Max 4 character)"
+                     type="text"
+                     [(ngModel)]="arrival_gate"
+                     name="arrival_gate"
+                     #arrivalGate="ngModel"
+                     required minlength="1" maxlength="4" pattern="^[a-zA-Z0-9]+$">
+            </div>
+          </div>
+          <!-- submit -->
+          <div class="row">
+            <input class="waves-effect waves-light btn"
+                   type="submit"
+                   value="Add To Que"
+                   [disabled]="flightNum.invalid || arrivalGate.invalid">
+          </div>
+        </form>
+      </div>
+
+      <!-- GTD -->
+      <div *ngIf="[eventName] == 'GTD'">
+        <form (submit)="submitGTD()">
+          <div class="row" >
+            <div class="input-field col s6">
+              <input placeholder="Flight Number"
+                     type="text"
+                     [(ngModel)]="flight_number"
+                     name="flight_number"
+                     #flightNum="ngModel"
+                     required minlength="1" maxlength="4" pattern="^[0-9]*$">
+            </div>
+            <div class="input-field col s6">
+              <input placeholder="Arrival Gate (Max 4 character)"
+                     type="text"
+                     [(ngModel)]="departure_gate"
+                     name="departure_gate"
+                     #departureGate="ngModel"
+                     required minlength="1" maxlength="4" pattern="^[a-zA-Z0-9]+$">
+            </div>
+          </div>
+          <!-- submit -->
+          <div class="row">
+            <input class="waves-effect waves-light btn"
+                   type="submit"
+                   value="Add To Que"
+                   [disabled]="flightNum.invalid || departureGate.invalid">
+          </div>
+        </form>
+      </div>
+
+      <!-- RIN -->
+      <div *ngIf="[eventName] == 'RIN'">
+        <form (submit)="submitRIN()">
+          <div class="row" >
+            <div class="input-field col s6 offset-s3">
+              <input placeholder="Flight Number"
+                     type="text"
+                     [(ngModel)]="flight_number"
+                     name="flight_number"
+                     #flightNum="ngModel"
+                     required minlength="1" maxlength="4" pattern="^[0-9]*$">
+            </div>
+          </div>
+          <!-- submit -->
+          <div class="row">
+            <input class="waves-effect waves-light btn"
+                   type="submit"
+                   value="Add To Que"
+                   [disabled]="flightNum.invalid">
+          </div>
+        </form>
+      </div>
+
+      <!-- ASN -->
+      <div *ngIf="[eventName] == 'ASN'">
+        <form (submit)="submitASN()">
+          <div class="row" >
+            <div class="input-field col s6">
+              <input placeholder="Flight Number"
+                     type="text"
+                     [(ngModel)]="flight_number"
+                     name="flight_number"
+                     #flightNum="ngModel"
+                     required minlength="1" maxlength="4" pattern="^[0-9]*$">
+            </div>
+            <div class="input-field col s6">
+              <input placeholder="Desired Tail Number (3 digit)"
+                     type="text"
+                     [(ngModel)]="new_tail_number"
+                     name="new_tail_number"
+                     #tailNum="ngModel"
+                     required minlength="3" maxlength="3" pattern="^[0-9]*$">
+            </div>
+          </div>
+          <!-- submit -->
+          <div class="row">
+            <input class="waves-effect waves-light btn"
+                   type="submit"
+                   value="Add To Que"
+                   [disabled]="flightNum.invalid || tailNum.invalid">
+          </div>
+        </form>
+      </div>
+
+      <!-- REM -->
+      <div *ngIf="[eventName] == 'REM'">
+        <form (submit)="submitREM()">
+          <div class="row" >
+            <div class="input-field col s6 offset-s3">
+              <input placeholder="Flight Number"
+                     type="text"
+                     [(ngModel)]="flight_number"
+                     name="flight_number"
+                     #flightNum="ngModel"
+                     required minlength="1" maxlength="4" pattern="^[0-9]*$">
+            </div>
+          </div>
+          <!-- submit -->
+          <div class="row">
+            <input class="waves-effect waves-light btn"
+                   type="submit"
+                   value="Add To Que"
+                   [disabled]="flightNum.invalid">
+          </div>
+        </form>
+      </div>
+
+      <!-- UDA -->
+      <div *ngIf="[eventName] == 'UDA'">
+        <form (submit)="submitUDA()">
+          <div class="row" >
+            <div class="input-field col s6 offset-s3">
+              <input placeholder="Flight Number"
+                     type="text"
+                     [(ngModel)]="flight_number"
+                     name="flight_number"
+                     #flightNum="ngModel"
+                     required minlength="1" maxlength="4" pattern="^[0-9]*$">
+            </div>
+          </div>
+          <!-- submit -->
+          <div class="row">
+            <input class="waves-effect waves-light btn"
+                   type="submit"
+                   value="Add To Que"
+                   [disabled]="flightNum.invalid">
+          </div>
+        </form>
+      </div>
+
+      <!-- UDD -->
+      <div *ngIf="[eventName] == 'UDD'">
+        <form (submit)="submitUDD()">
+          <div class="row" >
+            <div class="input-field col s6 offset-s3">
+              <input placeholder="Flight Number"
+                     type="text"
+                     [(ngModel)]="flight_number"
+                     name="flight_number"
+                     #flightNum="ngModel"
+                     required minlength="1" maxlength="4" pattern="^[0-9]*$">
+            </div>
+          </div>
+          <!-- submit -->
+          <div class="row">
+            <input class="waves-effect waves-light btn"
+                   type="submit"
+                   value="Add To Que"
+                   [disabled]="flightNum.invalid">
+          </div>
+        </form>
+      </div>
+
+      <!-- RMA -->
+      <div *ngIf="[eventName] == 'RMA'">
+        <form (submit)="submitRMA()">
+          <div class="row" >
+            <div class="input-field col s6 offset-s3">
+              <input placeholder="Flight Number"
+                     type="text"
+                     [(ngModel)]="flight_number"
+                     name="flight_number"
+                     #flightNum="ngModel"
+                     required minlength="1" maxlength="4" pattern="^[0-9]*$">
+            </div>
+          </div>
+          <!-- submit -->
+          <div class="row">
+            <input class="waves-effect waves-light btn"
+                   type="submit"
+                   value="Add To Que"
+                   [disabled]="flightNum.invalid">
+          </div>
+        </form>
+      </div>
+
+      <!-- RMD -->
+      <div *ngIf="[eventName] == 'RMD'">
+        <form (submit)="submitRMD()">
+          <div class="row" >
+            <div class="input-field col s6 offset-s3">
+              <input placeholder="Flight Number"
+                     type="text"
+                     [(ngModel)]="flight_number"
+                     name="flight_number"
+                     #flightNum="ngModel"
+                     required minlength="1" maxlength="4" pattern="^[0-9]*$">
+            </div>
+          </div>
+          <!-- submit -->
+          <div class="row">
+            <input class="waves-effect waves-light btn"
+                   type="submit"
+                   value="Add To Que"
+                   [disabled]="flightNum.invalid">
+          </div>
+        </form>
+      </div>
+
+      <!-- AIR -->
+      <div *ngIf="[eventName] == 'AIR'">
+        <form (submit)="submitAIR()">
+          <div class="row" >
+            <div class="input-field col s6 offset-s3">
+              <input placeholder="Flight Number"
+                     type="text"
+                     [(ngModel)]="flight_number"
+                     name="flight_number"
+                     #flightNum="ngModel"
+                     required minlength="1" maxlength="4" pattern="^[0-9]*$">
+            </div>
+          </div>
+          <!-- submit -->
+          <div class="row">
+            <input class="waves-effect waves-light btn"
+                   type="submit"
+                   value="Add To Que"
+                   [disabled]="flightNum.invalid">
+          </div>
+        </form>
+      </div>
+
+      <!-- GRD -->
+      <div *ngIf="[eventName] == 'GRD'">
+        <form (submit)="submitGRD()">
+          <div class="row" >
+            <div class="input-field col s6 offset-s3">
+              <input placeholder="Flight Number"
+                     type="text"
+                     [(ngModel)]="flight_number"
+                     name="flight_number"
+                     #flightNum="ngModel"
+                     required minlength="1" maxlength="4" pattern="^[0-9]*$">
+            </div>
+          </div>
+          <!-- submit -->
+          <div class="row">
+            <input class="waves-effect waves-light btn"
+                   type="submit"
+                   value="Add To Que"
+                   [disabled]="flightNum.invalid">
+          </div>
+        </form>
+      </div>
+
+
+      <!-- DVC -->
+      <div *ngIf="[eventName] == 'DVC'">
+        <form (submit)="submitDVC()">
+          <div class="row" >
+            <div class="input-field col s4">
+              <input placeholder="Flight Number"
+                     type="text"
+                     [(ngModel)]="flight_number"
+                     name="flight_number"
+                     #flightNum="ngModel"
+                     required minlength="1" maxlength="4" pattern="^[0-9]*$">
+            </div>
+            <div class="input-field col s4">
+              <input placeholder="Diversion City (Ex: JFK)"
+                     type="text"
+                     [(ngModel)]="diversion_city"
+                     name="diversion_city"
+                     #diversionCity="ngModel"
+                     required minlength="3" maxlength="3" pattern="^[a-zA-Z]*$">
+            </div>
+            <div class="input-field col s4">
+              <input placeholder="ETA To Diversion City in UTC (hhmm)"
+                     type="text"
+                     [(ngModel)]="actual_eta_time_utc"
+                     name="actual_eta_time_utc"
+                     #time="ngModel"
+                     required minlength="1" maxlength="4" pattern="^[0-9]*$">
+            </div>
+          </div>
+          <!-- submit -->
+          <div class="row">
+            <input class="waves-effect waves-light btn"
+                   type="submit"
+                   value="Add To Que"
+                   [disabled]="flightNum.invalid || diversionCity.invalid || time.invalid">
+          </div>
+        </form>
+      </div>
+
+
+      <!-- NEW -->
+      <div *ngIf="[eventName] == 'NEW'">
+        <form (submit)="submitNEW()">
+          <div class="row" >
+            <div class="input-field col s3">
+              <input placeholder="Flight Number"
+                     type="text"
+                     [(ngModel)]="flight_number"
+                     name="flight_number"
+                     #flightNum="ngModel"
+                     required minlength="1" maxlength="4" pattern="^[0-9]*$">
+            </div>
+            <mz-datepicker-container class="col s3">
+              <input mz-datepicker
+                [options]="options"
+                [(ngModel)]="flight_origin_date_utc"
+                name="flight_origin_date_utc"
+                placeholder="Flight Origin Date (UTC)"
+                #flightOriginDate="ngModel"
+                type="text"
+                required minlength="8" maxlength="8" pattern="^[0-9]*$">
+            </mz-datepicker-container>
+            <div class="input-field col s3">
+              <input placeholder="Flight Origin (Ex: JFK)"
+                     type="text"
+                     [(ngModel)]="flight_origin"
+                     name="flight_origin"
+                     #flightOrigin="ngModel"
+                     required minlength="3" maxlength="3" pattern="^[a-zA-Z]*$">
+            </div>
+            <div class="input-field col s3">
+              <input placeholder="Flight Destination (Ex: BOS)"
+                     type="text"
+                     [(ngModel)]="flight_destination"
+                     name="flight_destination"
+                     #flightDestination="ngModel"
+                     required minlength="3" maxlength="3" pattern="^[a-zA-Z]*$">
+            </div>
+            <div class="input-field col s3">
+              <input placeholder="STD From Origin in UTC (hhmm)"
+                     type="text"
+                     [(ngModel)]="flight_std_utc"
+                     name="flight_std_utc"
+                     #time="ngModel"
+                     required minlength="1" maxlength="4" pattern="^[0-9]*$">
+            </div>
+            <div class="input-field col s3">
+              <input placeholder="STA To Destination in UTC (hhmm)"
+                     type="text"
+                     [(ngModel)]="flight_sta_utc"
+                     name="flight_sta_utc"
+                     #time="ngModel"
+                     required minlength="1" maxlength="4" pattern="^[0-9]*$">
+            </div>
+            <div class="input-field col s3">
+              <input placeholder="Tail Number (3 digit)"
+                     type="text"
+                     [(ngModel)]="new_tail_number"
+                     name="new_tail_number"
+                     #tailNum="ngModel"
+                     required minlength="3" maxlength="3" pattern="^[0-9]*$">
+            </div>
+          </div>
+          <!-- submit -->
+          <div class="row">
+            <input class="waves-effect waves-light btn"
+                   type="submit"
+                   value="Add To Que"
+                   [disabled]="flightNum.invalid || flightOriginDate.invalid || time.invalid || tailNum.invalid">
+          </div>
+        </form>
+      </div>
+
+  </div>
+</div>

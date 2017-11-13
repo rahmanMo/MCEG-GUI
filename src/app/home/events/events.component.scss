@@ -1,0 +1,46 @@
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+  color: #34495e;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+ color: #34495e;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+ color: #34495e;
+}
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+ color: #34495e;
+}
+::-ms-input-placeholder { /* Microsoft Edge */
+ color: #34495e;
+}
+
+.e-name, .picker__clear, .picker__day.picker__day--today  {
+  color: #e74c3c;
+}
+
+.picker__day--selected, .picker__day--selected:hover, .picker--focused .picker__day--selected {
+ color: #fff;
+ background-color: #e74c3c;
+}
+
+.picker__today, .picker__close{
+  color: #45B39D;
+}
+
+/* input {
+  background-color: white;
+} */
+.btn-evt {
+  margin: 1%;
+}
+
+.picker__date-display{
+  background-color: #424949;
+}
+
+
+
+
+.btn-selected {
+  background: #e74c3c;
+}

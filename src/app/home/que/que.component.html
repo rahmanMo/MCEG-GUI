@@ -1,0 +1,72 @@
+<div class="row center">
+    <div class="card-panel">
+      <div class="row">
+        <h5>Review Data</h5>
+      </div>
+      <div class="divider"></div>
+      <div class="row que-collection">
+        <ul class="collection" *ngFor="let event of allEvents">
+
+          <li class="collection-item que-item" *ngIf="event.event_type == 'OUT'">
+            Make new <span class="mark">{{event.event_type}}</span> time for Flight: <span class="mark">{{event.flight_number}}</span> @ <span class="mark">{{event.actual_out_time_utc}}</span> UTC
+
+            <a href="#!"><i class="material-icons secondary-content" (click)="removeEvent(event)">highlight_off</i></a>
+          </li>
+          <li class="collection-item que-item" *ngIf="event.event_type == 'OFF'">
+              Make new <span class="mark">{{event.event_type}}</span> time for Flight: <span class="mark">{{event.flight_number}}</span> @ <span class="mark">{{event.actual_off_time_utc}}</span> UTC
+
+            <a href="#!"><i class="material-icons secondary-content" (click)="removeEvent(event)">highlight_off</i></a>
+          </li>
+          <li class="collection-item que-item" *ngIf="event.event_type == 'ON'">
+              Make new <span class="mark">{{event.event_type}}</span> time for Flight: <span class="mark">{{event.flight_number}}</span> @ <span class="mark">{{event.actual_on_time_utc}}</span> UTC
+
+            <a href="#!"><i class="material-icons secondary-content" (click)="removeEvent(event)">highlight_off</i></a>
+          </li>
+          <li class="collection-item que-item" *ngIf="event.event_type == 'IN'">
+              Make new <span class="mark">{{event.event_type}}</span> time for Flight: <span class="mark">{{event.flight_number}}</span> @ <span class="mark">{{event.actual_in_time_utc}}</span> UTC
+
+            <a href="#!"><i class="material-icons secondary-content" (click)="removeEvent(event)">highlight_off</i></a>
+          </li>
+          <li class="collection-item que-item" *ngIf="event.event_type == 'ETA'">
+              Make new <span class="mark">{{event.event_type}}</span> time for Flight: <span class="mark">{{event.flight_number}}</span> @ <span class="mark">{{event.actual_eta_time_utc}}</span> UTC
+
+            <a href="#!"><i class="material-icons secondary-content" (click)="removeEvent(event)">highlight_off</i></a>
+          </li>
+          <li class="collection-item que-item" *ngIf="event.event_type == 'ETD'">
+              Make new <span class="mark">{{event.event_type}}</span> time for Flight: <span class="mark">{{event.flight_number}}</span> @ <span class="mark">{{event.actual_etd_time_utc}}</span> UTC
+
+            <a href="#!"><i class="material-icons secondary-content" (click)="removeEvent(event)">highlight_off</i></a>
+          </li>
+          <li class="collection-item que-item" *ngIf="event.event_type == 'ETO'">
+              Make new <span class="mark">{{event.event_type}}</span> time for Flight: <span class="mark">{{event.flight_number}}</span> @ <span class="mark">{{event.actual_eto_time_utc}}</span> UTC
+
+            <a href="#!"><i class="material-icons secondary-content" (click)="removeEvent(event)">highlight_off</i></a>
+          </li>
+          <li class="collection-item que-item" *ngIf="event.event_type == 'EON'">
+              Make new <span class="mark">{{event.event_type}}</span> time for Flight: <span class="mark">{{event.flight_number}}</span> @ <span class="mark">{{event.actual_eon_time_utc}}</span> UTC
+
+            <a href="#!"><i class="material-icons secondary-content" (click)="removeEvent(event)">highlight_off</i></a>
+          </li>
+          <li class="collection-item que-item" *ngIf="event.event_type == 'SUB'">
+              <span class="mark">{{event.event_type}}</span> tail number for Flight: <span class="mark">{{event.flight_number}}</span> @ <span class="mark">{{event.new_tail_number}}</span>
+
+            <a href="#!"><i class="material-icons secondary-content" (click)="removeEvent(event)">highlight_off</i></a>
+          </li>
+          <li class="collection-item que-item" *ngIf="event.event_type == 'CNL'">
+              <span class="mark">{{event.event_type}}</span> Flight: <span class="mark">{{event.flight_number}}</span>
+
+            <a href="#!"><i class="material-icons secondary-content" (click)="removeEvent(event)">highlight_off</i></a>
+          </li>
+          <li class="collection-item que-item" *ngIf="event.event_type == 'DEL'">
+              <span class="mark">{{event.event_type}}</span> Flight: <span class="mark">{{event.flight_number}}</span>
+
+            <a href="#!"><i mz-icon-mdi [icon]="'cancel'"class="secondary-content" (click)="removeEvent(event)"></i></a>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+  <div class="row center">
+      <a class="waves-effect waves-light btn" (click)="downloadCSV()">Download CSV</a>
+  </div>
