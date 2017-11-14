@@ -28,7 +28,7 @@
   color: #45B39D;
 }
 
-.e-name, .picker__clear, .picker__day.picker__day--today  {
+.picker__clear, .picker__day.picker__day--today  {
   color: #e74c3c;
 }
 
@@ -44,9 +44,7 @@
 /* input {
   background-color: white;
 } */
-.btn-evt {
-  margin: 1%;
-}
+
 
 .picker__date-display{
   background-color: #424949;
@@ -57,6 +55,3 @@
 }
 
 
-.btn-selected {
-  background: #e74c3c;
-}

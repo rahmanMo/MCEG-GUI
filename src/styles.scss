@@ -3,20 +3,29 @@ body {
   background-color: #424949;
 }
 
-h5 {
+h5, p {
   font-weight: 500;
   // color: #A38F84;
   color: #606060;
+}
+
+p {
+  font-size: 1.5rem;
 }
 
 .btn {
   background: #45B39D;
 }
 
-.btn:hover {
+.btn-evt {
+  margin: 1%;
+}
+
+.btn:hover, .btn-selected, nav {
   background: #e74c3c;
 }
 
-.card-panel {
-  background: #F2F3F4;
+
+.e-name {
+  color: #e74c3c;
 }
