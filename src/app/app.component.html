@@ -1,8 +1,9 @@
 <nav>
   <div class="nav-wrapper container">
-    <a href="#" class="brand-logo">MCEG</a>
+    <a routerLink="" class="brand-logo logo waves-effect waves-light">MCEG</a>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
-      <li><a href="#" class="waves-effect waves-light">Guide</a></li>
+      <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:
+        true}"><a routerLink="guide" class="waves-effect waves-light">Guide</a></li>
     </ul>
   </div>
 </nav>

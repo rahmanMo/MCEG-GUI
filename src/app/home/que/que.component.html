@@ -10,57 +10,129 @@
           <li class="collection-item que-item" *ngIf="event.event_type == 'OUT'">
             Make new <span class="mark">{{event.event_type}}</span> time for Flight: <span class="mark">{{event.flight_number}}</span> @ <span class="mark">{{event.actual_out_time_utc}}</span> UTC
 
-            <a href="#!"><i class="material-icons secondary-content" (click)="removeEvent(event)">highlight_off</i></a>
+            <a href="#!"><i mz-icon-mdi [icon]="'close-circle-outline'" class="secondary-content" (click)="removeEvent(event)"></i></a>
           </li>
           <li class="collection-item que-item" *ngIf="event.event_type == 'OFF'">
               Make new <span class="mark">{{event.event_type}}</span> time for Flight: <span class="mark">{{event.flight_number}}</span> @ <span class="mark">{{event.actual_off_time_utc}}</span> UTC
 
-            <a href="#!"><i class="material-icons secondary-content" (click)="removeEvent(event)">highlight_off</i></a>
+            <a href="#!"><i mz-icon-mdi [icon]="'close-circle-outline'" class="secondary-content" (click)="removeEvent(event)"></i></a>
           </li>
           <li class="collection-item que-item" *ngIf="event.event_type == 'ON'">
               Make new <span class="mark">{{event.event_type}}</span> time for Flight: <span class="mark">{{event.flight_number}}</span> @ <span class="mark">{{event.actual_on_time_utc}}</span> UTC
 
-            <a href="#!"><i class="material-icons secondary-content" (click)="removeEvent(event)">highlight_off</i></a>
+            <a href="#!"><i mz-icon-mdi [icon]="'close-circle-outline'" class="secondary-content" (click)="removeEvent(event)"></i></a>
           </li>
           <li class="collection-item que-item" *ngIf="event.event_type == 'IN'">
               Make new <span class="mark">{{event.event_type}}</span> time for Flight: <span class="mark">{{event.flight_number}}</span> @ <span class="mark">{{event.actual_in_time_utc}}</span> UTC
 
-            <a href="#!"><i class="material-icons secondary-content" (click)="removeEvent(event)">highlight_off</i></a>
+            <a href="#!"><i mz-icon-mdi [icon]="'close-circle-outline'" class="secondary-content" (click)="removeEvent(event)"></i></a>
           </li>
           <li class="collection-item que-item" *ngIf="event.event_type == 'ETA'">
               Make new <span class="mark">{{event.event_type}}</span> time for Flight: <span class="mark">{{event.flight_number}}</span> @ <span class="mark">{{event.actual_eta_time_utc}}</span> UTC
 
-            <a href="#!"><i class="material-icons secondary-content" (click)="removeEvent(event)">highlight_off</i></a>
+            <a href="#!"><i mz-icon-mdi [icon]="'close-circle-outline'" class="secondary-content" (click)="removeEvent(event)"></i></a>
           </li>
           <li class="collection-item que-item" *ngIf="event.event_type == 'ETD'">
               Make new <span class="mark">{{event.event_type}}</span> time for Flight: <span class="mark">{{event.flight_number}}</span> @ <span class="mark">{{event.actual_etd_time_utc}}</span> UTC
 
-            <a href="#!"><i class="material-icons secondary-content" (click)="removeEvent(event)">highlight_off</i></a>
+            <a href="#!"><i mz-icon-mdi [icon]="'close-circle-outline'" class="secondary-content" (click)="removeEvent(event)"></i></a>
           </li>
           <li class="collection-item que-item" *ngIf="event.event_type == 'ETO'">
               Make new <span class="mark">{{event.event_type}}</span> time for Flight: <span class="mark">{{event.flight_number}}</span> @ <span class="mark">{{event.actual_eto_time_utc}}</span> UTC
 
-            <a href="#!"><i class="material-icons secondary-content" (click)="removeEvent(event)">highlight_off</i></a>
+            <a href="#!"><i mz-icon-mdi [icon]="'close-circle-outline'" class="secondary-content" (click)="removeEvent(event)"></i></a>
           </li>
           <li class="collection-item que-item" *ngIf="event.event_type == 'EON'">
               Make new <span class="mark">{{event.event_type}}</span> time for Flight: <span class="mark">{{event.flight_number}}</span> @ <span class="mark">{{event.actual_eon_time_utc}}</span> UTC
 
-            <a href="#!"><i class="material-icons secondary-content" (click)="removeEvent(event)">highlight_off</i></a>
+            <a href="#!"><i mz-icon-mdi [icon]="'close-circle-outline'" class="secondary-content" (click)="removeEvent(event)"></i></a>
           </li>
           <li class="collection-item que-item" *ngIf="event.event_type == 'SUB'">
-              <span class="mark">{{event.event_type}}</span> tail number for Flight: <span class="mark">{{event.flight_number}}</span> @ <span class="mark">{{event.new_tail_number}}</span>
+              <span class="mark">{{event.event_type}}</span> Substitute tail number for Flight: <span class="mark">{{event.flight_number}}</span> with <span class="mark">{{event.new_tail_number}}</span>
 
-            <a href="#!"><i class="material-icons secondary-content" (click)="removeEvent(event)">highlight_off</i></a>
+            <a href="#!"><i mz-icon-mdi [icon]="'close-circle-outline'" class="secondary-content" (click)="removeEvent(event)"></i></a>
           </li>
           <li class="collection-item que-item" *ngIf="event.event_type == 'CNL'">
-              <span class="mark">{{event.event_type}}</span> Flight: <span class="mark">{{event.flight_number}}</span>
+              <span class="mark">{{event.event_type}}</span> Cancel Flight: <span class="mark">{{event.flight_number}}</span>
 
-            <a href="#!"><i class="material-icons secondary-content" (click)="removeEvent(event)">highlight_off</i></a>
+              <a href="#!"><i mz-icon-mdi [icon]="'close-circle-outline'" class="secondary-content" (click)="removeEvent(event)"></i></a>
           </li>
           <li class="collection-item que-item" *ngIf="event.event_type == 'DEL'">
-              <span class="mark">{{event.event_type}}</span> Flight: <span class="mark">{{event.flight_number}}</span>
+              <span class="mark">{{event.event_type}}</span> Delete Flight: <span class="mark">{{event.flight_number}}</span>
 
-            <a href="#!"><i mz-icon-mdi [icon]="'cancel'"class="secondary-content" (click)="removeEvent(event)"></i></a>
+            <a href="#!"><i mz-icon-mdi [icon]="'close-circle-outline'" class="secondary-content" (click)="removeEvent(event)"></i></a>
+          </li>
+          <li class="collection-item que-item" *ngIf="event.event_type == 'GTA'">
+              <span class="mark">{{event.event_type}}</span> For Flight: <span class="mark">{{event.flight_number}}</span>. New Arrival Gate: <span class="mark">{{event.arrival_gate}}</span>
+
+            <a href="#!"><i mz-icon-mdi [icon]="'close-circle-outline'" class="secondary-content" (click)="removeEvent(event)"></i></a>
+          </li>
+          <li class="collection-item que-item" *ngIf="event.event_type == 'GTD'">
+              <span class="mark">{{event.event_type}}</span> For Flight: <span class="mark">{{event.flight_number}}</span>. New Departure Gate: <span class="mark">{{event.departure_gate}}</span>
+
+            <a href="#!"><i mz-icon-mdi [icon]="'close-circle-outline'" class="secondary-content" (click)="removeEvent(event)"></i></a>
+          </li>
+          <li class="collection-item que-item" *ngIf="event.event_type == 'RIN'">
+              <span class="mark">{{event.event_type}}</span> Reinstate Flight: <span class="mark">{{event.flight_number}}</span>
+
+            <a href="#!"><i mz-icon-mdi [icon]="'close-circle-outline'" class="secondary-content" (click)="removeEvent(event)"></i></a>
+          </li>
+          <li class="collection-item que-item" *ngIf="event.event_type == 'ASN'">
+            <span class="mark">{{event.event_type}}</span> Assign tail number for Flight: <span class="mark">{{event.flight_number}}</span> @ <span class="mark">{{event.new_tail_number}}</span>
+
+            <a href="#!"><i mz-icon-mdi [icon]="'close-circle-outline'" class="secondary-content" (click)="removeEvent(event)"></i></a>
+          </li>
+          <li class="collection-item que-item" *ngIf="event.event_type == 'REM'">
+            <span class="mark">{{event.event_type}}</span> Remove Flight: <span class="mark">{{event.flight_number}}</span>
+
+            <a href="#!"><i mz-icon-mdi [icon]="'close-circle-outline'" class="secondary-content" (click)="removeEvent(event)"></i></a>
+          </li>
+          <li class="collection-item que-item" *ngIf="event.event_type == 'UDA'">
+            <span class="mark">{{event.event_type}}</span> Undelay arrival for Flight: <span class="mark">{{event.flight_number}}</span>
+
+            <a href="#!"><i mz-icon-mdi [icon]="'close-circle-outline'" class="secondary-content" (click)="removeEvent(event)"></i></a>
+          </li>
+          <li class="collection-item que-item" *ngIf="event.event_type == 'UDD'">
+            <span class="mark">{{event.event_type}}</span> Undelay departure for Flight: <span class="mark">{{event.flight_number}}</span>
+
+            <a href="#!"><i mz-icon-mdi [icon]="'close-circle-outline'" class="secondary-content" (click)="removeEvent(event)"></i></a>
+          </li>
+          <li class="collection-item que-item" *ngIf="event.event_type == 'RMA'">
+            <span class="mark">{{event.event_type}}</span> Remove arrival values for Flight: <span class="mark">{{event.flight_number}}</span>
+
+            <a href="#!"><i mz-icon-mdi [icon]="'close-circle-outline'" class="secondary-content" (click)="removeEvent(event)"></i></a>
+          </li>
+          <li class="collection-item que-item" *ngIf="event.event_type == 'RMD'">
+            <span class="mark">{{event.event_type}}</span> Remove departure values for Flight: <span class="mark">{{event.flight_number}}</span>
+
+            <a href="#!"><i mz-icon-mdi [icon]="'close-circle-outline'" class="secondary-content" (click)="removeEvent(event)"></i></a>
+          </li>
+          <li class="collection-item que-item" *ngIf="event.event_type == 'AIR'">
+            <span class="mark">{{event.event_type}}</span> Make air turnback for Flight: <span class="mark">{{event.flight_number}}</span>
+
+            <a href="#!"><i mz-icon-mdi [icon]="'close-circle-outline'" class="secondary-content" (click)="removeEvent(event)"></i></a>
+          </li>
+          <li class="collection-item que-item" *ngIf="event.event_type == 'GRD'">
+            <span class="mark">{{event.event_type}}</span> Make ground turnback for Flight: <span class="mark">{{event.flight_number}}</span>
+
+            <a href="#!"><i mz-icon-mdi [icon]="'close-circle-outline'" class="secondary-content" (click)="removeEvent(event)"></i></a>
+          </li>
+          <li class="collection-item que-item" *ngIf="event.event_type == 'DVC'">
+            <span class="mark">{{event.event_type}}</span> Divert Flight: <span class="mark">{{event.flight_number}}</span> to <span class="mark">{{event.diversion_city}}</span> with ETA <span class="mark">{{event.actual_eta_time_utc}}</span>
+
+            <a href="#!"><i mz-icon-mdi [icon]="'close-circle-outline'" class="secondary-content" (click)="removeEvent(event)"></i></a>
+          </li>
+          <li class="collection-item que-item" *ngIf="event.event_type == 'NEW'">
+            <span class="mark">{{event.event_type}}</span> Flight: <span class="mark">{{event.flight_number}}</span>,
+             Date: <span class="mark">{{event.flight_origin_date_utc}}</span>,
+             Origin: <span class="mark">{{event.flight_origin}}</span>,
+             Destination: <span class="mark">{{event.flight_destination}}</span>,
+             STD: <span class="mark">{{event.flight_std_utc}}</span>,
+             STA: <span class="mark">{{event.flight_sta_utc}}</span>,
+             Tail: <span class="mark">{{event.new_tail_number}}</span>,
+             Next day crossover: <span class="mark" *ngIf="event.next_day_crossover == '1'">YES</span> <span class="mark" *ngIf="event.next_day_crossover == '0'">NO</span>
+
+            <a href="#!"><i mz-icon-mdi [icon]="'close-circle-outline'" class="secondary-content" (click)="removeEvent(event)"></i></a>
           </li>
         </ul>
       </div>

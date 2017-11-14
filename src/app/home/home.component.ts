@@ -45,6 +45,17 @@ export class HomeComponent implements OnInit {
     return value.toUpperCase();
   }
 
+  // fix next day crossover
+  fixNextDay(value) {
+    if (value.toUpperCase() === 'YES') {
+      value = 1;
+    } else if (value.toUpperCase() === 'NO') {
+      value = 0;
+    }
+
+    return value;
+  }
+
 
   addEvent(object: EventRow) {
     object.flight_number = this.fixFlightNum(object.flight_number);
@@ -59,6 +70,7 @@ export class HomeComponent implements OnInit {
     object.arrival_gate = this.fixUppercase(object.arrival_gate);
     object.departure_gate = this.fixUppercase(object.departure_gate);
     object.diversion_city = this.fixUppercase(object.diversion_city);
+    object.next_day_crossover = this.fixNextDay(object.next_day_crossover);
     // console.log(object.flight_number);
     this.eventService.addEvent(object);
     // console.log(this.allEvents);

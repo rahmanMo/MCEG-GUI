@@ -11,13 +11,15 @@ import { EventsComponent } from './home/events/events.component';
 import { QueComponent } from './home/que/que.component';
 import { HomeComponent } from './home/home.component';
 import { EventService } from './services/event.service';
+import { GuideComponent } from './guide/guide.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     EventsComponent,
     QueComponent,
-    HomeComponent
+    HomeComponent,
+    GuideComponent
   ],
   imports: [
     BrowserModule,

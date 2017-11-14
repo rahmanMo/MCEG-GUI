@@ -176,6 +176,15 @@ export class EventsComponent implements OnInit {
      this.actual_eto_time_utc = null;
      this.actual_eon_time_utc = null;
      this.new_tail_number = null;
+     this.arrival_gate = null;
+     this.departure_gate = null;
+     this.diversion_city = null;
+     this.flight_origin = null;
+     this.flight_destination = null;
+     this.flight_origin_date_utc = null;
+     this.flight_std_utc = null;
+     this.flight_sta_utc = null;
+     this.next_day_crossover = null;
    }
 
 

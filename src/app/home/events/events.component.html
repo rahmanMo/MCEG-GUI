@@ -727,13 +727,26 @@
                      #tailNum="ngModel"
                      required minlength="3" maxlength="3" pattern="^[0-9]*$">
             </div>
-          </div>
+            <mz-select-container class="input-field col s3" id="nextDay">
+              <select mz-select
+                id="options-select"
+                [placeholder]="'Next Day Crossover?'"
+                [(ngModel)]="next_day_crossover"
+                name="next_day_crossover"
+                #nextDay="ngModel"
+                required minlength="2" maxlength="3" pattern="^[a-zA-Z]*$"
+              >
+                <option>Yes</option>
+                <option>No</option>
+              </select>
+            </mz-select-container>
+            </div>
           <!-- submit -->
           <div class="row">
             <input class="waves-effect waves-light btn"
                    type="submit"
                    value="Add To Que"
-                   [disabled]="flightNum.invalid || flightOriginDate.invalid || time.invalid || tailNum.invalid">
+                   [disabled]="flightNum.invalid || flightOriginDate.invalid || flightOrigin.invalid || flightDestination.invalid || time.invalid || tailNum.invalid || nextDay.invalid">
           </div>
         </form>
       </div>

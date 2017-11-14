@@ -1,5 +1,6 @@
 ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
   color: #34495e;
+  // text-align: center;
 }
 :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
  color: #34495e;
@@ -12,6 +13,19 @@
 }
 ::-ms-input-placeholder { /* Microsoft Edge */
  color: #34495e;
+}
+
+#nextDay>.input-field>.select-wrapper>.caret {
+  color: #e74c3c;
+}
+
+#nextDay>.input-field>.select-wrapper>input {
+  color: #34495e;
+}
+
+.dropdown-content li>a, .dropdown-content li>span {
+  text-align: center;
+  color: #45B39D;
 }
 
 .e-name, .picker__clear, .picker__day.picker__day--today  {
@@ -38,7 +52,9 @@
   background-color: #424949;
 }
 
-
+#nextDay>.input-field {
+  margin-top: 0;
+}
 
 
 .btn-selected {
