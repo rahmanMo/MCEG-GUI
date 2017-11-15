@@ -1,3 +1,18 @@
+
 .content {
-  min-height: 190px;
+  height: 250px;
 }
+
+.name {
+  margin-top: 1%;
+}
+
+.name>div>h5 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.name, .content {
+  margin-bottom: 0;
+}
+
