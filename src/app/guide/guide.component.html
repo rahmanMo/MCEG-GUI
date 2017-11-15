@@ -31,7 +31,7 @@
         <h5><span class="e-name">{{eventName}}</span></h5>
       </div>
     </div>
-    <div class="row">
+    <div class="row content">
       <div class="col s8 offset-s2">
         <p *ngIf="eventName == 'OUT'">Aircraft has left the Gate and sets the flight's Actual Departure timestamp. In MVT it changes OUT time in UTC.</p>
         <p *ngIf="eventName == 'OFF'">Aircraft has taken off the ground. In MVT it changes OFF time in UTC.</p>
