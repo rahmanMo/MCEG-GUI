@@ -1,5 +1,19 @@
 <div class="row center">
   <div class="card-panel">
+      <div class="row">
+        <div class="col s6 offset-s3">
+          <h5><span class="e-name">Rule for the script</span></h5>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s8 offset-s2">
+          <p>Make sure all the time vaues entered in CSV file are in UTC. Adhoc processor can only do UTC. It can handle events for flights that are from today, tomorrow and the following day, 3 day total.</p>
+        </div>
+      </div>
+  </div>
+</div>
+<div class="row center">
+  <div class="card-panel">
     <div class="row">
         <div class="col s12"><h5>Click Event For Explanation</h5></div>
     </div>
@@ -45,16 +59,7 @@
         <p *ngIf="eventName == 'DVC'">Divert And Continue. Adds an intermediate stop between the departure and arrival stations of the current flight (ex:  DAL - PHX becomes DAL - HOU - PHX) and Continue to the scheduled arrival station. Note: This breaks the flight into two segment, origin to diversion city and diversion city to original destination.</p>
       </div>
     </div>
-    <div class="row">
-      <div class="col s6 offset-s3">
-        <h5><span class="e-name">Rule for the script</span></h5>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col s8 offset-s2">
-        <p>Make sure all the time vaues entered in CSV file are in UTC. Adhoc processor can only do UTC. It can handle events for flights that are from today, tomorrow and the following day, 3 day total.</p>
-      </div>
-    </div>
+
 
   </div>
 </div>
