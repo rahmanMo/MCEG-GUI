@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const dbPath = '../../data/data.json'
 
 
 // Error handling
@@ -18,6 +19,8 @@ let response = {
 
 // Get users
 router.get('/flights', (req, res) => {
+
+  res.send(dbPat)
     // connection((db) => {
     //     db.collection('users')
     //         .find()
