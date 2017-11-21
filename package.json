@@ -8,7 +8,10 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "worker": "node worker",
+    "server": "node server",
+    "backend": "concurrently \"node worker\" \"node server\""
   },
   "private": true,
   "dependencies": {
@@ -22,9 +25,8 @@
     "@angular/platform-browser-dynamic": "^5.0.0",
     "@angular/router": "^5.0.0",
     "body-parser": "^1.18.2",
+    "concurrently": "^3.5.1",
     "core-js": "^2.4.1",
-    "csv-tools": "^1.0.2",
-    "csvtojson": "^1.1.9",
     "express": "^4.16.2",
     "fs-extra": "^4.0.2",
     "jquery": "^3.2.1",
