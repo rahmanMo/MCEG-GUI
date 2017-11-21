@@ -160,6 +160,12 @@ def call_adhoc_4_and_check_for_response_csv(receive_folder, send_folder, local_d
                     'STISetByUser',
                     'CTFlightNumber'])
         w.writerows(data)
+    with open(f'{local_directory}\\data\\data.csv') as f:
+      reader = csv.DictReader(f)
+      rows = list(reader)
+
+    with open(f'{local_directory}\\data\\data.json', 'w') as f:
+        json.dump(rows, f)
 
 check_if_folder_exist(stage3Receive)
 
