@@ -61,6 +61,7 @@ def call_adhoc_4_and_check_for_response_csv(receive_folder, send_folder, local_d
         # Copy file
         shutil.copy(f'{receive_folder}\\{file_name[0]}', f'{local_directory}\\data\\data.csv')
         print("csv file copied to local folder for parsing")
+        os.remove(f'{receive_folder}\\{file_name[0]}')
     # elif fnmatch.filter(files, pattern)[0] == []:
     #     # get current timestamp
     #     timeStamp = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
