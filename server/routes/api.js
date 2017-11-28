@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const dbPath = require('../../data/data.json');
+const fs = require('fs');
+// const path = require( "path" );
+// const dbPath = require('../../data/data.json');
 
 
 // Error handling
@@ -17,10 +19,23 @@ let response = {
     message: null
 };
 
-// Get users
+// Get flights
 router.get('/flights', (req, res) => {
 
-  res.send(JSON.stringify(dbPath));
+  // let obj = JSON.parse(fs.readFileSync('../../data/data.json', 'utf8'));
+    fs.readFile(__dirname + '/../../data/data.json', (err, json) => {
+      let obj = JSON.parse(json);
+      res.json(obj);
+      // res.send(JSON.stringify(json));
+  });
+
+});
+
+module.exports = router;
+
+
+  // let dbPath = require('../../data/data.json');
+  // res.send(JSON.stringify(dbPath));
     // connection((db) => {
     //     db.collection('users')
     //         .find()
@@ -33,8 +48,3 @@ router.get('/flights', (req, res) => {
     //             sendError(err, res);
     //         });
     // });
-
-
-});
-
-module.exports = router;
