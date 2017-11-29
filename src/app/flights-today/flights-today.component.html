@@ -1,43 +1,59 @@
-<div class="row" *ngFor="let flight of todaysFlights | async">
-  <div class="col s12">
-    <div class="card-panel fl">
-      <div class="row center">
-        <div class="col s6">
-            <h5>Flight #:{{flight.identifier}} Status:
-              <span *ngIf="flight.STDudt.trim() == flight.ETDudt.trim()"> On Time</span>
-              <span *ngIf="flight.STDudt.trim() > flight.ETDudt.trim()"> Early</span>
-              <span *ngIf="flight.STDudt.trim() < flight.ETDudt.trim()"> Delayed Departure</span>
-              <span *ngIf="flight.STAudt.trim() < flight.ETAudt.trim()"> Delayed Arrival</span>
-            </h5>
-            <h5>Flight Local Date: {{flight.numericFlightDate}}</h5>
-            <h5>Flight UTC Date: {{flight.numGMTDate}}</h5>
-            <h5>Origin: {{flight.origin}}</h5>
-            <h5>Destination: {{flight.destination}}</h5>
-            <h5>Tail #: {{flight.tailNumber}}</h5>
-            <h5>STD Local: {{flight.STDLocal}}</h5>
-            <h5>STD UTC: {{flight.STDudt}}</h5>
-            <h5>STA Local: {{flight.STALocal}}</h5>
-            <h5>STA UTC: {{flight.STAudt}}</h5>
-            <h5>STD UTC Variance: {{flight.STDGMTVariance}}</h5>
-            <h5>STA UTC Variance: {{flight.STAGMTVariance}}</h5>
-        </div>
-        <div class="col s6">
-            <h5>ETD Local: {{flight.ETDlocal}}</h5>
-            <h5>ETD UTC: {{flight.ETDudt}}</h5>
-            <h5>ETA Local: {{flight.ETAlocal}}</h5>
-            <h5>ETA UTC: {{flight.ETAudt}}</h5>
-            <h5>Equipment Type: {{flight.OAGEquipmentType}}</h5>
-            <h5>FS DailyID: {{flight.csvFSDailyID}}</h5>
-            <h5>Origin Gate: {{flight.originGate}}</h5>
-            <h5>Destination Gate: {{flight.destinationGate}}</h5>
-            <h5>OUT Time UTC: {{flight.OUTudt}}</h5>
-            <h5>OFF Time UTC: {{flight.OFFudt}}</h5>
-            <h5>ON Time UTC: {{flight.ONudt}}</h5>
-            <h5>IN Time UTC: {{flight.INudt}}</h5>
-            <h5>ETO Time UTC: {{flight.ETOutc}}</h5>
-            <h5>EON Time UTC: {{flight.EONutc}}</h5>
-        </div>
-      </div>
-    </div>
-  </div>
+<div class="card-panel" style="width: 97vw; margin-left: auto; margin-right: auto">
+  <table class="bordered highlight responsive-table">
+    <thead>
+      <tr>
+          <th>Flight</th>
+          <th>Status</th>
+          <th>Date</th>
+          <th>Location</th>
+          <th>Departure</th>
+          <th>Arrival</th>
+          <th>UTC Variance</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let flight of todaysFlights; trackBy: trackByFlights">
+        <td>#:{{flight.identifier}} <br>
+          Equipment Type: {{flight.OAGEquipmentType}} <br>
+          Tail #: {{flight.tailNumber}} <br>
+          FS DailyID: {{flight.csvFSDailyID}}
+        </td>
+        <td>
+          <span *ngIf="flight.STDudt.trim() == flight.ETDudt.trim()" style="color:#00E640; font-weight: bold;">On Time</span>
+          <span *ngIf="flight.STDudt.trim() > flight.ETDudt.trim()" style="color: #2574A9; font-weight: bold;">Early</span>
+          <span *ngIf="flight.cancelled == 'X'" style="color: #e74c3c; font-weight: bold;">Cancelled</span>
+          <span *ngIf="flight.STDudt.trim() < flight.ETDudt.trim()" style="color: #F89406; font-weight: bold;">Delayed Departure</span>
+          <span *ngIf="flight.STAudt.trim() < flight.ETAudt.trim()" style="color: #F89406; font-weight: bold;"> Delayed Arrival</span>
+        </td>
+        <td>Local: {{flight.numericFlightDate}} <br>
+          UTC: {{flight.numGMTDate}}
+        </td>
+        <td>Origin: {{flight.origin}} <br>
+          Origin Gate: {{flight.originGate}} <br>
+          Destination: {{flight.destination}} <br>
+          Destination Gate: {{flight.destinationGate}}
+        </td>
+        <td>STD Local: {{flight.STDLocal}} <br>
+            STD UTC: {{flight.STDudt}} <br>
+            ETD Local: {{flight.ETDlocal}} <br>
+            ETD UTC: {{flight.ETDudt}} <br>
+            OUT Time UTC: {{flight.OUTudt}} <br>
+            OFF Time UTC: {{flight.OFFudt}} <br>
+            ETO Time UTC: {{flight.ETOutc}}
+        </td>
+        <td>STA Local: {{flight.STALocal}} <br>
+          STA UTC: {{flight.STAudt}} <br>
+          ETA Local: {{flight.ETAlocal}} <br>
+          ETA UTC: {{flight.ETAudt}} <br>
+          ON Time UTC: {{flight.ONudt}} <br>
+          IN Time UTC: {{flight.INudt}} <br>
+          EON Time UTC: {{flight.EONutc}}
+        </td>
+        <td>STD UTC Variance: {{flight.STDGMTVariance}} <br>
+          STA UTC Variance: {{flight.STAGMTVariance}}
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
