@@ -13,5 +13,5 @@ setInterval(function () {
   });
 
 
-},11000);
+},16000);
 
