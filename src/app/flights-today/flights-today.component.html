@@ -14,17 +14,18 @@
 
     <tbody>
       <tr *ngFor="let flight of todaysFlights; trackBy: trackByFlights">
-        <td>#:{{flight.identifier}} <br>
+        <td>#: <span style="font-size: 1.2rem;">{{flight.identifier}}</span> <br>
           Equipment Type: {{flight.OAGEquipmentType}} <br>
           Tail #: {{flight.tailNumber}} <br>
           FS DailyID: {{flight.csvFSDailyID}}
         </td>
-        <td>
-          <span *ngIf="flight.STDudt.trim() == flight.ETDudt.trim()" style="color:#00E640; font-weight: bold;">On Time</span>
-          <span *ngIf="flight.STDudt.trim() > flight.ETDudt.trim()" style="color: #2574A9; font-weight: bold;">Early</span>
-          <span *ngIf="flight.cancelled == 'X'" style="color: #e74c3c; font-weight: bold;">Cancelled</span>
-          <span *ngIf="flight.STDudt.trim() < flight.ETDudt.trim()" style="color: #F89406; font-weight: bold;">Delayed Departure</span>
-          <span *ngIf="flight.STAudt.trim() < flight.ETAudt.trim()" style="color: #F89406; font-weight: bold;"> Delayed Arrival</span>
+        <td [ngSwitch]="true">
+          <span *ngSwitchCase="flight.STDudt.trim() == flight.ETDudt.trim() && flight.cancelled != 'X'" style="color:#00E640; font-weight: bold;">Depart On Time </span> <br>
+          <span *ngSwitchCase="flight.STDudt.trim() > flight.ETDudt.trim() && flight.cancelled != 'X'" style="color: #2574A9; font-weight: bold;">Deapart Early </span> <br>
+          <span *ngSwitchCase="flight.cancelled == 'X'" style="color: #e74c3c; font-weight: bold;">Cancelled</span> <br>
+          <span *ngSwitchCase="flight.STDudt.trim() < flight.ETDudt.trim() && flight.cancelled != 'X'" style="color: #F89406; font-weight: bold;">Delayed Departure </span> <br>
+          <span *ngSwitchCase="flight.STAudt.trim() < flight.ETAudt.trim() && flight.cancelled != 'X'" style="color: #F89406; font-weight: bold;"> Delayed Arrival </span> <br>
+          <span *ngSwitchCase="flight.STAudt.trim() > flight.ETAudt.trim() && flight.cancelled != 'X'" style="color: #2574A9; font-weight: bold;"> Early Arrival </span> <br>
         </td>
         <td>Local: {{flight.numericFlightDate}} <br>
           UTC: {{flight.numGMTDate}}
