@@ -86,7 +86,7 @@ export class FlightsTodayComponent implements OnInit {
     this.refreshData();
     this.interval = setInterval(() => {
         this.refreshData();
-    }, 10000);
+    }, 15000);
   }
 
   refreshData() {
