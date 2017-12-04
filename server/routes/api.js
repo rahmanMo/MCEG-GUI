@@ -25,8 +25,23 @@ router.get('/flights', (req, res) => {
   // let obj = JSON.parse(fs.readFileSync('../../data/data.json', 'utf8'));
     fs.readFile(__dirname + '/../../data/data.json', (err, json) => {
       let obj = JSON.parse(json);
+      let d = new Date();
+      let dateL = d.toLocaleDateString();
+      var timeL = d.toLocaleTimeString();
+      console.log(`Client request/response local dateTime: ${dateL} ${timeL}`);
       res.json(obj);
-      // res.send(JSON.stringify(json));
+      // if (err){
+      //   setTimeout(function(){
+      //     fs.readFile(__dirname + '/../../data/data.json', (err, json) => {
+      //       let obj = JSON.parse(json);
+      //       let d = new Date();
+      //       let dateL = d.toLocaleDateString();
+      //       var timeL = d.toLocaleTimeString();
+      //       console.log(`Client request/response local dateTime: ${dateL} ${timeL}`);
+      //       res.json(obj);
+      //     });
+      //    }, 1000);
+      // }
   });
 
 });
