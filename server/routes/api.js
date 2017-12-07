@@ -22,8 +22,10 @@ let response = {
 // Get flights
 router.get('/flights', (req, res) => {
 
+    fs.copyFileSync(__dirname + '/../../data/data.json', __dirname + 'data.json');
+
   // let obj = JSON.parse(fs.readFileSync('../../data/data.json', 'utf8'));
-    fs.readFile(__dirname + '/../../data/data.json', (err, json) => {
+    fs.readFile(__dirname + 'data.json', (err, json) => {
       let obj = JSON.parse(json);
       let d = new Date();
       let dateL = d.toLocaleDateString();
