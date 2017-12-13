@@ -19,6 +19,19 @@ export class EventsComponent implements OnInit {
   @Output('eventAdded') eventAdded = new EventEmitter<EventRow>();
 
   eventName: string;
+
+  // environment
+  env: any = [
+    {
+      type: 'STG1',
+      active: false
+    },
+    {
+      type: 'STG3',
+      active: false
+    }
+  ];
+
   // defining all the available events
   events: any = [
     {
@@ -125,6 +138,7 @@ export class EventsComponent implements OnInit {
    utcTimeNow: string;
 
    // define ngModels for databinding
+   stage: string = null;
    event_type: string;
    flight_number: string;
    actual_out_time_utc: string;
@@ -200,6 +214,19 @@ export class EventsComponent implements OnInit {
      });
      this.eventName = this.eventName.toUpperCase();
      this.resetBinding();
+   }
+
+   // function that handles the event emit
+   whichEnv(env) {
+     this.stage = env.type;
+     this.env.forEach((e) => {
+       if (e.type === env.type) {
+         e.active = true;
+       } else {
+         e.active = false;
+       }
+     });
+     this.stage = this.stage.toUpperCase();
    }
 
 

@@ -1,7 +1,15 @@
 <div class="row center">
   <div class="card-panel">
     <div class="row">
-        <div class="col s12"><h5>Generate CSV File For The Python Script</h5></div>
+        <div class="col s12"><h5>Generate CSV File For The Python Script. MVT Environment : {{stage}}</h5></div>
+    </div>
+    <div class="row">
+      <a class="waves-effect waves-light btn btn-evt"
+          *ngFor="let env of env"
+          (click)="whichEnv(env)"
+          [ngClass]="{'btn-selected' : env.active}"
+          >{{env.type | uppercase}}
+      </a>
     </div>
     <div class="row">
       <a class="waves-effect waves-light btn btn-evt"
