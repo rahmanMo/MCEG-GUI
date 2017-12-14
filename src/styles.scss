@@ -3,10 +3,14 @@ body {
   background-color: #424949;
 }
 
+h5 {
+  font-size: 1.3rem;
+}
+
 h5, p {
-  font-weight: 500;
+  font-weight: 500 !important;
   // color: #A38F84;
-  color: #606060;
+  color: #606060 !important;
 }
 
 p {
