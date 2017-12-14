@@ -138,7 +138,7 @@ export class EventsComponent implements OnInit {
    utcTimeNow: string;
 
    // define ngModels for databinding
-   stage: string = null;
+   stage = '';
    event_type: string;
    flight_number: string;
    actual_out_time_utc: string;

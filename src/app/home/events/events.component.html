@@ -1,8 +1,9 @@
 <div class="row center">
   <div class="card-panel">
     <div class="row">
-        <div class="col s12"><h5>Generate CSV File For The Python Script. MVT Environment : {{stage}}</h5></div>
+        <div class="col s12"><h5>Generate CSV File For The Python Script. MVT Environment : <span class="e-name">{{stage}}</span></h5></div>
     </div>
+    <div class="divider"></div>
     <div class="row">
       <a class="waves-effect waves-light btn btn-evt"
           *ngFor="let env of env"
@@ -11,7 +12,8 @@
           >{{env.type | uppercase}}
       </a>
     </div>
-    <div class="row">
+    <div class="divider"></div>
+    <div class="row" *ngIf="[stage] != ''">
       <a class="waves-effect waves-light btn btn-evt"
           *ngFor="let event of events"
           (click)="whichEvent(event)"
