@@ -1,4 +1,5 @@
 export interface EventRow {
+  env: string;
   event_type: string;
   flight_number: string;
   actual_out_time_utc: string;
