@@ -2,7 +2,7 @@
 const pythonShell = require('python-shell');
 const fse = require('fs-extra');
 const fs = require("fs");
-const csvFilePath = './data/data.csv';
+// const csvFilePath = './data/data.csv';
 
 
 setInterval(function () {
