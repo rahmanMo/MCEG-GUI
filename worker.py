@@ -1,6 +1,10 @@
 #!python 3.6.2 or greater
 # import all necessary packages
 import datetime, csv, os, shutil, time, fnmatch, sys, json
+import traceback
+from collections import OrderedDict
+from pymongo import MongoClient
+
 
 # request drop location
 stage3Send = '\\\\gscfile01\\SharedFile\\QA_MVC\\STG3\\adh_receive'
@@ -257,72 +261,95 @@ check_if_folder_exist(stage3Receive)
 
 call_adhoc_4_and_check_for_response_csv(stage3Receive,stage3Send,currentDirectory,currentDate)
 
+def csv2mongo(csvfile, database_name,collection_name,delete_collection_before_import, host, port):
+    response_dict = OrderedDict()
+    try:
+        mc = MongoClient(f'mongodb://{host}:{port}/')
+        db = mc[database_name]
+        collection = db[collection_name]
 
-            # 'recordStatus',
-            # 'lastDateModified',
-            # 'lastTimeModified',
-            # 'lastUserToModify',
-            # 'legDepartureDate',
-            # 'airlineCode',
-            # 'identifier',
-            # 'sequence',
-            # 'flightOriginDay',
-            # 'numericFlightDate',
-            # 'numGMTDate',
-            # 'STDudt',
-            # 'STAudt',
-            # 'tailNumber',
-            # 'numLastDateModified',
-            # 'flightStatus',
-            # 'origin',
-            # 'STDLocal',
-            # 'dispatchDesk',
-            # 'STDGMTVariance',
-            # 'destination',
-            # 'STALocal',
-            # 'STAGMTVariance',
-            # 'OAGEquipmentType',
-            # 'ACConfiguration',
-            # 'serviceType',
-            # 'originGate',
-            # 'ETDlocal',
-            # 'ETDudt',
-            # 'TAXIutc',
-            # 'OUTudt',
-            # 'OFFudt',
-            # 'destinationGate',
-            # 'ETAlocal',
-            # 'ETAudt',
-            # 'ONudt',
-            # 'INudt',
-            # 'previousTailNumber',
-            # 'ETE',
-            # 'DCNutc',
-            # 'ETOutc',
-            # 'EONutc',
-            # 'EDTCutc',
-            # 'flightType',
-            # 'newDepartureCity',
-            # 'newArrivalCity',
-            # 'SchedOAGEquipType',
-            # 'OAGEquipSubType',
-            # 'csvFSDailyID',
-            # 'tailNumBeforeCancel',
-            # 'CTAUTC',
-            # 'cancelled',
-            # 'replaced',
-            # 'ATCStatus',
-            # 'scheduledFlightType',
-            # 'aircraftRouting',
-            # 'mealService',
-            # 'hub',
-            # 'landingRestriction',
-            # 'headStartFlight',
-            # 'actualDeparture',
-            # 'specialFlight',
-            # 'actualArrival',
-            # 'scheduledTaxiOut',
-            # 'scheduledTaxiIn',
-            # 'STOSetByUser',
-            # 'STISetByUser',
-            # 'CTFlightNumber'
+        if delete_collection_before_import == True:
+            db.collection.delete_many({})
+        # open the csv file.
+        csvhandle = csv.reader(open(csvfile, 'r'), delimiter=',')
+
+        rowindex = 0
+        mongoindex = 0
+        error_list = []
+
+        for row in csvhandle:
+
+            if rowindex == 0:
+                column_headers = row
+                cleaned_headers = []
+                for c in column_headers:
+                    c = c.replace(".", "")
+                    c = c.replace("(", "")
+                    c = c.replace(")", "")
+                    c = c.replace("$", "-")
+                    c = c.replace(" ", "_")
+                    cleaned_headers.append(c)
+            else:
+
+                record = OrderedDict(zip(cleaned_headers, row))
+                try:
+                    myobjectid = collection.insert(record)
+                    mongoindex += 1
+
+                except:
+                    error_message = "Error on row " + \
+                        str(rowindex) + ". " + str(sys.exc_info())
+                    error_list.append(error_message)
+
+            rowindex += 1
+
+        if error_list:
+            response_dict['num_rows_imported'] = rowindex
+            response_dict['num_rows_errors'] = len(error_list)
+            response_dict['errors'] = error_list
+            response_dict['code'] = 400
+            response_dict['message'] = "Completed with errors"
+        else:
+
+            response_dict['num_rows_imported'] = mongoindex
+            response_dict['num_csv_rows'] = rowindex
+            response_dict['code'] = 200
+            response_dict['message'] = "Completed."
+
+    except:
+        response_dict['code'] = 500
+        response_dict['errors'] = [traceback.print_exc()]
+
+    return response_dict
+
+    # mc = MongoClient(host=host, port=port)
+    # db = mc[database_name]
+    # collection = db[collection_name]
+    # result = db.collection.delete_many({})
+    # print(result)
+
+
+mc = MongoClient('mongodb://localhost:27017/')
+db = mc['flights']
+collection = db["STG3Today"].delete_many({})
+print(collection)
+
+
+# current directory
+currentDirectory = os.getcwd()
+csv_file = f'{currentDirectory}\\data\\data.csv'
+database = 'flights'
+collection = 'STG3Today'
+delete_collection = True
+host = 'localhost'
+port = 27017
+
+result = csv2mongo(
+    csv_file,
+    database,
+    collection,
+    delete_collection,
+    host,
+    port)
+# output the JSON transaction summary
+print(json.dumps(result, indent=4))

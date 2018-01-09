@@ -96,6 +96,6 @@ export class FlightsTodayComponent implements OnInit {
           });
     }
 
-  trackByFlights(index: number, flight: Flight): number { return index; }
+  trackByFlights(index: number, flight: Flight): number { return Number(flight.csvFSDailyID); }
 
   }
