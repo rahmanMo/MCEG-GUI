@@ -1,23 +1,38 @@
 const express = require('express');
 const router = express.Router();
 const fs = require('fs');
-// const path = require( "path" );
-// const dbPath = require('../../data/data.json');
+const mongoose = require('mongoose');
+const {Flight3} = require('../models/flight');
 
+// const db = "mongodb://localhost:27017/flights";
+mongoose.Promise = global.Promise;
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/flights');
 
-// Error handling
-const sendError = (err, res) => {
-    response.status = 501;
-    response.message = typeof err == 'object' ? err.message : err;
-    res.status(501).json(response);
-};
+// mongoose.Promise = global.Promise;
+// mongoose.connect(db, function(err) {
+//     if(err) {
+//         console.log('Connection error');
+//     }
+// });
 
-// Response handling
-let response = {
-    status: 200,
-    data: [],
-    message: null
-};
+// router.get('/flights3', (req, res) => {
+//   Flight3.find().then((flights) => {
+//     res.send({flights});
+//   }, (e) => {
+//     res.status(400).send(e);
+//   });
+// });
+router.get('/flights3', function(req, res) {
+    console.log('Requesting flights for stage 3');
+    Flight3.find({})
+        .exec(function(err, flights) {
+            if (err) {
+                console.log('Error getting the flights from stage 3');
+            } else {
+                res.json(flights);
+            }
+        });
+});
 
 // Get flights
 router.get('/flights', (req, res) => {

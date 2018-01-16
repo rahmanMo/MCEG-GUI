@@ -32,8 +32,8 @@
 npm-debug.log
 testem.log
 /typings
-/data/data.csv
-/data/data.json
+try.js
+
 
 # e2e
 /e2e/*.js

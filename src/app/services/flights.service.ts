@@ -12,7 +12,7 @@ export class FlightsService {
   constructor(private http: HttpClient) { }
 
   // private flightsUrl = 'http://localhost:3000/api/flights';
-  private flightsUrl = '/api/flights';
+  private flightsUrl = '/flights3';
 
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
