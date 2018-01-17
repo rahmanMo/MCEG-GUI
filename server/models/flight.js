@@ -1,4 +1,7 @@
-var mongoose = require("mongoose");
+// model definition for individual flights
+// Flight3 means we are pulling data from the collection "Flight3s" which contains MVT Stage 3 flights
+
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 var Flight3 = mongoose.model("Flight3", new Schema ({
