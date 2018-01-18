@@ -4,12 +4,12 @@ import { FlightsService } from '../services/flights.service';
 import { Observable } from 'rxjs/Observable';
 
 @Component({
-  selector: 'app-flights-today',
+  selector: 'app-flights-today-stg3',
   templateUrl: './flights-today.component.html',
   styleUrls: ['./flights-today.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class FlightsTodayComponent implements OnInit {
+export class FlightsTodaySTG3Component implements OnInit {
 
   constructor(private flightsService: FlightsService) { }
   todaysFlights: Flight[];

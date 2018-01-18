@@ -12,7 +12,7 @@ import { QueComponent } from './home/que/que.component';
 import { HomeComponent } from './home/home.component';
 import { EventService } from './services/event.service';
 import { GuideComponent } from './guide/guide.component';
-import { FlightsTodayComponent } from './flights-today/flights-today.component';
+import { FlightsTodaySTG3Component } from './flights-today/flights-today.component';
 import { FlightsService } from './services/flights.service';
 
 @NgModule({
@@ -22,7 +22,7 @@ import { FlightsService } from './services/flights.service';
     QueComponent,
     HomeComponent,
     GuideComponent,
-    FlightsTodayComponent
+    FlightsTodaySTG3Component
   ],
   imports: [
     BrowserModule,
