@@ -41,7 +41,7 @@ var {Flight3} = require('./server/models/flight');
 
 
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/flights',{
+mongoose.connect('mongodb://localhost/Flights',{
   useMongoClient: true
 }).then(() => console.log('mongodb connected')).catch(err => console.log(err));
 

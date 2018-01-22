@@ -73,6 +73,6 @@ var Flight3 = mongoose.model("Flight3", new Schema ({
   STOSetByUser: String,
   STISetByUser: String,
   CTFlightNumber: String
-}), 'Flight3s');
+}), 'STG3');
 
 module.exports = { Flight3 };

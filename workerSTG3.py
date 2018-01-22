@@ -218,16 +218,16 @@ def csv2mongo(csvfile, database_name,collection_name,delete_collection_before_im
 
 
 mc = MongoClient('mongodb://localhost:27017/')
-db = mc['flights']
-collection = db["Flight3s"].delete_many({})
+db = mc['Flights']
+collection = db["STG3"].delete_many({})
 print(collection)
 
 
 # current directory
 currentDirectory = os.getcwd()
 csv_file = f'{currentDirectory}\\data\\data.csv'
-database = 'flights'
-collection = 'Flight3s'
+database = 'Flights'
+collection = 'STG3'
 delete_collection = True
 host = 'localhost'
 port = 27017
