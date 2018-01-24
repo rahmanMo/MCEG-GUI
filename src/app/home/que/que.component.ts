@@ -31,7 +31,11 @@ export class QueComponent implements OnInit {
     const csv = new Blob([csvData], {type: 'text/csv;charset=utf-8;'});
     // IE11 & Edge
     if (navigator.msSaveBlob) {
-        navigator.msSaveBlob(csvData, 'test_data.csv');
+      const fileName = 'test_data.csv';
+      let blob = new Blob([csvData], {
+        'type': 'text/csv;charset=utf8;'
+      });
+      navigator.msSaveBlob(blob, fileName);
     } else {
         // In FF link must be added to DOM to be clicked
         const link = document.createElement('a');
