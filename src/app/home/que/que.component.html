@@ -5,7 +5,7 @@
       </div>
       <div class="divider"></div>
       <div class="row que-collection">
-        <ul class="collection" *ngFor="let event of allEvents">
+        <ul class="collection" *ngFor="let event of allEvents" [dragula]='"bag-one"' [dragulaModel]='allEvents'>
 
           <li class="collection-item que-item" *ngIf="event.event_type == 'OUT'">
             Make new <span class="mark">{{event.event_type}}</span> time for Flight: <span class="mark">{{event.flight_number}}</span> @ <span class="mark">{{event.actual_out_time_utc}}</span> UTC
@@ -136,9 +136,17 @@
           </li>
         </ul>
       </div>
+      <div class="row center">
+          <div class="input-field inline">
+              <input placeholder="File Name"
+                      type="text"
+                      [(ngModel)]="fileName"
+                      name="fileName"
+                      minlength="1" maxlength="20" pattern="^[a-zA-Z0-9]+$">
+          </div>
+          <a class="waves-effect waves-light btn download" (click)="downloadCSV()">Download CSV</a>
+      </div>
 
     </div>
   </div>
-  <div class="row center">
-      <a class="waves-effect waves-light btn" (click)="downloadCSV()">Download CSV</a>
-  </div>
+

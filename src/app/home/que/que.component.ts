@@ -12,6 +12,7 @@ import { PapaParseService } from 'ngx-papaparse';
 export class QueComponent implements OnInit {
 
   allEvents: EventRow[] = [];
+  fileName: string;
 
   constructor(public eventService: EventService, private papa: PapaParseService) { }
 
@@ -29,9 +30,14 @@ export class QueComponent implements OnInit {
     const csvData = this.papa.unparse(data);
     // console.log(csvData);
     const csv = new Blob([csvData], {type: 'text/csv;charset=utf-8;'});
+    let fileName: string;
+    if (this.fileName === undefined || this.fileName === '') {
+      fileName = 'test_data.csv';
+    } else {
+      fileName = `${this.fileName}.csv`;
+    }
     // IE11 & Edge
     if (navigator.msSaveBlob) {
-      const fileName = 'test_data.csv';
       let blob = new Blob([csvData], {
         'type': 'text/csv;charset=utf8;'
       });
@@ -40,7 +46,7 @@ export class QueComponent implements OnInit {
         // In FF link must be added to DOM to be clicked
         const link = document.createElement('a');
         link.href = window.URL.createObjectURL(csv);
-        link.setAttribute('download', 'test_data.csv');
+        link.setAttribute('download', fileName);
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);

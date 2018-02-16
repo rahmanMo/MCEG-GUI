@@ -6,6 +6,7 @@ import { MaterializeModule } from 'ng2-materialize';
 import { PapaParseModule } from 'ngx-papaparse';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
+import { DragulaModule  } from 'ng2-dragula';
 import { AppComponent } from './app.component';
 import { EventsComponent } from './home/events/events.component';
 import { QueComponent } from './home/que/que.component';
@@ -31,7 +32,8 @@ import { FlightsService } from './services/flights.service';
     MaterializeModule.forRoot(),
     PapaParseModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    DragulaModule
   ],
   providers: [EventService, FlightsService],
   bootstrap: [AppComponent]
