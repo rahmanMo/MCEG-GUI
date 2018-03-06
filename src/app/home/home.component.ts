@@ -71,6 +71,8 @@ export class HomeComponent implements OnInit {
     object.departure_gate = this.fixUppercase(object.departure_gate);
     object.diversion_city = this.fixUppercase(object.diversion_city);
     object.next_day_crossover = this.fixNextDay(object.next_day_crossover);
+    object.flight_origin = this.fixUppercase(object.flight_origin);
+    object.flight_destination = this.fixUppercase(object.flight_destination);
     // console.log(object.flight_number);
     this.eventService.addEvent(object);
     // console.log(this.allEvents);
