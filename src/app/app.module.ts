@@ -15,6 +15,7 @@ import { EventService } from './services/event.service';
 import { GuideComponent } from './guide/guide.component';
 import { FlightsTodaySTG3Component } from './flights-today/flights-today.component';
 import { FlightsService } from './services/flights.service';
+import { TableModule } from 'ngx-easy-table';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { FlightsService } from './services/flights.service';
     PapaParseModule,
     AppRoutingModule,
     HttpClientModule,
-    DragulaModule
+    DragulaModule,
+    TableModule
   ],
   providers: [EventService, FlightsService],
   bootstrap: [AppComponent]

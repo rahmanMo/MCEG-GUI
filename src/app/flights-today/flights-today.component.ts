@@ -1,18 +1,59 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { Flight } from '../models/flight';
-import { FlightsService } from '../services/flights.service';
-import { Observable } from 'rxjs/Observable';
+import { Component, OnInit, ViewEncapsulation } from "@angular/core";
+import { Flight } from "../models/flight";
+import { FlightsService } from "../services/flights.service";
+import { Observable } from "rxjs/Observable";
+import { ConfigService } from "./config-service";
 
 @Component({
-  selector: 'app-flights-today-stg3',
-  templateUrl: './flights-today.component.html',
-  styleUrls: ['./flights-today.component.scss'],
+  selector: "app-flights-today-stg3",
+  templateUrl: "./flights-today.component.html",
+  styleUrls: ["./flights-today.component.scss"],
+  providers: [ConfigService],
   encapsulation: ViewEncapsulation.None
 })
 export class FlightsTodaySTG3Component implements OnInit {
+  // constructor(private flightsService: FlightsService) { }
 
-  constructor(private flightsService: FlightsService) { }
-  todaysFlights: Flight[];
+
+  columns = [
+    { key: "identifier", title: "Flight #" },
+    { key: "origin", title: "Origin" },
+    { key: "originGate", title: "Origin gate" },
+    { key: "destination", title: "Destination" },
+    { key: "destination", title: "destinationGate" },
+    { key: "numGMTDate", title: "UTC Date" },
+    { key: "numericFlightDate", title: "Local Date" },
+    { key: "tailNumber", title: "Tail #" },
+
+  ];
+
+
+
+  constructor(private flightsService: FlightsService) {
+    this.configuration = ConfigService.config;
+  }
+  data = [];
+  configuration;
+  // constructor() {
+  //   this.configuration = ConfigService.config;
+  //   this.data = data;
+  // }
+
+  ngOnInit() {
+    this.configuration = ConfigService.config;
+    this.refreshData();
+    const interval = setInterval(() => {
+      this.refreshData();
+    }, 10000);
+  }
+
+  refreshData() {
+    this.flightsService.getTodaysFlights().subscribe(data => {
+      this.data = data;
+    });
+  }
+
+  // todaysFlights: Flight[];
   // todaysFlights: Flight[] = [{"recordStatus": "",
   //                  "lastDateModified": "25NOV17",
   //                   "lastTimeModified": "1213",
@@ -80,22 +121,21 @@ export class FlightsTodaySTG3Component implements OnInit {
   //                                                                 "STISetByUser": "0",
   //                                                                  "CTFlightNumber": "0001"}];
 
-  interval: any;
+  // interval: any;
 
-  ngOnInit() {
-    this.refreshData();
-    this.interval = setInterval(() => {
-        this.refreshData();
-    }, 10000);
-  }
+  // ngOnInit() {
+  //   this.refreshData();
+  //   this.interval = setInterval(() => {
+  //       this.refreshData();
+  //   }, 10000);
+  // }
 
-  refreshData() {
-      this.flightsService.getTodaysFlights()
-          .subscribe(data => {
-              this.todaysFlights = data;
-          });
-    }
+  // refreshData() {
+  //     this.flightsService.getTodaysFlights()
+  //         .subscribe(data => {
+  //             this.todaysFlights = data;
+  //         });
+  //   }
 
-  trackByFlights(index: number, flight: Flight): number { return Number(flight.csvFSDailyID); }
-
-  }
+  // trackByFlights(index: number, flight: Flight): number { return Number(flight.csvFSDailyID); }
+}

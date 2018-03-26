@@ -22,6 +22,8 @@
         "../node_modules/materialize-css/dist/css/materialize.min.css",
         "../node_modules/mdi/css/materialdesignicons.min.css",
         "../node_modules/dragula/dist/dragula.css",
+        "../node_modules/ngx-easy-table/spectre.css",
+        "../node_modules/ngx-easy-table/spectre-icons.css",
         "styles.scss"
       ],
       "scripts": [
