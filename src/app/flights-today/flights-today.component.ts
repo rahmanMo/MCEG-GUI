@@ -14,35 +14,49 @@ import { ConfigService } from "./config-service";
 export class FlightsTodaySTG3Component implements OnInit {
   // constructor(private flightsService: FlightsService) { }
 
-
-  columns = [
+  basicColumns = [
     { key: "identifier", title: "Flight #" },
-    { key: "csvFSDailyID", title: "DailyID" },
     { key: "OAGEquipmentType", title: "Equipment" },
     { key: "sequence", title: "Sequence" },
     { key: "tailNumber", title: "Tail #" },
     { key: "origin", title: "Origin" },
-    { key: "originGate", title: "Origin gate" },
     { key: "destination", title: "Destination" },
-    { key: "destination", title: "destinationGate" },
     { key: "numGMTDate", title: "UTC Date" },
-    { key: "numericFlightDate", title: "Local Date" },
+    { key: "numericFlightDate", title: "Local Date" }
+  ];
+  miscColumns = [
+    { key: "identifier", title: "Flight #" },
+    { key: "csvFSDailyID", title: "DailyID" },
+    { key: "STDGMTVariance", title: "STD-UTC-V" },
+    { key: "STAGMTVariance", title: "STA-UTC-V" },
+    { key: "previousTailNumber", title: "Prev-Tail" },
+    { key: "flightStatus", title: "Status" },
+    { key: "cancelled", title: "Cancelled?" },
+  ];
+  originColumns = [
+    { key: "identifier", title: "Flight #" },
+    { key: "origin", title: "Origin" },
+    { key: "originGate", title: "Origin-Gate" },
     { key: "STDudt", title: "STD-UTC" },
     { key: "STDLocal", title: "STD-Local" },
     { key: "ETDudt", title: "ETD-UTC" },
     { key: "ETDlocal", title: "ETD-Local" },
     { key: "OUTudt", title: "OUT-UTC" },
     { key: "OFFudt", title: "OFF-UTC" },
-    { key: "ETOutc", title: "ETO-UTC" },
+    { key: "ETOutc", title: "ETO-UTC" }
+
+  ];
+  destinationColumns = [
+    { key: "identifier", title: "Flight #" },
+    { key: "destination", title: "Destination" },
+    { key: "destinationGate", title: "Arrival-Gate" },
     { key: "STAudt", title: "STA-UTC" },
     { key: "STALocal", title: "STA-Local" },
     { key: "ETAudt", title: "ETA-UTC" },
     { key: "ETAlocal", title: "ETA-Local" },
     { key: "ONudt", title: "ON-UTC" },
     { key: "INudt", title: "IN-UTC" },
-    { key: "EONutc", title: "EON-UTC" },
-    { key: "STDGMTVariance", title: "STD-UTC-Variance" },
-    { key: "STAGMTVariance", title: "STA-UTC-Varince" }
+    { key: "EONutc", title: "EON-UTC" }
 
   ];
 

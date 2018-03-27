@@ -63,7 +63,30 @@
 <!-- style="overflow-x:scroll;" -->
 
 
-<div class="card-panel" style="width: 400%; margin-left: auto; margin-right: auto;" >
-  <ngx-table [configuration]="configuration" [data]="data" [columns]="columns" [pagination]="pagination" >
+<div class="card-panel" style="width: 100vw;" >
+  <h5 class="center-align">Basic Flight Info</h5>
+  <ngx-table [configuration]="configuration" [data]="data" [columns]="basicColumns" [pagination]="pagination" >
   </ngx-table>
 </div>
+
+
+<mz-tab [fixedTabWidth]="'true'">
+  <mz-tab-item [label]="'Origin Data'">
+    <div class="card-panel" style="width: 100vw;" >
+      <ngx-table [configuration]="configuration" [data]="data" [columns]="originColumns" [pagination]="pagination" >
+      </ngx-table>
+    </div>
+  </mz-tab-item>
+  <mz-tab-item [label]="'Destination Data'">
+    <div class="card-panel" style="width: 100vw;" >
+      <ngx-table [configuration]="configuration" [data]="data" [columns]="destinationColumns" [pagination]="pagination" >
+      </ngx-table>
+    </div>
+  </mz-tab-item>
+  <mz-tab-item [label]="'MISC Info'">
+      <div class="card-panel" style="width: 100vw;" >
+        <ngx-table [configuration]="configuration" [data]="data" [columns]="miscColumns" [pagination]="pagination" >
+        </ngx-table>
+      </div>
+    </mz-tab-item>
+</mz-tab>

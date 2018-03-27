@@ -7,4 +7,28 @@ table {
   background: #e74c3c !important;
 }
 
+.card-panel > h5, mz-tab > ul > li > a {
+  color: #606060 !important;
+}
 
+.card-panel > h5 {
+  margin-bottom: 2%;
+}
+
+mz-tab > ul > li.indicator {
+  background-color: #e74c3c !important;
+  height: 3px !important;
+}
+
+mz-tab > ul > li > a {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+mz-tab > ul > li > a.active {
+  color: #e74c3c !important;
+}
+
+input:focus {
+  border-bottom: 1px solid #45B39D !important;
+}

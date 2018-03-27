@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MzDatepickerModule, MzIconModule, MzIconMdiModule, MzSelectModule, MzInputModule   } from 'ng2-materialize';
+import { MzDatepickerModule, MzIconModule, MzIconMdiModule, MzSelectModule, MzInputModule, MzTabModule } from 'ng2-materialize';
 import { PapaParseModule } from 'ngx-papaparse';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
@@ -35,6 +35,7 @@ import { TableModule } from 'ngx-easy-table';
     MzIconMdiModule,
     MzSelectModule,
     MzInputModule,
+    MzTabModule,
     PapaParseModule,
     AppRoutingModule,
     HttpClientModule,
