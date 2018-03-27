@@ -17,13 +17,32 @@ export class FlightsTodaySTG3Component implements OnInit {
 
   columns = [
     { key: "identifier", title: "Flight #" },
+    { key: "csvFSDailyID", title: "DailyID" },
+    { key: "OAGEquipmentType", title: "Equipment" },
+    { key: "sequence", title: "Sequence" },
+    { key: "tailNumber", title: "Tail #" },
     { key: "origin", title: "Origin" },
     { key: "originGate", title: "Origin gate" },
     { key: "destination", title: "Destination" },
     { key: "destination", title: "destinationGate" },
     { key: "numGMTDate", title: "UTC Date" },
     { key: "numericFlightDate", title: "Local Date" },
-    { key: "tailNumber", title: "Tail #" },
+    { key: "STDudt", title: "STD-UTC" },
+    { key: "STDLocal", title: "STD-Local" },
+    { key: "ETDudt", title: "ETD-UTC" },
+    { key: "ETDlocal", title: "ETD-Local" },
+    { key: "OUTudt", title: "OUT-UTC" },
+    { key: "OFFudt", title: "OFF-UTC" },
+    { key: "ETOutc", title: "ETO-UTC" },
+    { key: "STAudt", title: "STA-UTC" },
+    { key: "STALocal", title: "STA-Local" },
+    { key: "ETAudt", title: "ETA-UTC" },
+    { key: "ETAlocal", title: "ETA-Local" },
+    { key: "ONudt", title: "ON-UTC" },
+    { key: "INudt", title: "IN-UTC" },
+    { key: "EONutc", title: "EON-UTC" },
+    { key: "STDGMTVariance", title: "STD-UTC-Variance" },
+    { key: "STAGMTVariance", title: "STA-UTC-Varince" }
 
   ];
 
