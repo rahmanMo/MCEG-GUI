@@ -1,92 +1,43 @@
-<!-- <div class="card-panel" style="width: 97vw; margin-left: auto; margin-right: auto">
-  <table class="bordered highlight responsive-table">
-    <thead>
-      <tr>
-          <th>Flight</th>
-          <th>Status</th>
-          <th>Date</th>
-          <th>Location</th>
-          <th>Departure</th>
-          <th>Arrival</th>
-          <th>UTC Variance</th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <tr *ngFor="let flight of todaysFlights; trackBy: trackByFlights">
-        <td>#: <span style="font-size: 1.2rem;">{{flight.identifier}}</span> <br>
-          Equipment Type: {{flight.OAGEquipmentType}} <br>
-          Tail #: {{flight.tailNumber}} <br>
-          FS DailyID: {{flight.csvFSDailyID}}
-        </td>
-        <td [ngSwitch]="true">
-          <span *ngSwitchCase="flight.STDudt.trim() == flight.ETDudt.trim() && flight.cancelled != 'X'" style="color:#00E640; font-weight: bold;">Depart On Time</span><br>
-          <span *ngSwitchCase="flight.STAudt.trim() == flight.ETAudt.trim() && flight.cancelled != 'X'" style="color: #00E640; font-weight: bold;">Arrival On Time</span><br>
-          <span *ngSwitchCase="flight.STDudt.trim() > flight.ETDudt.trim() && flight.cancelled != 'X'" style="color: #2574A9; font-weight: bold;">Early Departure</span><br>
-          <span *ngSwitchCase="flight.STAudt.trim() > flight.ETAudt.trim() && flight.cancelled != 'X'" style="color: #2574A9; font-weight: bold;">Early Arrival</span><br>
-          <span *ngSwitchCase="flight.cancelled == 'X'" style="color: #e74c3c; font-weight: bold;">Cancelled</span><br>
-          <span *ngSwitchCase="flight.STDudt.trim() < flight.ETDudt.trim() && flight.cancelled != 'X'" style="color: #F89406; font-weight: bold;">Delayed Departure</span><br>
-          <span *ngSwitchCase="flight.STAudt.trim() < flight.ETAudt.trim() && flight.cancelled != 'X'" style="color: #F89406; font-weight: bold;">Delayed Arrival</span><br>
-        </td>
-        <td>Local: {{flight.numericFlightDate}} <br>
-          UTC: {{flight.numGMTDate}}
-        </td>
-        <td>Origin: {{flight.origin}} <br>
-          Origin Gate: {{flight.originGate}} <br>
-          Destination: {{flight.destination}} <br>
-          Destination Gate: {{flight.destinationGate}}
-        </td>
-        <td>STD Local: {{flight.STDLocal}} <br>
-            STD UTC: {{flight.STDudt}} <br>
-            ETD Local: {{flight.ETDlocal}} <br>
-            ETD UTC: {{flight.ETDudt}} <br>
-            OUT Time UTC: {{flight.OUTudt}} <br>
-            OFF Time UTC: {{flight.OFFudt}} <br>
-            ETO Time UTC: {{flight.ETOutc}}
-        </td>
-        <td>STA Local: {{flight.STALocal}} <br>
-          STA UTC: {{flight.STAudt}} <br>
-          ETA Local: {{flight.ETAlocal}} <br>
-          ETA UTC: {{flight.ETAudt}} <br>
-          ON Time UTC: {{flight.ONudt}} <br>
-          IN Time UTC: {{flight.INudt}} <br>
-          EON Time UTC: {{flight.EONutc}}
-        </td>
-        <td>STD UTC Variance: {{flight.STDGMTVariance}} <br>
-          STA UTC Variance: {{flight.STAGMTVariance}}
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div> -->
-
-<!-- style="overflow-x:scroll;" -->
-
-
-<div class="card-panel" style="width: 100vw;" >
-  <h5 class="center-align">Basic Flight Info</h5>
-  <ngx-table [configuration]="configuration" [data]="data" [columns]="basicColumns" >
-  </ngx-table>
-</div>
-
 
 <mz-tab [fixedTabWidth]="'true'">
-  <mz-tab-item [label]="'Origin Data'">
-    <div class="card-panel" style="width: 100vw;" >
-      <ngx-table [configuration]="configuration" [data]="data" [columns]="originColumns" >
+  <mz-tab-item [label]="'Basic Info'">
+    <div class="card-panel" style="width: 100%;" >
+      <ngx-table [configuration]="configuration" [data]="data" [columns]="basicColumns" (event)="eventEmitted($event)">
       </ngx-table>
     </div>
   </mz-tab-item>
-  <mz-tab-item [label]="'Destination Data'">
-    <div class="card-panel" style="width: 100vw;" >
-      <ngx-table [configuration]="configuration" [data]="data" [columns]="destinationColumns" >
+  <mz-tab-item [label]="'Origin Times'">
+    <div class="card-panel" style="width: 100%;" >
+      <ngx-table [configuration]="configuration" [data]="data" [columns]="originTimeColumns" (event)="eventEmitted($event)">
+      </ngx-table>
+    </div>
+  </mz-tab-item>
+  <mz-tab-item [label]="'Destination Times'">
+    <div class="card-panel" style="width: 100%;" >
+      <ngx-table [configuration]="configuration" [data]="data" [columns]="destinationTimeColumns" (event)="eventEmitted($event)">
+      </ngx-table>
+    </div>
+  </mz-tab-item>
+  <mz-tab-item [label]="'Gate Info'">
+    <div class="card-panel" style="width: 100%;" >
+      <ngx-table [configuration]="configuration" [data]="data" [columns]="gateColumns" (event)="eventEmitted($event)">
+      </ngx-table>
+    </div>
+  </mz-tab-item>
+  <mz-tab-item [label]="'Spec Info'">
+    <div class="card-panel" style="width: 100%;" >
+      <ngx-table [configuration]="configuration" [data]="data" [columns]="specColumns" (event)="eventEmitted($event)">
       </ngx-table>
     </div>
   </mz-tab-item>
   <mz-tab-item [label]="'MISC Info'">
-      <div class="card-panel" style="width: 100vw;" >
-        <ngx-table [configuration]="configuration" [data]="data" [columns]="miscColumns"  >
-        </ngx-table>
-      </div>
-    </mz-tab-item>
+    <div class="card-panel" style="width: 100%;" >
+      <ngx-table [configuration]="configuration" [data]="data" [columns]="miscColumns" (event)="eventEmitted($event)">
+      </ngx-table>
+    </div>
+  </mz-tab-item>
 </mz-tab>
+
+<div class="card-panel" style="width: 100%;">
+  <pre> {{ clicked | json}} </pre>
+</div>
