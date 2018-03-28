@@ -3,6 +3,7 @@ import { Flight } from "../models/flight";
 import { FlightsService } from "../services/flights.service";
 import { Observable } from "rxjs/Observable";
 import { ConfigService } from "./config-service";
+import { sampleData } from '../../assets/data';
 
 @Component({
   selector: "app-flights-today-stg3",
@@ -71,18 +72,25 @@ export class FlightsTodaySTG3Component implements OnInit {
 
   data = [];
   clicked = {};
+  rowData = {};
   configuration;
 
   constructor(private flightsService: FlightsService) {
     this.configuration = ConfigService.config;
   }
 
+  // comment this out when building for prod
   ngOnInit() {
-    this.refreshData();
-    const interval = setInterval(() => {
-      this.refreshData();
-    }, 10000);
+    this.data = sampleData;
   }
+
+  // enable this when building for prod
+  // ngOnInit() {
+  //   this.refreshData();
+  //   const interval = setInterval(() => {
+  //     this.refreshData();
+  //   }, 10000);
+  // }
 
   refreshData() {
     this.flightsService.getTodaysFlights().subscribe(data => {
@@ -91,8 +99,12 @@ export class FlightsTodaySTG3Component implements OnInit {
   }
 
   eventEmitted($event) {
-    this.clicked = $event.value;
-    console.log('$event', $event);
+    // this.clicked = JSON.stringify($event.value);
+    this.rowData = $event.value.row;
+    // this.rowData = this.clicked.values;
+    // console.log(this.clicked);
+    console.log($event);
+    console.log(this.rowData);
   }
 
 }
