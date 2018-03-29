@@ -13,7 +13,7 @@ import { QueComponent } from './home/que/que.component';
 import { HomeComponent } from './home/home.component';
 import { EventService } from './services/event.service';
 import { GuideComponent } from './guide/guide.component';
-import { FlightsTodaySTG3Component } from './flights-today/flights-today.component';
+import { DataDemoComponent } from './data-demo/data-demo.component';
 import { FlightsService } from './services/flights.service';
 import { TableModule } from 'ngx-easy-table';
 
@@ -24,7 +24,7 @@ import { TableModule } from 'ngx-easy-table';
     QueComponent,
     HomeComponent,
     GuideComponent,
-    FlightsTodaySTG3Component
+    DataDemoComponent
   ],
   imports: [
     BrowserModule,
