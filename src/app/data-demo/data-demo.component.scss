@@ -28,16 +28,13 @@ table {
   color: #606060 !important;
 }
 
-.card-panel > h5 {
-  margin-bottom: 2%;
-}
 
 mz-tab > ul > li.indicator {
   background-color: #e74c3c !important;
   height: 3px !important;
 }
 
-mz-tab > ul > li > a {
+mz-tab > ul > li > a, .card-panel > h5 {
   font-size: 16px;
   font-weight: 500;
 }
