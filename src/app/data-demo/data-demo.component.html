@@ -46,7 +46,7 @@
   <div *ngIf="rowData != null" class="container center row">
     <ul class="collection with-header">
       <li class="collection-header">
-        <h4>Flight Number: {{ rowData.identifier }}</h4>
+        <h4>Flight: <span>{{ rowData.identifier }}</span></h4>
       </li>
     </ul>
   </div>
@@ -61,20 +61,84 @@
         <li class="collection-item">STD-Local: <span class="secondary-content">{{ rowData.STDLocal }}</span></li>
         <li class="collection-item">STA-UTC: <span class="secondary-content">{{ rowData.STAudt }}</span></li>
         <li class="collection-item">STA-Local: <span class="secondary-content">{{ rowData.STALocal }}</span></li>
-        <li class="collection-item">Origin: <span class="secondary-content">{{ rowData.origin }}</span></li>
-        <li class="collection-item">Origin: <span class="secondary-content">{{ rowData.origin }}</span></li>
-        <li class="collection-item">Origin: <span class="secondary-content">{{ rowData.origin }}</span></li>
-        <li class="collection-item">Origin: <span class="secondary-content">{{ rowData.origin }}</span></li>
-        <li class="collection-item">Origin: <span class="secondary-content">{{ rowData.origin }}</span></li>
-        <li class="collection-item">Origin: <span class="secondary-content">{{ rowData.origin }}</span></li>
-
+        <li class="collection-item">Tail-Num: <span class="secondary-content">{{ rowData.tailNumber }}</span></li>
+        <li class="collection-item">FS-DailyId: <span class="secondary-content">{{ rowData.csvFSDailyID }}</span></li>
+        <li class="collection-item">Sequence: <span class="secondary-content">{{ rowData.sequence }}</span></li>
       </ul>
     </div>
-    <div class="col s2">1</div>
-    <div class="col s2">1</div>
-    <div class="col s2">1</div>
-    <div class="col s2">1</div>
-    <div class="col s2">1</div>
+    <div class="col s2">
+      <ul class="collection">
+        <li class="collection-item">Date-UTC: <span class="secondary-content">{{ rowData.numGMTDate }}</span></li>
+        <li class="collection-item">Date-Local: <span class="secondary-content">{{ rowData.numericFlightDate }}</span></li>
+        <li class="collection-item">STD-Variance: <span class="secondary-content">{{ rowData.STDGMTVariance }}</span></li>
+        <li class="collection-item">STO: <span class="secondary-content">{{ rowData.scheduledTaxiOut }}</span></li>
+        <li class="collection-item">DCN-UTC: <span class="secondary-content">{{ rowData.DCNutc }}</span></li>
+        <li class="collection-item">ETD-UTC: <span class="secondary-content">{{ rowData.ETDudt }}</span></li>
+        <li class="collection-item">ETD-Local: <span class="secondary-content">{{ rowData.ETDlocal }}</span></li>
+        <li class="collection-item">ETO-UTC: <span class="secondary-content">{{ rowData.ETOutc }}</span></li>
+        <li class="collection-item">OUT-UTC: <span class="secondary-content">{{ rowData.OUTudt }}</span></li>
+        <li class="collection-item">Taxi-UTC: <span class="secondary-content">{{ rowData.TAXIutc }}</span></li>
+        <li class="collection-item">OFF-UTC: <span class="secondary-content">{{ rowData.OFFudt }}</span></li>
+      </ul>
+    </div>
+    <div class="col s2"><ul class="collection">
+      <li class="collection-item">Origin: <span class="secondary-content">{{ rowData.origin }}</span></li>
+      <li class="collection-item">Origin Gate: <span class="secondary-content">{{ rowData.originGate }}</span></li>
+      <li class="collection-item">Destination: <span class="secondary-content">{{ rowData.destination }}</span></li>
+      <li class="collection-item">Destination Gate: <span class="secondary-content">{{ rowData.destinationGate }}</span></li>
+      <li class="collection-item">STD-UTC: <span class="secondary-content">{{ rowData.STDudt }}</span></li>
+      <li class="collection-item">STD-Local: <span class="secondary-content">{{ rowData.STDLocal }}</span></li>
+      <li class="collection-item">STA-UTC: <span class="secondary-content">{{ rowData.STAudt }}</span></li>
+      <li class="collection-item">STA-Local: <span class="secondary-content">{{ rowData.STALocal }}</span></li>
+      <li class="collection-item">Tail-Num: <span class="secondary-content">{{ rowData.tailNumber }}</span></li>
+      <li class="collection-item">FS-DailyId: <span class="secondary-content">{{ rowData.csvFSDailyID }}</span></li>
+      <li class="collection-item">Sequence: <span class="secondary-content">{{ rowData.sequence }}</span></li>
+    </ul></div>
+    <div class="col s2">
+      <ul class="collection">
+        <li class="collection-item">Origin: <span class="secondary-content">{{ rowData.origin }}</span></li>
+        <li class="collection-item">Origin Gate: <span class="secondary-content">{{ rowData.originGate }}</span></li>
+        <li class="collection-item">Destination: <span class="secondary-content">{{ rowData.destination }}</span></li>
+        <li class="collection-item">Destination Gate: <span class="secondary-content">{{ rowData.destinationGate }}</span></li>
+        <li class="collection-item">STD-UTC: <span class="secondary-content">{{ rowData.STDudt }}</span></li>
+        <li class="collection-item">STD-Local: <span class="secondary-content">{{ rowData.STDLocal }}</span></li>
+        <li class="collection-item">STA-UTC: <span class="secondary-content">{{ rowData.STAudt }}</span></li>
+        <li class="collection-item">STA-Local: <span class="secondary-content">{{ rowData.STALocal }}</span></li>
+        <li class="collection-item">Tail-Num: <span class="secondary-content">{{ rowData.tailNumber }}</span></li>
+        <li class="collection-item">FS-DailyId: <span class="secondary-content">{{ rowData.csvFSDailyID }}</span></li>
+        <li class="collection-item">Sequence: <span class="secondary-content">{{ rowData.sequence }}</span></li>
+      </ul>
+    </div>
+    <div class="col s2">
+      <ul class="collection">
+        <li class="collection-item">Origin: <span class="secondary-content">{{ rowData.origin }}</span></li>
+        <li class="collection-item">Origin Gate: <span class="secondary-content">{{ rowData.originGate }}</span></li>
+        <li class="collection-item">Destination: <span class="secondary-content">{{ rowData.destination }}</span></li>
+        <li class="collection-item">Destination Gate: <span class="secondary-content">{{ rowData.destinationGate }}</span></li>
+        <li class="collection-item">STD-UTC: <span class="secondary-content">{{ rowData.STDudt }}</span></li>
+        <li class="collection-item">STD-Local: <span class="secondary-content">{{ rowData.STDLocal }}</span></li>
+        <li class="collection-item">STA-UTC: <span class="secondary-content">{{ rowData.STAudt }}</span></li>
+        <li class="collection-item">STA-Local: <span class="secondary-content">{{ rowData.STALocal }}</span></li>
+        <li class="collection-item">Tail-Num: <span class="secondary-content">{{ rowData.tailNumber }}</span></li>
+        <li class="collection-item">FS-DailyId: <span class="secondary-content">{{ rowData.csvFSDailyID }}</span></li>
+        <li class="collection-item">Sequence: <span class="secondary-content">{{ rowData.sequence }}</span></li>
+      </ul>
+    </div>
+    <div class="col s2">
+      <ul class="collection">
+        <li class="collection-item">Origin: <span class="secondary-content">{{ rowData.origin }}</span></li>
+        <li class="collection-item">Origin Gate: <span class="secondary-content">{{ rowData.originGate }}</span></li>
+        <li class="collection-item">Destination: <span class="secondary-content">{{ rowData.destination }}</span></li>
+        <li class="collection-item">Destination Gate: <span class="secondary-content">{{ rowData.destinationGate }}</span></li>
+        <li class="collection-item">STD-UTC: <span class="secondary-content">{{ rowData.STDudt }}</span></li>
+        <li class="collection-item">STD-Local: <span class="secondary-content">{{ rowData.STDLocal }}</span></li>
+        <li class="collection-item">STA-UTC: <span class="secondary-content">{{ rowData.STAudt }}</span></li>
+        <li class="collection-item">STA-Local: <span class="secondary-content">{{ rowData.STALocal }}</span></li>
+        <li class="collection-item">Tail-Num: <span class="secondary-content">{{ rowData.tailNumber }}</span></li>
+        <li class="collection-item">FS-DailyId: <span class="secondary-content">{{ rowData.csvFSDailyID }}</span></li>
+        <li class="collection-item">Sequence: <span class="secondary-content">{{ rowData.sequence }}</span></li>
+      </ul>
+    </div>
   </div>
 
   <!-- <pre> {{ row.identifier }} </pre> -->

@@ -20,10 +20,10 @@ table, .card-panel {
   font-weight: 500;
 }
 
-.collection-item {
+.collection-item, .collection-header {
   color: #45B39D !important;
 }
-.secondary-content {
+.secondary-content, .collection-header > h4 > span {
   color: #e74c3c !important;
 }
 

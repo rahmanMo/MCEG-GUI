@@ -5,33 +5,33 @@ export interface Flight {
   lastUserToModify: string;
   legDepartureDate: string;
   airlineCode: string;
-  identifier: string;
-  sequence: string;
-  flightOriginDay: string;
-  numericFlightDate: string;
-  numGMTDate: string;
-  STDudt: string;
-  STAudt: string;
-  tailNumber: string;
+  identifier: string; //
+  sequence: string; //
+  flightOriginDay: string; // skip
+  numericFlightDate: string; //
+  numGMTDate: string; //
+  STDudt: string; //
+  STAudt: string; //
+  tailNumber: string; //
   numLastDateModified: string;
   flightStatus: string;
-  origin: string;
+  origin: string; //
   STDLocal: string;
   dispatchDesk: string;
-  STDGMTVariance: string;
-  destination: string;
-  STALocal: string;
+  STDGMTVariance: string; //
+  destination: string; //
+  STALocal: string; //
   STAGMTVariance: string;
   OAGEquipmentType: string;
   ACConfiguration: string;
   serviceType: string;
-  originGate: string;
-  ETDlocal: string;
-  ETDudt: string;
-  TAXIutc: string;
-  OUTudt: string;
-  OFFudt: string;
-  destinationGate: string;
+  originGate: string; //
+  ETDlocal: string; //
+  ETDudt: string; //
+  TAXIutc: string; //
+  OUTudt: string; //
+  OFFudt: string; //
+  destinationGate: string; //
   ETAlocal: string;
   ETAudt: string;
   ONudt: string;
@@ -47,7 +47,7 @@ export interface Flight {
   newArrivalCity: string;
   SchedOAGEquipType: string;
   OAGEquipSubType: string;
-  csvFSDailyID: string;
+  csvFSDailyID: string; //
   tailNumBeforeCancel: string;
   CTAUTC: string;
   cancelled: string;
@@ -62,7 +62,7 @@ export interface Flight {
   actualDeparture: string;
   specialFlight: string;
   actualArrival: string;
-  scheduledTaxiOut: string;
+  scheduledTaxiOut: string; //
   scheduledTaxiIn: string;
   STOSetByUser: string;
   STISetByUser: string;
