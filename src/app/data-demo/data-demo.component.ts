@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Flight } from '../models/flight';
 import { FlightsService } from '../services/flights.service';
-import { Observable } from 'rxjs/Observable';
+// import { Observable } from 'rxjs/Observable';
 import { ConfigService } from './config-service';
 import { sampleData } from '../../assets/data';
 
@@ -69,8 +69,7 @@ export class DataDemoComponent implements OnInit {
   ];
 
   data = [];
-  clicked = {};
-  rowData = {};
+  rowData: Flight;
   configuration;
 
   constructor(private flightsService: FlightsService) {
@@ -90,18 +89,21 @@ export class DataDemoComponent implements OnInit {
   //   }, 10000);
   // }
 
-  refreshData() {
-    this.flightsService.getTodaysFlights().subscribe(data => {
-      this.data = data;
-    });
-  }
+  // refreshData() {
+  //   this.flightsService.getTodaysFlights().subscribe(data => {
+  //     this.data = data;
+  //   });
+  // }
 
   eventEmitted($event) {
-    // this.clicked = JSON.stringify($event.value);
-    this.rowData = $event.value.row;
-    // this.rowData = this.clicked.values;
-    // console.log(this.clicked);
-    console.log($event);
-    console.log(this.rowData);
+    // console.log($event.event);
+    if ($event.event === 'onClick') {
+      const jsonData = $event.value.row;
+      this.rowData = this.data[0];
+      for (const [key, value] of Object.entries(jsonData)) {
+        // console.log(`${key}: ${value}`);
+        this.rowData[`${key}`] = value;
+      }
+    }
   }
 }

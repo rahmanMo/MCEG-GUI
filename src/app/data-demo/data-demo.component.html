@@ -1,48 +1,81 @@
-<div class="card-panel" style="width: 100%;" >
+<div class="card-panel" style="width: 100%;">
   <h5 class="center">Filter flights based on attribute (sample data)</h5>
 </div>
 <mz-tab [fixedTabWidth]="'true'">
   <mz-tab-item [label]="'Basic Info'">
-    <div class="card-panel" style="width: 100%;" >
+    <div class="card-panel" style="width: 100%;">
       <ngx-table [configuration]="configuration" [data]="data" [columns]="basicColumns" (event)="eventEmitted($event)">
       </ngx-table>
     </div>
   </mz-tab-item>
   <mz-tab-item [label]="'Origin Times'">
-    <div class="card-panel" style="width: 100%;" >
+    <div class="card-panel" style="width: 100%;">
       <ngx-table [configuration]="configuration" [data]="data" [columns]="originTimeColumns" (event)="eventEmitted($event)">
       </ngx-table>
     </div>
   </mz-tab-item>
   <mz-tab-item [label]="'Destination Times'">
-    <div class="card-panel" style="width: 100%;" >
+    <div class="card-panel" style="width: 100%;">
       <ngx-table [configuration]="configuration" [data]="data" [columns]="destinationTimeColumns" (event)="eventEmitted($event)">
       </ngx-table>
     </div>
   </mz-tab-item>
   <mz-tab-item [label]="'Gate Info'">
-    <div class="card-panel" style="width: 100%;" >
+    <div class="card-panel" style="width: 100%;">
       <ngx-table [configuration]="configuration" [data]="data" [columns]="gateColumns" (event)="eventEmitted($event)">
       </ngx-table>
     </div>
   </mz-tab-item>
   <mz-tab-item [label]="'Spec Info'">
-    <div class="card-panel" style="width: 100%;" >
+    <div class="card-panel" style="width: 100%;">
       <ngx-table [configuration]="configuration" [data]="data" [columns]="specColumns" (event)="eventEmitted($event)">
       </ngx-table>
     </div>
   </mz-tab-item>
   <mz-tab-item [label]="'MISC Info'">
-    <div class="card-panel" style="width: 100%;" >
+    <div class="card-panel" style="width: 100%;">
       <ngx-table [configuration]="configuration" [data]="data" [columns]="miscColumns" (event)="eventEmitted($event)">
       </ngx-table>
     </div>
   </mz-tab-item>
 </mz-tab>
 
-<div class="card-panel" style="width: 100%;" >
+<div class="card-panel" style="width: 100%;">
   <h5 class="center">Click on flight to see all attribute</h5>
-  <pre> {{ rowData | json }} </pre>
+  <!-- <pre> {{ rowData | json }} </pre> -->
+  <div *ngIf="rowData != null" class="container center row">
+    <ul class="collection with-header">
+      <li class="collection-header">
+        <h4>Flight Number: {{ rowData.identifier }}</h4>
+      </li>
+    </ul>
+  </div>
+  <div *ngIf="rowData != null" class="row">
+    <div class="col s2">
+      <ul class="collection">
+        <li class="collection-item">Origin: <span class="secondary-content">{{ rowData.origin }}</span></li>
+        <li class="collection-item">Origin Gate: <span class="secondary-content">{{ rowData.originGate }}</span></li>
+        <li class="collection-item">Destination: <span class="secondary-content">{{ rowData.destination }}</span></li>
+        <li class="collection-item">Destination Gate: <span class="secondary-content">{{ rowData.destinationGate }}</span></li>
+        <li class="collection-item">STD-UTC: <span class="secondary-content">{{ rowData.STDudt }}</span></li>
+        <li class="collection-item">STD-Local: <span class="secondary-content">{{ rowData.STDLocal }}</span></li>
+        <li class="collection-item">STA-UTC: <span class="secondary-content">{{ rowData.STAudt }}</span></li>
+        <li class="collection-item">STA-Local: <span class="secondary-content">{{ rowData.STALocal }}</span></li>
+        <li class="collection-item">Origin: <span class="secondary-content">{{ rowData.origin }}</span></li>
+        <li class="collection-item">Origin: <span class="secondary-content">{{ rowData.origin }}</span></li>
+        <li class="collection-item">Origin: <span class="secondary-content">{{ rowData.origin }}</span></li>
+        <li class="collection-item">Origin: <span class="secondary-content">{{ rowData.origin }}</span></li>
+        <li class="collection-item">Origin: <span class="secondary-content">{{ rowData.origin }}</span></li>
+        <li class="collection-item">Origin: <span class="secondary-content">{{ rowData.origin }}</span></li>
+
+      </ul>
+    </div>
+    <div class="col s2">1</div>
+    <div class="col s2">1</div>
+    <div class="col s2">1</div>
+    <div class="col s2">1</div>
+    <div class="col s2">1</div>
+  </div>
 
   <!-- <pre> {{ row.identifier }} </pre> -->
 </div>

@@ -15,10 +15,19 @@
  color: #D1D1D1 !important;
 }
 
-table {
+table, .card-panel {
   color: #606060;
   font-weight: 500;
 }
+
+.collection-item {
+  color: #45B39D !important;
+}
+.secondary-content {
+  color: #e74c3c !important;
+}
+
+
 
 .current {
   background: #e74c3c !important;
