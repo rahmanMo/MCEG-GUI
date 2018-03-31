@@ -69,7 +69,7 @@ export class DataDemoComponent implements OnInit {
   ];
 
   data = [];
-  rowData: Flight;
+  rowData: Flight[];
   configuration;
 
   constructor(private flightsService: FlightsService) {
@@ -99,7 +99,7 @@ export class DataDemoComponent implements OnInit {
     // console.log($event.event);
     if ($event.event === 'onClick') {
       const jsonData = $event.value.row;
-      this.rowData = this.data[0];
+      this.rowData = this.data;
       for (const [key, value] of Object.entries(jsonData)) {
         // console.log(`${key}: ${value}`);
         this.rowData[`${key}`] = value;
