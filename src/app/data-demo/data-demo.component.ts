@@ -16,8 +16,8 @@ export class DataDemoComponent implements OnInit {
   // constructor(private flightsService: FlightsService) { }
 
   basicColumns = [
-    { key: 'identifier', title: 'Flight #' },
-    { key: 'tailNumber', title: 'Tail #' },
+    { key: 'identifier', title: 'Flight#' },
+    { key: 'tailNumber', title: 'Tail#' },
     { key: 'origin', title: 'Origin' },
     { key: 'destination', title: 'Destination' },
     { key: 'STDudt', title: 'STD-UTC' },
@@ -26,28 +26,28 @@ export class DataDemoComponent implements OnInit {
     { key: 'numericFlightDate', title: 'Local Date' }
   ];
   specColumns = [
-    { key: 'identifier', title: 'Flight #' },
+    { key: 'identifier', title: 'Flight#' },
     { key: 'OAGEquipmentType', title: 'Equipment' },
     { key: 'sequence', title: 'Sequence' },
     { key: 'csvFSDailyID', title: 'DailyID' }
   ];
   miscColumns = [
-    { key: 'identifier', title: 'Flight #' },
+    { key: 'identifier', title: 'Flight#' },
     { key: 'previousTailNumber', title: 'Prev-Tail' },
     { key: 'tailNumBeforeCancel', title: 'Tail#-Before-Cancel' },
     { key: 'flightStatus', title: 'Status' },
     { key: 'cancelled', title: 'Cancelled?' },
-    { key: 'CTFlightNumber', title: 'CT-Flight #' }
+    { key: 'CTFlightNumber', title: 'CT-Flight#' }
   ];
   gateColumns = [
-    { key: 'identifier', title: 'Flight #' },
+    { key: 'identifier', title: 'Flight#' },
     { key: 'origin', title: 'Origin' },
     { key: 'originGate', title: 'Origin-Gate' },
     { key: 'destination', title: 'Destination' },
     { key: 'destinationGate', title: 'Destination-Gate' }
   ];
   originTimeColumns = [
-    { key: 'identifier', title: 'Flight #' },
+    { key: 'identifier', title: 'Flight#' },
     { key: 'STDudt', title: 'STD-UTC' },
     { key: 'STDLocal', title: 'STD-Local' },
     { key: 'ETDudt', title: 'ETD-UTC' },
@@ -58,7 +58,7 @@ export class DataDemoComponent implements OnInit {
     { key: 'STDGMTVariance', title: 'UTC-Offset' }
   ];
   destinationTimeColumns = [
-    { key: 'identifier', title: 'Flight #' },
+    { key: 'identifier', title: 'Flight#' },
     { key: 'STAudt', title: 'STA-UTC' },
     { key: 'STALocal', title: 'STA-Local' },
     { key: 'ETAudt', title: 'ETA-UTC' },

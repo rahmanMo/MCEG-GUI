@@ -62,10 +62,12 @@
         <li class="collection-item">Tail-Number-Before-Cancel: <span class="secondary-content">{{ rowData.tailNumBeforeCancel }}</span></li>
         <li class="collection-item">FS-DailyId: <span class="secondary-content">{{ rowData.csvFSDailyID }}</span></li>
         <li class="collection-item">Sequence: <span class="secondary-content">{{ rowData.sequence }}</span></li>
-        <li class="collection-item">Record-Status: <span class="secondary-content">{{ rowData.recordStatus }}</span></li>
+        <li class="collection-item">Flight-Type: <span class="secondary-content">{{ rowData.flightType }}</span></li>
         <li class="collection-item">Airline-Code: <span class="secondary-content">{{ rowData.airlineCode }}</span></li>
         <li class="collection-item">Hub: <span class="secondary-content">{{ rowData.hub }}</span></li>
+        <li class="collection-item">New-Departure-City: <span class="secondary-content">{{ rowData.newDepartureCity }}</span></li>
         <li class="collection-item">New-Arrival-City: <span class="secondary-content">{{ rowData.newArrivalCity }}</span></li>
+        <li class="collection-item">OAG-Equipment-Type: <span class="secondary-content">{{ rowData.OAGEquipmentType }}</span></li>
         <li class="collection-item">Sched-OAG-Equipment-Type: <span class="secondary-content">{{ rowData.SchedOAGEquipType }}</span></li>
         <li class="collection-item">OAG-Equipment-Sub-Type: <span class="secondary-content">{{ rowData.OAGEquipSubType }}</span></li>
         <li class="collection-item">Cancel-Indicator (X): <span class="secondary-content">{{ rowData.cancelled }}</span></li>
@@ -73,14 +75,14 @@
         <li class="collection-item">ATC-Status: <span class="secondary-content">{{ rowData.ATCStatus }}</span></li>
         <li class="collection-item">Scheduled-Flight-Type: <span class="secondary-content">{{ rowData.scheduledFlightType }}</span></li>
         <li class="collection-item">Aircraft-Routing: <span class="secondary-content">{{ rowData.aircraftRouting }}</span></li>
-        <li class="collection-item">Meal-Service: <span class="secondary-content">{{ rowData.mealService }}</span></li>
-        <li class="collection-item">Landing-Restriction: <span class="secondary-content">{{ rowData.landingRestriction }}</span></li>
+
       </ul>
     </div>
     <div class="col s4">
       <ul class="collection">
-        <li class="collection-item">Head-Start-Flight: <span class="secondary-content">{{ rowData.headStartFlight }}</span></li>
-        <li class="collection-item">Special-Flight?: <span class="secondary-content">{{ rowData.specialFlight }}</span></li>
+        <li class="collection-item">Landing-Restriction: <span class="secondary-content">{{ rowData.landingRestriction }}</span></li>
+
+
         <li class="collection-item">CT-Flight-Number: <span class="secondary-content">{{ rowData.CTFlightNumber }}</span></li>
         <li class="collection-item">Date-UTC: <span class="secondary-content">{{ rowData.numGMTDate }}</span></li>
         <li class="collection-item">Date-Local: <span class="secondary-content">{{ rowData.numericFlightDate }}</span></li>
@@ -118,14 +120,14 @@
         <li class="collection-item">Actual-Arrival: <span class="secondary-content">{{ rowData.actualArrival }}</span></li>
         <li class="collection-item">CTA-UTC: <span class="secondary-content">{{ rowData.CTAUTC }}</span></li>
         <li class="collection-item">EDTC-UTC: <span class="secondary-content">{{ rowData.EDTCutc }}</span></li>
-        <li class="collection-item">DCN-UTC: <span class="secondary-content">{{ rowData.DCNutc }}</span></li>
+        <li class="collection-item">Head-Start-Flight: <span class="secondary-content">{{ rowData.headStartFlight }}</span></li>
+        <li class="collection-item">Special-Flight?: <span class="secondary-content">{{ rowData.specialFlight }}</span></li>
         <li class="collection-item">Last-User-To-Modify: <span class="secondary-content">{{ rowData.lastUserToModify }}</span></li>
         <li class="collection-item">Dispatch-Desk: <span class="secondary-content">{{ rowData.dispatchDesk }}</span></li>
-        <li class="collection-item">OAG-Equipment-Type: <span class="secondary-content">{{ rowData.OAGEquipmentType }}</span></li>
+        <li class="collection-item">Meal-Service: <span class="secondary-content">{{ rowData.mealService }}</span></li>
         <li class="collection-item">AC-Configuration: <span class="secondary-content">{{ rowData.ACConfiguration }}</span></li>
         <li class="collection-item">Service-Type: <span class="secondary-content">{{ rowData.serviceType }}</span></li>
-        <li class="collection-item">Flight-Type: <span class="secondary-content">{{ rowData.flightType }}</span></li>
-        <li class="collection-item">New-Departure-City: <span class="secondary-content">{{ rowData.newDepartureCity }}</span></li>
+        <li class="collection-item">Record-Status: <span class="secondary-content">{{ rowData.recordStatus }}</span></li>
       </ul>
     </div>
   </div>
