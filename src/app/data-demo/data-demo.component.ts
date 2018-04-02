@@ -36,7 +36,8 @@ export class DataDemoComponent implements OnInit {
     { key: 'previousTailNumber', title: 'Prev-Tail' },
     { key: 'tailNumBeforeCancel', title: 'Tail#-Before-Cancel' },
     { key: 'flightStatus', title: 'Status' },
-    { key: 'cancelled', title: 'Cancelled?' }
+    { key: 'cancelled', title: 'Cancelled?' },
+    { key: 'CTFlightNumber', title: 'CT-Flight #' }
   ];
   gateColumns = [
     { key: 'identifier', title: 'Flight #' },
@@ -69,7 +70,7 @@ export class DataDemoComponent implements OnInit {
   ];
 
   data = [];
-  rowData: Flight[];
+  rowData: Flight;
   configuration;
 
   constructor(private flightsService: FlightsService) {
@@ -96,14 +97,11 @@ export class DataDemoComponent implements OnInit {
   // }
 
   eventEmitted($event) {
-    // console.log($event.event);
     if ($event.event === 'onClick') {
-      const jsonData = $event.value.row;
-      this.rowData = this.data;
-      for (const [key, value] of Object.entries(jsonData)) {
-        // console.log(`${key}: ${value}`);
-        this.rowData[`${key}`] = value;
-      }
+      // console.log($event.value.row.csvFSDailyID);
+      const dailyId = $event.value.row.csvFSDailyID;
+      this.rowData = this.data.find( row => row.csvFSDailyID === dailyId);
+      // console.log(this.rowData);
     }
   }
 }

@@ -20,21 +20,20 @@ table, .card-panel {
   font-weight: 500;
 }
 
-.collection-item, .collection-header {
+.card-panel > h5, mz-tab > ul > li > a {
+  color: #606060 !important;
+}
+
+
+.collection-item, .collection-header, .secondary-content > .normal, h5.normal {
   color: #45B39D !important;
 }
-.secondary-content, .collection-header > h4 > span {
+.secondary-content, .color-red, .collection-header > h4 > span, mz-tab > ul > li > a.active {
   color: #e74c3c !important;
 }
 
-
-
 .current {
   background: #e74c3c !important;
-}
-
-.card-panel > h5, mz-tab > ul > li > a {
-  color: #606060 !important;
 }
 
 
@@ -46,10 +45,6 @@ mz-tab > ul > li.indicator {
 mz-tab > ul > li > a, .card-panel > h5 {
   font-size: 16px;
   font-weight: 500;
-}
-
-mz-tab > ul > li > a.active {
-  color: #e74c3c !important;
 }
 
 input:focus {
