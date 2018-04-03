@@ -1,7 +1,12 @@
 export interface EventRow {
   env: string;
+  test_case_mode: string;
   event_type: string;
+  test_case_id: string;
+  previous_flight_num: string;
   flight_number: string;
+  next_flight_num: string;
+  adhoc_16_string: string;
   actual_out_time_utc: string;
   actual_off_time_utc: string;
   actual_on_time_utc: string;

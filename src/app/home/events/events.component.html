@@ -36,7 +36,7 @@
       <div *ngIf="[eventName] == 'OUT'">
         <form (submit)="submitOUT()">
           <div class="row" >
-            <div class="input-field col s6">
+            <div class="input-field col s4">
               <input placeholder="Flight Number"
                       type="text"
                       [(ngModel)]="flight_number"
@@ -44,7 +44,17 @@
                       #flightNum="ngModel"
                       required minlength="1" maxlength="4" pattern="^[0-9]*$">
             </div>
-            <div class="input-field col s6">
+            <mz-datepicker-container class="col s4">
+              <input mz-datepicker
+                [options]="options"
+                [(ngModel)]="flight_origin_date_utc"
+                name="flight_origin_date_utc"
+                placeholder="Flight Origin Date (UTC)"
+                #flightOriginDate="ngModel"
+                type="text"
+                minlength="8" maxlength="8" pattern="^[0-9]*$">
+            </mz-datepicker-container>
+            <div class="input-field col s4">
               <input placeholder="Desired OUT Time in UTC (hhmm)"
                      type="text"
                      [(ngModel)]="actual_out_time_utc"
