@@ -52,7 +52,7 @@
                 placeholder="Flight Origin Date (UTC)"
                 #flightOriginDate="ngModel"
                 type="text"
-                minlength="8" maxlength="8" pattern="^[0-9]*$">
+                required minlength="8" maxlength="8" pattern="^[0-9]*$">
             </mz-datepicker-container>
             <div class="input-field col s4">
               <input placeholder="Desired OUT Time in UTC (hhmm)"
@@ -67,7 +67,7 @@
           <div class="row">
             <input class="waves-effect waves-light btn"
                    type="submit" value="Add To Que"
-                   [disabled]="flightNum.invalid || time.invalid">
+                   [disabled]="flightNum.invalid || time.invalid || flightOriginDate.invalid">
           </div>
         </form>
       </div>
@@ -76,7 +76,7 @@
       <div *ngIf="[eventName] == 'OFF'">
         <form (submit)="submitOFF()">
           <div class="row" >
-            <div class="input-field col s6">
+            <div class="input-field col s4">
               <input placeholder="Flight Number"
                      type="text"
                      [(ngModel)]="flight_number"
@@ -84,7 +84,17 @@
                      #flightNum="ngModel"
                      required minlength="1" maxlength="4" pattern="^[0-9]*$">
             </div>
-            <div class="input-field col s6">
+            <mz-datepicker-container class="col s4">
+              <input mz-datepicker
+                [options]="options"
+                [(ngModel)]="flight_origin_date_utc"
+                name="flight_origin_date_utc"
+                placeholder="Flight Origin Date (UTC)"
+                #flightOriginDate="ngModel"
+                type="text"
+                required minlength="8" maxlength="8" pattern="^[0-9]*$">
+            </mz-datepicker-container>
+            <div class="input-field col s4">
               <input placeholder="Desired OFF Time in UTC (hhmm)"
                      type="text"
                      [(ngModel)]="actual_off_time_utc"
@@ -98,7 +108,7 @@
             <input class="waves-effect waves-light btn"
                    type="submit"
                    value="Add To Que"
-                   [disabled]="flightNum.invalid || time.invalid">
+                   [disabled]="flightNum.invalid || time.invalid || flightOriginDate.invalid">
           </div>
         </form>
       </div>
@@ -107,7 +117,7 @@
       <div *ngIf="[eventName] == 'ON'">
         <form (submit)="submitON()">
           <div class="row" >
-            <div class="input-field col s6">
+            <div class="input-field col s4">
               <input placeholder="Flight Number"
                      type="text"
                      [(ngModel)]="flight_number"
@@ -115,7 +125,17 @@
                      #flightNum="ngModel"
                      required minlength="1" maxlength="4" pattern="^[0-9]*$">
             </div>
-            <div class="input-field col s6">
+            <mz-datepicker-container class="col s4">
+              <input mz-datepicker
+                [options]="options"
+                [(ngModel)]="flight_origin_date_utc"
+                name="flight_origin_date_utc"
+                placeholder="Flight Origin Date (UTC)"
+                #flightOriginDate="ngModel"
+                type="text"
+                required minlength="8" maxlength="8" pattern="^[0-9]*$">
+            </mz-datepicker-container>
+            <div class="input-field col s4">
               <input placeholder="Desired ON Time in UTC (hhmm)"
                      type="text"
                      [(ngModel)]="actual_on_time_utc"
@@ -129,7 +149,7 @@
             <input class="waves-effect waves-light btn"
                    type="submit"
                    value="Add To Que"
-                   [disabled]="flightNum.invalid || time.invalid">
+                   [disabled]="flightNum.invalid || time.invalid || flightOriginDate.invalid">
           </div>
         </form>
       </div>
@@ -138,7 +158,7 @@
       <div *ngIf="[eventName] == 'IN'">
         <form (submit)="submitIN()">
           <div class="row" >
-            <div class="input-field col s6">
+            <div class="input-field col s4">
               <input placeholder="Flight Number"
                      type="text"
                      [(ngModel)]="flight_number"
@@ -146,7 +166,17 @@
                      #flightNum="ngModel"
                      required minlength="1" maxlength="4" pattern="^[0-9]*$">
             </div>
-            <div class="input-field col s6">
+            <mz-datepicker-container class="col s4">
+              <input mz-datepicker
+                [options]="options"
+                [(ngModel)]="flight_origin_date_utc"
+                name="flight_origin_date_utc"
+                placeholder="Flight Origin Date (UTC)"
+                #flightOriginDate="ngModel"
+                type="text"
+                required minlength="8" maxlength="8" pattern="^[0-9]*$">
+            </mz-datepicker-container>
+            <div class="input-field col s4">
               <input placeholder="Desired IN Time in UTC (hhmm)"
                      type="text"
                      [(ngModel)]="actual_in_time_utc"
@@ -160,7 +190,7 @@
             <input class="waves-effect waves-light btn"
                    type="submit"
                    value="Add To Que"
-                   [disabled]="flightNum.invalid || time.invalid">
+                   [disabled]="flightNum.invalid || time.invalid || flightOriginDate.invalid">
           </div>
         </form>
       </div>
@@ -169,7 +199,7 @@
       <div *ngIf="[eventName] == 'ETA'">
         <form (submit)="submitETA()">
           <div class="row" >
-            <div class="input-field col s6">
+            <div class="input-field col s4">
               <input placeholder="Flight Number"
                      type="text"
                      [(ngModel)]="flight_number"
@@ -177,7 +207,17 @@
                      #flightNum="ngModel"
                      required minlength="1" maxlength="4" pattern="^[0-9]*$">
             </div>
-            <div class="input-field col s6">
+            <mz-datepicker-container class="col s4">
+              <input mz-datepicker
+                [options]="options"
+                [(ngModel)]="flight_origin_date_utc"
+                name="flight_origin_date_utc"
+                placeholder="Flight Origin Date (UTC)"
+                #flightOriginDate="ngModel"
+                type="text"
+                required minlength="8" maxlength="8" pattern="^[0-9]*$">
+            </mz-datepicker-container>
+            <div class="input-field col s4">
               <input placeholder="Desired ETA Time in UTC (hhmm)"
                      type="text"
                      [(ngModel)]="actual_eta_time_utc"
@@ -191,7 +231,7 @@
             <input class="waves-effect waves-light btn"
                    type="submit"
                    value="Add To Que"
-                   [disabled]="flightNum.invalid || time.invalid">
+                   [disabled]="flightNum.invalid || time.invalid || flightOriginDate.invalid">
           </div>
         </form>
       </div>
@@ -200,7 +240,7 @@
       <div *ngIf="[eventName] == 'ETD'">
         <form (submit)="submitETD()">
           <div class="row" >
-            <div class="input-field col s6">
+            <div class="input-field col s4">
               <input placeholder="Flight Number"
                      type="text"
                      [(ngModel)]="flight_number"
@@ -208,7 +248,17 @@
                      #flightNum="ngModel"
                      required minlength="1" maxlength="4" pattern="^[0-9]*$">
             </div>
-            <div class="input-field col s6">
+            <mz-datepicker-container class="col s4">
+              <input mz-datepicker
+                [options]="options"
+                [(ngModel)]="flight_origin_date_utc"
+                name="flight_origin_date_utc"
+                placeholder="Flight Origin Date (UTC)"
+                #flightOriginDate="ngModel"
+                type="text"
+                required minlength="8" maxlength="8" pattern="^[0-9]*$">
+            </mz-datepicker-container>
+            <div class="input-field col s4">
               <input placeholder="Desired ETD Time in UTC (hhmm)"
                      type="text"
                      [(ngModel)]="actual_etd_time_utc"
@@ -222,7 +272,7 @@
             <input class="waves-effect waves-light btn"
                    type="submit"
                    value="Add To Que"
-                   [disabled]="flightNum.invalid || time.invalid">
+                   [disabled]="flightNum.invalid || time.invalid || flightOriginDate.invalid">
           </div>
         </form>
       </div>
@@ -231,7 +281,7 @@
       <div *ngIf="[eventName] == 'ETO'">
         <form (submit)="submitETO()">
           <div class="row" >
-            <div class="input-field col s6">
+            <div class="input-field col s4">
               <input placeholder="Flight Number"
                      type="text"
                      [(ngModel)]="flight_number"
@@ -239,7 +289,17 @@
                      #flightNum="ngModel"
                      required minlength="1" maxlength="4" pattern="^[0-9]*$">
             </div>
-            <div class="input-field col s6">
+            <mz-datepicker-container class="col s4">
+              <input mz-datepicker
+                [options]="options"
+                [(ngModel)]="flight_origin_date_utc"
+                name="flight_origin_date_utc"
+                placeholder="Flight Origin Date (UTC)"
+                #flightOriginDate="ngModel"
+                type="text"
+                required minlength="8" maxlength="8" pattern="^[0-9]*$">
+            </mz-datepicker-container>
+            <div class="input-field col s4">
               <input placeholder="Desired ETO Time in UTC (hhmm)"
                      type="text"
                      [(ngModel)]="actual_eto_time_utc"
@@ -253,7 +313,7 @@
             <input class="waves-effect waves-light btn"
                    type="submit"
                    value="Add To Que"
-                   [disabled]="flightNum.invalid || time.invalid">
+                   [disabled]="flightNum.invalid || time.invalid || flightOriginDate.invalid">
           </div>
         </form>
       </div>
@@ -262,7 +322,7 @@
       <div *ngIf="[eventName] == 'EON'">
         <form (submit)="submitEON()">
           <div class="row" >
-            <div class="input-field col s6">
+            <div class="input-field col s4">
               <input placeholder="Flight Number"
                      type="text"
                      [(ngModel)]="flight_number"
@@ -270,7 +330,17 @@
                      #flightNum="ngModel"
                      required minlength="1" maxlength="4" pattern="^[0-9]*$">
             </div>
-            <div class="input-field col s6">
+            <mz-datepicker-container class="col s4">
+              <input mz-datepicker
+                [options]="options"
+                [(ngModel)]="flight_origin_date_utc"
+                name="flight_origin_date_utc"
+                placeholder="Flight Origin Date (UTC)"
+                #flightOriginDate="ngModel"
+                type="text"
+                required minlength="8" maxlength="8" pattern="^[0-9]*$">
+            </mz-datepicker-container>
+            <div class="input-field col s4">
               <input placeholder="Desired EON Time in UTC (hhmm)"
                      type="text"
                      [(ngModel)]="actual_eon_time_utc"
@@ -284,7 +354,7 @@
             <input class="waves-effect waves-light btn"
                    type="submit"
                    value="Add To Que"
-                   [disabled]="flightNum.invalid || time.invalid">
+                   [disabled]="flightNum.invalid || time.invalid || flightOriginDate.invalid">
           </div>
         </form>
       </div>
@@ -293,7 +363,7 @@
       <div *ngIf="[eventName] == 'SUB'">
         <form (submit)="submitSUB()">
           <div class="row" >
-            <div class="input-field col s6">
+            <div class="input-field col s4">
               <input placeholder="Flight Number"
                      type="text"
                      [(ngModel)]="flight_number"
@@ -301,7 +371,17 @@
                      #flightNum="ngModel"
                      required minlength="1" maxlength="4" pattern="^[0-9]*$">
             </div>
-            <div class="input-field col s6">
+            <mz-datepicker-container class="col s4">
+              <input mz-datepicker
+                [options]="options"
+                [(ngModel)]="flight_origin_date_utc"
+                name="flight_origin_date_utc"
+                placeholder="Flight Origin Date (UTC)"
+                #flightOriginDate="ngModel"
+                type="text"
+                required minlength="8" maxlength="8" pattern="^[0-9]*$">
+            </mz-datepicker-container>
+            <div class="input-field col s4">
               <input placeholder="Desired Tail Number (3 digit)"
                      type="text"
                      [(ngModel)]="new_tail_number"
@@ -315,7 +395,7 @@
             <input class="waves-effect waves-light btn"
                    type="submit"
                    value="Add To Que"
-                   [disabled]="flightNum.invalid || tailNum.invalid">
+                   [disabled]="flightNum.invalid || tailNum.invalid || flightOriginDate.invalid">
           </div>
         </form>
       </div>
@@ -324,7 +404,7 @@
       <div *ngIf="[eventName] == 'CNL'">
         <form (submit)="submitCNL()">
           <div class="row" >
-            <div class="input-field col s6 offset-s3">
+            <div class="input-field col s6">
               <input placeholder="Flight Number"
                      type="text"
                      [(ngModel)]="flight_number"
@@ -332,13 +412,23 @@
                      #flightNum="ngModel"
                      required minlength="1" maxlength="4" pattern="^[0-9]*$">
             </div>
+            <mz-datepicker-container class="col s6">
+              <input mz-datepicker
+                [options]="options"
+                [(ngModel)]="flight_origin_date_utc"
+                name="flight_origin_date_utc"
+                placeholder="Flight Origin Date (UTC)"
+                #flightOriginDate="ngModel"
+                type="text"
+                required minlength="8" maxlength="8" pattern="^[0-9]*$">
+            </mz-datepicker-container>
           </div>
           <!-- submit -->
           <div class="row">
             <input class="waves-effect waves-light btn"
                    type="submit"
                    value="Add To Que"
-                   [disabled]="flightNum.invalid">
+                   [disabled]="flightNum.invalid || flightOriginDate.invalid">
           </div>
         </form>
       </div>
@@ -347,7 +437,7 @@
       <div *ngIf="[eventName] == 'DEL'">
         <form (submit)="submitDEL()">
           <div class="row" >
-            <div class="input-field col s6 offset-s3">
+            <div class="input-field col s6">
               <input placeholder="Flight Number"
                      type="text"
                      [(ngModel)]="flight_number"
@@ -355,13 +445,23 @@
                      #flightNum="ngModel"
                      required minlength="1" maxlength="4" pattern="^[0-9]*$">
             </div>
+            <mz-datepicker-container class="col s6">
+              <input mz-datepicker
+                [options]="options"
+                [(ngModel)]="flight_origin_date_utc"
+                name="flight_origin_date_utc"
+                placeholder="Flight Origin Date (UTC)"
+                #flightOriginDate="ngModel"
+                type="text"
+                required minlength="8" maxlength="8" pattern="^[0-9]*$">
+            </mz-datepicker-container>
           </div>
           <!-- submit -->
           <div class="row">
             <input class="waves-effect waves-light btn"
                    type="submit"
                    value="Add To Que"
-                   [disabled]="flightNum.invalid">
+                   [disabled]="flightNum.invalid || flightOriginDate.invalid">
           </div>
         </form>
       </div>
@@ -370,7 +470,7 @@
       <div *ngIf="[eventName] == 'GTA'">
         <form (submit)="submitGTA()">
           <div class="row" >
-            <div class="input-field col s6">
+            <div class="input-field col s4">
               <input placeholder="Flight Number"
                      type="text"
                      [(ngModel)]="flight_number"
@@ -378,7 +478,17 @@
                      #flightNum="ngModel"
                      required minlength="1" maxlength="4" pattern="^[0-9]*$">
             </div>
-            <div class="input-field col s6">
+            <mz-datepicker-container class="col s4">
+              <input mz-datepicker
+                [options]="options"
+                [(ngModel)]="flight_origin_date_utc"
+                name="flight_origin_date_utc"
+                placeholder="Flight Origin Date (UTC)"
+                #flightOriginDate="ngModel"
+                type="text"
+                required minlength="8" maxlength="8" pattern="^[0-9]*$">
+            </mz-datepicker-container>
+            <div class="input-field col s4">
               <input placeholder="Arrival Gate (Max 4 character)"
                      type="text"
                      [(ngModel)]="arrival_gate"
@@ -392,7 +502,7 @@
             <input class="waves-effect waves-light btn"
                    type="submit"
                    value="Add To Que"
-                   [disabled]="flightNum.invalid || arrivalGate.invalid">
+                   [disabled]="flightNum.invalid || arrivalGate.invalid || flightOriginDate.invalid">
           </div>
         </form>
       </div>
@@ -401,7 +511,7 @@
       <div *ngIf="[eventName] == 'GTD'">
         <form (submit)="submitGTD()">
           <div class="row" >
-            <div class="input-field col s6">
+            <div class="input-field col s4">
               <input placeholder="Flight Number"
                      type="text"
                      [(ngModel)]="flight_number"
@@ -409,7 +519,17 @@
                      #flightNum="ngModel"
                      required minlength="1" maxlength="4" pattern="^[0-9]*$">
             </div>
-            <div class="input-field col s6">
+            <mz-datepicker-container class="col s4">
+              <input mz-datepicker
+                [options]="options"
+                [(ngModel)]="flight_origin_date_utc"
+                name="flight_origin_date_utc"
+                placeholder="Flight Origin Date (UTC)"
+                #flightOriginDate="ngModel"
+                type="text"
+                required minlength="8" maxlength="8" pattern="^[0-9]*$">
+            </mz-datepicker-container>
+            <div class="input-field col s4">
               <input placeholder="Arrival Gate (Max 4 character)"
                      type="text"
                      [(ngModel)]="departure_gate"
@@ -423,7 +543,7 @@
             <input class="waves-effect waves-light btn"
                    type="submit"
                    value="Add To Que"
-                   [disabled]="flightNum.invalid || departureGate.invalid">
+                   [disabled]="flightNum.invalid || departureGate.invalid || flightOriginDate.invalid">
           </div>
         </form>
       </div>
@@ -432,7 +552,7 @@
       <div *ngIf="[eventName] == 'RIN'">
         <form (submit)="submitRIN()">
           <div class="row" >
-            <div class="input-field col s6 offset-s3">
+            <div class="input-field col s6">
               <input placeholder="Flight Number"
                      type="text"
                      [(ngModel)]="flight_number"
@@ -440,13 +560,23 @@
                      #flightNum="ngModel"
                      required minlength="1" maxlength="4" pattern="^[0-9]*$">
             </div>
+            <mz-datepicker-container class="col s6">
+              <input mz-datepicker
+                [options]="options"
+                [(ngModel)]="flight_origin_date_utc"
+                name="flight_origin_date_utc"
+                placeholder="Flight Origin Date (UTC)"
+                #flightOriginDate="ngModel"
+                type="text"
+                required minlength="8" maxlength="8" pattern="^[0-9]*$">
+            </mz-datepicker-container>
           </div>
           <!-- submit -->
           <div class="row">
             <input class="waves-effect waves-light btn"
                    type="submit"
                    value="Add To Que"
-                   [disabled]="flightNum.invalid">
+                   [disabled]="flightNum.invalid || flightOriginDate.invalid">
           </div>
         </form>
       </div>
@@ -455,7 +585,7 @@
       <div *ngIf="[eventName] == 'ASN'">
         <form (submit)="submitASN()">
           <div class="row" >
-            <div class="input-field col s6">
+            <div class="input-field col s4">
               <input placeholder="Flight Number"
                      type="text"
                      [(ngModel)]="flight_number"
@@ -463,7 +593,17 @@
                      #flightNum="ngModel"
                      required minlength="1" maxlength="4" pattern="^[0-9]*$">
             </div>
-            <div class="input-field col s6">
+            <mz-datepicker-container class="col s4">
+              <input mz-datepicker
+                [options]="options"
+                [(ngModel)]="flight_origin_date_utc"
+                name="flight_origin_date_utc"
+                placeholder="Flight Origin Date (UTC)"
+                #flightOriginDate="ngModel"
+                type="text"
+                required minlength="8" maxlength="8" pattern="^[0-9]*$">
+            </mz-datepicker-container>
+            <div class="input-field col s4">
               <input placeholder="Desired Tail Number (3 digit)"
                      type="text"
                      [(ngModel)]="new_tail_number"
@@ -477,7 +617,7 @@
             <input class="waves-effect waves-light btn"
                    type="submit"
                    value="Add To Que"
-                   [disabled]="flightNum.invalid || tailNum.invalid">
+                   [disabled]="flightNum.invalid || tailNum.invalid || flightOriginDate.invalid">
           </div>
         </form>
       </div>
@@ -486,7 +626,7 @@
       <div *ngIf="[eventName] == 'REM'">
         <form (submit)="submitREM()">
           <div class="row" >
-            <div class="input-field col s6 offset-s3">
+            <div class="input-field col s6">
               <input placeholder="Flight Number"
                      type="text"
                      [(ngModel)]="flight_number"
@@ -494,13 +634,23 @@
                      #flightNum="ngModel"
                      required minlength="1" maxlength="4" pattern="^[0-9]*$">
             </div>
+            <mz-datepicker-container class="col s6">
+              <input mz-datepicker
+                [options]="options"
+                [(ngModel)]="flight_origin_date_utc"
+                name="flight_origin_date_utc"
+                placeholder="Flight Origin Date (UTC)"
+                #flightOriginDate="ngModel"
+                type="text"
+                required minlength="8" maxlength="8" pattern="^[0-9]*$">
+            </mz-datepicker-container>
           </div>
           <!-- submit -->
           <div class="row">
             <input class="waves-effect waves-light btn"
                    type="submit"
                    value="Add To Que"
-                   [disabled]="flightNum.invalid">
+                   [disabled]="flightNum.invalid || flightOriginDate.invalid">
           </div>
         </form>
       </div>
@@ -509,7 +659,7 @@
       <div *ngIf="[eventName] == 'UDA'">
         <form (submit)="submitUDA()">
           <div class="row" >
-            <div class="input-field col s6 offset-s3">
+            <div class="input-field col s6">
               <input placeholder="Flight Number"
                      type="text"
                      [(ngModel)]="flight_number"
@@ -517,13 +667,24 @@
                      #flightNum="ngModel"
                      required minlength="1" maxlength="4" pattern="^[0-9]*$">
             </div>
+            <mz-datepicker-container class="col s6">
+              <input mz-datepicker
+                [options]="options"
+                [(ngModel)]="flight_origin_date_utc"
+                name="flight_origin_date_utc"
+                placeholder="Flight Origin Date (UTC)"
+                #flightOriginDate="ngModel"
+                type="text"
+                required minlength="8" maxlength="8" pattern="^[0-9]*$">
+            </mz-datepicker-container>
           </div>
+
           <!-- submit -->
           <div class="row">
             <input class="waves-effect waves-light btn"
                    type="submit"
                    value="Add To Que"
-                   [disabled]="flightNum.invalid">
+                   [disabled]="flightNum.invalid || flightOriginDate.invalid">
           </div>
         </form>
       </div>
@@ -532,7 +693,7 @@
       <div *ngIf="[eventName] == 'UDD'">
         <form (submit)="submitUDD()">
           <div class="row" >
-            <div class="input-field col s6 offset-s3">
+            <div class="input-field col s6">
               <input placeholder="Flight Number"
                      type="text"
                      [(ngModel)]="flight_number"
@@ -540,13 +701,23 @@
                      #flightNum="ngModel"
                      required minlength="1" maxlength="4" pattern="^[0-9]*$">
             </div>
+            <mz-datepicker-container class="col s6">
+              <input mz-datepicker
+                [options]="options"
+                [(ngModel)]="flight_origin_date_utc"
+                name="flight_origin_date_utc"
+                placeholder="Flight Origin Date (UTC)"
+                #flightOriginDate="ngModel"
+                type="text"
+                required minlength="8" maxlength="8" pattern="^[0-9]*$">
+            </mz-datepicker-container>
           </div>
           <!-- submit -->
           <div class="row">
             <input class="waves-effect waves-light btn"
                    type="submit"
                    value="Add To Que"
-                   [disabled]="flightNum.invalid">
+                   [disabled]="flightNum.invalid || flightOriginDate.invalid">
           </div>
         </form>
       </div>
@@ -555,7 +726,7 @@
       <div *ngIf="[eventName] == 'RMA'">
         <form (submit)="submitRMA()">
           <div class="row" >
-            <div class="input-field col s6 offset-s3">
+            <div class="input-field col s6">
               <input placeholder="Flight Number"
                      type="text"
                      [(ngModel)]="flight_number"
@@ -563,13 +734,23 @@
                      #flightNum="ngModel"
                      required minlength="1" maxlength="4" pattern="^[0-9]*$">
             </div>
+            <mz-datepicker-container class="col s6">
+              <input mz-datepicker
+                [options]="options"
+                [(ngModel)]="flight_origin_date_utc"
+                name="flight_origin_date_utc"
+                placeholder="Flight Origin Date (UTC)"
+                #flightOriginDate="ngModel"
+                type="text"
+                required minlength="8" maxlength="8" pattern="^[0-9]*$">
+            </mz-datepicker-container>
           </div>
           <!-- submit -->
           <div class="row">
             <input class="waves-effect waves-light btn"
                    type="submit"
                    value="Add To Que"
-                   [disabled]="flightNum.invalid">
+                   [disabled]="flightNum.invalid || flightOriginDate.invalid">
           </div>
         </form>
       </div>
@@ -578,7 +759,7 @@
       <div *ngIf="[eventName] == 'RMD'">
         <form (submit)="submitRMD()">
           <div class="row" >
-            <div class="input-field col s6 offset-s3">
+            <div class="input-field col s6">
               <input placeholder="Flight Number"
                      type="text"
                      [(ngModel)]="flight_number"
@@ -586,13 +767,23 @@
                      #flightNum="ngModel"
                      required minlength="1" maxlength="4" pattern="^[0-9]*$">
             </div>
+            <mz-datepicker-container class="col s6">
+              <input mz-datepicker
+                [options]="options"
+                [(ngModel)]="flight_origin_date_utc"
+                name="flight_origin_date_utc"
+                placeholder="Flight Origin Date (UTC)"
+                #flightOriginDate="ngModel"
+                type="text"
+                required minlength="8" maxlength="8" pattern="^[0-9]*$">
+            </mz-datepicker-container>
           </div>
           <!-- submit -->
           <div class="row">
             <input class="waves-effect waves-light btn"
                    type="submit"
                    value="Add To Que"
-                   [disabled]="flightNum.invalid">
+                   [disabled]="flightNum.invalid || flightOriginDate.invalid">
           </div>
         </form>
       </div>
@@ -601,7 +792,7 @@
       <div *ngIf="[eventName] == 'AIR'">
         <form (submit)="submitAIR()">
           <div class="row" >
-            <div class="input-field col s6 offset-s3">
+            <div class="input-field col s6">
               <input placeholder="Flight Number"
                      type="text"
                      [(ngModel)]="flight_number"
@@ -609,13 +800,23 @@
                      #flightNum="ngModel"
                      required minlength="1" maxlength="4" pattern="^[0-9]*$">
             </div>
+            <mz-datepicker-container class="col s6">
+              <input mz-datepicker
+                [options]="options"
+                [(ngModel)]="flight_origin_date_utc"
+                name="flight_origin_date_utc"
+                placeholder="Flight Origin Date (UTC)"
+                #flightOriginDate="ngModel"
+                type="text"
+                required minlength="8" maxlength="8" pattern="^[0-9]*$">
+            </mz-datepicker-container>
           </div>
           <!-- submit -->
           <div class="row">
             <input class="waves-effect waves-light btn"
                    type="submit"
                    value="Add To Que"
-                   [disabled]="flightNum.invalid">
+                   [disabled]="flightNum.invalid || flightOriginDate.invalid">
           </div>
         </form>
       </div>
@@ -624,7 +825,7 @@
       <div *ngIf="[eventName] == 'GRD'">
         <form (submit)="submitGRD()">
           <div class="row" >
-            <div class="input-field col s6 offset-s3">
+            <div class="input-field col s6">
               <input placeholder="Flight Number"
                      type="text"
                      [(ngModel)]="flight_number"
@@ -632,13 +833,23 @@
                      #flightNum="ngModel"
                      required minlength="1" maxlength="4" pattern="^[0-9]*$">
             </div>
+            <mz-datepicker-container class="col s6">
+              <input mz-datepicker
+                [options]="options"
+                [(ngModel)]="flight_origin_date_utc"
+                name="flight_origin_date_utc"
+                placeholder="Flight Origin Date (UTC)"
+                #flightOriginDate="ngModel"
+                type="text"
+                required minlength="8" maxlength="8" pattern="^[0-9]*$">
+            </mz-datepicker-container>
           </div>
           <!-- submit -->
           <div class="row">
             <input class="waves-effect waves-light btn"
                    type="submit"
                    value="Add To Que"
-                   [disabled]="flightNum.invalid">
+                   [disabled]="flightNum.invalid || flightOriginDate.invalid">
           </div>
         </form>
       </div>
@@ -648,7 +859,7 @@
       <div *ngIf="[eventName] == 'DVC'">
         <form (submit)="submitDVC()">
           <div class="row" >
-            <div class="input-field col s4">
+            <div class="input-field col s3">
               <input placeholder="Flight Number"
                      type="text"
                      [(ngModel)]="flight_number"
@@ -656,7 +867,17 @@
                      #flightNum="ngModel"
                      required minlength="1" maxlength="4" pattern="^[0-9]*$">
             </div>
-            <div class="input-field col s4">
+            <mz-datepicker-container class="col s3">
+              <input mz-datepicker
+                [options]="options"
+                [(ngModel)]="flight_origin_date_utc"
+                name="flight_origin_date_utc"
+                placeholder="Flight Origin Date (UTC)"
+                #flightOriginDate="ngModel"
+                type="text"
+                required minlength="8" maxlength="8" pattern="^[0-9]*$">
+            </mz-datepicker-container>
+            <div class="input-field col s3">
               <input placeholder="Diversion City (Ex: JFK)"
                      type="text"
                      [(ngModel)]="diversion_city"
@@ -664,7 +885,7 @@
                      #diversionCity="ngModel"
                      required minlength="3" maxlength="3" pattern="^[a-zA-Z]*$">
             </div>
-            <div class="input-field col s4">
+            <div class="input-field col s3">
               <input placeholder="ETA To Diversion City in UTC (hhmm)"
                      type="text"
                      [(ngModel)]="actual_eta_time_utc"
@@ -678,7 +899,7 @@
             <input class="waves-effect waves-light btn"
                    type="submit"
                    value="Add To Que"
-                   [disabled]="flightNum.invalid || diversionCity.invalid || time.invalid">
+                   [disabled]="flightNum.invalid || diversionCity.invalid || time.invalid || flightOriginDate.invalid">
           </div>
         </form>
       </div>
@@ -766,6 +987,30 @@
                    type="submit"
                    value="Add To Que"
                    [disabled]="flightNum.invalid || flightOriginDate.invalid || flightOrigin.invalid || flightDestination.invalid || time.invalid || tailNum.invalid || nextDay.invalid">
+          </div>
+        </form>
+      </div>
+
+      <!-- NONE -->
+      <div *ngIf="[eventName] == 'NONE'">
+        <h5>This event is for automation parameter sheet only</h5>
+        <form (submit)="submitAIR()">
+          <div class="row" >
+            <div class="input-field col s6 offset-s3">
+              <input placeholder="Flight Number"
+                     type="text"
+                     [(ngModel)]="flight_number"
+                     name="flight_number"
+                     #flightNum="ngModel"
+                     required minlength="1" maxlength="4" pattern="^[0-9]*$">
+            </div>
+          </div>
+          <!-- submit -->
+          <div class="row">
+            <input class="waves-effect waves-light btn"
+                   type="submit"
+                   value="Add To Que"
+                   [disabled]="flightNum.invalid">
           </div>
         </form>
       </div>

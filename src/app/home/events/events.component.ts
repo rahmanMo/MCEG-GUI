@@ -244,6 +244,7 @@ export class EventsComponent implements OnInit {
 
   // function that handles the event emit
   whichEvent(event) {
+    this.resetBinding();
     this.eventName = event.type;
     this.events.forEach(e => {
       if (e.type === event.type) {
@@ -253,7 +254,6 @@ export class EventsComponent implements OnInit {
       }
     });
     this.eventName = this.eventName.toUpperCase();
-    this.resetBinding();
   }
 
   // function that handles the event emit
