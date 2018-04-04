@@ -1108,4 +1108,39 @@ export class EventsComponent implements OnInit {
 
     this.resetBinding();
   }
+
+  // out form submit
+  submitNONE() {
+    this.eventAdded.emit({
+      env: this.stage,
+      test_case_mode: this.test_case_mode == null ? '' : this.test_case_mode,
+      event_type: 'NONE',
+      test_case_id: this.test_case_id == null ? '' : this.test_case_id,
+      previous_flight_num: this.previous_flight_num == null ? '' : this.previous_flight_num,
+      flight_number: this.flight_number,
+      next_flight_num: this.next_flight_num == null ? '' : this.next_flight_num,
+      adhoc_16_string: this.adhoc_16_string == null ? '' : this.adhoc_16_string,
+      actual_out_time_utc: '',
+      actual_off_time_utc: '',
+      actual_on_time_utc: '',
+      actual_in_time_utc: '',
+      actual_eta_time_utc: '',
+      actual_etd_time_utc: '',
+      actual_eto_time_utc: '',
+      actual_eon_time_utc: '',
+      new_tail_number: '',
+      arrival_gate: '',
+      departure_gate: '',
+      diversion_city: '',
+      flight_origin: '',
+      flight_destination: '',
+      flight_origin_date_utc: this.flight_origin_date_utc == null ? '' : this.flight_origin_date_utc,
+      flight_std_utc: '',
+      flight_sta_utc: '',
+      next_day_crossover: '',
+      test_result: ''
+    });
+
+    this.resetBinding();
+  }
 }

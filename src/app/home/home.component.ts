@@ -36,6 +36,8 @@ export class HomeComponent implements OnInit {
       time = '00' + time;
     } else if (time.length === 3) {
       time = '0' + time;
+    } else if (time == null) {
+      time = '';
     }
 
     return time;

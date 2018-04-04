@@ -2,11 +2,18 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MzDatepickerModule, MzIconModule, MzIconMdiModule, MzSelectModule, MzInputModule, MzTabModule } from 'ng2-materialize';
+import {
+  MzDatepickerModule,
+  MzIconModule,
+  MzIconMdiModule,
+  MzSelectModule,
+  MzInputModule,
+  MzTabModule
+} from 'ng2-materialize';
 import { PapaParseModule } from 'ngx-papaparse';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
-import { DragulaModule  } from 'ng2-dragula';
+import { DragulaModule } from 'ng2-dragula';
 import { AppComponent } from './app.component';
 import { EventsComponent } from './home/events/events.component';
 import { QueComponent } from './home/que/que.component';
@@ -45,4 +52,4 @@ import { TableModule } from 'ngx-easy-table';
   providers: [EventService, FlightsService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
