@@ -88,11 +88,11 @@ export class EventsComponent implements OnInit {
       active: false
     },
     {
-      type: 'gta',
+      type: 'gtd',
       active: false
     },
     {
-      type: 'gtd',
+      type: 'gta',
       active: false
     },
     {
