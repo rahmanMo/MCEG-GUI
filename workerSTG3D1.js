@@ -2,11 +2,12 @@
 // this script auto runs MVT Stage 3 data feed script 'workerSTG3' every 16 second
 const pythonShell = require('python-shell');
 const options = {
+  mode: 'text',
   pythonOptions: ['-u'] // get print results in real-time
 };
 setInterval(function () {
 
-  pythonShell.run('worker.py', options, function (err, results) {
+  pythonShell.run('workerSTG3D1.py', options, function (err, results) {
     if (err) throw err;
     let d = new Date();
     let dateL = d.toLocaleDateString();

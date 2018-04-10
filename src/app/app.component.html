@@ -1,16 +1,40 @@
+<mz-dropdown
+  [id]="'dropdown-stg3'"
+  [belowOrigin]="true"
+  [constrainWidth]="false"
+  [dropdownButtonId]="'stg3'"
+  [gutter]="true"
+  [hover]="false"
+  [inDuration]="300"
+  [outDuration]="300"
+  [stopPropagation]="true">
+  <mz-dropdown-item><a routerLink="stg3d1">{{ day1 }}</a></mz-dropdown-item>
+  <mz-dropdown-divider></mz-dropdown-divider>
+  <mz-dropdown-item><a routerLink="stg3d2">{{ day2 }}</a></mz-dropdown-item>
+  <mz-dropdown-divider></mz-dropdown-divider>
+  <mz-dropdown-item><a routerLink="stg3d3">{{ day3 }}</a></mz-dropdown-item>
+</mz-dropdown>
+
 <nav>
   <div class="nav-wrapper container">
     <a routerLink="" class="brand-logo logo waves-effect waves-light">MCEG</a>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
       <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:
-        true}"><a routerLink="guide" class="waves-effect waves-light">Guide</a></li>
+        true}">
+        <a routerLink="guide" class="waves-effect waves-light">Guide</a>
+      </li>
+      <!-- <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:
+        true}">
+        <a routerLink="demo" class="waves-effect waves-light">Demo</a>
+      </li> -->
       <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:
-        true}"><a routerLink="demo" class="waves-effect waves-light">Demo</a></li>
+        true}">
+        <a class="waves-effect waves-light" id="stg3">MVT-STG3</a>
+      </li>
     </ul>
   </div>
 </nav>
 
 
-  <router-outlet></router-outlet>
 
-
+<router-outlet></router-outlet>

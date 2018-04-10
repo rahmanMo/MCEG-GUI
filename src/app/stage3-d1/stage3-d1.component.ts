@@ -2,18 +2,18 @@ import { Component, OnInit, ViewEncapsulation, OnDestroy } from '@angular/core';
 import { Flight } from '../models/flight';
 import { FlightsService } from '../services/flights.service';
 // import { Observable } from 'rxjs/Observable';
-import { ConfigService } from './config-service';
+import { ConfigService } from '../services/config-service';
 import { sampleData } from '../../assets/data';
+import * as moment from 'moment';
 
 @Component({
-  selector: 'app-data-demo',
-  templateUrl: './data-demo.component.html',
-  styleUrls: ['./data-demo.component.scss'],
+  selector: 'app-stage3-d1',
+  templateUrl: './stage3-d1.component.html',
+  styleUrls: ['./stage3-d1.component.scss'],
   providers: [ConfigService],
   encapsulation: ViewEncapsulation.None
 })
-export class DataDemoComponent implements OnInit, OnDestroy {
-  // constructor(private flightsService: FlightsService) { }
+export class Stage3D1Component implements OnInit, OnDestroy {
 
   basicColumns = [
     { key: 'identifier', title: 'Flight#' },
@@ -69,6 +69,7 @@ export class DataDemoComponent implements OnInit, OnDestroy {
     { key: 'STAGMTVariance', title: 'UTC-Offset' }
   ];
 
+  date: string;
   data = [];
   rowData: Flight;
   configuration;
@@ -80,6 +81,10 @@ export class DataDemoComponent implements OnInit, OnDestroy {
   // comment this out when building for prod
   ngOnInit() {
     this.data = sampleData;
+    this.date = moment(new Date())
+      .format('DD MMMM, YYYY')
+      .toString()
+      .toUpperCase();
   }
 
   // enable this when building for prod
@@ -91,7 +96,7 @@ export class DataDemoComponent implements OnInit, OnDestroy {
   // }
 
   // refreshData() {
-  //   this.flightsService.getTodaysFlights().subscribe(data => {
+  //   this.flightsService.getTodaysFlights(data => {
   //     this.data = data;
   //   });
   // }
@@ -110,4 +115,5 @@ export class DataDemoComponent implements OnInit, OnDestroy {
     this.rowData = null;
     this.configuration = null;
   }
+
 }

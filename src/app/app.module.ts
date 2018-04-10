@@ -8,7 +8,8 @@ import {
   MzIconMdiModule,
   MzSelectModule,
   MzInputModule,
-  MzTabModule
+  MzTabModule,
+  MzDropdownModule
 } from 'ng2-materialize';
 import { PapaParseModule } from 'ngx-papaparse';
 import { HttpClientModule } from '@angular/common/http';
@@ -23,6 +24,9 @@ import { GuideComponent } from './guide/guide.component';
 import { DataDemoComponent } from './data-demo/data-demo.component';
 import { FlightsService } from './services/flights.service';
 import { TableModule } from 'ngx-easy-table';
+import { Stage3D1Component } from './stage3-d1/stage3-d1.component';
+import { Stage3D2Component } from './stage3-d2/stage3-d2.component';
+import { Stage3D3Component } from './stage3-d3/stage3-d3.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +35,10 @@ import { TableModule } from 'ngx-easy-table';
     QueComponent,
     HomeComponent,
     GuideComponent,
-    DataDemoComponent
+    DataDemoComponent,
+    Stage3D1Component,
+    Stage3D2Component,
+    Stage3D3Component
   ],
   imports: [
     BrowserModule,
@@ -43,6 +50,7 @@ import { TableModule } from 'ngx-easy-table';
     MzSelectModule,
     MzInputModule,
     MzTabModule,
+    MzDropdownModule,
     PapaParseModule,
     AppRoutingModule,
     HttpClientModule,
