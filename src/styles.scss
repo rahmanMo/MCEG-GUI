@@ -3,20 +3,6 @@ body {
   background-color: #424949;
 }
 
-h5 {
-  font-size: 1.3rem;
-}
-
-h5, p {
-  font-weight: 500 !important;
-  // color: #A38F84;
-  color: #606060 !important;
-}
-
-p {
-  font-size: 1.5rem;
-}
-
 .btn {
   background: #45B39D;
 }
@@ -25,12 +11,64 @@ p {
   margin: 1%;
 }
 
-.btn:hover, .btn-selected, nav {
-  background: #e74c3c;
+.btn:hover, .btn-selected, nav, .current {
+  background: #e74c3c !important;
 }
 
 
-.e-name {
-  color: #e74c3c;
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+  color: #D1D1D1 !important;
+  // text-align: center;
 }
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+ color: #D1D1D1 !important;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+ color: #D1D1D1 !important;
+}
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+ color: #D1D1D1 !important;
+}
+::-ms-input-placeholder { /* Microsoft Edge */
+ color: #D1D1D1 !important;
+}
+
+
+table, .card-panel, mz-tab > ul > li > a {
+  color: #606060 !important;
+}
+
+h5, p, .card-panel > h5 {
+  font-size: 1.3rem !important;
+}
+
+h5, p, .card-panel > h5, mz-tab > ul > li > a, ul.collection-item > li {
+  font-weight: 500 !important;
+}
+
+mz-tab > ul > li > a {
+  font-size: 1.1rem !important;
+}
+
+.dropdown-content li > a, .dropdown-content li > span {
+  font-size: 1rem;
+}
+
+.collection-item, .collection-header, .secondary-content > .normal, h5.normal {
+  color: #45B39D !important;
+}
+
+.secondary-content, .color-red, span.color-red, .collection-header > h4 > span, mz-tab > ul > li > a.active {
+  color: #e74c3c !important;
+}
+
+mz-tab > ul > li.indicator {
+  background-color: #e74c3c !important;
+  height: 3px !important;
+}
+
+input:focus {
+  border-bottom: 1px solid #45B39D !important;
+}
+
 
