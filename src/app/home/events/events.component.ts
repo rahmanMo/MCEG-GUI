@@ -28,6 +28,7 @@ export class EventsComponent implements OnInit {
   @Output('eventAdded') eventAdded = new EventEmitter<EventRow>();
 
   eventName: string;
+  errorMessage: string;
 
   // environment
   env: any = [
@@ -258,15 +259,21 @@ export class EventsComponent implements OnInit {
 
   // function that handles the event emit
   whichEnv(env) {
-    this.stage = env.type;
-    this.env.forEach(e => {
-      if (e.type === env.type) {
-        e.active = true;
-      } else {
-        e.active = false;
-      }
-    });
-    this.stage = this.stage.toUpperCase();
+    if (env.type === 'STG1') {
+      this.errorMessage = 'STG1 currently not available';
+      this.stage = 'STG3';
+    } else {
+      this.errorMessage = null;
+      this.stage = env.type;
+      this.env.forEach(e => {
+        if (e.type === env.type) {
+          e.active = true;
+        } else {
+          e.active = false;
+        }
+      });
+      this.stage = this.stage.toUpperCase();
+    }
   }
 
   // out form submit
