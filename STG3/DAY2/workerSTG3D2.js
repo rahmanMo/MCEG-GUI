@@ -7,7 +7,7 @@ const options = {
 };
 setInterval(function () {
 
-  pythonShell.run('workerSTG3D1.py', options, function (err, results) {
+  pythonShell.run('workerSTG3D2.py', options, function (err, results) {
     if (err) throw err;
     let d = new Date();
     let dateL = d.toLocaleDateString();
