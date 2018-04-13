@@ -259,10 +259,6 @@ export class EventsComponent implements OnInit {
 
   // function that handles the event emit
   whichEnv(env) {
-    if (env.type === 'STG1') {
-      this.errorMessage = 'STG1 currently not available';
-      this.stage = 'STG3';
-    } else {
       this.errorMessage = null;
       this.stage = env.type;
       this.env.forEach(e => {
@@ -273,7 +269,6 @@ export class EventsComponent implements OnInit {
         }
       });
       this.stage = this.stage.toUpperCase();
-    }
   }
 
   // out form submit
