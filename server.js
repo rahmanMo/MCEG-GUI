@@ -1,47 +1,15 @@
-// const express = require('express');
-// const bodyParser = require('body-parser');
-// const path = require('path');
-// const http = require('http');
-// const app = express();
-
-// // API file for interacting with MongoDB
-// const api = require('./server/routes/api');
-
-// // Parsers
-// app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({ extended: false}));
-
-// // Angular DIST output folder
-// app.use(express.static(path.join(__dirname, 'dist')));
-
-// // API location
-// app.use('/api', api);
-
-// // Send all other requests to the Angular app
-// app.get('*', (req, res) => {
-//     res.sendFile(path.join(__dirname, 'dist/index.html'));
-// });
-
-// //Set Port
-// const port = process.env.PORT || '3000';
-// app.set('port', port);
-
-// const server = http.createServer(app);
-
-// server.listen(port, () => console.log(`Running on localhost:${port}`));
-
-
-
 
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
-var mongoose = require('mongoose');
-var {Flight3} = require('./server/models/flight');
+const mongoose = require('mongoose');
+const dbUserName = process.env.dbUserName || '';
+const dbPassword = process.env.dbPassword || '';
+const { STG1D1, STG1D2, STG1D3, STG3D1, STG3D2, STG3D3 } = require('./server/models/flight');
 
 
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/Flights',{
+mongoose.connect(`mongodb://${dbUserName}:${dbPassword}@ds147589.mlab.com:47589/mceg`,{
   useMongoClient: true
 }).then(() => console.log('mongodb connected')).catch(err => console.log(err));
 
@@ -55,12 +23,82 @@ app.use(bodyParser.urlencoded({ extended: false}));
 app.use(express.static(path.join(__dirname, 'dist')));
 
 
-app.get('/flights3', (req, res) => {
+app.get('/api/stg1d1', (req, res) => {
   console.log('Requesting flights for stage 3');
-    Flight3.find({})
+  STG1D1.find({})
         .exec(function(err, flights) {
             if (err) {
                 console.log('Error getting the flights from stage 3');
+                console.log(err);
+            } else {
+                res.json(flights);
+            }
+        });
+});
+
+
+app.get('/api/stg1d2', (req, res) => {
+  console.log('Requesting flights for stage 3');
+  STG1D2.find({})
+        .exec(function(err, flights) {
+            if (err) {
+                console.log('Error getting the flights from stage 3');
+                console.log(err);
+            } else {
+                res.json(flights);
+            }
+        });
+});
+
+
+app.get('/api/stg1d3', (req, res) => {
+  console.log('Requesting flights for stage 3');
+  STG1D3.find({})
+        .exec(function(err, flights) {
+            if (err) {
+                console.log('Error getting the flights from stage 3');
+                console.log(err);
+            } else {
+                res.json(flights);
+            }
+        });
+});
+
+app.get('/api/stg3d1', (req, res) => {
+  console.log('Requesting flights for stage 3');
+  STG3D1.find({})
+        .exec(function(err, flights) {
+            if (err) {
+                console.log('Error getting the flights from stage 3');
+                console.log(err);
+            } else {
+                res.json(flights);
+            }
+        });
+});
+
+
+app.get('/api/stg3d2', (req, res) => {
+  console.log('Requesting flights for stage 3');
+  STG3D2.find({})
+        .exec(function(err, flights) {
+            if (err) {
+                console.log('Error getting the flights from stage 3');
+                console.log(err);
+            } else {
+                res.json(flights);
+            }
+        });
+});
+
+
+app.get('/api/stg3d3', (req, res) => {
+  console.log('Requesting flights for stage 3');
+  STG3D3.find({})
+        .exec(function(err, flights) {
+            if (err) {
+                console.log('Error getting the flights from stage 3');
+                console.log(err);
             } else {
                 res.json(flights);
             }

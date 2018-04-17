@@ -9,10 +9,10 @@ from pymongo import MongoClient
 
 
 # request drop location
-stage3Send = Path('//gscfile01/SharedFile/QA_MVC/STG3/adh_receive')
+stage3Send = Path('//gscfile01/SharedFile/QA_MVC/STG1/adh_receive')
 
 # response file location
-stage3Receive = Path('//gscfile01/SharedFile/QA_MVC/STG3/adh_send')
+stage3Receive = Path('//gscfile01/SharedFile/QA_MVC/STG1/adh_send')
 
 # current directory
 currentDirectory = Path(os.getcwd())
@@ -22,7 +22,8 @@ currentDirectory = Path(os.getcwd())
 currentDay = datetime.datetime.now().strftime("%d")
 currentMonth = datetime.datetime.now().strftime("%b").upper()
 currentYear = datetime.datetime.now().strftime("%y")
-currentDate = f'{currentDay}{currentMonth}{currentYear}'
+# currentDate = f'{currentDay}{currentMonth}{currentYear}'
+currentDate = '18APR18'
 
 # ############################## functions ##########################
 
@@ -227,27 +228,27 @@ def csv2mongo(csvfile, database_name,collection_name,delete_collection_before_im
 
 
 
-mc = MongoClient('mongodb://localhost:27017/')
-db = mc['Flights']
-collection = db["STG3D1"].delete_many({})
-# print(collection)
+# mc = MongoClient('mongodb://localhost:27017/')
+# db = mc['Flights']
+# collection = db["STG3D1"].delete_many({})
+# # print(collection)
 
 
-# current directory
-currentDirectory = Path(os.getcwd())
-csv_file = f'{currentDirectory}/data/data.csv'
-database = 'Flights'
-collection = 'STG3D1'
-delete_collection = True
-host = 'localhost'
-port = 27017
+# # current directory
+# currentDirectory = Path(os.getcwd())
+# csv_file = f'{currentDirectory}/data/data.csv'
+# database = 'Flights'
+# collection = 'STG3D1'
+# delete_collection = True
+# host = 'localhost'
+# port = 27017
 
-result = csv2mongo(
-    csv_file,
-    database,
-    collection,
-    delete_collection,
-    host,
-    port)
-# output the JSON transaction summary
-print(json.dumps(result, indent=4))
+# result = csv2mongo(
+#     csv_file,
+#     database,
+#     collection,
+#     delete_collection,
+#     host,
+#     port)
+# # output the JSON transaction summary
+# print(json.dumps(result, indent=4))
