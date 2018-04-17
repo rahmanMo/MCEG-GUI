@@ -5,11 +5,12 @@ const path = require('path');
 const mongoose = require('mongoose');
 const dbUserName = process.env.dbUserName || '';
 const dbPassword = process.env.dbPassword || '';
+const dbURL = `mongodb://${dbUserName}:${dbPassword}@ds147589.mlab.com:47589/mceg`;
 const { STG1D1, STG1D2, STG1D3, STG3D1, STG3D2, STG3D3 } = require('./server/models/flight');
 
 
 mongoose.Promise = global.Promise;
-mongoose.connect(`mongodb://${dbUserName}:${dbPassword}@ds147589.mlab.com:47589/mceg`,{
+mongoose.connect(dbURL,{
   useMongoClient: true
 }).then(() => console.log('mongodb connected')).catch(err => console.log(err));
 
