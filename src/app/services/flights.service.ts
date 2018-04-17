@@ -12,7 +12,7 @@ export class FlightsService {
   constructor(private http: HttpClient) { }
 
   // private flightsUrl = 'http://localhost:3000/api/flights';
-  private flightsUrl = '/flights3';
+  private flightsUrl = '/api/';
 
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
@@ -25,19 +25,42 @@ export class FlightsService {
     };
   }
 
-  getTodaysFlights(): Observable<Flight[]> {
-    return this.http.get<Flight[]>(this.flightsUrl)
+  getStg1d1(): Observable<Flight[]> {
+    return this.http.get<Flight[]>('/api/stg1d1')
       .pipe(
         catchError(this.handleError('getTodaysFlights', []))
       );
   }
-
-  // getTodaysFlights(): Observable<Flight[]> {
-  //   return this.http.get(this.flightsUrl)
-  //                   .map(response => response)
-  //                   .catch(error => this.handleError(error));
-  // }
-
+  getStg1d2(): Observable<Flight[]> {
+    return this.http.get<Flight[]>('/api/stg1d2')
+      .pipe(
+        catchError(this.handleError('getTodaysFlights', []))
+      );
+  }
+  getStg1d3(): Observable<Flight[]> {
+    return this.http.get<Flight[]>('/api/stg1d3')
+      .pipe(
+        catchError(this.handleError('getTodaysFlights', []))
+      );
+  }
+  getStg3d1(): Observable<Flight[]> {
+    return this.http.get<Flight[]>('/api/stg3d1')
+      .pipe(
+        catchError(this.handleError('getTodaysFlights', []))
+      );
+  }
+  getStg3d2(): Observable<Flight[]> {
+    return this.http.get<Flight[]>('/api/stg3d2')
+      .pipe(
+        catchError(this.handleError('getTodaysFlights', []))
+      );
+  }
+  getStg3d3(): Observable<Flight[]> {
+    return this.http.get<Flight[]>('/api/stg3d3')
+      .pipe(
+        catchError(this.handleError('getTodaysFlights', []))
+      );
+  }
 
 
 }

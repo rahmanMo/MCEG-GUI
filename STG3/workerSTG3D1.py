@@ -8,7 +8,7 @@ from collections import OrderedDict
 from pymongo import MongoClient
 
 # mlab remote mongodb location
-uri = "mongodb://<dbuser>:<dbpassword>@ds147589.mlab.com:47589/mceg"
+uri = 'mongodb://localhost:27017/'
 
 # request drop location
 stageSend = Path('//gscfile01/SharedFile/QA_MVC/STG3/adh_receive')

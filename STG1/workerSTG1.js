@@ -7,14 +7,36 @@ const options = {
 };
 setInterval(function () {
 
-  pythonShell.run('workerSTG3D1.py', options, function (err, results) {
+  pythonShell.run('workerSTG1D1.py', options, function (err, results) {
     if (err) throw err;
     let d = new Date();
     let dateL = d.toLocaleDateString();
     var timeL = d.toLocaleTimeString();
     // results is an array consisting of messages collected during execution
     console.log('results: %j', results);
-    console.log(`Server adhoc 4 request/response local dateTime: ${dateL} ${timeL}`);
+    console.log(`Server STG1D1 adhoc 4 request/response local dateTime: ${dateL} ${timeL}`);
+    console.log('finished');
+  });
+
+  pythonShell.run('workerSTG1D2.py', options, function (err, results) {
+    if (err) throw err;
+    let d = new Date();
+    let dateL = d.toLocaleDateString();
+    var timeL = d.toLocaleTimeString();
+    // results is an array consisting of messages collected during execution
+    console.log('results: %j', results);
+    console.log(`Server STG1D2 adhoc 4 request/response local dateTime: ${dateL} ${timeL}`);
+    console.log('finished');
+  });
+
+  pythonShell.run('workerSTG1D3.py', options, function (err, results) {
+    if (err) throw err;
+    let d = new Date();
+    let dateL = d.toLocaleDateString();
+    var timeL = d.toLocaleTimeString();
+    // results is an array consisting of messages collected during execution
+    console.log('results: %j', results);
+    console.log(`Server STG1D3 adhoc 4 request/response local dateTime: ${dateL} ${timeL}`);
     console.log('finished');
   });
 

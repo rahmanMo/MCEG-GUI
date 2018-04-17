@@ -8,7 +8,7 @@ from collections import OrderedDict
 from pymongo import MongoClient
 
 # mlab remote mongodb location
-uri = "mongodb://<dbuser>:<dbpassword>@ds147589.mlab.com:47589/mceg"
+uri = 'mongodb://localhost:27017/'
 
 # request drop location
 stageSend = Path('//gscfile01/SharedFile/QA_MVC/STG3/adh_receive')
@@ -21,11 +21,10 @@ currentDirectory = Path(os.getcwd())
 
 # it is assumed that all flight origin date is the current day this script is running
 # extracting cuurent date in format DDMMMYY
-currentDay = datetime.datetime.now().strftime("%d")
-currentMonth = datetime.datetime.now().strftime("%b").upper()
-currentYear = datetime.datetime.now().strftime("%y")
+currentDay = (datetime.datetime.now() + datetime.timedelta(days=1)).strftime("%d")
+currentMonth = (datetime.datetime.now() + datetime.timedelta(days=1)).strftime("%b").upper()
+currentYear = (datetime.datetime.now() + datetime.timedelta(days=1)).strftime("%y")
 currentDate = f'{currentDay}{currentMonth}{currentYear}'
-# currentDate = '18APR18'
 
 # ############################## functions ##########################
 
