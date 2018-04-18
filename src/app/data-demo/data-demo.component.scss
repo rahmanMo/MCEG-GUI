@@ -1,0 +1,12 @@
+:host /deep/ ngx-table.large-set > div > div:nth-child(2) > table {
+  // width: 75vw !important;
+  display: block !important;
+  overflow-x: scroll !important;
+  white-space: nowrap !important;
+}
+.ngx-table__header-cell {
+  min-width: 200px;
+}
+:host /deep/ ngx-table.large-set > div > div:nth-child(2) > table > thead > tr.ngx-table__header > th {
+  min-width: 230px;
+}

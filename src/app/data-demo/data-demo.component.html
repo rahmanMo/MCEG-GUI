@@ -4,7 +4,7 @@
 <mz-tab [fixedTabWidth]="'true'">
   <mz-tab-item [label]="'Basic Info'">
     <div class="card-panel" style="width: 100%;">
-      <ngx-table [configuration]="configuration" [data]="data" [columns]="basicColumns" (event)="eventEmitted($event)">
+      <ngx-table class="large-set" [configuration]="configuration" [data]="data" [columns]="basicColumns" (event)="eventEmitted($event)">
       </ngx-table>
     </div>
   </mz-tab-item>

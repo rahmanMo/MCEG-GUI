@@ -10,7 +10,7 @@ import { sampleData } from '../../assets/data';
   templateUrl: './data-demo.component.html',
   styleUrls: ['./data-demo.component.scss'],
   providers: [ConfigService],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.Emulated
 })
 export class DataDemoComponent implements OnInit, OnDestroy {
   // constructor(private flightsService: FlightsService) { }
@@ -18,7 +18,24 @@ export class DataDemoComponent implements OnInit, OnDestroy {
   basicColumns = [
     { key: 'identifier', title: 'Flight#' },
     { key: 'tailNumber', title: 'Tail#' },
+    { key: 'actualDeparture', title: 'Actual Departure' },
     { key: 'origin', title: 'Origin' },
+    { key: 'destination', title: 'Destination' },
+    { key: 'STDudt', title: 'STD-UTC' },
+    { key: 'STAudt', title: 'STA-UTC' },
+    { key: 'numGMTDate', title: 'UTC Date' },
+    { key: 'destination', title: 'Destination' },
+    { key: 'STDudt', title: 'STD-UTC' },
+    { key: 'STAudt', title: 'STA-UTC' },
+    { key: 'numGMTDate', title: 'UTC Date' },
+    { key: 'destination', title: 'Destination' },
+    { key: 'STDudt', title: 'STD-UTC' },
+    { key: 'STAudt', title: 'STA-UTC' },
+    { key: 'numGMTDate', title: 'UTC Date' },
+    { key: 'destination', title: 'Destination' },
+    { key: 'STDudt', title: 'STD-UTC' },
+    { key: 'STAudt', title: 'STA-UTC' },
+    { key: 'numGMTDate', title: 'UTC Date' },
     { key: 'destination', title: 'Destination' },
     { key: 'STDudt', title: 'STD-UTC' },
     { key: 'STAudt', title: 'STA-UTC' },
