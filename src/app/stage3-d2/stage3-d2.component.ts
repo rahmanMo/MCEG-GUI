@@ -96,11 +96,11 @@ export class Stage3D2Component implements OnInit, OnDestroy {
   //   }, 10000);
   // }
 
-  // refreshData() {
-  //   this.flightsService.getTodaysFlights(data => {
-  //     this.data = data;
-  //   });
-  // }
+  refreshData() {
+    this.flightsService.getStg3d2().subscribe(data => {
+      this.data = data;
+    });
+  }
 
   eventEmitted($event) {
     if ($event.event === 'onClick') {

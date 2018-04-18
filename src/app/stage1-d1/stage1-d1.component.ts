@@ -95,11 +95,11 @@ export class Stage1D1Component implements OnInit, OnDestroy {
   //   }, 10000);
   // }
 
-  // refreshData() {
-  //   this.flightsService.getTodaysFlights(data => {
-  //     this.data = data;
-  //   });
-  // }
+  refreshData() {
+    this.flightsService.getStg1d1().subscribe(data => {
+      this.data = data;
+    });
+  }
 
   eventEmitted($event) {
     if ($event.event === 'onClick') {
