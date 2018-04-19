@@ -26,11 +26,11 @@ app.use(express.static(path.join(__dirname, 'dist')));
 
 
 app.get('/api/stg1d1', (req, res) => {
-  console.log('Requesting flights for stage 3');
+  console.log('Requesting flights for stage 1 day 1');
   STG1D1.find({})
         .exec(function(err, flights) {
             if (err) {
-                console.log('Error getting the flights from stage 3');
+                console.log('Error getting the flights from stage 1 day 1');
                 console.log(err);
             } else {
                 res.json(flights);
@@ -40,11 +40,11 @@ app.get('/api/stg1d1', (req, res) => {
 
 
 app.get('/api/stg1d2', (req, res) => {
-  console.log('Requesting flights for stage 3');
+  console.log('Requesting flights for stage 1 day 2');
   STG1D2.find({})
         .exec(function(err, flights) {
             if (err) {
-                console.log('Error getting the flights from stage 3');
+                console.log('Error getting the flights from stage 1 day 2');
                 console.log(err);
             } else {
                 res.json(flights);
@@ -54,11 +54,11 @@ app.get('/api/stg1d2', (req, res) => {
 
 
 app.get('/api/stg1d3', (req, res) => {
-  console.log('Requesting flights for stage 3');
+  console.log('Requesting flights for stage 1 day 3');
   STG1D3.find({})
         .exec(function(err, flights) {
             if (err) {
-                console.log('Error getting the flights from stage 3');
+                console.log('Error getting the flights from stage 1 day 3');
                 console.log(err);
             } else {
                 res.json(flights);
@@ -67,11 +67,11 @@ app.get('/api/stg1d3', (req, res) => {
 });
 
 app.get('/api/stg3d1', (req, res) => {
-  console.log('Requesting flights for stage 3');
+  console.log('Requesting flights for stage 3 day 1');
   STG3D1.find({})
         .exec(function(err, flights) {
             if (err) {
-                console.log('Error getting the flights from stage 3');
+                console.log('Error getting the flights from stage 3 day 1');
                 console.log(err);
             } else {
                 res.json(flights);
@@ -81,11 +81,11 @@ app.get('/api/stg3d1', (req, res) => {
 
 
 app.get('/api/stg3d2', (req, res) => {
-  console.log('Requesting flights for stage 3');
+  console.log('Requesting flights for stage 3 day 2');
   STG3D2.find({})
         .exec(function(err, flights) {
             if (err) {
-                console.log('Error getting the flights from stage 3');
+                console.log('Error getting the flights from stage 3 day 2');
                 console.log(err);
             } else {
                 res.json(flights);
@@ -95,11 +95,11 @@ app.get('/api/stg3d2', (req, res) => {
 
 
 app.get('/api/stg3d3', (req, res) => {
-  console.log('Requesting flights for stage 3');
+  console.log('Requesting flights for stage 3 day 3');
   STG3D3.find({})
         .exec(function(err, flights) {
             if (err) {
-                console.log('Error getting the flights from stage 3');
+                console.log('Error getting the flights from stage 3 day 3');
                 console.log(err);
             } else {
                 res.json(flights);
