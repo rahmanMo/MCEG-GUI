@@ -9,9 +9,10 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "worker-stg3": "node workerSTG3",
+    "stg3": "node workerSTG3",
+    "stg1": "node workerSTG1",
     "server": "node server",
-    "backend": "concurrently \"node workerSTG3\" \"node server\""
+    "backend": "concurrently \"npm run stg3\" \"node server\""
   },
   "private": true,
   "dependencies": {

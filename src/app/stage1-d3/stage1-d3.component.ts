@@ -76,11 +76,6 @@ export class Stage1D3Component implements OnInit, OnDestroy {
 
   constructor(private flightsService: FlightsService) {
     this.configuration = ConfigService.config;
-  }
-
-  // comment this out when building for prod
-  ngOnInit() {
-    this.data = sampleData;
     this.date = moment(new Date())
     .add(2, 'days')
     .format('DD MMMM, YYYY')
@@ -88,13 +83,24 @@ export class Stage1D3Component implements OnInit, OnDestroy {
     .toUpperCase();
   }
 
-  // enable this when building for prod
+  // comment this out when building for prod
   // ngOnInit() {
-  //   this.refreshData();
-  //   const interval = setInterval(() => {
-  //     this.refreshData();
-  //   }, 10000);
+  //   this.data = sampleData;
+  //   this.date = moment(new Date())
+  //   .add(2, 'days')
+  //   .format('DD MMMM, YYYY')
+  //   .toString()
+  //   .toUpperCase();
   // }
+
+  // enable this when building for prod
+  interval: any;
+  ngOnInit() {
+    this.refreshData();
+    this.interval = setInterval(() => {
+      this.refreshData();
+    }, 10000);
+  }
 
   refreshData() {
     this.flightsService.getStg1d3().subscribe(data => {
@@ -112,6 +118,7 @@ export class Stage1D3Component implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
+    clearInterval(this.interval);
     this.data =  null;
     this.rowData = null;
     this.configuration = null;
