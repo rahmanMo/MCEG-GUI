@@ -33,6 +33,7 @@ npm-debug.log
 testem.log
 /typings
 try.js
+firebase-debug.log
 
 
 # e2e
