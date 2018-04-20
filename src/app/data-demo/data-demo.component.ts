@@ -90,13 +90,16 @@ export class DataDemoComponent implements OnInit, OnDestroy {
   rowData: Flight;
   configuration;
 
+  totalCount: any;
+
   constructor(private flightsService: FlightsService) {
     this.configuration = ConfigService.config;
+    this.data = sampleData;
   }
 
   // comment this out when building for prod
   ngOnInit() {
-    this.data = sampleData;
+    this.totalCount = this.data.length;
   }
 
   // enable this when building for prod

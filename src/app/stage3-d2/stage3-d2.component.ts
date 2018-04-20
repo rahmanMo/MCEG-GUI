@@ -73,6 +73,7 @@ export class Stage3D2Component implements OnInit, OnDestroy {
   data = [];
   rowData: Flight;
   configuration;
+  totalCount: any;
 
   constructor(private flightsService: FlightsService) {
     this.configuration = ConfigService.config;
@@ -103,8 +104,9 @@ export class Stage3D2Component implements OnInit, OnDestroy {
   }
 
   refreshData() {
-    this.flightsService.getStg3d2().subscribe(data => {
+    this.flightsService.getStg1d1().subscribe(data => {
       this.data = data;
+      this.totalCount = this.data.length;
     });
   }
 
