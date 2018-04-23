@@ -38,7 +38,7 @@ export class QueComponent implements OnInit {
     }
     // IE11 & Edge
     if (navigator.msSaveBlob) {
-      let blob = new Blob([csvData], {
+      const blob = new Blob([csvData], {
         'type': 'text/csv;charset=utf8;'
       });
       navigator.msSaveBlob(blob, fileName);

@@ -1,11 +1,15 @@
-<div class="card-panel" style="width: 100%;">
-    <h5 class="center"><span class="color-teal">STAGE-1 </span>Flights Total: <span class="color-teal">{{ totalCount }}</span></h5>
-  <h5 class="center">Filter flights based on attribute (sample data).</h5>
+<div class="card-panel center" style="width: 100%;">
+  <h5 class="center"><span class="color-teal">{{ env }} </span>Flights For: <span class="color-red">{{ date }} </span>Total: <span class="color-teal">{{ totalCount }}</span></h5>
+  <h5 class="center">Filter flights based on attribute</h5>
+  <div class="input-field inline">
+    <input placeholder="File Name" type="text" [(ngModel)]="fileName" name="fileName" minlength="1" maxlength="50" pattern="^[a-zA-Z0-9]+$">
+  </div>
+  <a class="waves-effect waves-light btn download" (click)="downloadCSV()">Download Data</a>
 </div>
 <mz-tab [fixedTabWidth]="'true'">
   <mz-tab-item [label]="'Basic Info'">
     <div class="card-panel" style="width: 100%;">
-      <ngx-table class="large-set" [configuration]="configuration" [data]="data" [columns]="basicColumns" (event)="eventEmitted($event)">
+      <ngx-table [configuration]="configuration" [data]="data" [columns]="basicColumns" (event)="eventEmitted($event)">
       </ngx-table>
     </div>
   </mz-tab-item>
@@ -36,6 +40,12 @@
   <mz-tab-item [label]="'MISC Info'">
     <div class="card-panel" style="width: 100%;">
       <ngx-table [configuration]="configuration" [data]="data" [columns]="miscColumns" (event)="eventEmitted($event)">
+      </ngx-table>
+    </div>
+  </mz-tab-item>
+  <mz-tab-item [label]="'All Data'">
+    <div class="card-panel" style="width: 100%;">
+      <ngx-table class="large-set" [configuration]="configurationExtra" [data]="data" [columns]="allColumns" (event)="eventEmitted($event)">
       </ngx-table>
     </div>
   </mz-tab-item>
