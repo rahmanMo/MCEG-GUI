@@ -13,7 +13,7 @@ from apscheduler.schedulers.blocking import BlockingScheduler
 def STG3D1_job():
     print('Starting Stage 3 day 1 data feed.')
     # mlab remote mongodb location
-    uri = 'mongodb://localhost:27017/'
+    uri = 'mongodb://0.0.0.0:27017/'
 
     # request drop location
     stageSend = Path('//gscfile01/SharedFile/QA_MVC/STG3/adh_receive')
@@ -264,7 +264,7 @@ def STG3D1_job():
 def STG3D2_job():
     print('Starting Stage 3 day 2 data feed.')
     # mlab remote mongodb location
-    uri = 'mongodb://localhost:27017/'
+    uri = 'mongodb://0.0.0.0:27017/'
 
     # request drop location
     stageSend = Path('//gscfile01/SharedFile/QA_MVC/STG3/adh_receive')
@@ -515,7 +515,7 @@ def STG3D2_job():
 def STG3D3_job():
     print('Starting Stage 3 day 3 data feed.')
     # mlab remote mongodb location
-    uri = 'mongodb://localhost:27017/'
+    uri = 'mongodb://0.0.0.0:27017/'
 
     # request drop location
     stageSend = Path('//gscfile01/SharedFile/QA_MVC/STG3/adh_receive')
