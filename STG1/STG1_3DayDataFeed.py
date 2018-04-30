@@ -16,10 +16,10 @@ def STG1D1_job():
     uri = 'mongodb://0.0.0.0:27017/'
 
     # request drop location
-    stageSend = Path('//gscfile01/SharedFile/QA_MVC/STG1/adh_receive')
+    stageSend = Path('/mnt/gcsfile01/STG1/adh_receive')
 
     # response file location
-    stageReceive = Path('//gscfile01/SharedFile/QA_MVC/STG1/adh_send')
+    stageReceive = Path('/mnt/gcsfile01/STG1/adh_send')
 
     # current directory
     currentDirectory = Path(os.getcwd())
@@ -266,10 +266,10 @@ def STG1D2_job():
     uri = 'mongodb://0.0.0.0:27017/'
 
     # request drop location
-    stageSend = Path('//gscfile01/SharedFile/QA_MVC/STG1/adh_receive')
+    stageSend = Path('/mnt/gcsfile01/STG1/adh_receive')
 
     # response file location
-    stageReceive = Path('//gscfile01/SharedFile/QA_MVC/STG1/adh_send')
+    stageReceive = Path('/mnt/gcsfile01/STG1/adh_send')
 
     # current directory
     currentDirectory = Path(os.getcwd())
@@ -516,10 +516,10 @@ def STG1D3_job():
     uri = 'mongodb://0.0.0.0:27017/'
 
     # request drop location
-    stageSend = Path('//gscfile01/SharedFile/QA_MVC/STG1/adh_receive')
+    stageSend = Path('/mnt/gcsfile01/STG1/adh_receive')
 
     # response file location
-    stageReceive = Path('//gscfile01/SharedFile/QA_MVC/STG1/adh_send')
+    stageReceive = Path('/mnt/gcsfile01/STG1/adh_send')
 
     # current directory
     currentDirectory = Path(os.getcwd())
