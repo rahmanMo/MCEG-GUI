@@ -758,7 +758,7 @@ def STG1D3_job():
     print('Finished Stage 1 day 3')
 
 scheduler = BlockingScheduler()
-scheduler.add_job(STG1D1_job, 'interval', seconds=20)
-scheduler.add_job(STG1D2_job, 'interval', seconds=20)
-scheduler.add_job(STG1D3_job, 'interval', seconds=20)
+scheduler.add_job(STG1D1_job, 'interval', seconds=30)
+scheduler.add_job(STG1D2_job, 'interval', seconds=30)
+scheduler.add_job(STG1D3_job, 'interval', seconds=30)
 scheduler.start()
