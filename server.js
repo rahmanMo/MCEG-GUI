@@ -113,6 +113,6 @@ app.get('*', (req, res) => {
 });
 
 
-app.listen(port, () => {
+app.listen(port, '127.0.0.1', () => {
   console.log(`Started up at port ${port}`);
 });
