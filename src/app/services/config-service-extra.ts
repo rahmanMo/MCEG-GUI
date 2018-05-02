@@ -4,12 +4,12 @@ import { Config } from 'ngx-easy-table/src/app/ngx-easy-table/model/config';
 @Injectable()
 export class ConfigServiceExtra {
   public static config: Config = {
-    searchEnabled: true,
+    searchEnabled: false,
     headerEnabled: true,
-    orderEnabled: true,
+    orderEnabled: false,
     globalSearchEnabled: true,
     paginationEnabled: true,
-    exportEnabled: true,
+    exportEnabled: false,
     clickEvent: true,
     selectRow: true,
     selectCol: false,
@@ -21,5 +21,7 @@ export class ConfigServiceExtra {
     detailsTemplate: false,
     groupRows: false,
     paginationRangeEnabled: true,
+    collapseAllRows: false,
+    checkboxes: false
   };
 }
