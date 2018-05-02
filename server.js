@@ -16,7 +16,7 @@ mongoose.connect(dbURL,{
 }).then(() => console.log('mongodb connected')).catch(err => console.log(err));
 
 const app = express();
-const port = 3000;
+const port = 80;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false}));
@@ -113,6 +113,6 @@ app.get('*', (req, res) => {
 });
 
 
-app.listen(port, '127.0.0.1', () => {
+app.listen(port, '0.0.0.0', () => {
   console.log(`Started up at port ${port}`);
 });
