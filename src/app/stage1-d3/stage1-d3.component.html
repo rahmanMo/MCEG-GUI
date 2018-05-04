@@ -57,7 +57,7 @@
   <div *ngIf="rowData != null" class="container row">
     <ul class="collection with-header col s6 offset-s3">
       <li class="collection-header">
-        <h5 class="normal">Flight: <span class="color-red">{{ rowData.identifier }}</span> <span class="secondary-content"><span class="normal">Flight-Status:</span> {{ rowData.flightStatus }}</span></h5>
+        <h5 class="normal">Flight: <span class="color-red">{{ rowData.identifier }}</span> <span class="secondary-content"><span class="normal">Flight-Status:</span> {{ depflightStatus }} | {{ arrflightStatus }}</span></h5>
       </li>
     </ul>
   </div>

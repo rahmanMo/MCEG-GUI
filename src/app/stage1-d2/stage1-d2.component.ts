@@ -150,6 +150,8 @@ export class Stage1D2Component implements OnInit, OnDestroy {
   configurationExtra;
   totalCount: any;
   fileName;
+  depflightStatus;
+  arrflightStatus;
 
   constructor(private flightsService: FlightsService, private papa: PapaParseService) {
     this.configuration = ConfigService.config;
@@ -193,6 +195,24 @@ export class Stage1D2Component implements OnInit, OnDestroy {
       // console.log($event.value.row.csvFSDailyID);
       const dailyId = $event.value.row.csvFSDailyID;
       this.rowData = this.data.find( row => row.csvFSDailyID === dailyId);
+      if (this.rowData.STDudt === this.rowData.ETDudt) {
+        this.depflightStatus = 'DEP On-Time';
+      } else if (this.rowData.STDudt > this.rowData.ETDudt) {
+        this.depflightStatus = 'DEP Early';
+      } else if (this.rowData.STDudt < this.rowData.ETDudt) {
+        this.depflightStatus = 'DEP Delayed';
+      }
+      if (this.rowData.STAudt === this.rowData.ETAudt) {
+        this.arrflightStatus = 'ARR On-Time';
+      } else if (this.rowData.STAudt > this.rowData.ETAudt) {
+        this.arrflightStatus = 'ARR Early';
+      } else if (this.rowData.STAudt < this.rowData.ETAudt) {
+        this.arrflightStatus = 'ARR Delayed';
+      }
+      if (this.rowData.previousTailNumber === 'CANX') {
+        this.depflightStatus = 'Cancelled';
+        this.arrflightStatus = 'Flight';
+      }
       // console.log(this.rowData);
     }
   }
