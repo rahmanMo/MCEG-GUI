@@ -30,6 +30,8 @@ import { Stage3D3Component } from './stage3-d3/stage3-d3.component';
 import { Stage1D1Component } from './stage1-d1/stage1-d1.component';
 import { Stage1D2Component } from './stage1-d2/stage1-d2.component';
 import { Stage1D3Component } from './stage1-d3/stage1-d3.component';
+import { Stage1D0Component } from './stage1-d0/stage1-d0.component';
+import { Stage3D0Component } from './stage3-d0/stage3-d0.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,9 @@ import { Stage1D3Component } from './stage1-d3/stage1-d3.component';
     Stage3D3Component,
     Stage1D1Component,
     Stage1D2Component,
-    Stage1D3Component
+    Stage1D3Component,
+    Stage1D0Component,
+    Stage3D0Component
   ],
   imports: [
     BrowserModule,
