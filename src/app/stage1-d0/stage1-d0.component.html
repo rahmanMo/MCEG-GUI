@@ -1,3 +1,142 @@
-<p>
-  stage1-d0 works!
-</p>
+<div class="card-panel center" style="width: 100%;">
+  <h5 class="center"><span class="color-teal">{{ env }} </span>Flights For: <span class="color-red">{{ date }} </span>Total: <span class="color-teal">{{ totalCount }}</span></h5>
+  <h5 class="center">Filter flights based on attribute</h5>
+  <div class="input-field inline">
+    <input placeholder="File Name" type="text" [(ngModel)]="fileName" name="fileName" minlength="1" maxlength="50" pattern="^[a-zA-Z0-9]+$">
+  </div>
+  <a class="waves-effect waves-light btn download" (click)="downloadCSV()">Download Data</a>
+</div>
+<mz-tab [fixedTabWidth]="'true'">
+  <mz-tab-item [label]="'Basic Info'">
+    <div class="card-panel" style="width: 100%;">
+      <ngx-table [configuration]="configuration" [data]="data" [columns]="basicColumns" (event)="eventEmitted($event)">
+      </ngx-table>
+    </div>
+  </mz-tab-item>
+  <mz-tab-item [label]="'Origin Times'">
+    <div class="card-panel" style="width: 100%;">
+      <ngx-table [configuration]="configuration" [data]="data" [columns]="originTimeColumns" (event)="eventEmitted($event)">
+      </ngx-table>
+    </div>
+  </mz-tab-item>
+  <mz-tab-item [label]="'Destination Times'">
+    <div class="card-panel" style="width: 100%;">
+      <ngx-table [configuration]="configuration" [data]="data" [columns]="destinationTimeColumns" (event)="eventEmitted($event)">
+      </ngx-table>
+    </div>
+  </mz-tab-item>
+  <mz-tab-item [label]="'Gate Info'">
+    <div class="card-panel" style="width: 100%;">
+      <ngx-table [configuration]="configuration" [data]="data" [columns]="gateColumns" (event)="eventEmitted($event)">
+      </ngx-table>
+    </div>
+  </mz-tab-item>
+  <mz-tab-item [label]="'Spec Info'">
+    <div class="card-panel" style="width: 100%;">
+      <ngx-table [configuration]="configuration" [data]="data" [columns]="specColumns" (event)="eventEmitted($event)">
+      </ngx-table>
+    </div>
+  </mz-tab-item>
+  <mz-tab-item [label]="'MISC Info'">
+    <div class="card-panel" style="width: 100%;">
+      <ngx-table [configuration]="configuration" [data]="data" [columns]="miscColumns" (event)="eventEmitted($event)">
+      </ngx-table>
+    </div>
+  </mz-tab-item>
+  <mz-tab-item [label]="'All Data'">
+    <div class="card-panel" style="width: 100%;">
+      <ngx-table class="large-set" [configuration]="configurationExtra" [data]="data" [columns]="allColumns" (event)="eventEmitted($event)">
+      </ngx-table>
+    </div>
+  </mz-tab-item>
+</mz-tab>
+
+<div class="card-panel" style="width: 100%;">
+  <h5 class="center">Click on flight to see all attribute</h5>
+  <!-- <pre> {{ rowData | json }} </pre> -->
+  <div *ngIf="rowData != null" class="container row">
+    <ul class="collection with-header col s6 offset-s3">
+      <li class="collection-header">
+        <h5 class="normal">Flight: <span class="color-red">{{ rowData.identifier }}</span> <span class="secondary-content"><span class="normal">Flight-Status:</span> {{ depflightStatus }} | {{ arrflightStatus }}</span></h5>
+      </li>
+    </ul>
+  </div>
+  <div *ngIf="rowData != null" class="row">
+    <div class="col s4">
+      <ul class="collection">
+        <li class="collection-item">Origin: <span class="secondary-content">{{ rowData.origin }}</span></li>
+        <li class="collection-item">Origin Gate: <span class="secondary-content">{{ rowData.originGate }}</span></li>
+        <li class="collection-item">Destination: <span class="secondary-content">{{ rowData.destination }}</span></li>
+        <li class="collection-item">Destination Gate: <span class="secondary-content">{{ rowData.destinationGate }}</span></li>
+        <li class="collection-item">Tail-Num: <span class="secondary-content">{{ rowData.tailNumber }}</span></li>
+        <li class="collection-item">Previous-Tail-Number: <span class="secondary-content">{{ rowData.previousTailNumber }}</span></li>
+        <li class="collection-item">Tail-Number-Before-Cancel: <span class="secondary-content">{{ rowData.tailNumBeforeCancel }}</span></li>
+        <li class="collection-item">FS-DailyId: <span class="secondary-content">{{ rowData.csvFSDailyID }}</span></li>
+        <li class="collection-item">Sequence: <span class="secondary-content">{{ rowData.sequence }}</span></li>
+        <li class="collection-item">Flight-Type: <span class="secondary-content">{{ rowData.flightType }}</span></li>
+        <li class="collection-item">Airline-Code: <span class="secondary-content">{{ rowData.airlineCode }}</span></li>
+        <li class="collection-item">Hub: <span class="secondary-content">{{ rowData.hub }}</span></li>
+        <li class="collection-item">New-Departure-City: <span class="secondary-content">{{ rowData.newDepartureCity }}</span></li>
+        <li class="collection-item">New-Arrival-City: <span class="secondary-content">{{ rowData.newArrivalCity }}</span></li>
+        <li class="collection-item">OAG-Equipment-Type: <span class="secondary-content">{{ rowData.OAGEquipmentType }}</span></li>
+        <li class="collection-item">Sched-OAG-Equipment-Type: <span class="secondary-content">{{ rowData.SchedOAGEquipType }}</span></li>
+        <li class="collection-item">OAG-Equipment-Sub-Type: <span class="secondary-content">{{ rowData.OAGEquipSubType }}</span></li>
+        <li class="collection-item">Cancel-Indicator (X): <span class="secondary-content">{{ rowData.cancelled }}</span></li>
+        <li class="collection-item">Replaced?: <span class="secondary-content">{{ rowData.replaced }}</span></li>
+        <li class="collection-item">ATC-Status: <span class="secondary-content">{{ rowData.ATCStatus }}</span></li>
+        <li class="collection-item">Scheduled-Flight-Type: <span class="secondary-content">{{ rowData.scheduledFlightType }}</span></li>
+        <li class="collection-item">Aircraft-Routing: <span class="secondary-content">{{ rowData.aircraftRouting }}</span></li>
+      </ul>
+    </div>
+    <div class="col s4">
+      <ul class="collection">
+        <li class="collection-item">Landing-Restriction: <span class="secondary-content">{{ rowData.landingRestriction }}</span></li>
+        <li class="collection-item">CT-Flight-Number: <span class="secondary-content">{{ rowData.CTFlightNumber }}</span></li>
+        <li class="collection-item">Date-UTC: <span class="secondary-content">{{ rowData.numGMTDate }}</span></li>
+        <li class="collection-item">Date-Local: <span class="secondary-content">{{ rowData.numericFlightDate }}</span></li>
+        <li class="collection-item">Leg-Departure-Date: <span class="secondary-content">{{ rowData.legDepartureDate }}</span></li>
+        <li class="collection-item">Last-Date-Modified: <span class="secondary-content">{{ rowData.lastDateModified }}</span></li>
+        <li class="collection-item">Last-Time-Modified: <span class="secondary-content">{{ rowData.lastTimeModified }}</span></li>
+        <li class="collection-item">STD-UTC: <span class="secondary-content">{{ rowData.STDudt }}</span></li>
+        <li class="collection-item">STD-Local: <span class="secondary-content">{{ rowData.STDLocal }}</span></li>
+        <li class="collection-item">STD-Variance: <span class="secondary-content">{{ rowData.STDGMTVariance }}</span></li>
+        <li class="collection-item">STO: <span class="secondary-content">{{ rowData.scheduledTaxiOut }}</span></li>
+        <li class="collection-item">STO-Set-By-User: <span class="secondary-content">{{ rowData.STOSetByUser }}</span></li>
+        <li class="collection-item">DCN-UTC: <span class="secondary-content">{{ rowData.DCNutc }}</span></li>
+        <li class="collection-item">ETD-UTC: <span class="secondary-content">{{ rowData.ETDudt }}</span></li>
+        <li class="collection-item">ETD-Local: <span class="secondary-content">{{ rowData.ETDlocal }}</span></li>
+        <li class="collection-item">ETO-UTC: <span class="secondary-content">{{ rowData.ETOutc }}</span></li>
+        <li class="collection-item">OUT-UTC: <span class="secondary-content">{{ rowData.OUTudt }}</span></li>
+        <li class="collection-item">Taxi-UTC: <span class="secondary-content">{{ rowData.TAXIutc }}</span></li>
+        <li class="collection-item">OFF-UTC: <span class="secondary-content">{{ rowData.OFFudt }}</span></li>
+        <li class="collection-item">Actual-Departure: <span class="secondary-content">{{ rowData.actualDeparture }}</span></li>
+      </ul>
+    </div>
+    <div class="col s4">
+      <ul class="collection">
+        <li class="collection-item">STA-UTC: <span class="secondary-content">{{ rowData.STAudt }}</span></li>
+        <li class="collection-item">STA-Local: <span class="secondary-content">{{ rowData.STALocal }}</span></li>
+        <li class="collection-item">STA-Variance: <span class="secondary-content">{{ rowData.STAGMTVariance }}</span></li>
+        <li class="collection-item">STI: <span class="secondary-content">{{ rowData.scheduledTaxiIn }}</span></li>
+        <li class="collection-item">STI-Set-By-User: <span class="secondary-content">{{ rowData.STISetByUser }}</span></li>
+        <li class="collection-item">ETE: <span class="secondary-content">{{ rowData.ETE }}</span></li>
+        <li class="collection-item">EON-UTC: <span class="secondary-content">{{ rowData.EONutc }}</span></li>
+        <li class="collection-item">ETA-UTC: <span class="secondary-content">{{ rowData.ETAudt }}</span></li>
+        <li class="collection-item">ETA-Local: <span class="secondary-content">{{ rowData.ETAlocal }}</span></li>
+        <li class="collection-item">ON-UTC: <span class="secondary-content">{{ rowData.ONudt }}</span></li>
+        <li class="collection-item">IN-UTC: <span class="secondary-content">{{ rowData.INudt }}</span></li>
+        <li class="collection-item">Actual-Arrival: <span class="secondary-content">{{ rowData.actualArrival }}</span></li>
+        <li class="collection-item">CTA-UTC: <span class="secondary-content">{{ rowData.CTAUTC }}</span></li>
+        <li class="collection-item">EDTC-UTC: <span class="secondary-content">{{ rowData.EDTCutc }}</span></li>
+        <li class="collection-item">Head-Start-Flight: <span class="secondary-content">{{ rowData.headStartFlight }}</span></li>
+        <li class="collection-item">Special-Flight?: <span class="secondary-content">{{ rowData.specialFlight }}</span></li>
+        <li class="collection-item">Last-User-To-Modify: <span class="secondary-content">{{ rowData.lastUserToModify }}</span></li>
+        <li class="collection-item">Dispatch-Desk: <span class="secondary-content">{{ rowData.dispatchDesk }}</span></li>
+        <li class="collection-item">Meal-Service: <span class="secondary-content">{{ rowData.mealService }}</span></li>
+        <li class="collection-item">AC-Configuration: <span class="secondary-content">{{ rowData.ACConfiguration }}</span></li>
+        <li class="collection-item">Service-Type: <span class="secondary-content">{{ rowData.serviceType }}</span></li>
+        <li class="collection-item">Record-Status: <span class="secondary-content">{{ rowData.recordStatus }}</span></li>
+      </ul>
+    </div>
+  </div>
+</div>
