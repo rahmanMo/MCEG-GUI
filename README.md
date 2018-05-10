@@ -1,6 +1,6 @@
-# CsvGen (1.7)
+# CsvGen (2.0.0)
 
-This project is a helper app for MCEG (Movement Control Event Generator). Use this app to rapidly create csv file with test data for automation script to consume via Jenkins as well as view flight data of current day to help testers.
+This project is a helper app for MCEG (Movement Control Event Generator). Use this app to rapidly create csv file with test data for automation script to consume via Jenkins as well as view flight data of 8 days to help testers.
 ## Prerequisite ()
 1. Node >= 8.11.1
 2. Python >= 3.6.2
@@ -14,7 +14,7 @@ This project is a helper app for MCEG (Movement Control Event Generator). Use th
  
 ## Workflow
 
- - workerSTG*.js   pull data from drop location of stage environment every 16 second, by running a python script (workerSTG*.py) which pushes data into specified mongodb database and collection.
+ - stg*DataFeed.py  pulls data from drop location of stage environment every 30 second for 8 days worth (yesterday + 7 days ahead) which pushes data into local mongodb database.
  - Express backend serves json data to Angular client.
 **Note:** Home component can generate csv file that can be fed into jenkins for mass event trigger on flights.
 
@@ -28,8 +28,10 @@ Run `ng serve` for a dev server on gui only. Navigate to `http://localhost:4200/
 For backend run `ng build` to generate `/dist` folder, then `npm run server`. Open `http://localhost:3000`
 
 ## Prod
-Clone repo and do `npm install` or if you are using Yarn run `yarn` command to install dependencies
-Use the `ng build --prod` for a production build on gui. 
-`cd STG1` then run `node workerSTG1`
-`cd STG3` then run `node workerSTG3`
-Go back to main directory and run `npm run server` This should start on port 3000.
+Clone repo and do `sudo npm install` or if you are using Yarn run `yarn` command to install dependencies
+Use the `sudo ng build --prod` for a production build on gui. 
+Install pm2 `sudo npm install pm2@latest -g` for production process management for Node.js. 
+`cd STG1` then run `sudo nohup python3 stg1DataFeed.py` for stage 1 data feed
+`cd ..`
+`cd STG3` then run `sudo nohup python3 stg3DataFeed.py` for stage 3 data feed
+`cd ..` to main directory and run `sudo pm2 start server.js -i max` This should start on port 80 in cluster mode.
