@@ -191,24 +191,88 @@ export class Stage1D7Component implements OnInit, OnDestroy {
     if ($event.event === 'onClick') {
       // console.log($event.value.row.csvFSDailyID);
       const dailyId = $event.value.row.csvFSDailyID;
-      this.rowData = this.data.find( row => row.csvFSDailyID === dailyId);
-      if (this.rowData.STDudt === this.rowData.ETDudt) {
+      this.rowData = this.data.find(row => row.csvFSDailyID === dailyId);
+      if (
+        this.rowData.OUTudt !== '' &&
+        this.rowData.OFFudt === '' &&
+        this.rowData.ONudt === '' &&
+        this.rowData.INudt === ''
+      ) {
+        this.depflightStatus = 'Flight';
+        this.arrflightStatus = 'Taxiing';
+      } else if (
+        this.rowData.OUTudt !== '' &&
+        this.rowData.OFFudt !== '' &&
+        this.rowData.ONudt === '' &&
+        this.rowData.INudt === ''
+      ) {
+        this.depflightStatus = 'IN';
+        this.arrflightStatus = 'Flight';
+      } else if (
+        this.rowData.OUTudt !== '' &&
+        this.rowData.OFFudt !== '' &&
+        this.rowData.ONudt !== '' &&
+        this.rowData.INudt === ''
+      ) {
+        this.depflightStatus = 'Flight';
+        this.arrflightStatus = 'Landed';
+      } else if (
+        this.rowData.OUTudt !== '' &&
+        this.rowData.OFFudt !== '' &&
+        this.rowData.ONudt !== '' &&
+        this.rowData.INudt !== ''
+      ) {
+        this.depflightStatus = 'Flight';
+        this.arrflightStatus = 'Arrived';
+      } else if (this.rowData.STDudt === this.rowData.ETDudt) {
         this.depflightStatus = 'DEP On-Time';
       } else if (this.rowData.STDudt > this.rowData.ETDudt) {
         this.depflightStatus = 'DEP Early';
       } else if (this.rowData.STDudt < this.rowData.ETDudt) {
         this.depflightStatus = 'DEP Delayed';
       }
-      if (this.rowData.STAudt === this.rowData.ETAudt) {
+      if (
+        this.rowData.OUTudt !== '' &&
+        this.rowData.OFFudt === '' &&
+        this.rowData.ONudt === '' &&
+        this.rowData.INudt === ''
+      ) {
+        this.depflightStatus = 'Flight';
+        this.arrflightStatus = 'Taxiing';
+      } else if (
+        this.rowData.OUTudt !== '' &&
+        this.rowData.OFFudt !== '' &&
+        this.rowData.ONudt === '' &&
+        this.rowData.INudt === ''
+      ) {
+        this.depflightStatus = 'IN';
+        this.arrflightStatus = 'Flight';
+      } else if (
+        this.rowData.OUTudt !== '' &&
+        this.rowData.OFFudt !== '' &&
+        this.rowData.ONudt !== '' &&
+        this.rowData.INudt === ''
+      ) {
+        this.depflightStatus = 'Flight';
+        this.arrflightStatus = 'Landed';
+      } else if (
+        this.rowData.OUTudt !== '' &&
+        this.rowData.OFFudt !== '' &&
+        this.rowData.ONudt !== '' &&
+        this.rowData.INudt !== ''
+      ) {
+        this.depflightStatus = 'Flight';
+        this.arrflightStatus = 'Arrived';
+      } else if (this.rowData.STAudt === this.rowData.ETAudt) {
         this.arrflightStatus = 'ARR On-Time';
       } else if (this.rowData.STAudt > this.rowData.ETAudt) {
         this.arrflightStatus = 'ARR Early';
       } else if (this.rowData.STAudt < this.rowData.ETAudt) {
         this.arrflightStatus = 'ARR Delayed';
       }
-      if (this.rowData.previousTailNumber === 'CANX') {
-        this.depflightStatus = 'Cancelled';
-        this.arrflightStatus = 'Flight';
+      if (this.rowData.cancelled === 'X') {
+        this.depflightStatus = 'Flight';
+        this.arrflightStatus = 'Cancelled';
       }
       // console.log(this.rowData);
     }

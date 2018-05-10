@@ -154,7 +154,10 @@ export class DataDemoComponent implements OnInit, OnDestroy {
   depflightStatus;
   arrflightStatus;
 
-  constructor(private flightsService: FlightsService, private papa: PapaParseService) {
+  constructor(
+    private flightsService: FlightsService,
+    private papa: PapaParseService
+  ) {
     this.configuration = ConfigService.config;
     this.configurationExtra = ConfigServiceExtra.config;
     this.date = moment(new Date())
@@ -187,24 +190,88 @@ export class DataDemoComponent implements OnInit, OnDestroy {
     if ($event.event === 'onClick') {
       // console.log($event.value.row.csvFSDailyID);
       const dailyId = $event.value.row.csvFSDailyID;
-      this.rowData = this.data.find( row => row.csvFSDailyID === dailyId);
-      if (this.rowData.STDudt === this.rowData.ETDudt) {
+      this.rowData = this.data.find(row => row.csvFSDailyID === dailyId);
+      if (
+        this.rowData.OUTudt !== '' &&
+        this.rowData.OFFudt === '' &&
+        this.rowData.ONudt === '' &&
+        this.rowData.INudt === ''
+      ) {
+        this.depflightStatus = 'Flight';
+        this.arrflightStatus = 'Taxiing';
+      } else if (
+        this.rowData.OUTudt !== '' &&
+        this.rowData.OFFudt !== '' &&
+        this.rowData.ONudt === '' &&
+        this.rowData.INudt === ''
+      ) {
+        this.depflightStatus = 'IN';
+        this.arrflightStatus = 'Flight';
+      } else if (
+        this.rowData.OUTudt !== '' &&
+        this.rowData.OFFudt !== '' &&
+        this.rowData.ONudt !== '' &&
+        this.rowData.INudt === ''
+      ) {
+        this.depflightStatus = 'Flight';
+        this.arrflightStatus = 'Landed';
+      } else if (
+        this.rowData.OUTudt !== '' &&
+        this.rowData.OFFudt !== '' &&
+        this.rowData.ONudt !== '' &&
+        this.rowData.INudt !== ''
+      ) {
+        this.depflightStatus = 'Flight';
+        this.arrflightStatus = 'Arrived';
+      } else if (this.rowData.STDudt === this.rowData.ETDudt) {
         this.depflightStatus = 'DEP On-Time';
       } else if (this.rowData.STDudt > this.rowData.ETDudt) {
         this.depflightStatus = 'DEP Early';
       } else if (this.rowData.STDudt < this.rowData.ETDudt) {
         this.depflightStatus = 'DEP Delayed';
       }
-      if (this.rowData.STAudt === this.rowData.ETAudt) {
+      if (
+        this.rowData.OUTudt !== '' &&
+        this.rowData.OFFudt === '' &&
+        this.rowData.ONudt === '' &&
+        this.rowData.INudt === ''
+      ) {
+        this.depflightStatus = 'Flight';
+        this.arrflightStatus = 'Taxiing';
+      } else if (
+        this.rowData.OUTudt !== '' &&
+        this.rowData.OFFudt !== '' &&
+        this.rowData.ONudt === '' &&
+        this.rowData.INudt === ''
+      ) {
+        this.depflightStatus = 'IN';
+        this.arrflightStatus = 'Flight';
+      } else if (
+        this.rowData.OUTudt !== '' &&
+        this.rowData.OFFudt !== '' &&
+        this.rowData.ONudt !== '' &&
+        this.rowData.INudt === ''
+      ) {
+        this.depflightStatus = 'Flight';
+        this.arrflightStatus = 'Landed';
+      } else if (
+        this.rowData.OUTudt !== '' &&
+        this.rowData.OFFudt !== '' &&
+        this.rowData.ONudt !== '' &&
+        this.rowData.INudt !== ''
+      ) {
+        this.depflightStatus = 'Flight';
+        this.arrflightStatus = 'Arrived';
+      } else if (this.rowData.STAudt === this.rowData.ETAudt) {
         this.arrflightStatus = 'ARR On-Time';
       } else if (this.rowData.STAudt > this.rowData.ETAudt) {
         this.arrflightStatus = 'ARR Early';
       } else if (this.rowData.STAudt < this.rowData.ETAudt) {
         this.arrflightStatus = 'ARR Delayed';
       }
-      if (this.rowData.previousTailNumber === 'CANX') {
-        this.depflightStatus = 'Cancelled';
-        this.arrflightStatus = 'Flight';
+      if (this.rowData.cancelled === 'X') {
+        this.depflightStatus = 'Flight';
+        this.arrflightStatus = 'Cancelled';
       }
       // console.log(this.rowData);
     }
@@ -214,7 +281,7 @@ export class DataDemoComponent implements OnInit, OnDestroy {
     const data = this.data;
     const csvData = this.papa.unparse(data);
     // console.log(csvData);
-    const csv = new Blob([csvData], {type: 'text/csv;charset=utf-8;'});
+    const csv = new Blob([csvData], { type: 'text/csv;charset=utf-8;' });
     let fileName: string;
     if (this.fileName === undefined || this.fileName === '') {
       fileName = `${this.env}-${this.date}.csv`;
@@ -224,24 +291,22 @@ export class DataDemoComponent implements OnInit, OnDestroy {
     // IE11 & Edge
     if (navigator.msSaveBlob) {
       const blob = new Blob([csvData], {
-        'type': 'text/csv;charset=utf8;'
+        type: 'text/csv;charset=utf8;'
       });
       navigator.msSaveBlob(blob, fileName);
     } else {
-        // In FF link must be added to DOM to be clicked
-        const link = document.createElement('a');
-        link.href = window.URL.createObjectURL(csv);
-        link.setAttribute('download', fileName);
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
+      // In FF link must be added to DOM to be clicked
+      const link = document.createElement('a');
+      link.href = window.URL.createObjectURL(csv);
+      link.setAttribute('download', fileName);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
     }
-
   }
 
-
   ngOnDestroy() {
-    this.data =  null;
+    this.data = null;
     this.rowData = null;
     this.configuration = null;
   }
