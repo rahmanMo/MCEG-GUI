@@ -1,4 +1,4 @@
-# CsvGen (2.0.0)
+# CsvGen (2.0.1)
 
 This project is a helper app for MCEG (Movement Control Event Generator). Use this app to rapidly create csv file with test data for automation script to consume via Jenkins as well as view flight data of 8 days to help testers.
 ## Prerequisite ()
