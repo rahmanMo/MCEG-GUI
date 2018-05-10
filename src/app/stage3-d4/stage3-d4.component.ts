@@ -8,15 +8,14 @@ import { ConfigServiceExtra } from '../services/config-service-extra';
 import { PapaParseService } from 'ngx-papaparse';
 import * as moment from 'moment';
 
-
 @Component({
-  selector: 'app-stage1-d0',
-  templateUrl: './stage1-d0.component.html',
-  styleUrls: ['./stage1-d0.component.scss'],
+  selector: 'app-stage3-d4',
+  templateUrl: './stage3-d4.component.html',
+  styleUrls: ['./stage3-d4.component.scss'],
   providers: [ConfigService],
   encapsulation: ViewEncapsulation.Emulated
 })
-export class Stage1D0Component implements OnInit, OnDestroy {
+export class Stage3D4Component implements OnInit, OnDestroy {
 
   basicColumns = [
     { key: 'identifier', title: 'Flight#' },
@@ -71,6 +70,7 @@ export class Stage1D0Component implements OnInit, OnDestroy {
     { key: 'EONutc', title: 'EON-UTC' },
     { key: 'STAGMTVariance', title: 'UTC-Offset' }
   ];
+
   allColumns = [
     { key: 'recordStatus', title: 'Record Status' },
     { key: 'lastDateModified', title: 'Last Date Modified' },
@@ -144,7 +144,7 @@ export class Stage1D0Component implements OnInit, OnDestroy {
 
   date: string;
   data = [];
-  env = 'STG-1';
+  env = 'STG-3';
   rowData: Flight;
   configuration;
   configurationExtra;
@@ -157,7 +157,7 @@ export class Stage1D0Component implements OnInit, OnDestroy {
     this.configuration = ConfigService.config;
     this.configurationExtra = ConfigServiceExtra.config;
     this.date = moment(new Date())
-    .add(-1, 'days')
+    .add(3, 'days')
     .format('DD-MMMM-YYYY')
     .toString()
     .toUpperCase();
@@ -167,9 +167,10 @@ export class Stage1D0Component implements OnInit, OnDestroy {
   // ngOnInit() {
   //   this.data = sampleData;
   //   this.date = moment(new Date())
-  //     .format('DD MMMM, YYYY')
-  //     .toString()
-  //     .toUpperCase();
+  //   .add(2, 'days')
+  //   .format('DD MMMM, YYYY')
+  //   .toString()
+  //   .toUpperCase();
   // }
 
   // enable this when building for prod
@@ -182,7 +183,7 @@ export class Stage1D0Component implements OnInit, OnDestroy {
   }
 
   refreshData() {
-    this.flightsService.getStg1d0().subscribe(data => {
+    this.flightsService.getStg3d4().subscribe(data => {
       this.data = data;
       this.totalCount = this.data.length;
     });
@@ -250,6 +251,5 @@ export class Stage1D0Component implements OnInit, OnDestroy {
     this.rowData = null;
     this.configuration = null;
   }
-
 
 }
