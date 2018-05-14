@@ -26,97 +26,97 @@ export class FlightsService {
   }
 
   getStg1d0(): Observable<Flight[]> {
-    return this.http.get<Flight[]>('/api/stg1d0')
+    return this.http.get<Flight[]>('/api/stg1/d0')
       .pipe(
         catchError(this.handleError('getStg1d0', []))
       );
   }
   getStg1d1(): Observable<Flight[]> {
-    return this.http.get<Flight[]>('/api/stg1d1')
+    return this.http.get<Flight[]>('/api/stg1/d1')
       .pipe(
         catchError(this.handleError('getStg1d1', []))
       );
   }
   getStg1d2(): Observable<Flight[]> {
-    return this.http.get<Flight[]>('/api/stg1d2')
+    return this.http.get<Flight[]>('/api/stg1/d2')
       .pipe(
         catchError(this.handleError('getStg1d2', []))
       );
   }
   getStg1d3(): Observable<Flight[]> {
-    return this.http.get<Flight[]>('/api/stg1d3')
+    return this.http.get<Flight[]>('/api/stg1/d3')
       .pipe(
         catchError(this.handleError('getStg1d3', []))
       );
   }
   getStg1d4(): Observable<Flight[]> {
-    return this.http.get<Flight[]>('/api/stg1d4')
+    return this.http.get<Flight[]>('/api/stg1/d4')
       .pipe(
         catchError(this.handleError('getStg1d4', []))
       );
   }
   getStg1d5(): Observable<Flight[]> {
-    return this.http.get<Flight[]>('/api/stg1d5')
+    return this.http.get<Flight[]>('/api/stg1/d5')
       .pipe(
         catchError(this.handleError('getStg1d5', []))
       );
   }
   getStg1d6(): Observable<Flight[]> {
-    return this.http.get<Flight[]>('/api/stg1d6')
+    return this.http.get<Flight[]>('/api/stg1/d6')
       .pipe(
         catchError(this.handleError('getStg1d6', []))
       );
   }
   getStg1d7(): Observable<Flight[]> {
-    return this.http.get<Flight[]>('/api/stg1d7')
+    return this.http.get<Flight[]>('/api/stg1/d7')
       .pipe(
         catchError(this.handleError('getStg1d7', []))
       );
   }
   getStg3d0(): Observable<Flight[]> {
-    return this.http.get<Flight[]>('/api/stg3d0')
+    return this.http.get<Flight[]>('/api/stg3/d0')
       .pipe(
         catchError(this.handleError('getStg3d0', []))
       );
   }
   getStg3d1(): Observable<Flight[]> {
-    return this.http.get<Flight[]>('/api/stg3d1')
+    return this.http.get<Flight[]>('/api/stg3/d1')
       .pipe(
         catchError(this.handleError('getStg3d1', []))
       );
   }
   getStg3d2(): Observable<Flight[]> {
-    return this.http.get<Flight[]>('/api/stg3d2')
+    return this.http.get<Flight[]>('/api/stg3/d2')
       .pipe(
         catchError(this.handleError('getStg3d2', []))
       );
   }
   getStg3d3(): Observable<Flight[]> {
-    return this.http.get<Flight[]>('/api/stg3d3')
+    return this.http.get<Flight[]>('/api/stg3/d3')
       .pipe(
         catchError(this.handleError('getStg3d3', []))
       );
   }
   getStg3d4(): Observable<Flight[]> {
-    return this.http.get<Flight[]>('/api/stg3d4')
+    return this.http.get<Flight[]>('/api/stg3/d4')
       .pipe(
         catchError(this.handleError('getStg3d4', []))
       );
   }
   getStg3d5(): Observable<Flight[]> {
-    return this.http.get<Flight[]>('/api/stg3d5')
+    return this.http.get<Flight[]>('/api/stg3/d5')
       .pipe(
         catchError(this.handleError('getStg3d5', []))
       );
   }
   getStg3d6(): Observable<Flight[]> {
-    return this.http.get<Flight[]>('/api/stg3d6')
+    return this.http.get<Flight[]>('/api/stg3/d6')
       .pipe(
         catchError(this.handleError('getStg3d6', []))
       );
   }
   getStg3d7(): Observable<Flight[]> {
-    return this.http.get<Flight[]>('/api/stg3d7')
+    return this.http.get<Flight[]>('/api/stg3/d7')
       .pipe(
         catchError(this.handleError('getStg3d7', []))
       );

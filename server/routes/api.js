@@ -39,7 +39,7 @@ mongoose
 //////////////////////////////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////////////////////
-router.get('/stg1d0', (req, res) => {
+router.get('/stg1/d0', (req, res) => {
   console.log('Requesting flights for stage 1 day 0');
   const count = STG1D0.find().exec(function (err, results) {
     return results.length
@@ -70,7 +70,7 @@ router.get('/stg1d0', (req, res) => {
 });
 
 /////////////////////////////////////////////////////////////////////////////
-router.get('/stg1d1', (req, res) => {
+router.get('/stg1/d1', (req, res) => {
   console.log('Requesting flights for stage 1 day 1');
   const count = STG1D1.find().exec(function (err, results) {
     return results.length
@@ -101,7 +101,7 @@ router.get('/stg1d1', (req, res) => {
 });
 
 /////////////////////////////////////////////////////////////////////////////
-router.get('/stg1d2', (req, res) => {
+router.get('/stg1/d2', (req, res) => {
   console.log('Requesting flights for stage 1 day 2');
   const count = STG1D2.find().exec(function (err, results) {
     return results.length
@@ -132,7 +132,7 @@ router.get('/stg1d2', (req, res) => {
 });
 
 /////////////////////////////////////////////////////////////////////////////
-router.get('/stg1d3', (req, res) => {
+router.get('/stg1/d3', (req, res) => {
   console.log('Requesting flights for stage 1 day 3');
   const count = STG1D3.find().exec(function (err, results) {
     return results.length
@@ -163,7 +163,7 @@ router.get('/stg1d3', (req, res) => {
 });
 
 /////////////////////////////////////////////////////////////////////////////
-router.get('/stg1d4', (req, res) => {
+router.get('/stg1/d4', (req, res) => {
   console.log('Requesting flights for stage 1 day 4');
   const count = STG1D4.find().exec(function (err, results) {
     return results.length
@@ -194,7 +194,7 @@ router.get('/stg1d4', (req, res) => {
 });
 
 /////////////////////////////////////////////////////////////////////////////
-router.get('/stg1d5', (req, res) => {
+router.get('/stg1/d5', (req, res) => {
   console.log('Requesting flights for stage 1 day 5');
   const count = STG1D5.find().exec(function (err, results) {
     return results.length
@@ -225,7 +225,7 @@ router.get('/stg1d5', (req, res) => {
 });
 
 /////////////////////////////////////////////////////////////////////////////
-router.get('/stg1d6', (req, res) => {
+router.get('/stg1/d6', (req, res) => {
   console.log('Requesting flights for stage 1 day 6');
   const count = STG1D6.find().exec(function (err, results) {
     return results.length
@@ -256,7 +256,7 @@ router.get('/stg1d6', (req, res) => {
 });
 
 /////////////////////////////////////////////////////////////////////////////
-router.get('/stg1d7', (req, res) => {
+router.get('/stg1/d7', (req, res) => {
   console.log('Requesting flights for stage 1 day 7');
   const count = STG1D7.find().exec(function (err, results) {
     return results.length
@@ -291,7 +291,7 @@ router.get('/stg1d7', (req, res) => {
 //////////////////////////////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////////////////////
-router.get('/STG3d0', (req, res) => {
+router.get('/stg3/d0', (req, res) => {
   console.log('Requesting flights for stage 3 day 0');
   const count = STG3D0.find().exec(function (err, results) {
     return results.length
@@ -322,7 +322,7 @@ router.get('/STG3d0', (req, res) => {
 });
 
 /////////////////////////////////////////////////////////////////////////////
-router.get('/STG3d1', (req, res) => {
+router.get('/stg3/d1', (req, res) => {
   console.log('Requesting flights for stage 3 day 1');
   const count = STG3D1.find().exec(function (err, results) {
     return results.length
@@ -353,7 +353,7 @@ router.get('/STG3d1', (req, res) => {
 });
 
 /////////////////////////////////////////////////////////////////////////////
-router.get('/STG3d2', (req, res) => {
+router.get('/stg3/d2', (req, res) => {
   console.log('Requesting flights for stage 3 day 2');
   const count = STG3D2.find().exec(function (err, results) {
     return results.length
@@ -384,7 +384,7 @@ router.get('/STG3d2', (req, res) => {
 });
 
 /////////////////////////////////////////////////////////////////////////////
-router.get('/STG3d3', (req, res) => {
+router.get('/stg3/d3', (req, res) => {
   console.log('Requesting flights for stage 3 day 3');
   const count = STG3D3.find().exec(function (err, results) {
     return results.length
@@ -415,7 +415,7 @@ router.get('/STG3d3', (req, res) => {
 });
 
 /////////////////////////////////////////////////////////////////////////////
-router.get('/STG3d4', (req, res) => {
+router.get('/stg3/d4', (req, res) => {
   console.log('Requesting flights for stage 3 day 4');
   const count = STG3D4.find().exec(function (err, results) {
     return results.length
@@ -446,7 +446,7 @@ router.get('/STG3d4', (req, res) => {
 });
 
 /////////////////////////////////////////////////////////////////////////////
-router.get('/STG3d5', (req, res) => {
+router.get('/stg3/d5', (req, res) => {
   console.log('Requesting flights for stage 3 day 5');
   const count = STG3D5.find().exec(function (err, results) {
     return results.length
@@ -477,7 +477,7 @@ router.get('/STG3d5', (req, res) => {
 });
 
 /////////////////////////////////////////////////////////////////////////////
-router.get('/STG3d6', (req, res) => {
+router.get('/stg3/d6', (req, res) => {
   console.log('Requesting flights for stage 3 day 6');
   const count = STG3D6.find().exec(function (err, results) {
     return results.length
@@ -508,7 +508,7 @@ router.get('/STG3d6', (req, res) => {
 });
 
 /////////////////////////////////////////////////////////////////////////////
-router.get('/STG3d7', (req, res) => {
+router.get('/stg3/d7', (req, res) => {
   console.log('Requesting flights for stage 3 day 7');
   const count = STG3D7.find().exec(function (err, results) {
     return results.length
