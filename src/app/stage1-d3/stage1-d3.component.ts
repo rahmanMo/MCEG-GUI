@@ -180,7 +180,7 @@ export class Stage1D3Component implements OnInit, OnDestroy {
     this.refreshData();
     this.interval = setInterval(() => {
       this.refreshData();
-    }, 10000);
+    }, 15000);
   }
 
   refreshData() {
