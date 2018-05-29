@@ -441,7 +441,6 @@ router.post('/eta', async (req, res) => {
         let origin = v.trim(flightData[0].origin);
         let dest = v.trim(flightData[0].destination);
         let std = v(flightData[0].STDudt).trim().padLeft(4, '0');
-        let out = v(flightData[0].OUTudt).trim().padLeft(4, '0');
         let eta = v(etaUTC).padLeft(4, '0');
         let dropLocation;
         if (stg == 'stg1') {
@@ -534,7 +533,6 @@ router.post('/etd', async (req, res) => {
         let origin = v.trim(flightData[0].origin);
         let dest = v.trim(flightData[0].destination);
         let std = v(flightData[0].STDudt).trim().padLeft(4, '0');
-        let out = v(flightData[0].OUTudt).trim().padLeft(4, '0');
         let etd = v(etdUTC).padLeft(4, '0');
         let dropLocation;
         if (stg == 'stg1') {
@@ -553,6 +551,98 @@ router.post('/etd', async (req, res) => {
            res.status(404).json({error: `Error sending File: ${fileName} - ETD for flight ${pFlightNum} departing utc ${date} Failed!!`});
          } else {
           res.status(201).json({adhoc: `File: ${fileName} sent at ${now} - ETD sent for flight ${pFlightNum} departing utc ${date} with new ETD: ${etd}`});
+         }
+        });
+        ////////////////////////////////////// end of adhoc 16 /////////////////////////////////
+
+      }
+
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+});
+
+
+////////////////////////  ETO  ////////////////////////////
+/*
+Required params:
+{
+  "stg":"stg1",
+  "day":"d0", ( up to d7 available, d0 is yesterday, d1 is today and so on)
+  "flightNum":"55",
+  "etoUTC":"1245"
+}
+
+conditions: Flight must not have OFF ON IN. Tell user to use RMA (remove arrival) RMD (remove departure).
+
+
+*/
+router.post('/eto', async (req, res) => {
+  let body = req.body;
+  let stg = v.trim(body.stg);
+  let day = v.trim(body.day);
+  let flightNum = v.trim(body.flightNum);
+  let etoUTC = v.trim(body.etoUTC);
+  if (!stg == 'stg1' || !stg == 'stg2' || !stg == 'stg3') {
+    res.status(400).json({ error: 'stg must be stg1 or stg3' });
+  } else if (
+    !day == 'd0' ||
+    !day == 'd1' ||
+    !day == 'd2' ||
+    !day == 'd3' ||
+    !day == 'd4' ||
+    !day == 'd5' ||
+    !day == 'd6' ||
+    !day == 'd7'
+  ) {
+    res.status(400).json({ error: 'day must be d#; # is in range 0 to 7; ex: d0 is yesterday d1 is today.' });
+  } else if (!v.count(flightNum) >= 1 && !v.count(flightNum) <= 4 && isNaN(flightNum)) {
+    res.status(400).json({ error: 'flightNum must be number minimum 1 and maximum 4 digit.' });
+  } else if (!v.count(etoUTC) >= 1 && !v.count(etoUTC) <= 4 && isNaN(etoUTC)) {
+    res.status(400).json({ error: 'etoUTC must be number minimum 1 and maximum 4 digit.' });
+  } else {
+    try {
+      // filter data by flight number
+      let flightData = await fetch(`http://localhost/api/${stg}/${day}`).then(res => res.json()).then(allData => allData.filter(x => v.trim(x.identifier) == flightNum && v.trim(x.sequence) == 10));
+
+
+      // handle no flight found + other exceptions
+      if (flightData == '' || flightData == {}) {
+        res.status(404).json({ error : `flight ${flightNum} not found for day ${day}`});
+      } else if (v(flightData[0].cancelled).trim() == 'X') {
+        res.status(404).json({ error : `flight ${flightNum} for day ${day} with local date ${flightData[0].numericFlightDate} is cancelled.`});
+      } else if (v(flightData[0].previousTailNumber).trim() == 'CANX' || v(flightData[0].tailNumber).startsWith('-', 0)) {
+        res.status(404).json({ error : `flight ${flightNum} for day ${day} with local date ${flightData[0].numericFlightDate} had air turnback or ground turnback or divert-continue etc. You need to login to MVT to change this flight.`});
+      } else if (!v(flightData[0].OFFudt).trim() == '' || !v(flightData[0].ONudt).trim() == '' || !v(flightData[0].INudt).trim() == '') {
+        res.status(404).json({ error : `flight ${flightNum} for day ${day} must not have OFF ON IN. Please use RMA (remove arrival) and RMD (remove departure)`});
+      } else {
+
+        //////////////////////////////// prep data for adhoc 16 /////////////////////////////////
+        let pFlightNum = v.padLeft(flightNum, 4, '0');
+        let date = v.trim(flightData[0].numGMTDate);
+        let origin = v.trim(flightData[0].origin);
+        let dest = v.trim(flightData[0].destination);
+        let std = v(flightData[0].STDudt).trim().padLeft(4, '0');
+        let eto = v(etoUTC).padLeft(4, '0');
+        let dropLocation;
+        if (stg == 'stg1') {
+          dropLocation = './sample';
+        } else if (stg == 'stg2') {
+          dropLocation = './sample';
+        } else if (stg == 'stg3') {
+          dropLocation = './sample';
+        }
+        let now = moment(new Date()).format('MM_DD_YYYY_HH_mm_SS_x');
+        let fileName = `mceg_adhoc16_eto_${now}`;
+        let adhocString = `ADH016_${pFlightNum}${date}${origin}${dest}${std}ETO${eto}`;
+        let job = await fs.writeFile(`${dropLocation}/${fileName}.txt`, adhocString).then((err) => {
+         if (err) {
+          console.log(err)
+           res.status(404).json({error: `Error sending File: ${fileName} - ETO for flight ${pFlightNum} departing utc ${date} Failed!!`});
+         } else {
+          res.status(201).json({adhoc: `File: ${fileName} sent at ${now} - ETO sent for flight ${pFlightNum} departing utc ${date} with new ETO: ${eto}`});
          }
         });
         ////////////////////////////////////// end of adhoc 16 /////////////////////////////////
