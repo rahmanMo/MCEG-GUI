@@ -784,8 +784,8 @@ router.post('/sub', async (req, res) => {
     res.status(400).json({ error: 'day must be d#; # is in range 0 to 7; ex: d0 is yesterday d1 is today.' });
   } else if (!v.count(flightNum) >= 1 && !v.count(flightNum) <= 4 && isNaN(flightNum)) {
     res.status(400).json({ error: 'flightNum must be number minimum 1 and maximum 4 digit.' });
-  } else if (!v.count(newTail) >= 1 && !v.count(newTail) <= 3 && isNaN(newTail)) {
-    res.status(400).json({ error: 'newTail must be number minimum 1 and maximum 3 digit.' });
+  } else if (!v.count(newTail) == 3 && isNaN(newTail)) {
+    res.status(400).json({ error: 'newTail must be 3 digit.' });
   } else {
     try {
       // filter data by flight number
@@ -1115,7 +1115,7 @@ Required params:
   "destination":"BOS",
   "stdUTC":"1234",
   "staUTC":"1345",
-  "nextDayCrossover":"0", (This is 0 or 1. 0 means it will not crossover next day. 1 means it will.)
+  "nextDayCrossover":true, (This is true or false. false means it will not crossover next day. true means it will.)
   "tailNum":"245",
 
 }
@@ -1142,28 +1142,36 @@ router.post('/new', async (req, res) => {
     res.status(400).json({ error: 'flightNum must be number minimum 1 and maximum 4 digit.' });
   } else if (dateValidation.isValid() == false) {
     res.status(400).json({ error: 'utcOriginDate must be in the format YYYYMMDD.' });
+  } else if (!v.count(origin) >= 1 && !v.count(origin) <= 3 && !v(origin).isAlpha() && !v(origin).isUpperCase()) {
+    res.status(400).json({ error: 'origin must be airport letter code like JFK' });
+  } else if (!v.count(destination) >= 1 && !v.count(destination) <= 3 && !v(destination).isAlpha() && !v(destination).isUpperCase()) {
+    res.status(400).json({ error: 'destination must be airport letter code like JFK' });
+  } else if (!v.count(stdUTC) == 4 && isNaN(stdUTC)) {
+    res.status(400).json({ error: 'stdUTC must be 4 digit time value in 24hr format like 0025, 1545 etc' });
+  } else if (!v.count(staUTC) == 4 && isNaN(staUTC)) {
+    res.status(400).json({ error: 'staUTC must be 4 digit time value in 24hr format like 0025, 1545 etc' });
+  } else if (!typeof(nextDayCrossover) === "boolean") {
+    res.status(400).json({ error: 'nextDayCrossover must be either true or false' });
+  } else if (!v.count(tailNum) == 3 && isNaN(tailNum)) {
+    res.status(400).json({ error: 'tailNum must be 3 digit' });
   } else {
     try {
       // filter data by flight number
-      let flightData = await fetch(`http://localhost/api/${stg}/${day}`).then(res => res.json()).then(allData => allData.filter(x => v.trim(x.identifier) == flightNum && v.trim(x.sequence) == 10));
+      let flightData = await fetch(`http://localhost/api/${stg}/${day}`).then(res => res.json()).then(allData => allData.filter(x => v.trim(x.identifier) == flightNum && !v(x.tailNumber).trim().startsWith('-', 0)));
 
 
       // handle no flight found + other exceptions
-      if (flightData == '' || flightData == {}) {
-        res.status(404).json({ error : `flight ${flightNum} not found for day ${day}`});
-      } else if (v(flightData[0].cancelled).trim() == 'X') {
-        res.status(404).json({ error : `flight ${flightNum} for day ${day} with local date ${flightData[0].numericFlightDate} is cancelled.`});
-      } else if (v(flightData[0].previousTailNumber).trim() == 'CANX' || v(flightData[0].tailNumber).startsWith('-', 0)) {
-        res.status(404).json({ error : `flight ${flightNum} for day ${day} with local date ${flightData[0].numericFlightDate} had air turnback or ground turnback or divert-continue etc. You need to login to MVT to change this flight.`});
+      if (!flightData == '' || !flightData == {}) {
+        res.status(404).json({ error : `flight ${flightNum} already exist for ${day}. Pick a different number.`});
       } else {
 
         //////////////////////////////// prep data for adhoc 16 /////////////////////////////////
         let pFlightNum = v.padLeft(flightNum, 4, '0');
-        let date = v.trim(flightData[0].numGMTDate);
-        let origin = v.trim(flightData[0].origin);
-        let dest = v.trim(flightData[0].destination);
-        let std = v(flightData[0].STDudt).trim().padLeft(4, '0');
-        let new = v(arrGate).padLeft(4, ' ');
+        if (nextDayCrossover == true) {
+          let crossover = 1;
+        } else {
+          let crossover = 0;;
+        }
         let dropLocation;
         if (stg == 'stg1') {
           dropLocation = './sample';
@@ -1174,13 +1182,13 @@ router.post('/new', async (req, res) => {
         }
         let now = moment(new Date()).format('MM_DD_YYYY_HH_mm_SS_x');
         let fileName = `mceg_adhoc16_new_${now}`;
-        let adhocString = `ADH016_${pFlightNum}${date}${origin}${dest}${std}NEW${new}`;
+        let adhocString = `ADH016_${pFlightNum}${utcOriginDate}${origin}${destination}${stdUTC}NEW${staUTC}${crossover}${tailNum}`;
         let job = await fs.writeFile(`${dropLocation}/${fileName}.txt`, adhocString).then((err) => {
          if (err) {
           console.log(err)
-           res.status(404).json({error: `Error sending File: ${fileName} - NEW for flight ${pFlightNum} departing utc ${date} Failed!!`});
+           res.status(404).json({error: `Error sending File: ${fileName} - NEW event for flight ${pFlightNum} departing utc ${date} Failed!!`});
          } else {
-          res.status(201).json({adhoc: `File: ${fileName} sent at ${now} - NEW sent for flight ${pFlightNum} departing utc ${date} with new arrival gate: ${new}`});
+          res.status(201).json({adhoc: `File: ${fileName} sent at ${now} - NEW event sent for flight ${pFlightNum} departing utc ${date}`});
          }
         });
         ////////////////////////////////////// end of adhoc 16 /////////////////////////////////
