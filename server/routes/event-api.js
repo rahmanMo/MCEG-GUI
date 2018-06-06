@@ -924,6 +924,87 @@ router.post('/cnl', async (req, res) => {
 });
 
 
+////////////////////////  DEL  ////////////////////////////
+/*
+Required params:
+{
+  "stg":"stg1",
+  "day":"d0", ( up to d7 available, d0 is yesterday, d1 is today and so on)
+  "fsDailyId":"1234567"
+}
+
+conditions: Flight must exist to be deleted.
+
+
+*/
+router.post('/del', async (req, res) => {
+  let body = req.body;
+  let stg = v.trim(body.stg);
+  let day = v.trim(body.day);
+  let fsDailyId = v.trim(body.fsDailyId);
+  if (!stg == 'stg1' || !stg == 'stg2' || !stg == 'stg3') {
+    res.status(400).json({ error: 'stg must be stg1 or stg3' });
+  } else if (
+    !day == 'd0' ||
+    !day == 'd1' ||
+    !day == 'd2' ||
+    !day == 'd3' ||
+    !day == 'd4' ||
+    !day == 'd5' ||
+    !day == 'd6' ||
+    !day == 'd7'
+  ) {
+    res.status(400).json({ error: 'day must be d#; # is in range 0 to 7; ex: d0 is yesterday d1 is today.' });
+  } else if (!v.count(fsDailyId) >= 7 && !v.count(fsDailyId) <= 10 && isNaN(fsDailyId)) {
+    res.status(400).json({ error: 'fsDailyId must be number minimum 7 and maximum 10 digit.' });
+  } else {
+    try {
+      // filter data by flight number
+      let flightData = await fetch(`http://localhost/api/${stg}/${day}`).then(res => res.json()).then(allData => allData.filter(x => v.trim(x.csvFSDailyID) == fsDailyId));
+
+
+      // handle no flight found + other exceptions
+      if (flightData == '' || flightData == {}) {
+        res.status(404).json({ error : `flight with Daily Id: ${fsDailyId} not found for day ${day}`});
+      } else {
+
+        //////////////////////////////// prep data for adhoc 16 /////////////////////////////////
+        let pFlightNum = v.padLeft(fsDailyId, 4, '0');
+        let date = v.trim(flightData[0].numGMTDate);
+        let origin = v.trim(flightData[0].origin);
+        let dest = v.trim(flightData[0].destination);
+        let std = v(flightData[0].STDudt).trim().padLeft(4, '0');
+        let dropLocation;
+        if (stg == 'stg1') {
+          dropLocation = './sample';
+        } else if (stg == 'stg2') {
+          dropLocation = './sample';
+        } else if (stg == 'stg3') {
+          dropLocation = './sample';
+        }
+        let now = moment(new Date()).format('MM_DD_YYYY_HH_mm_SS_x');
+        let fileName = `mceg_adhoc16_del_${now}`;
+        let adhocString = `ADH016_${pFlightNum}${date}${origin}${dest}${std}DEL`;
+        let job = await fs.writeFile(`${dropLocation}/${fileName}.txt`, adhocString).then((err) => {
+         if (err) {
+          console.log(err)
+           res.status(404).json({error: `Error sending File: ${fileName} - DEL for flight ${pFlightNum} departing utc ${date} Failed!!`});
+         } else {
+          res.status(201).json({adhoc: `File: ${fileName} sent at ${now} - DEL sent for flight ${pFlightNum} departing utc ${date}`});
+         }
+        });
+        ////////////////////////////////////// end of adhoc 16 /////////////////////////////////
+
+      }
+
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+});
+
+
 ////////////////////////  GTD  ////////////////////////////
 /*
 Required params:
@@ -1189,6 +1270,90 @@ router.post('/new', async (req, res) => {
            res.status(404).json({error: `Error sending File: ${fileName} - NEW event for flight ${pFlightNum} departing utc ${date} Failed!!`});
          } else {
           res.status(201).json({adhoc: `File: ${fileName} sent at ${now} - NEW event sent for flight ${pFlightNum} departing utc ${date}`});
+         }
+        });
+        ////////////////////////////////////// end of adhoc 16 /////////////////////////////////
+
+      }
+
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+});
+
+
+
+////////////////////////  RIN  ////////////////////////////
+/*
+Required params:
+{
+  "stg":"stg1",
+  "day":"d0", ( up to d7 available, d0 is yesterday, d1 is today and so on)
+  "flightNum":"55"
+}
+
+conditions: Flight must cancelled first for this event to succeed.
+
+
+*/
+router.post('/rin', async (req, res) => {
+  let body = req.body;
+  let stg = v.trim(body.stg);
+  let day = v.trim(body.day);
+  let flightNum = v.trim(body.flightNum);
+  if (!stg == 'stg1' || !stg == 'stg2' || !stg == 'stg3') {
+    res.status(400).json({ error: 'stg must be stg1 or stg3' });
+  } else if (
+    !day == 'd0' ||
+    !day == 'd1' ||
+    !day == 'd2' ||
+    !day == 'd3' ||
+    !day == 'd4' ||
+    !day == 'd5' ||
+    !day == 'd6' ||
+    !day == 'd7'
+  ) {
+    res.status(400).json({ error: 'day must be d#; # is in range 0 to 7; ex: d0 is yesterday d1 is today.' });
+  } else if (!v.count(flightNum) >= 1 && !v.count(flightNum) <= 4 && isNaN(flightNum)) {
+    res.status(400).json({ error: 'flightNum must be number minimum 1 and maximum 4 digit.' });
+  } else {
+    try {
+      // filter data by flight number
+      let flightData = await fetch(`http://localhost/api/${stg}/${day}`).then(res => res.json()).then(allData => allData.filter(x => v.trim(x.identifier) == flightNum && v.trim(x.cancelled) == 'X'));
+
+
+      // handle no flight found + other exceptions
+      if (flightData == '' || flightData == {}) {
+        res.status(404).json({ error : `flight ${flightNum} not found for day ${day}`});
+      } else if (!v(flightData[0].cancelled).trim() == 'X') {
+        res.status(404).json({ error : `flight ${flightNum} for day ${day} with local date ${flightData[0].numericFlightDate} is not a cancelled flight.`});
+      } else {
+
+        //////////////////////////////// prep data for adhoc 16 /////////////////////////////////
+        let pFlightNum = v.padLeft(flightNum, 4, '0');
+        let date = v.trim(flightData[0].numGMTDate);
+        let origin = v.trim(flightData[0].origin);
+        let dest = v.trim(flightData[0].destination);
+        let std = v(flightData[0].STDudt).trim().padLeft(4, '0');
+        let dropLocation;
+        if (stg == 'stg1') {
+          dropLocation = './sample';
+        } else if (stg == 'stg2') {
+          dropLocation = './sample';
+        } else if (stg == 'stg3') {
+          dropLocation = './sample';
+        }
+        let now = moment(new Date()).format('MM_DD_YYYY_HH_mm_SS_x');
+        let fileName = `mceg_adhoc16_rin_${now}`;
+        let adhocString = `ADH016_${pFlightNum}${date}${origin}${dest}${std}RIN`;
+        let job = await fs.writeFile(`${dropLocation}/${fileName}.txt`, adhocString).then((err) => {
+         if (err) {
+          console.log(err)
+           res.status(404).json({error: `Error sending File: ${fileName} - RIN for flight ${pFlightNum} departing utc ${date} Failed!!`});
+         } else {
+          res.status(201).json({adhoc: `File: ${fileName} sent at ${now} - RIN sent for flight ${pFlightNum} departing utc ${date}`});
          }
         });
         ////////////////////////////////////// end of adhoc 16 /////////////////////////////////
