@@ -1367,4 +1367,172 @@ router.post('/rin', async (req, res) => {
 
 });
 
+
+////////////////////////  REM  ////////////////////////////
+/*
+Required params:
+{
+  "stg":"stg1",
+  "day":"d0", ( up to d7 available, d0 is yesterday, d1 is today and so on)
+  "flightNum":"55"
+}
+
+conditions: Flight must not have negative tail or already cancelled.
+
+
+*/
+router.post('/rem', async (req, res) => {
+  let body = req.body;
+  let stg = v.trim(body.stg);
+  let day = v.trim(body.day);
+  let flightNum = v.trim(body.flightNum);
+  if (!stg == 'stg1' || !stg == 'stg2' || !stg == 'stg3') {
+    res.status(400).json({ error: 'stg must be stg1 or stg3' });
+  } else if (
+    !day == 'd0' ||
+    !day == 'd1' ||
+    !day == 'd2' ||
+    !day == 'd3' ||
+    !day == 'd4' ||
+    !day == 'd5' ||
+    !day == 'd6' ||
+    !day == 'd7'
+  ) {
+    res.status(400).json({ error: 'day must be d#; # is in range 0 to 7; ex: d0 is yesterday d1 is today.' });
+  } else if (!v.count(flightNum) >= 1 && !v.count(flightNum) <= 4 && isNaN(flightNum)) {
+    res.status(400).json({ error: 'flightNum must be number minimum 1 and maximum 4 digit.' });
+  } else {
+    try {
+      // filter data by flight number
+      let flightData = await fetch(`http://localhost/api/${stg}/${day}`).then(res => res.json()).then(allData => allData.filter(x => v.trim(x.identifier) == flightNum && !v(x.tailNumber).trim().startsWith('-', 0)));
+
+
+      // handle no flight found + other exceptions
+      if (flightData == '' || flightData == {}) {
+        res.status(404).json({ error : `flight ${flightNum} for day ${day} may already have negative tail number, make sure flight utc date is today+`});
+      } else {
+
+        //////////////////////////////// prep data for adhoc 16 /////////////////////////////////
+        let pFlightNum = v.padLeft(flightNum, 4, '0');
+        let date = v.trim(flightData[0].numGMTDate);
+        let origin = v.trim(flightData[0].origin);
+        let dest = v.trim(flightData[0].destination);
+        let std = v(flightData[0].STDudt).trim().padLeft(4, '0');
+        let dropLocation;
+        if (stg == 'stg1') {
+          dropLocation = './sample';
+        } else if (stg == 'stg2') {
+          dropLocation = './sample';
+        } else if (stg == 'stg3') {
+          dropLocation = './sample';
+        }
+        let now = moment(new Date()).format('MM_DD_YYYY_HH_mm_SS_x');
+        let fileName = `mceg_adhoc16_rem_${now}`;
+        let adhocString = `ADH016_${pFlightNum}${date}${origin}${dest}${std}REM`;
+        let job = await fs.writeFile(`${dropLocation}/${fileName}.txt`, adhocString).then((err) => {
+         if (err) {
+          console.log(err)
+           res.status(404).json({error: `Error sending File: ${fileName} - REM for flight ${pFlightNum} departing utc ${date} Failed!!`});
+         } else {
+          res.status(201).json({adhoc: `File: ${fileName} sent at ${now} - REM sent for flight ${pFlightNum} departing utc ${date}`});
+         }
+        });
+        ////////////////////////////////////// end of adhoc 16 /////////////////////////////////
+
+      }
+
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+});
+
+
+////////////////////////  ASN  ////////////////////////////
+/*
+Required params:
+{
+  "stg":"stg1",
+  "day":"d0", ( up to d7 available, d0 is yesterday, d1 is today and so on)
+  "flightNum":"55",
+  "newTail":"1245"
+}
+
+conditions: Flight must have negative tail. This event is opposite of REM.
+
+
+*/
+router.post('/asn', async (req, res) => {
+  let body = req.body;
+  let stg = v.trim(body.stg);
+  let day = v.trim(body.day);
+  let flightNum = v.trim(body.flightNum);
+  let newTail = v.trim(body.newTail);
+  if (!stg == 'stg1' || !stg == 'stg2' || !stg == 'stg3') {
+    res.status(400).json({ error: 'stg must be stg1 or stg3' });
+  } else if (
+    !day == 'd0' ||
+    !day == 'd1' ||
+    !day == 'd2' ||
+    !day == 'd3' ||
+    !day == 'd4' ||
+    !day == 'd5' ||
+    !day == 'd6' ||
+    !day == 'd7'
+  ) {
+    res.status(400).json({ error: 'day must be d#; # is in range 0 to 7; ex: d0 is yesterday d1 is today.' });
+  } else if (!v.count(flightNum) >= 1 && !v.count(flightNum) <= 4 && isNaN(flightNum)) {
+    res.status(400).json({ error: 'flightNum must be number minimum 1 and maximum 4 digit.' });
+  } else if (!v.count(newTail) == 3 && isNaN(newTail)) {
+    res.status(400).json({ error: 'newTail must be 3 digit.' });
+  } else {
+    try {
+      // filter data by flight number
+      let flightData = await fetch(`http://localhost/api/${stg}/${day}`).then(res => res.json()).then(allData => allData.filter(x => v.trim(x.identifier) == flightNum && v(x.tailNumber).trim().startsWith('-', 0)));
+
+
+      // handle no flight found + other exceptions
+      if (flightData == '' || flightData == {}) {
+        res.status(404).json({ error : `flight ${flightNum} not found for day ${day}, flight should have negative tail`});
+      } else {
+
+        //////////////////////////////// prep data for adhoc 16 /////////////////////////////////
+        let pFlightNum = v.padLeft(flightNum, 4, '0');
+        let date = v.trim(flightData[0].numGMTDate);
+        let origin = v.trim(flightData[0].origin);
+        let dest = v.trim(flightData[0].destination);
+        let std = v(flightData[0].STDudt).trim().padLeft(4, '0');
+        let asn = newTail;
+        let dropLocation;
+        if (stg == 'stg1') {
+          dropLocation = './sample';
+        } else if (stg == 'stg2') {
+          dropLocation = './sample';
+        } else if (stg == 'stg3') {
+          dropLocation = './sample';
+        }
+        let now = moment(new Date()).format('MM_DD_YYYY_HH_mm_SS_x');
+        let fileName = `mceg_adhoc16_asn_${now}`;
+        let adhocString = `ADH016_${pFlightNum}${date}${origin}${dest}${std}ASN${asn}`;
+        let job = await fs.writeFile(`${dropLocation}/${fileName}.txt`, adhocString).then((err) => {
+         if (err) {
+          console.log(err)
+           res.status(404).json({error: `Error sending File: ${fileName} - ASN for flight ${pFlightNum} departing utc ${date} Failed!!`});
+         } else {
+          res.status(201).json({adhoc: `File: ${fileName} sent at ${now} - ASN sent for flight ${pFlightNum} departing utc ${date} with new tail: ${asn}`});
+         }
+        });
+        ////////////////////////////////////// end of adhoc 16 /////////////////////////////////
+
+      }
+
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+});
+
+
 module.exports = router;
