@@ -1,4 +1,7 @@
 const express = require('express');
+const moment = require('moment');
+const fs = require('fs-extra');
+const v = require('voca');
 const router = express.Router();
 const mongoose = require('mongoose');
 const {
@@ -504,6 +507,56 @@ router.get('/stg3/d7', (req, res) => {
       });
     }
   });
+});
+
+
+////////////////////////  POST EVENT  ////////////////////////////
+/*
+Required params:
+{
+  "stg":"stg1",
+  "adhoc16":"ADH016_007620170503MSYJFK1400OUT1410"
+}
+
+conditions: Flight must have negative tail. This event is opposite of REM.
+
+
+*/
+router.post('/send', async (req, res) => {
+  let body = req.body;
+  let stg = v.trim(body.stg);
+  let adhoc16 = body.adhoc16;
+  if (!stg == 'stg1' || !stg == 'stg2' || !stg == 'stg3') {
+    res.status(400).json({ error: 'stg must be stg1 or stg3' });
+  } else {
+    try {
+
+        //////////////////////////////// prep data for adhoc 16 /////////////////////////////////
+        let dropLocation;
+        if (stg == 'stg1') {
+          dropLocation = './sample';
+        } else if (stg == 'stg2') {
+          dropLocation = './sample';
+        } else if (stg == 'stg3') {
+          dropLocation = './sample';
+        }
+        let now = moment(new Date()).format('MM_DD_YYYY_HH_mm_SS_x');
+        let fileName = `mceg_adhoc16_${now}`;
+        let job = await fs.writeFile(`${dropLocation}/${fileName}.txt`, adhoc16).then((err) => {
+         if (err) {
+          console.log(err)
+           res.status(404).json({error: `Error sending File: ${fileName} - Failed!!`});
+         } else {
+          res.status(201).json({adhoc: `File: ${fileName} sent at ${now}`});
+         }
+        });
+        ////////////////////////////////////// end of adhoc 16 /////////////////////////////////
+
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
 });
 
 module.exports = router;
