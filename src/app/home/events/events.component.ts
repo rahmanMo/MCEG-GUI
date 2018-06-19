@@ -15,13 +15,11 @@ import { EventRow } from '../../models/event-row';
   encapsulation: ViewEncapsulation.None
 })
 export class EventsComponent implements OnInit {
-  maxDate;
-  minDate;
   public options: Pickadate.DateOptions = {
     format: 'yyyymmdd',
     formatSubmit: 'yyyymmdd',
-    max: this.maxDate,
-    min: this.minDate
+    max: 6,
+    min: true
   };
 
   // defining output event for all events
@@ -198,23 +196,6 @@ export class EventsComponent implements OnInit {
 
   ngOnInit() {
     this.currentDateTimeUTC();
-    let dateNow = new Date();
-    let inputYear = dateNow.getUTCFullYear().toString();
-    let inputMonth =
-      (dateNow.getUTCMonth() < 9 ? '0' : '') + (dateNow.getUTCMonth() + 1);
-    let inputDay =
-      (dateNow.getUTCDate() < 10 ? '0' : '') + dateNow.getUTCDate();
-    this.minDate = `${inputYear}${inputMonth}${inputDay}`;
-    // adding 2 more days to todays date
-    // adhoc processor can only handle today tomorrow and next day
-    dateNow.setDate(dateNow.getDate() + 2);
-    inputYear = dateNow.getUTCFullYear().toString();
-    inputMonth =
-      (dateNow.getUTCMonth() < 9 ? '0' : '') + (dateNow.getUTCMonth() + 1);
-    inputDay = (dateNow.getUTCDate() < 10 ? '0' : '') + dateNow.getUTCDate();
-    this.maxDate = `${inputYear}${inputMonth}${inputDay}`;
-    this.options.min = this.minDate;
-    this.options.max = this.maxDate;
   }
 
   resetBinding() {
