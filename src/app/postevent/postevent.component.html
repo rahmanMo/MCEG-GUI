@@ -1,4 +1,100 @@
-<p *ngIf="flightNum != null || utcDate != null || origin != null || destination != null || stdUTC != null">
-  ADH016_{{flightNum}}{{utcDate}}{{origin}}{{destination}}{{stdUTC}}{{selctedEvent}}
+<div class="row">
+  <h5 class="center">Input data to post event or click on flight to autofill flight data.</h5>
+  <div class="divider"></div>
+  <div class="col s6">
+    <ul class="collection">
+      <li class="collection-item">
+        <p>
+          Adhoc Message:
+          <span class="color-red" *ngIf="flightNum != null || utcDate != null || origin != null || destination != null || stdUTC != null">ADH016_{{flightNum}}{{utcDate}}{{origin}}{{destination}}{{stdUTC}}{{selctedEvent}}</span>
+        </p>
+      </li>
+    </ul>
+  </div>
+  <div class="col s6">
+    <mz-select-container>
+      <select mz-select id="options-select" [placeholder]="'Select Event Type'" [(ngModel)]="selctedEvent">
+        <option *ngFor="let e of events" class="left circle">{{e}}</option>
+      </select>
+    </mz-select-container>
+  </div>
+</div>
 
-</p>
+<!-- NEW -->
+<div>
+    <form >
+      <div class="row" >
+        <!-- <div class="input-field col s3">
+          <input placeholder=""
+                 type="text"
+                 [(ngModel)]="flightNum"
+                 name="flight_number"
+                 #flightNumber="ngModel"
+                 required minlength="1" maxlength="4" pattern="^[0-9]*$">
+          <label for="flight_number">Flight Number</label>
+        </div> -->
+        <mz-input-container class="col s3">
+            <input mz-input
+              [label]="'Flight Number'"
+              placeholder=""
+              [validate]="true"
+              [dataError]="'Flight Number is invalid, must be 4 digit'"
+              (blur)="$event.target.value = padWithZero($event.target.value); flightNum = padWithZero($event.target.value)"
+              name="flight_number"
+              [(ngModel)]="flightNum"
+              #flightNumber="ngModel"
+              minlength="1"
+              maxlength="4"
+              pattern="^[0-9]*$"
+              required
+              type="text">
+          </mz-input-container>
+        <mz-datepicker-container class="col s3">
+          <input mz-datepicker
+            [options]="options"
+            [(ngModel)]="utcDate"
+            name="flight_origin_date_utc"
+            placeholder=""
+            label="Flight Origin Date (UTC)"
+            #flightOriginDate="ngModel"
+            type="text"
+            required minlength="8" maxlength="8" pattern="^[0-9]*$">
+        </mz-datepicker-container>
+        <div class="input-field col s3">
+          <input placeholder="Flight Origin (Ex: JFK)"
+                 type="text"
+                 [(ngModel)]="origin"
+                 name="flight_origin"
+                 #flightOrigin="ngModel"
+                 style="text-transform:uppercase"
+                 oninput="this.value = this.value.toUpperCase()"
+                 required minlength="3" maxlength="3" pattern="^[a-zA-Z]*$">
+        </div>
+        <div class="input-field col s3">
+          <input placeholder="Flight Destination (Ex: BOS)"
+                 type="text"
+                 [(ngModel)]="destination"
+                 name="flight_destination"
+                 #flightDestination="ngModel"
+                 style="text-transform:uppercase"
+                 oninput="this.value = this.value.toUpperCase()"
+                 required minlength="3" maxlength="3" pattern="^[a-zA-Z]*$">
+        </div>
+        <div class="input-field col s3">
+          <input placeholder="STD From Origin in UTC (hhmm)"
+                 type="text"
+                 [(ngModel)]="stdUTC"
+                 name="flight_std_utc"
+                 #time="ngModel"
+                 required minlength="1" maxlength="4" pattern="^[0-9]*$">
+        </div>
+      </div>
+      <!-- submit -->
+      <div class="row">
+        <input class="waves-effect waves-light btn"
+               type="submit"
+               value="Post"
+               [disabled]="flightNumber.invalid || flightOriginDate.invalid || flightOrigin.invalid || flightDestination.invalid || time.invalid">
+      </div>
+    </form>
+  </div>

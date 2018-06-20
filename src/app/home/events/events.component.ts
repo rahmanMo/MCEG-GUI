@@ -19,7 +19,7 @@ export class EventsComponent implements OnInit {
     format: 'yyyymmdd',
     formatSubmit: 'yyyymmdd',
     max: 6,
-    min: true
+    min: -1
   };
 
   // defining output event for all events

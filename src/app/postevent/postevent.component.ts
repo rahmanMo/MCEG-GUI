@@ -10,6 +10,12 @@ import * as v from 'voca';
 export class PosteventComponent implements OnInit, OnChanges {
 
   @Input() inputFlight: Flight;
+  public options: Pickadate.DateOptions = {
+    format: 'yyyymmdd',
+    formatSubmit: 'yyyymmdd',
+    max: 6,
+    min: -1
+  };
   // defining all the available events
   events = [
     'OUT',
@@ -25,7 +31,6 @@ export class PosteventComponent implements OnInit, OnChanges {
     'DEL',
     'GTD',
     'GTA',
-    'NEW',
     'RIN',
     'ASN',
     'REM',
@@ -62,13 +67,17 @@ export class PosteventComponent implements OnInit, OnChanges {
 
   ngOnInit() {}
 
+  padWithZero(value) {
+    return v(value).trim().padLeft(4, '0');
+  }
+
   ngOnChanges(changes: SimpleChanges) {
     const data: Flight = changes.inputFlight.currentValue;
     if (data != null) {
       this.utcDate = v(data.numGMTDate).trim();
       this.flightNum = v(data.identifier).trim().padLeft(4, '0');
-      this.origin = v(data.origin).trim();
-      this.destination = v(data.destination).trim();
+      this.origin = v(data.origin).trim().upperCase();
+      this.destination = v(data.destination).trim().upperCase();
       this.stdUTC =  v(data.STDudt).trim().padLeft(4, '0');
     }
   }
