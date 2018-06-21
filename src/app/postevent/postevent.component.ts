@@ -42,7 +42,8 @@ export class PosteventComponent implements OnInit, OnChanges {
     'GRD',
     'DVC'
   ];
-  selctedEvent = 'ETA';
+  environment;
+  selctedEvent;
   utcDate;
   flightNum;
   origin;
@@ -67,8 +68,37 @@ export class PosteventComponent implements OnInit, OnChanges {
 
   ngOnInit() {}
 
+  reset() {
+    this.utcDate = null;
+    this.flightNum = null;
+    this.origin = null;
+    this.destination = null;
+    this.stdUTC = null;
+    this.staUTC = null;
+    this.outUTC = null;
+    this.offUTC = null;
+    this.onUTC = null;
+    this.inUTC = null;
+    this.etaUTC = null;
+    this.etdUTC = null;
+    this.etoUTC = null;
+    this.eonUTC = null;
+    this.newTail = null;
+    this.gtd = null;
+    this.gta = null;
+    this.diversionCity = null;
+    this.nextDay = null;
+  }
+
   padWithZero(value) {
     return v(value).trim().padLeft(4, '0');
+  }
+  padWithSpace(value) {
+    return v(value).trim().padLeft(4, ' ');
+  }
+
+  upcaseValue(value) {
+    return v(value).trim().upperCase();
   }
 
   ngOnChanges(changes: SimpleChanges) {

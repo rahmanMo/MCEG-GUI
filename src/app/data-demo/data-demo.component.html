@@ -53,7 +53,7 @@
 
 <mz-tab [fixedTabWidth]="true">
   <mz-tab-item [label]="'Flight Data'">
-    <div class="card-panel" style="width: 100%; min-height: 300px;">
+    <div class="card-panel" style="width: 100%; min-height: 500px;">
       <h5 class="center">Click on flight to see all attribute</h5>
       <!-- <pre> {{ rowData | json }} </pre> -->
       <div *ngIf="rowData != null" class="container row">
@@ -145,7 +145,7 @@
     </div>
   </mz-tab-item>
   <mz-tab-item [label]="'Post Event'">
-      <div class="card-panel" style="width: 100%; min-height: 300px;">
+      <div class="card-panel" style="width: 100%; min-height: 500px;">
           <app-postevent [inputFlight]="rowData"></app-postevent>
       </div>
   </mz-tab-item>
