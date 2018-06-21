@@ -29,11 +29,11 @@ export class GuideComponent implements OnInit {
       active: false
     },
     {
-      type: 'eta',
+      type: 'etd',
       active: false
     },
     {
-      type: 'etd',
+      type: 'eta',
       active: false
     },
     {
@@ -55,14 +55,13 @@ export class GuideComponent implements OnInit {
     {
       type: 'del',
       active: false
-    }
-    ,
-    {
-      type: 'gta',
-      active: false
     },
     {
       type: 'gtd',
+      active: false
+    },
+    {
+      type: 'gta',
       active: false
     },
     {
@@ -82,15 +81,11 @@ export class GuideComponent implements OnInit {
       active: false
     },
     {
-      type: 'uda',
-      active: false
-    },
-    {
       type: 'udd',
       active: false
     },
     {
-      type: 'rma',
+      type: 'uda',
       active: false
     },
     {
@@ -98,7 +93,7 @@ export class GuideComponent implements OnInit {
       active: false
     },
     {
-      type: 'air',
+      type: 'rma',
       active: false
     },
     {
@@ -106,7 +101,15 @@ export class GuideComponent implements OnInit {
       active: false
     },
     {
+      type: 'air',
+      active: false
+    },
+    {
       type: 'dvc',
+      active: false
+    },
+    {
+      type: 'none',
       active: false
     }
   ];

@@ -20,10 +20,10 @@ export class PosteventComponent implements OnInit, OnChanges {
   events = [
     'OUT',
     'OFF',
-    'ON',
-    'IN',
-    'ETA',
+    'ON_',
+    'IN_',
     'ETD',
+    'ETA',
     'ETO',
     'EON',
     'SUB',
@@ -38,8 +38,8 @@ export class PosteventComponent implements OnInit, OnChanges {
     'UDA',
     'RMD',
     'RMA',
-    'AIR',
     'GRD',
+    'AIR',
     'DVC'
   ];
   environment;
@@ -63,6 +63,7 @@ export class PosteventComponent implements OnInit, OnChanges {
   gta;
   diversionCity;
   nextDay;
+  adhocMessage;
 
   constructor() {}
 
@@ -88,6 +89,11 @@ export class PosteventComponent implements OnInit, OnChanges {
     this.gta = null;
     this.diversionCity = null;
     this.nextDay = null;
+  }
+
+  onSubmitOUT() {
+    this.adhocMessage
+    = `ADH016_${this.flightNum}${this.utcDate}${this.origin}${this.destination}${this.stdUTC}${this.selctedEvent}${this.outUTC}`;
   }
 
   padWithZero(value) {

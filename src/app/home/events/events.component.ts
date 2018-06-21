@@ -59,11 +59,11 @@ export class EventsComponent implements OnInit {
       active: false
     },
     {
-      type: 'eta',
+      type: 'etd',
       active: false
     },
     {
-      type: 'etd',
+      type: 'eta',
       active: false
     },
     {
@@ -111,15 +111,11 @@ export class EventsComponent implements OnInit {
       active: false
     },
     {
-      type: 'uda',
-      active: false
-    },
-    {
       type: 'udd',
       active: false
     },
     {
-      type: 'rma',
+      type: 'uda',
       active: false
     },
     {
@@ -127,11 +123,15 @@ export class EventsComponent implements OnInit {
       active: false
     },
     {
-      type: 'air',
+      type: 'rma',
       active: false
     },
     {
       type: 'grd',
+      active: false
+    },
+    {
+      type: 'air',
       active: false
     },
     {
