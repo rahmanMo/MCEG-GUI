@@ -18,13 +18,12 @@
 <div class="row center">
   <mz-select-container class="col s2 offset-s4">
     <select mz-select label="'Environment'" [placeholder]="'Select Environment'" [(ngModel)]="environment" (change)="environment = $event.target.value">
-      <option class="left circle" value="STG1">STG1</option>
-      <option class="left circle" value="STG3">STG3</option>
+      <option *ngFor="let e of environments" class="left circle" value="{{ e }}">{{ e }}</option>
     </select>
   </mz-select-container>
   <mz-select-container class="col s2 offset-s0">
     <select mz-select [placeholder]="'Select Event Type'" label="Events" [(ngModel)]="selctedEvent" (change)="selctedEvent = $event.target.value">
-      <option *ngFor="let e of events" class="left circle" value="{{e}}">{{e}}</option>
+      <option *ngFor="let e of events" class="left circle" value="{{ e }}">{{ e }}</option>
     </select>
   </mz-select-container>
 </div>
@@ -128,7 +127,8 @@
               || flightOrigin.invalid
               || flightDestination.invalid
               || std.invalid
-              || out.invalid ">POST</button>
+              || out.invalid
+              || out.value == '0000' ">POST</button>
       <button type="reset" value="Reset" class="waves-effect waves-light btn" (click)="reset()">RESET</button>
     </div>
   </form>

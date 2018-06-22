@@ -1,7 +1,7 @@
-import { Component, OnInit, ViewEncapsulation, OnDestroy } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, OnDestroy, AfterViewInit } from '@angular/core';
 import { Flight } from '../models/flight';
 import { FlightsService } from '../services/flights.service';
-// import { Observable } from 'rxjs/Observable';
+import { PosteventComponent } from '../postevent/postevent.component';
 import { ConfigService } from '../services/config-service';
 import { ConfigServiceExtra } from '../services/config-service-extra';
 import { sampleData } from '../../assets/data';
@@ -15,7 +15,7 @@ import * as moment from 'moment';
   providers: [ConfigService],
   encapsulation: ViewEncapsulation.Emulated
 })
-export class DataDemoComponent implements OnInit, OnDestroy {
+export class DataDemoComponent implements OnInit, OnDestroy, AfterViewInit {
   // constructor(private flightsService: FlightsService) { }
 
   basicColumns = [
@@ -145,7 +145,7 @@ export class DataDemoComponent implements OnInit, OnDestroy {
 
   date: string;
   data = [];
-  env = 'STG-1';
+  env = 'STG1';
   rowData: Flight;
   configuration;
   configurationExtra;
@@ -170,6 +170,9 @@ export class DataDemoComponent implements OnInit, OnDestroy {
   // comment this out when building for prod
   ngOnInit() {
     this.totalCount = this.data.length;
+  }
+
+  ngAfterViewInit() {
   }
 
   // enable this when building for prod

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Flight } from '../models/flight';
+import { Event } from '../models/event';
 import { Observable } from 'rxjs/Observable';
 // import { MessageService } from './message.service';
 import { of } from 'rxjs/observable/of';
@@ -120,6 +121,12 @@ export class FlightsService {
       .pipe(
         catchError(this.handleError('getStg3d7', []))
       );
+  }
+  postEvent( event: Event): Observable<any> {
+    return this.http.post('/api/send', event)
+    .pipe(
+      catchError(this.handleError('postEvent', []))
+    );
   }
 
 

@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Flight } from '../models/flight';
+import { Event } from '../models/event';
 import * as v from 'voca';
 
 @Component({
@@ -10,6 +11,7 @@ import * as v from 'voca';
 export class PosteventComponent implements OnInit, OnChanges {
 
   @Input() inputFlight: Flight;
+  @Input() env;
   public options: Pickadate.DateOptions = {
     format: 'yyyymmdd',
     formatSubmit: 'yyyymmdd',
@@ -43,6 +45,7 @@ export class PosteventComponent implements OnInit, OnChanges {
     'DVC'
   ];
   environment;
+  environments = [ 'STG1', 'STG3'];
   selctedEvent;
   utcDate;
   flightNum;
@@ -67,7 +70,13 @@ export class PosteventComponent implements OnInit, OnChanges {
 
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    if (this.env === 'STG1') {
+      this.environment = 'STG1';
+    } else if (this.env === 'STG3') {
+      this.environment = 'STG3';
+    }
+  }
 
   reset() {
     this.utcDate = null;
@@ -109,12 +118,12 @@ export class PosteventComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     const data: Flight = changes.inputFlight.currentValue;
-    if (data != null) {
-      this.utcDate = v(data.numGMTDate).trim();
-      this.flightNum = v(data.identifier).trim().padLeft(4, '0');
-      this.origin = v(data.origin).trim().upperCase();
-      this.destination = v(data.destination).trim().upperCase();
-      this.stdUTC =  v(data.STDudt).trim().padLeft(4, '0');
-    }
+      if (data != null) {
+        this.utcDate = v(data.numGMTDate).trim();
+        this.flightNum = v(data.identifier).trim().padLeft(4, '0');
+        this.origin = v(data.origin).trim().upperCase();
+        this.destination = v(data.destination).trim().upperCase();
+        this.stdUTC =  v(data.STDudt).trim().padLeft(4, '0');
+      }
   }
 }
