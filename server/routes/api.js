@@ -524,20 +524,21 @@ conditions: Flight must have negative tail. This event is opposite of REM.
 */
 router.post('/send', async (req, res) => {
   let body = req.body;
-  let stg = v.trim(body.stg);
+  let stg = v(body.stg).trim().upperCase();
   let adhoc16 = body.adhoc16;
-  if (!stg == 'stg1' || !stg == 'stg2' || !stg == 'stg3') {
+  console.log(`Adhoc event processing with data: ${stg} and ${adhoc16}`);
+  if (!stg == 'STG1' || !stg == 'STG2' || !stg == 'STG3') {
     res.status(400).json({ error: 'stg must be stg1 or stg3' });
   } else {
     try {
 
         //////////////////////////////// prep data for adhoc 16 /////////////////////////////////
         let dropLocation;
-        if (stg == 'stg1') {
+        if (stg == 'STG1') {
           dropLocation = './sample';
-        } else if (stg == 'stg2') {
+        } else if (stg == 'STG2') {
           dropLocation = './sample';
-        } else if (stg == 'stg3') {
+        } else if (stg == 'STG3') {
           dropLocation = './sample';
         }
         let now = moment(new Date()).format('MM_DD_YYYY_HH_mm_SS_x');
@@ -547,7 +548,9 @@ router.post('/send', async (req, res) => {
           console.log(err)
            res.status(404).json({error: `Error sending File: ${fileName} - Failed!!`});
          } else {
-          res.status(201).json({adhoc: `File: ${fileName} sent at ${now}`});
+          res.status(201).json({message: {
+            fileName: fileName,
+            timestamp: now}});
          }
         });
         ////////////////////////////////////// end of adhoc 16 /////////////////////////////////

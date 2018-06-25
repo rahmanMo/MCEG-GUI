@@ -1,7 +1,8 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Flight } from '../models/flight';
-import { Event } from '../models/event';
+import { AdhocEvent } from '../models/adhoc-event';
 import * as v from 'voca';
+import { FlightsService } from '../services/flights.service';
 
 @Component({
   selector: 'app-postevent',
@@ -67,8 +68,10 @@ export class PosteventComponent implements OnInit, OnChanges {
   diversionCity;
   nextDay;
   adhocMessage;
+  fileName;
+  timestamp;
 
-  constructor() {}
+  constructor(private flightsService: FlightsService) {}
 
   ngOnInit() {
     if (this.env === 'STG1') {
@@ -100,9 +103,19 @@ export class PosteventComponent implements OnInit, OnChanges {
     this.nextDay = null;
   }
 
-  onSubmitOUT() {
+  onSubmitOUT(event: Event) {
+    event.preventDefault();
     this.adhocMessage
     = `ADH016_${this.flightNum}${this.utcDate}${this.origin}${this.destination}${this.stdUTC}${this.selctedEvent}${this.outUTC}`;
+    const eventOUT: AdhocEvent = {
+      stg: this.environment,
+      adhoc16: this.adhocMessage
+    };
+    this.flightsService.postEvent(eventOUT).subscribe(data => {
+      this.fileName = data['fileName'];
+      this.timestamp = data['timestamp'];
+      this.reset();
+    });
   }
 
   padWithZero(value) {

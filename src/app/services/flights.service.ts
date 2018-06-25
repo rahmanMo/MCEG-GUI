@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Flight } from '../models/flight';
-import { Event } from '../models/event';
+import { AdhocEvent } from '../models/adhoc-event';
 import { Observable } from 'rxjs/Observable';
 // import { MessageService } from './message.service';
 import { of } from 'rxjs/observable/of';
@@ -11,6 +11,12 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class FlightsService {
 
   constructor(private http: HttpClient) { }
+
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type':  'application/json'
+    })
+  };
 
   // private flightsUrl = 'http://localhost:3000/api/flights';
   // private flightsUrl = '/api/';
@@ -122,9 +128,13 @@ export class FlightsService {
         catchError(this.handleError('getStg3d7', []))
       );
   }
-  postEvent( event: Event): Observable<any> {
-    return this.http.post('/api/send', event)
+  postEvent( adhocEvent: AdhocEvent): Observable<any> {
+    return this.http.post('/api/send', {stg: adhocEvent.stg, adhoc16: adhocEvent.adhoc16}, this.httpOptions)
     .pipe(
+      map((response: Response) => {
+        console.log(response);
+      return response['message']; })
+    ).pipe(
       catchError(this.handleError('postEvent', []))
     );
   }

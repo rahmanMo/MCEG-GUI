@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation, OnDestroy, AfterViewInit } from '@angular/core';
 import { Flight } from '../models/flight';
 import { FlightsService } from '../services/flights.service';
-import { PosteventComponent } from '../postevent/postevent.component';
+// import { PosteventComponent } from '../postevent/postevent.component';
 import { ConfigService } from '../services/config-service';
 import { ConfigServiceExtra } from '../services/config-service-extra';
 import { sampleData } from '../../assets/data';
@@ -173,6 +173,9 @@ export class DataDemoComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngAfterViewInit() {
+    setInterval(() => {
+      this.refreshData();
+    }, 10000);
   }
 
   // enable this when building for prod
@@ -183,11 +186,12 @@ export class DataDemoComponent implements OnInit, OnDestroy, AfterViewInit {
   //   }, 15000);
   // }
 
-  // refreshData() {
-  //   this.flightsService.getTodaysFlights().subscribe(data => {
-  //     this.data = data;
-  //   });
-  // }
+  refreshData() {
+    this.flightsService.getStg1d1().subscribe(data => {
+      this.data = data;
+      this.totalCount = this.data.length;
+    });
+  }
 
   eventEmitted($event) {
     if ($event.event === 'onClick') {
