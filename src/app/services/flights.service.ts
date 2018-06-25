@@ -4,7 +4,7 @@ import { AdhocEvent } from '../models/adhoc-event';
 import { Observable } from 'rxjs/Observable';
 // import { MessageService } from './message.service';
 import { of } from 'rxjs/observable/of';
-import { catchError, map, tap } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable()

@@ -179,7 +179,7 @@ export class Stage3D5Component implements OnInit, OnDestroy {
     this.refreshData();
     this.interval = setInterval(() => {
       this.refreshData();
-    }, 15000);
+    }, 10000);
   }
 
   refreshData() {

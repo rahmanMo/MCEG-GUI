@@ -183,7 +183,7 @@ export class DataDemoComponent implements OnInit, OnDestroy, AfterViewInit {
   //   this.refreshData();
   //   const interval = setInterval(() => {
   //     this.refreshData();
-  //   }, 15000);
+  //   }, 10000);
   // }
 
   refreshData() {

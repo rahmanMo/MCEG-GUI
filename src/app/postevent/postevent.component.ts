@@ -107,11 +107,53 @@ export class PosteventComponent implements OnInit, OnChanges {
     event.preventDefault();
     this.adhocMessage
     = `ADH016_${this.flightNum}${this.utcDate}${this.origin}${this.destination}${this.stdUTC}${this.selctedEvent}${this.outUTC}`;
-    const eventOUT: AdhocEvent = {
+    const adhocEvent: AdhocEvent = {
       stg: this.environment,
       adhoc16: this.adhocMessage
     };
-    this.flightsService.postEvent(eventOUT).subscribe(data => {
+    this.flightsService.postEvent(adhocEvent).subscribe(data => {
+      this.fileName = data['fileName'];
+      this.timestamp = data['timestamp'];
+      this.reset();
+    });
+  }
+  onSubmitOFF(event: Event) {
+    event.preventDefault();
+    this.adhocMessage
+    = `ADH016_${this.flightNum}${this.utcDate}${this.origin}${this.destination}${this.stdUTC}${this.selctedEvent}${this.offUTC}`;
+    const adhocEvent: AdhocEvent = {
+      stg: this.environment,
+      adhoc16: this.adhocMessage
+    };
+    this.flightsService.postEvent(adhocEvent).subscribe(data => {
+      this.fileName = data['fileName'];
+      this.timestamp = data['timestamp'];
+      this.reset();
+    });
+  }
+  onSubmitON(event: Event) {
+    event.preventDefault();
+    this.adhocMessage
+    = `ADH016_${this.flightNum}${this.utcDate}${this.origin}${this.destination}${this.stdUTC}${this.selctedEvent}${this.onUTC}`;
+    const adhocEvent: AdhocEvent = {
+      stg: this.environment,
+      adhoc16: this.adhocMessage
+    };
+    this.flightsService.postEvent(adhocEvent).subscribe(data => {
+      this.fileName = data['fileName'];
+      this.timestamp = data['timestamp'];
+      this.reset();
+    });
+  }
+  onSubmitIN(event: Event) {
+    event.preventDefault();
+    this.adhocMessage
+    = `ADH016_${this.flightNum}${this.utcDate}${this.origin}${this.destination}${this.stdUTC}${this.selctedEvent}${this.inUTC}`;
+    const adhocEvent: AdhocEvent = {
+      stg: this.environment,
+      adhoc16: this.adhocMessage
+    };
+    this.flightsService.postEvent(adhocEvent).subscribe(data => {
       this.fileName = data['fileName'];
       this.timestamp = data['timestamp'];
       this.reset();

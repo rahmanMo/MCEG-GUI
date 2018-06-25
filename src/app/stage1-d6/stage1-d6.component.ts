@@ -178,7 +178,7 @@ export class Stage1D6Component implements OnInit, OnDestroy {
     this.refreshData();
     this.interval = setInterval(() => {
       this.refreshData();
-    }, 15000);
+    }, 10000);
   }
 
   refreshData() {
