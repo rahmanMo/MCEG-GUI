@@ -542,6 +542,7 @@ router.post('/send', async (req, res) => {
           dropLocation = './sample';
         }
         let now = moment(new Date()).format('MM_DD_YYYY_HH_mm_SS_x');
+        let timestamp = moment(new Date()).format('MMM-DD-YYYY | HH:mm:SS');
         let fileName = `mceg_adhoc16_${now}`;
         let job = await fs.writeFile(`${dropLocation}/${fileName}.txt`, adhoc16).then((err) => {
          if (err) {
@@ -550,7 +551,7 @@ router.post('/send', async (req, res) => {
          } else {
           res.status(201).json({message: {
             fileName: fileName,
-            timestamp: now}});
+            timestamp: timestamp}});
          }
         });
         ////////////////////////////////////// end of adhoc 16 /////////////////////////////////

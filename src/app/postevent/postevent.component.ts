@@ -159,6 +159,34 @@ export class PosteventComponent implements OnInit, OnChanges {
       this.reset();
     });
   }
+  onSubmitETD(event: Event) {
+    event.preventDefault();
+    this.adhocMessage
+    = `ADH016_${this.flightNum}${this.utcDate}${this.origin}${this.destination}${this.stdUTC}${this.selctedEvent}${this.etdUTC}`;
+    const adhocEvent: AdhocEvent = {
+      stg: this.environment,
+      adhoc16: this.adhocMessage
+    };
+    this.flightsService.postEvent(adhocEvent).subscribe(data => {
+      this.fileName = data['fileName'];
+      this.timestamp = data['timestamp'];
+      this.reset();
+    });
+  }
+  onSubmitETA(event: Event) {
+    event.preventDefault();
+    this.adhocMessage
+    = `ADH016_${this.flightNum}${this.utcDate}${this.origin}${this.destination}${this.stdUTC}${this.selctedEvent}${this.etaUTC}`;
+    const adhocEvent: AdhocEvent = {
+      stg: this.environment,
+      adhoc16: this.adhocMessage
+    };
+    this.flightsService.postEvent(adhocEvent).subscribe(data => {
+      this.fileName = data['fileName'];
+      this.timestamp = data['timestamp'];
+      this.reset();
+    });
+  }
 
   padWithZero(value) {
     return v(value).trim().padLeft(4, '0');

@@ -173,9 +173,9 @@ export class DataDemoComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    setInterval(() => {
-      this.refreshData();
-    }, 10000);
+    // setInterval(() => {
+    //   this.refreshData();
+    // }, 10000);
   }
 
   // enable this when building for prod
