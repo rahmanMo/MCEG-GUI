@@ -559,7 +559,7 @@
 </div>
 
 
-<!-- ETD -->
+<!-- ETA -->
 <div *ngIf="selctedEvent == 'ETA' && environment != null">
   <form (ngSubmit)="onSubmitETA($event)">
     <div class="row" >
@@ -658,6 +658,410 @@
               || flightDestination.invalid
               || std.invalid
               || eta.invalid">POST</button>
+      <button type="reset" value="Reset" class="waves-effect waves-light btn" (click)="reset()">RESET</button>
+    </div>
+  </form>
+</div>
+
+
+<!-- ETO -->
+<div *ngIf="selctedEvent == 'ETO' && environment != null">
+  <form (ngSubmit)="onSubmitETO($event)">
+    <div class="row" >
+      <mz-input-container class="col s3">
+        <input mz-input
+          [label]="'Flight Number'"
+          placeholder=""
+          (blur)="$event.target.value = padWithZero($event.target.value); flightNum = padWithZero($event.target.value)"
+          name="flight_number"
+          [(ngModel)]="flightNum"
+          #flightNumber="ngModel"
+          minlength="1"
+          maxlength="4"
+          pattern="^[0-9]*$"
+          required
+          type="text">
+      </mz-input-container>
+      <mz-datepicker-container class="col s3">
+        <input mz-datepicker
+          [options]="options"
+          [(ngModel)]="utcDate"
+          name="flight_origin_date_utc"
+          placeholder=""
+          label="Flight Origin Date (UTC)"
+          #flightOriginDate="ngModel"
+          type="text"
+          required minlength="8" maxlength="8" pattern="^[0-9]*$">
+      </mz-datepicker-container>
+      <mz-input-container class="col s3">
+        <input mz-input
+          [label]="'Flight Origin (Ex: JFK)'"
+          placeholder=""
+          (input)="$event.target.value = upcaseValue($event.target.value); origin = upcaseValue($event.target.value)"
+          name="flight_origin"
+          [(ngModel)]="origin"
+          #flightOrigin="ngModel"
+          minlength="3"
+          maxlength="3"
+          pattern="^[A-Z]*$"
+          required
+          type="text">
+      </mz-input-container>
+      <mz-input-container class="col s3">
+        <input mz-input
+          [label]="'Flight Destination (Ex: BOS)'"
+          placeholder=""
+          (input)="$event.target.value = upcaseValue($event.target.value); destination = upcaseValue($event.target.value)"
+          name="flight_destination"
+          [(ngModel)]="destination"
+          #flightDestination="ngModel"
+          minlength="3"
+          maxlength="3"
+          pattern="^[A-Z]*$"
+          required
+          type="text">
+      </mz-input-container>
+    </div>
+    <div class="row">
+      <mz-input-container class="col s3 offset-s3">
+        <input mz-input
+          [label]="'STD in UTC (hhmm)'"
+          placeholder=""
+          (blur)="$event.target.value = padWithZero($event.target.value); stdUTC = padWithZero($event.target.value)"
+          name="flight_std_utc"
+          [(ngModel)]="stdUTC"
+          #std="ngModel"
+          minlength="1"
+          maxlength="4"
+          pattern="^[0-9]*$"
+          required
+          type="text">
+      </mz-input-container>
+      <mz-input-container class="col s3 offset-s0">
+        <input mz-input
+          [label]="'ETO in UTC (hhmm)'"
+          placeholder=""
+          (blur)="$event.target.value = padWithZero($event.target.value); etoUTC = padWithZero($event.target.value)"
+          name="flight_eto_utc"
+          [(ngModel)]="etoUTC"
+          #eto="ngModel"
+          minlength="1"
+          maxlength="4"
+          pattern="^[0-9]*$"
+          required
+          type="text">
+      </mz-input-container>
+    </div>
+    <!-- submit -->
+    <div class="row center">
+      <button class="waves-effect waves-light btn"
+              type="submit"
+              value="Post"
+              [disabled]="flightNumber.invalid
+              || flightOriginDate.invalid
+              || flightOrigin.invalid
+              || flightDestination.invalid
+              || std.invalid
+              || eto.invalid">POST</button>
+      <button type="reset" value="Reset" class="waves-effect waves-light btn" (click)="reset()">RESET</button>
+    </div>
+  </form>
+</div>
+
+
+<!-- EON -->
+<div *ngIf="selctedEvent == 'EON' && environment != null">
+  <form (ngSubmit)="onSubmitEON($event)">
+    <div class="row" >
+      <mz-input-container class="col s3">
+        <input mz-input
+          [label]="'Flight Number'"
+          placeholder=""
+          (blur)="$event.target.value = padWithZero($event.target.value); flightNum = padWithZero($event.target.value)"
+          name="flight_number"
+          [(ngModel)]="flightNum"
+          #flightNumber="ngModel"
+          minlength="1"
+          maxlength="4"
+          pattern="^[0-9]*$"
+          required
+          type="text">
+      </mz-input-container>
+      <mz-datepicker-container class="col s3">
+        <input mz-datepicker
+          [options]="options"
+          [(ngModel)]="utcDate"
+          name="flight_origin_date_utc"
+          placeholder=""
+          label="Flight Origin Date (UTC)"
+          #flightOriginDate="ngModel"
+          type="text"
+          required minlength="8" maxlength="8" pattern="^[0-9]*$">
+      </mz-datepicker-container>
+      <mz-input-container class="col s3">
+        <input mz-input
+          [label]="'Flight Origin (Ex: JFK)'"
+          placeholder=""
+          (input)="$event.target.value = upcaseValue($event.target.value); origin = upcaseValue($event.target.value)"
+          name="flight_origin"
+          [(ngModel)]="origin"
+          #flightOrigin="ngModel"
+          minlength="3"
+          maxlength="3"
+          pattern="^[A-Z]*$"
+          required
+          type="text">
+      </mz-input-container>
+      <mz-input-container class="col s3">
+        <input mz-input
+          [label]="'Flight Destination (Ex: BOS)'"
+          placeholder=""
+          (input)="$event.target.value = upcaseValue($event.target.value); destination = upcaseValue($event.target.value)"
+          name="flight_destination"
+          [(ngModel)]="destination"
+          #flightDestination="ngModel"
+          minlength="3"
+          maxlength="3"
+          pattern="^[A-Z]*$"
+          required
+          type="text">
+      </mz-input-container>
+    </div>
+    <div class="row">
+      <mz-input-container class="col s3 offset-s3">
+        <input mz-input
+          [label]="'STD in UTC (hhmm)'"
+          placeholder=""
+          (blur)="$event.target.value = padWithZero($event.target.value); stdUTC = padWithZero($event.target.value)"
+          name="flight_std_utc"
+          [(ngModel)]="stdUTC"
+          #std="ngModel"
+          minlength="1"
+          maxlength="4"
+          pattern="^[0-9]*$"
+          required
+          type="text">
+      </mz-input-container>
+      <mz-input-container class="col s3 offset-s0">
+        <input mz-input
+          [label]="'EON in UTC (hhmm)'"
+          placeholder=""
+          (blur)="$event.target.value = padWithZero($event.target.value); eonUTC = padWithZero($event.target.value)"
+          name="flight_eon_utc"
+          [(ngModel)]="eonUTC"
+          #eon="ngModel"
+          minlength="1"
+          maxlength="4"
+          pattern="^[0-9]*$"
+          required
+          type="text">
+      </mz-input-container>
+    </div>
+    <!-- submit -->
+    <div class="row center">
+      <button class="waves-effect waves-light btn"
+              type="submit"
+              value="Post"
+              [disabled]="flightNumber.invalid
+              || flightOriginDate.invalid
+              || flightOrigin.invalid
+              || flightDestination.invalid
+              || std.invalid
+              || eon.invalid">POST</button>
+      <button type="reset" value="Reset" class="waves-effect waves-light btn" (click)="reset()">RESET</button>
+    </div>
+  </form>
+</div>
+
+
+<!-- SUB -->
+<div *ngIf="selctedEvent == 'SUB' && environment != null">
+  <form (ngSubmit)="onSubmitSUB($event)">
+    <div class="row" >
+      <mz-input-container class="col s3">
+        <input mz-input
+          [label]="'Flight Number'"
+          placeholder=""
+          (blur)="$event.target.value = padWithZero($event.target.value); flightNum = padWithZero($event.target.value)"
+          name="flight_number"
+          [(ngModel)]="flightNum"
+          #flightNumber="ngModel"
+          minlength="1"
+          maxlength="4"
+          pattern="^[0-9]*$"
+          required
+          type="text">
+      </mz-input-container>
+      <mz-datepicker-container class="col s3">
+        <input mz-datepicker
+          [options]="options"
+          [(ngModel)]="utcDate"
+          name="flight_origin_date_utc"
+          placeholder=""
+          label="Flight Origin Date (UTC)"
+          #flightOriginDate="ngModel"
+          type="text"
+          required minlength="8" maxlength="8" pattern="^[0-9]*$">
+      </mz-datepicker-container>
+      <mz-input-container class="col s3">
+        <input mz-input
+          [label]="'Flight Origin (Ex: JFK)'"
+          placeholder=""
+          (input)="$event.target.value = upcaseValue($event.target.value); origin = upcaseValue($event.target.value)"
+          name="flight_origin"
+          [(ngModel)]="origin"
+          #flightOrigin="ngModel"
+          minlength="3"
+          maxlength="3"
+          pattern="^[A-Z]*$"
+          required
+          type="text">
+      </mz-input-container>
+      <mz-input-container class="col s3">
+        <input mz-input
+          [label]="'Flight Destination (Ex: BOS)'"
+          placeholder=""
+          (input)="$event.target.value = upcaseValue($event.target.value); destination = upcaseValue($event.target.value)"
+          name="flight_destination"
+          [(ngModel)]="destination"
+          #flightDestination="ngModel"
+          minlength="3"
+          maxlength="3"
+          pattern="^[A-Z]*$"
+          required
+          type="text">
+      </mz-input-container>
+    </div>
+    <div class="row">
+      <mz-input-container class="col s3 offset-s3">
+        <input mz-input
+          [label]="'STD in UTC (hhmm)'"
+          placeholder=""
+          (blur)="$event.target.value = padWithZero($event.target.value); stdUTC = padWithZero($event.target.value)"
+          name="flight_std_utc"
+          [(ngModel)]="stdUTC"
+          #std="ngModel"
+          minlength="1"
+          maxlength="4"
+          pattern="^[0-9]*$"
+          required
+          type="text">
+      </mz-input-container>
+      <mz-input-container class="col s3 offset-s0">
+        <input mz-input
+          [label]="'New Tail Number (###)'"
+          placeholder=""
+          name="flight_new_tail"
+          [(ngModel)]="newTail"
+          #tail="ngModel"
+          minlength="3"
+          maxlength="3"
+          pattern="^[0-9]*$"
+          required
+          type="text">
+      </mz-input-container>
+    </div>
+    <!-- submit -->
+    <div class="row center">
+      <button class="waves-effect waves-light btn"
+              type="submit"
+              value="Post"
+              [disabled]="flightNumber.invalid
+              || flightOriginDate.invalid
+              || flightOrigin.invalid
+              || flightDestination.invalid
+              || std.invalid
+              || tail.invalid">POST</button>
+      <button type="reset" value="Reset" class="waves-effect waves-light btn" (click)="reset()">RESET</button>
+    </div>
+  </form>
+</div>
+
+
+<!-- CNL -->
+<div *ngIf="selctedEvent == 'CNL' && environment != null">
+  <form (ngSubmit)="onSubmitCNL($event)">
+    <div class="row" >
+      <mz-input-container class="col s3">
+        <input mz-input
+          [label]="'Flight Number'"
+          placeholder=""
+          (blur)="$event.target.value = padWithZero($event.target.value); flightNum = padWithZero($event.target.value)"
+          name="flight_number"
+          [(ngModel)]="flightNum"
+          #flightNumber="ngModel"
+          minlength="1"
+          maxlength="4"
+          pattern="^[0-9]*$"
+          required
+          type="text">
+      </mz-input-container>
+      <mz-datepicker-container class="col s3">
+        <input mz-datepicker
+          [options]="options"
+          [(ngModel)]="utcDate"
+          name="flight_origin_date_utc"
+          placeholder=""
+          label="Flight Origin Date (UTC)"
+          #flightOriginDate="ngModel"
+          type="text"
+          required minlength="8" maxlength="8" pattern="^[0-9]*$">
+      </mz-datepicker-container>
+      <mz-input-container class="col s3">
+        <input mz-input
+          [label]="'Flight Origin (Ex: JFK)'"
+          placeholder=""
+          (input)="$event.target.value = upcaseValue($event.target.value); origin = upcaseValue($event.target.value)"
+          name="flight_origin"
+          [(ngModel)]="origin"
+          #flightOrigin="ngModel"
+          minlength="3"
+          maxlength="3"
+          pattern="^[A-Z]*$"
+          required
+          type="text">
+      </mz-input-container>
+      <mz-input-container class="col s3">
+        <input mz-input
+          [label]="'Flight Destination (Ex: BOS)'"
+          placeholder=""
+          (input)="$event.target.value = upcaseValue($event.target.value); destination = upcaseValue($event.target.value)"
+          name="flight_destination"
+          [(ngModel)]="destination"
+          #flightDestination="ngModel"
+          minlength="3"
+          maxlength="3"
+          pattern="^[A-Z]*$"
+          required
+          type="text">
+      </mz-input-container>
+    </div>
+    <div class="row">
+      <mz-input-container class="col s3 offset-s3">
+        <input mz-input
+          [label]="'STD in UTC (hhmm)'"
+          placeholder=""
+          (blur)="$event.target.value = padWithZero($event.target.value); stdUTC = padWithZero($event.target.value)"
+          name="flight_std_utc"
+          [(ngModel)]="stdUTC"
+          #std="ngModel"
+          minlength="1"
+          maxlength="4"
+          pattern="^[0-9]*$"
+          required
+          type="text">
+      </mz-input-container>
+    </div>
+    <!-- submit -->
+    <div class="row center">
+      <button class="waves-effect waves-light btn"
+              type="submit"
+              value="Post"
+              [disabled]="flightNumber.invalid
+              || flightOriginDate.invalid
+              || flightOrigin.invalid
+              || flightDestination.invalid
+              || std.invalid">POST</button>
       <button type="reset" value="Reset" class="waves-effect waves-light btn" (click)="reset()">RESET</button>
     </div>
   </form>

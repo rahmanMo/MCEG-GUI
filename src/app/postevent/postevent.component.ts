@@ -187,6 +187,62 @@ export class PosteventComponent implements OnInit, OnChanges {
       this.reset();
     });
   }
+  onSubmitETO(event: Event) {
+    event.preventDefault();
+    this.adhocMessage
+    = `ADH016_${this.flightNum}${this.utcDate}${this.origin}${this.destination}${this.stdUTC}${this.selctedEvent}${this.etoUTC}`;
+    const adhocEvent: AdhocEvent = {
+      stg: this.environment,
+      adhoc16: this.adhocMessage
+    };
+    this.flightsService.postEvent(adhocEvent).subscribe(data => {
+      this.fileName = data['fileName'];
+      this.timestamp = data['timestamp'];
+      this.reset();
+    });
+  }
+  onSubmitEON(event: Event) {
+    event.preventDefault();
+    this.adhocMessage
+    = `ADH016_${this.flightNum}${this.utcDate}${this.origin}${this.destination}${this.stdUTC}${this.selctedEvent}${this.eonUTC}`;
+    const adhocEvent: AdhocEvent = {
+      stg: this.environment,
+      adhoc16: this.adhocMessage
+    };
+    this.flightsService.postEvent(adhocEvent).subscribe(data => {
+      this.fileName = data['fileName'];
+      this.timestamp = data['timestamp'];
+      this.reset();
+    });
+  }
+  onSubmitSUB(event: Event) {
+    event.preventDefault();
+    this.adhocMessage
+    = `ADH016_${this.flightNum}${this.utcDate}${this.origin}${this.destination}${this.stdUTC}${this.selctedEvent}${this.newTail}`;
+    const adhocEvent: AdhocEvent = {
+      stg: this.environment,
+      adhoc16: this.adhocMessage
+    };
+    this.flightsService.postEvent(adhocEvent).subscribe(data => {
+      this.fileName = data['fileName'];
+      this.timestamp = data['timestamp'];
+      this.reset();
+    });
+  }
+  onSubmitCNL(event: Event) {
+    event.preventDefault();
+    this.adhocMessage
+    = `ADH016_${this.flightNum}${this.utcDate}${this.origin}${this.destination}${this.stdUTC}${this.selctedEvent}`;
+    const adhocEvent: AdhocEvent = {
+      stg: this.environment,
+      adhoc16: this.adhocMessage
+    };
+    this.flightsService.postEvent(adhocEvent).subscribe(data => {
+      this.fileName = data['fileName'];
+      this.timestamp = data['timestamp'];
+      this.reset();
+    });
+  }
 
   padWithZero(value) {
     return v(value).trim().padLeft(4, '0');
