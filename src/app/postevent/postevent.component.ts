@@ -243,6 +243,174 @@ export class PosteventComponent implements OnInit, OnChanges {
       this.reset();
     });
   }
+  onSubmitDEL(event: Event) {
+    event.preventDefault();
+    this.adhocMessage
+    = `ADH016_${this.flightNum}${this.utcDate}${this.origin}${this.destination}${this.stdUTC}${this.selctedEvent}`;
+    const adhocEvent: AdhocEvent = {
+      stg: this.environment,
+      adhoc16: this.adhocMessage
+    };
+    this.flightsService.postEvent(adhocEvent).subscribe(data => {
+      this.fileName = data['fileName'];
+      this.timestamp = data['timestamp'];
+      this.reset();
+    });
+  }
+  onSubmitGTD(event: Event) {
+    event.preventDefault();
+    this.adhocMessage
+    = `ADH016_${this.flightNum}${this.utcDate}${this.origin}${this.destination}${this.stdUTC}${this.selctedEvent}${this.gtd}`;
+    const adhocEvent: AdhocEvent = {
+      stg: this.environment,
+      adhoc16: this.adhocMessage
+    };
+    this.flightsService.postEvent(adhocEvent).subscribe(data => {
+      this.fileName = data['fileName'];
+      this.timestamp = data['timestamp'];
+      this.reset();
+    });
+  }
+  onSubmitGTA(event: Event) {
+    event.preventDefault();
+    this.adhocMessage
+    = `ADH016_${this.flightNum}${this.utcDate}${this.origin}${this.destination}${this.stdUTC}${this.selctedEvent}${this.gta}`;
+    const adhocEvent: AdhocEvent = {
+      stg: this.environment,
+      adhoc16: this.adhocMessage
+    };
+    this.flightsService.postEvent(adhocEvent).subscribe(data => {
+      this.fileName = data['fileName'];
+      this.timestamp = data['timestamp'];
+      this.reset();
+    });
+  }
+  onSubmitRIN(event: Event) {
+    event.preventDefault();
+    this.adhocMessage
+    = `ADH016_${this.flightNum}${this.utcDate}${this.origin}${this.destination}${this.stdUTC}${this.selctedEvent}`;
+    const adhocEvent: AdhocEvent = {
+      stg: this.environment,
+      adhoc16: this.adhocMessage
+    };
+    this.flightsService.postEvent(adhocEvent).subscribe(data => {
+      this.fileName = data['fileName'];
+      this.timestamp = data['timestamp'];
+      this.reset();
+    });
+  }
+  onSubmitASN(event: Event) {
+    event.preventDefault();
+    this.adhocMessage
+    = `ADH016_${this.flightNum}${this.utcDate}${this.origin}${this.destination}${this.stdUTC}${this.selctedEvent}${this.newTail}`;
+    const adhocEvent: AdhocEvent = {
+      stg: this.environment,
+      adhoc16: this.adhocMessage
+    };
+    this.flightsService.postEvent(adhocEvent).subscribe(data => {
+      this.fileName = data['fileName'];
+      this.timestamp = data['timestamp'];
+      this.reset();
+    });
+  }
+  onSubmitREM(event: Event) {
+    event.preventDefault();
+    this.adhocMessage
+    = `ADH016_${this.flightNum}${this.utcDate}${this.origin}${this.destination}${this.stdUTC}${this.selctedEvent}`;
+    const adhocEvent: AdhocEvent = {
+      stg: this.environment,
+      adhoc16: this.adhocMessage
+    };
+    this.flightsService.postEvent(adhocEvent).subscribe(data => {
+      this.fileName = data['fileName'];
+      this.timestamp = data['timestamp'];
+      this.reset();
+    });
+  }
+  onSubmitUDD(event: Event) {
+    event.preventDefault();
+    this.adhocMessage
+    = `ADH016_${this.flightNum}${this.utcDate}${this.origin}${this.destination}${this.stdUTC}${this.selctedEvent}`;
+    const adhocEvent: AdhocEvent = {
+      stg: this.environment,
+      adhoc16: this.adhocMessage
+    };
+    this.flightsService.postEvent(adhocEvent).subscribe(data => {
+      this.fileName = data['fileName'];
+      this.timestamp = data['timestamp'];
+      this.reset();
+    });
+  }
+  onSubmitUDA(event: Event) {
+    event.preventDefault();
+    this.adhocMessage
+    = `ADH016_${this.flightNum}${this.utcDate}${this.origin}${this.destination}${this.stdUTC}${this.selctedEvent}`;
+    const adhocEvent: AdhocEvent = {
+      stg: this.environment,
+      adhoc16: this.adhocMessage
+    };
+    this.flightsService.postEvent(adhocEvent).subscribe(data => {
+      this.fileName = data['fileName'];
+      this.timestamp = data['timestamp'];
+      this.reset();
+    });
+  }
+  onSubmitRMD(event: Event) {
+    event.preventDefault();
+    this.adhocMessage
+    = `ADH016_${this.flightNum}${this.utcDate}${this.origin}${this.destination}${this.stdUTC}${this.selctedEvent}`;
+    const adhocEvent: AdhocEvent = {
+      stg: this.environment,
+      adhoc16: this.adhocMessage
+    };
+    this.flightsService.postEvent(adhocEvent).subscribe(data => {
+      this.fileName = data['fileName'];
+      this.timestamp = data['timestamp'];
+      this.reset();
+    });
+  }
+  onSubmitRMA(event: Event) {
+    event.preventDefault();
+    this.adhocMessage
+    = `ADH016_${this.flightNum}${this.utcDate}${this.origin}${this.destination}${this.stdUTC}${this.selctedEvent}`;
+    const adhocEvent: AdhocEvent = {
+      stg: this.environment,
+      adhoc16: this.adhocMessage
+    };
+    this.flightsService.postEvent(adhocEvent).subscribe(data => {
+      this.fileName = data['fileName'];
+      this.timestamp = data['timestamp'];
+      this.reset();
+    });
+  }
+  onSubmitGRD(event: Event) {
+    event.preventDefault();
+    this.adhocMessage
+    = `ADH016_${this.flightNum}${this.utcDate}${this.origin}${this.destination}${this.stdUTC}${this.selctedEvent}`;
+    const adhocEvent: AdhocEvent = {
+      stg: this.environment,
+      adhoc16: this.adhocMessage
+    };
+    this.flightsService.postEvent(adhocEvent).subscribe(data => {
+      this.fileName = data['fileName'];
+      this.timestamp = data['timestamp'];
+      this.reset();
+    });
+  }
+  onSubmitAIR(event: Event) {
+    event.preventDefault();
+    this.adhocMessage
+    = `ADH016_${this.flightNum}${this.utcDate}${this.origin}${this.destination}${this.stdUTC}${this.selctedEvent}`;
+    const adhocEvent: AdhocEvent = {
+      stg: this.environment,
+      adhoc16: this.adhocMessage
+    };
+    this.flightsService.postEvent(adhocEvent).subscribe(data => {
+      this.fileName = data['fileName'];
+      this.timestamp = data['timestamp'];
+      this.reset();
+    });
+  }
 
   padWithZero(value) {
     return v(value).trim().padLeft(4, '0');

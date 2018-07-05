@@ -11,6 +11,13 @@
           <span class="color-red" *ngIf="selctedEvent == 'IN_'">ADH016_{{flightNum!}}{{utcDate!}}{{origin!}}{{destination!}}{{stdUTC!}}{{selctedEvent!}}{{inUTC!}}</span>
           <span class="color-red" *ngIf="selctedEvent == 'ETD'">ADH016_{{flightNum!}}{{utcDate!}}{{origin!}}{{destination!}}{{stdUTC!}}{{selctedEvent!}}{{etdUTC!}}</span>
           <span class="color-red" *ngIf="selctedEvent == 'ETA'">ADH016_{{flightNum!}}{{utcDate!}}{{origin!}}{{destination!}}{{stdUTC!}}{{selctedEvent!}}{{etaUTC!}}</span>
+          <span class="color-red" *ngIf="selctedEvent == 'ETO'">ADH016_{{flightNum!}}{{utcDate!}}{{origin!}}{{destination!}}{{stdUTC!}}{{selctedEvent!}}{{etoUTC!}}</span>
+          <span class="color-red" *ngIf="selctedEvent == 'EON'">ADH016_{{flightNum!}}{{utcDate!}}{{origin!}}{{destination!}}{{stdUTC!}}{{selctedEvent!}}{{eonUTC!}}</span>
+          <span class="color-red" *ngIf="selctedEvent == 'SUB'">ADH016_{{flightNum!}}{{utcDate!}}{{origin!}}{{destination!}}{{stdUTC!}}{{selctedEvent!}}{{newTail!}}</span>
+          <span class="color-red" *ngIf="selctedEvent == 'CNL'">ADH016_{{flightNum!}}{{utcDate!}}{{origin!}}{{destination!}}{{stdUTC!}}{{selctedEvent!}}</span>
+          <span class="color-red" *ngIf="selctedEvent == 'DEL'">ADH016_{{flightNum!}}{{utcDate!}}{{origin!}}{{destination!}}{{stdUTC!}}{{selctedEvent!}}</span>
+          <span class="color-red" *ngIf="selctedEvent == 'GTD'">ADH016_{{flightNum!}}{{utcDate!}}{{origin!}}{{destination!}}{{stdUTC!}}{{selctedEvent!}}{{gtd!}}</span>
+          <span class="color-red" *ngIf="selctedEvent == 'GTA'">ADH016_{{flightNum!}}{{utcDate!}}{{origin!}}{{destination!}}{{stdUTC!}}{{selctedEvent!}}{{gta!}}</span>
         </p>
         <p class="center" *ngIf="fileName && timestamp">Message Sent With:</p>
         <p *ngIf="fileName">File Name: <span class="color-red">{{ fileName! }}</span></p>
@@ -1062,6 +1069,308 @@
               || flightOrigin.invalid
               || flightDestination.invalid
               || std.invalid">POST</button>
+      <button type="reset" value="Reset" class="waves-effect waves-light btn" (click)="reset()">RESET</button>
+    </div>
+  </form>
+</div>
+
+
+<!-- DEL -->
+<div *ngIf="selctedEvent == 'DEL' && environment != null">
+  <form (ngSubmit)="onSubmitDEL($event)">
+    <div class="row" >
+      <mz-input-container class="col s3">
+        <input mz-input
+          [label]="'Flight Number'"
+          placeholder=""
+          (blur)="$event.target.value = padWithZero($event.target.value); flightNum = padWithZero($event.target.value)"
+          name="flight_number"
+          [(ngModel)]="flightNum"
+          #flightNumber="ngModel"
+          minlength="1"
+          maxlength="4"
+          pattern="^[0-9]*$"
+          required
+          type="text">
+      </mz-input-container>
+      <mz-datepicker-container class="col s3">
+        <input mz-datepicker
+          [options]="options"
+          [(ngModel)]="utcDate"
+          name="flight_origin_date_utc"
+          placeholder=""
+          label="Flight Origin Date (UTC)"
+          #flightOriginDate="ngModel"
+          type="text"
+          required minlength="8" maxlength="8" pattern="^[0-9]*$">
+      </mz-datepicker-container>
+      <mz-input-container class="col s3">
+        <input mz-input
+          [label]="'Flight Origin (Ex: JFK)'"
+          placeholder=""
+          (input)="$event.target.value = upcaseValue($event.target.value); origin = upcaseValue($event.target.value)"
+          name="flight_origin"
+          [(ngModel)]="origin"
+          #flightOrigin="ngModel"
+          minlength="3"
+          maxlength="3"
+          pattern="^[A-Z]*$"
+          required
+          type="text">
+      </mz-input-container>
+      <mz-input-container class="col s3">
+        <input mz-input
+          [label]="'Flight Destination (Ex: BOS)'"
+          placeholder=""
+          (input)="$event.target.value = upcaseValue($event.target.value); destination = upcaseValue($event.target.value)"
+          name="flight_destination"
+          [(ngModel)]="destination"
+          #flightDestination="ngModel"
+          minlength="3"
+          maxlength="3"
+          pattern="^[A-Z]*$"
+          required
+          type="text">
+      </mz-input-container>
+    </div>
+    <div class="row">
+      <mz-input-container class="col s3 offset-s3">
+        <input mz-input
+          [label]="'STD in UTC (hhmm)'"
+          placeholder=""
+          (blur)="$event.target.value = padWithZero($event.target.value); stdUTC = padWithZero($event.target.value)"
+          name="flight_std_utc"
+          [(ngModel)]="stdUTC"
+          #std="ngModel"
+          minlength="1"
+          maxlength="4"
+          pattern="^[0-9]*$"
+          required
+          type="text">
+      </mz-input-container>
+    </div>
+    <!-- submit -->
+    <div class="row center">
+      <button class="waves-effect waves-light btn"
+              type="submit"
+              value="Post"
+              [disabled]="flightNumber.invalid
+              || flightOriginDate.invalid
+              || flightOrigin.invalid
+              || flightDestination.invalid
+              || std.invalid">POST</button>
+      <button type="reset" value="Reset" class="waves-effect waves-light btn" (click)="reset()">RESET</button>
+    </div>
+  </form>
+</div>
+
+
+
+<!-- GTD -->
+<div *ngIf="selctedEvent == 'GTD' && environment != null">
+  <form (ngSubmit)="onSubmitGTD($event)">
+    <div class="row" >
+      <mz-input-container class="col s3">
+        <input mz-input
+          [label]="'Flight Number'"
+          placeholder=""
+          (blur)="$event.target.value = padWithZero($event.target.value); flightNum = padWithZero($event.target.value)"
+          name="flight_number"
+          [(ngModel)]="flightNum"
+          #flightNumber="ngModel"
+          minlength="1"
+          maxlength="4"
+          pattern="^[0-9]*$"
+          required
+          type="text">
+      </mz-input-container>
+      <mz-datepicker-container class="col s3">
+        <input mz-datepicker
+          [options]="options"
+          [(ngModel)]="utcDate"
+          name="flight_origin_date_utc"
+          placeholder=""
+          label="Flight Origin Date (UTC)"
+          #flightOriginDate="ngModel"
+          type="text"
+          required minlength="8" maxlength="8" pattern="^[0-9]*$">
+      </mz-datepicker-container>
+      <mz-input-container class="col s3">
+        <input mz-input
+          [label]="'Flight Origin (Ex: JFK)'"
+          placeholder=""
+          (input)="$event.target.value = upcaseValue($event.target.value); origin = upcaseValue($event.target.value)"
+          name="flight_origin"
+          [(ngModel)]="origin"
+          #flightOrigin="ngModel"
+          minlength="3"
+          maxlength="3"
+          pattern="^[A-Z]*$"
+          required
+          type="text">
+      </mz-input-container>
+      <mz-input-container class="col s3">
+        <input mz-input
+          [label]="'Flight Destination (Ex: BOS)'"
+          placeholder=""
+          (input)="$event.target.value = upcaseValue($event.target.value); destination = upcaseValue($event.target.value)"
+          name="flight_destination"
+          [(ngModel)]="destination"
+          #flightDestination="ngModel"
+          minlength="3"
+          maxlength="3"
+          pattern="^[A-Z]*$"
+          required
+          type="text">
+      </mz-input-container>
+    </div>
+    <div class="row">
+      <mz-input-container class="col s3 offset-s3">
+        <input mz-input
+          [label]="'STD in UTC (hhmm)'"
+          placeholder=""
+          (blur)="$event.target.value = padWithZero($event.target.value); stdUTC = padWithZero($event.target.value)"
+          name="flight_std_utc"
+          [(ngModel)]="stdUTC"
+          #std="ngModel"
+          minlength="1"
+          maxlength="4"
+          pattern="^[0-9]*$"
+          required
+          type="text">
+      </mz-input-container>
+      <mz-input-container class="col s3 offset-s0">
+        <input mz-input
+          [label]="'Departure Gate'"
+          placeholder=""
+          (blur)="$event.target.value = padWithSpace($event.target.value); gtd = padWithSpace($event.target.value)"
+          name="flight_departure_gate"
+          [(ngModel)]="gtd"
+          #depGate="ngModel"
+          minlength="1"
+          maxlength="4"
+          pattern="^[0-9A-Z]*$"
+          required
+          type="text">
+      </mz-input-container>
+    </div>
+    <!-- submit -->
+    <div class="row center">
+      <button class="waves-effect waves-light btn"
+              type="submit"
+              value="Post"
+              [disabled]="flightNumber.invalid
+              || flightOriginDate.invalid
+              || flightOrigin.invalid
+              || flightDestination.invalid
+              || std.invalid
+              || depGate.invalid">POST</button>
+      <button type="reset" value="Reset" class="waves-effect waves-light btn" (click)="reset()">RESET</button>
+    </div>
+  </form>
+</div>
+
+
+
+<!-- GTA -->
+<div *ngIf="selctedEvent == 'GTA' && environment != null">
+  <form (ngSubmit)="onSubmitGTA($event)">
+    <div class="row" >
+      <mz-input-container class="col s3">
+        <input mz-input
+          [label]="'Flight Number'"
+          placeholder=""
+          (blur)="$event.target.value = padWithZero($event.target.value); flightNum = padWithZero($event.target.value)"
+          name="flight_number"
+          [(ngModel)]="flightNum"
+          #flightNumber="ngModel"
+          minlength="1"
+          maxlength="4"
+          pattern="^[0-9]*$"
+          required
+          type="text">
+      </mz-input-container>
+      <mz-datepicker-container class="col s3">
+        <input mz-datepicker
+          [options]="options"
+          [(ngModel)]="utcDate"
+          name="flight_origin_date_utc"
+          placeholder=""
+          label="Flight Origin Date (UTC)"
+          #flightOriginDate="ngModel"
+          type="text"
+          required minlength="8" maxlength="8" pattern="^[0-9]*$">
+      </mz-datepicker-container>
+      <mz-input-container class="col s3">
+        <input mz-input
+          [label]="'Flight Origin (Ex: JFK)'"
+          placeholder=""
+          (input)="$event.target.value = upcaseValue($event.target.value); origin = upcaseValue($event.target.value)"
+          name="flight_origin"
+          [(ngModel)]="origin"
+          #flightOrigin="ngModel"
+          minlength="3"
+          maxlength="3"
+          pattern="^[A-Z]*$"
+          required
+          type="text">
+      </mz-input-container>
+      <mz-input-container class="col s3">
+        <input mz-input
+          [label]="'Flight Destination (Ex: BOS)'"
+          placeholder=""
+          (input)="$event.target.value = upcaseValue($event.target.value); destination = upcaseValue($event.target.value)"
+          name="flight_destination"
+          [(ngModel)]="destination"
+          #flightDestination="ngModel"
+          minlength="3"
+          maxlength="3"
+          pattern="^[A-Z]*$"
+          required
+          type="text">
+      </mz-input-container>
+    </div>
+    <div class="row">
+      <mz-input-container class="col s3 offset-s3">
+        <input mz-input
+          [label]="'STD in UTC (hhmm)'"
+          placeholder=""
+          (blur)="$event.target.value = padWithZero($event.target.value); stdUTC = padWithZero($event.target.value)"
+          name="flight_std_utc"
+          [(ngModel)]="stdUTC"
+          #std="ngModel"
+          minlength="1"
+          maxlength="4"
+          pattern="^[0-9]*$"
+          required
+          type="text">
+      </mz-input-container>
+      <mz-input-container class="col s3 offset-s0">
+        <input mz-input
+          [label]="'Arrival Gate'"
+          placeholder=""
+          (blur)="$event.target.value = padWithSpace($event.target.value); gta = padWithSpace($event.target.value)"
+          name="flight_arrival_gate"
+          [(ngModel)]="gta"
+          #arrGate="ngModel"
+          minlength="1"
+          maxlength="4"
+          pattern="^[0-9A-Z]*$"
+          required
+          type="text">
+      </mz-input-container>
+    </div>
+    <!-- submit -->
+    <div class="row center">
+      <button class="waves-effect waves-light btn"
+              type="submit"
+              value="Post"
+              [disabled]="flightNumber.invalid
+              || flightOriginDate.invalid
+              || flightOrigin.invalid
+              || flightDestination.invalid
+              || std.invalid
+              || arrGate.invalid">POST</button>
       <button type="reset" value="Reset" class="waves-effect waves-light btn" (click)="reset()">RESET</button>
     </div>
   </form>
