@@ -509,6 +509,58 @@ router.get('/stg3/d7', (req, res) => {
   });
 });
 
+///////////////////////////// Get Individual Flight Data ////////////////////////
+/////////////////////////////////////////////////////////////////////////////////
+
+// Required params:
+// {
+//   "stg":"stg1",
+//   "day":"d0", ( up to d7 available, d0 is yesterday, d1 is today and so on)
+//   "flightNum":"1234"
+//
+// }
+
+router.get('/flight/:stg/:day/:flightNum', (req, res) => {
+  let stg = v(req.params.stg).trim().upperCase();
+  let day = v(req.params.day).trim().upperCase();
+  let flightNum = v(req.params.flightNum).trim().pad(5, ' ');
+
+  if (stg != 'STG1' && stg != 'STG3') {
+    res.status(400).json({ error: 'stg must be stg1 or stg3' });
+  } else if (!v(flightNum).isNumeric()) {
+    res.status(400).json({ error: 'flightNum must be min 1 digit max 4 digit' });
+  } else if (day != 'D0' && day != 'D1' && day != 'D2' && day != 'D3' && day != 'D4' && day != 'D5' && day != 'D6' && day != 'D7') {
+    res.status(400).json({ error: 'day must be d#; # is in range 0 to 7; ex: d0 is yesterday d1 is today.' });
+  } else {
+    if (stg == 'STG1' && day == 'D0') {
+      STG1D0.find().exec(function(err, results) {
+        // if mongodb is in the process of deleting and inserting new data.
+        if (results.length < 900) {
+          setTimeout(() => {
+            STG1D0.find({ identifier: `${flightNum}` }).exec(function(err, flights) {
+              if (err) {
+                console.log('Error getting the flights from stage 3 day 7');
+                console.log(err);
+              } else {
+                res.json(flights);
+              }
+            });
+          }, 5000);
+        } else {
+          STG1D0.find({ identifier: `${flightNum}` }).exec(function(err, flights) {
+            if (err) {
+              console.log('Error getting the flights from stage 3 day 7');
+              console.log(err);
+            } else {
+              res.json(flights);
+            }
+          });
+        }
+      });
+    }
+  }
+});
+
 
 ////////////////////////  POST EVENT  ////////////////////////////
 /*
@@ -527,7 +579,7 @@ router.post('/send', async (req, res) => {
   let stg = v(body.stg).trim().upperCase();
   let adhoc16 = body.adhoc16;
   console.log(`Adhoc event processing with data: ${stg} and ${adhoc16}`);
-  if (!stg == 'STG1' || !stg == 'STG2' || !stg == 'STG3') {
+  if (stg != 'STG1' && stg != 'STG2' && stg != 'STG3') {
     res.status(400).json({ error: 'stg must be stg1 or stg3' });
   } else {
     try {
