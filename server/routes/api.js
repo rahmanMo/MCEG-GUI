@@ -532,6 +532,8 @@ router.get('/flight/:stg/:day/:flightNum', (req, res) => {
   } else if (day != 'D0' && day != 'D1' && day != 'D2' && day != 'D3' && day != 'D4' && day != 'D5' && day != 'D6' && day != 'D7') {
     res.status(400).json({ error: 'day must be d#; # is in range 0 to 7; ex: d0 is yesterday d1 is today.' });
   } else {
+
+    /////////////////////////  STG1D0  ///////////////////////////////////
     if (stg == 'STG1' && day == 'D0') {
       STG1D0.find().exec(function(err, results) {
         // if mongodb is in the process of deleting and inserting new data.
@@ -548,6 +550,115 @@ router.get('/flight/:stg/:day/:flightNum', (req, res) => {
           }, 5000);
         } else {
           STG1D0.find({ identifier: `${flightNum}` }).exec(function(err, flights) {
+            if (err) {
+              console.log('Error getting the flights from stage 3 day 7');
+              console.log(err);
+            } else {
+              res.json(flights);
+            }
+          });
+        }
+      });
+
+      //////////////////////////////// STG1D1 //////////////////////////////
+    } else if (stg == 'STG1' && day == 'D1') {
+      STG1D1.find().exec(function(err, results) {
+        // if mongodb is in the process of deleting and inserting new data.
+        if (results.length < 900) {
+          setTimeout(() => {
+            STG1D1.find({ identifier: `${flightNum}` }).exec(function(err, flights) {
+              if (err) {
+                console.log('Error getting the flights from stage 3 day 7');
+                console.log(err);
+              } else {
+                res.json(flights);
+              }
+            });
+          }, 5000);
+        } else {
+          STG1D1.find({ identifier: `${flightNum}` }).exec(function(err, flights) {
+            if (err) {
+              console.log('Error getting the flights from stage 3 day 7');
+              console.log(err);
+            } else {
+              res.json(flights);
+            }
+          });
+        }
+      });
+
+
+      //////////////////////////////// STG1D2 //////////////////////////////
+    } else if (stg == 'STG1' && day == 'D2') {
+      STG1D2.find().exec(function(err, results) {
+        // if mongodb is in the process of deleting and inserting new data.
+        if (results.length < 900) {
+          setTimeout(() => {
+            STG1D2.find({ identifier: `${flightNum}` }).exec(function(err, flights) {
+              if (err) {
+                console.log('Error getting the flights from stage 3 day 7');
+                console.log(err);
+              } else {
+                res.json(flights);
+              }
+            });
+          }, 5000);
+        } else {
+          STG1D2.find({ identifier: `${flightNum}` }).exec(function(err, flights) {
+            if (err) {
+              console.log('Error getting the flights from stage 3 day 7');
+              console.log(err);
+            } else {
+              res.json(flights);
+            }
+          });
+        }
+      });
+
+      //////////////////////////////// STG1D3 //////////////////////////////
+    } else if (stg == 'STG1' && day == 'D3') {
+      STG1D3.find().exec(function(err, results) {
+        // if mongodb is in the process of deleting and inserting new data.
+        if (results.length < 900) {
+          setTimeout(() => {
+            STG1D3.find({ identifier: `${flightNum}` }).exec(function(err, flights) {
+              if (err) {
+                console.log('Error getting the flights from stage 3 day 7');
+                console.log(err);
+              } else {
+                res.json(flights);
+              }
+            });
+          }, 5000);
+        } else {
+          STG1D3.find({ identifier: `${flightNum}` }).exec(function(err, flights) {
+            if (err) {
+              console.log('Error getting the flights from stage 3 day 7');
+              console.log(err);
+            } else {
+              res.json(flights);
+            }
+          });
+        }
+      });
+
+      //////////////////////////////// STG1D4 //////////////////////////////
+    } else if (stg == 'STG1' && day == 'D4') {
+      STG1D4.find().exec(function(err, results) {
+        // if mongodb is in the process of deleting and inserting new data.
+        if (results.length < 900) {
+          setTimeout(() => {
+            STG1D4.find({ identifier: `${flightNum}` }).exec(function(err, flights) {
+              if (err) {
+                console.log('Error getting the flights from stage 3 day 7');
+                console.log(err);
+              } else {
+                res.json(flights);
+              }
+            });
+          }, 5000);
+        } else {
+          STG1D4.find({ identifier: `${flightNum}` }).exec(function(err, flights) {
             if (err) {
               console.log('Error getting the flights from stage 3 day 7');
               console.log(err);
