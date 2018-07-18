@@ -1574,13 +1574,13 @@ router.post('/out', async (req, res) => {
   let fsdailyId = v(body.fsdailyId).trim();
   let outUTC = v(body.outUTC).trim().padLeft(4,'0');
   console.log(`Adhoc event processing with data: ${stg}, ${day}, ${fsdailyId}, ${outUTC}`);
-  if (stg != 'STG1' && stg != 'STG2' && stg != 'STG3') {
+  if (stg != 'STG1' && stg != 'STG2' && stg != 'STG3' || body.stg == '' || body.stg == null) {
     res.status(400).json({ error: 'stg must be stg1 or stg3' });
-  } else if (day != 'D0' && day != 'D1' && day != 'D2' && day != 'D3' && day != 'D4' && day != 'D5' && day != 'D6' && day != 'D7') {
+  } else if (day != 'D0' && day != 'D1' && day != 'D2' && day != 'D3' && day != 'D4' && day != 'D5' && day != 'D6' && day != 'D7' || body.day == '' || body.day == null) {
     res.status(400).json({ error: 'day must be d#; # is in range 0 to 7; ex: d0 is yesterday d1 is today.' });
-  } else if (v(fsdailyId).count() != 7 || v(fsdailyId).isNumeric() === false) {
+  } else if (v(fsdailyId).count() != 7 || v(fsdailyId).isNumeric() === false || body.fsdailyId == '' || body.fsdailyId == null) {
     res.status(400).json({ error: 'fsDailyId must be 7 digit' });
-  } else if (v(outUTC).count() != 4 || v(outUTC).isNumeric() === false) {
+  } else if (v(outUTC).count() != 4 || v(outUTC).isNumeric() === false || body.outUTC == '' || body.outUTC == null) {
     res.status(400).json({ error: 'outUTC must be 4 digit utc time, ex: 1500, 0059 etc' });
   } else {
     try {
@@ -1660,13 +1660,13 @@ router.post('/off', async (req, res) => {
   let fsdailyId = v(body.fsdailyId).trim();
   let offUTC = v(body.offUTC).trim().padLeft(4,'0');
   console.log(`Adhoc event processing with data: ${stg}, ${day}, ${fsdailyId}, ${offUTC}`);
-  if (stg != 'STG1' && stg != 'STG2' && stg != 'STG3') {
+  if (stg != 'STG1' && stg != 'STG2' && stg != 'STG3' || body.stg == '' || body.stg == null) {
     res.status(400).json({ error: 'stg must be stg1 or stg3' });
-  } else if (day != 'D0' && day != 'D1' && day != 'D2' && day != 'D3' && day != 'D4' && day != 'D5' && day != 'D6' && day != 'D7') {
+  } else if (day != 'D0' && day != 'D1' && day != 'D2' && day != 'D3' && day != 'D4' && day != 'D5' && day != 'D6' && day != 'D7' || body.day == '' || body.day == null) {
     res.status(400).json({ error: 'day must be d#; # is in range 0 to 7; ex: d0 is yesterday d1 is today.' });
-  } else if (v(fsdailyId).count() != 7 || v(fsdailyId).isNumeric() === false) {
+  } else if (v(fsdailyId).count() != 7 || v(fsdailyId).isNumeric() === false || body.fsdailyId == '' || body.fsdailyId == null) {
     res.status(400).json({ error: 'fsDailyId must be 7 digit' });
-  } else if (v(offUTC).count() != 4 || v(offUTC).isNumeric() === false) {
+  } else if (v(offUTC).count() != 4 || v(offUTC).isNumeric() === false || body.offUTC == '' || body.offUTC == null) {
     res.status(400).json({ error: 'offUTC must be 4 digit utc time, ex: 1500, 0059 etc' });
   } else {
     try {
@@ -1729,7 +1729,7 @@ router.post('/off', async (req, res) => {
 
 
 
-////////////////////////  POST IN EVENT  ////////////////////////////
+////////////////////////  POST ON EVENT  ////////////////////////////
 /*
 Required params:
 {
@@ -1750,13 +1750,13 @@ router.post('/on', async (req, res) => {
   let fsdailyId = v(body.fsdailyId).trim();
   let onUTC = v(body.onUTC).trim().padLeft(4,'0');
   console.log(`Adhoc event processing with data: ${stg}, ${day}, ${fsdailyId}, ${onUTC}`);
-  if (stg != 'STG1' && stg != 'STG2' && stg != 'STG3') {
+  if (stg != 'STG1' && stg != 'STG2' && stg != 'STG3' || body.stg == '' || body.stg == null) {
     res.status(400).json({ error: 'stg must be stg1 or stg3' });
-  } else if (day != 'D0' && day != 'D1' && day != 'D2' && day != 'D3' && day != 'D4' && day != 'D5' && day != 'D6' && day != 'D7') {
+  } else if (day != 'D0' && day != 'D1' && day != 'D2' && day != 'D3' && day != 'D4' && day != 'D5' && day != 'D6' && day != 'D7' || body.day == '' || body.day == null) {
     res.status(400).json({ error: 'day must be d#; # is in range 0 to 7; ex: d0 is yesterday d1 is today.' });
-  } else if (v(fsdailyId).count() != 7 || v(fsdailyId).isNumeric() === false) {
+  } else if (v(fsdailyId).count() != 7 || v(fsdailyId).isNumeric() === false || body.fsdailyId == '' || body.fsdailyId == null) {
     res.status(400).json({ error: 'fsDailyId must be 7 digit' });
-  } else if (v(onUTC).count() != 4 || v(onUTC).isNumeric() === false) {
+  } else if (v(onUTC).count() != 4 || v(onUTC).isNumeric() === false || body.onUTC == '' || body.onUTC == null) {
     res.status(400).json({ error: 'onUTC must be 4 digit utc time, ex: 1500, 0059 etc' });
   } else {
     try {
@@ -1774,7 +1774,7 @@ router.post('/on', async (req, res) => {
       } else if (v(flightData[0].previousTailNumber).trim() == 'CANX' || v(flightData[0].tailNumber).startsWith('-', 0)) {
         res.status(404).json({ error : `flight with dailyId ${fsdailyId} for day ${day} with local date ${flightData[0].numericFlightDate} had air turnback or ground turnback or divert-continue etc. You need to login to MVT to change this flight.`});
       } else if (v(flightData[0].OUTudt).trim() == '' || v(flightData[0].OFFudt).trim() == '' || v(flightData[0].INudt).trim() != '') {
-        res.status(404).json({ error : `flight with dailyId ${fsdailyId} for day ${day} should already have OUT and OFF value and IN should be empty. Please use RMA (remove arrival) or RMD (remove departure) before setting new ON`});
+        res.status(404).json({ error : `flight with dailyId ${fsdailyId} for day ${day} should already have OUT and OFF value and IN should be empty. Please use RMA (remove arrival) for removing IN`});
       } else {
 
         //////////////////////////////// prep data for adhoc 16 /////////////////////////////////
@@ -1837,13 +1837,13 @@ router.post('/in', async (req, res) => {
   let fsdailyId = v(body.fsdailyId).trim();
   let inUTC = v(body.inUTC).trim().padLeft(4,'0');
   console.log(`Adhoc event processing with data: ${stg}, ${day}, ${fsdailyId}, ${inUTC}`);
-  if (stg != 'STG1' && stg != 'STG2' && stg != 'STG3') {
+  if (stg != 'STG1' && stg != 'STG2' && stg != 'STG3' || body.stg == '' || body.stg == null) {
     res.status(400).json({ error: 'stg must be stg1 or stg3' });
-  } else if (day != 'D0' && day != 'D1' && day != 'D2' && day != 'D3' && day != 'D4' && day != 'D5' && day != 'D6' && day != 'D7') {
+  } else if (day != 'D0' && day != 'D1' && day != 'D2' && day != 'D3' && day != 'D4' && day != 'D5' && day != 'D6' && day != 'D7' || body.day == '' || body.day == null) {
     res.status(400).json({ error: 'day must be d#; # is in range 0 to 7; ex: d0 is yesterday d1 is today.' });
-  } else if (v(fsdailyId).count() != 7 || v(fsdailyId).isNumeric() === false) {
+  } else if (v(fsdailyId).count() != 7 || v(fsdailyId).isNumeric() === false || body.fsdailyId == '' || body.fsdailyId == null) {
     res.status(400).json({ error: 'fsDailyId must be 7 digit' });
-  } else if (v(inUTC).count() != 4 || v(inUTC).isNumeric() === false) {
+  } else if (v(inUTC).count() != 4 || v(inUTC).isNumeric() === false || body.inUTC == '' || body.inUTC == null) {
     res.status(400).json({ error: 'inUTC must be 4 digit utc time, ex: 1500, 0059 etc' });
   } else {
     try {
@@ -1902,5 +1902,347 @@ router.post('/in', async (req, res) => {
   }
 
 });
+
+
+
+////////////////////////  POST ETD EVENT  ////////////////////////////
+/*
+Required params:
+{
+  "stg":"stg1",
+  "day":"d0", ( up to d7 available, d0 is yesterday, d1 is today and so on)
+  "fsdailyId": "4876446", (validate 7 digit)
+  "etdUTC": "1900" (pad with zero, force it to become 4 digit)
+}
+
+conditions: Flight must be seq 10 and NOT have negative tail.
+
+
+*/
+router.post('/etd', async (req, res) => {
+  let body = req.body;
+  let stg = v(body.stg).trim().upperCase();
+  let day = v(body.day).trim().upperCase();
+  let fsdailyId = v(body.fsdailyId).trim();
+  let etdUTC = v(body.etdUTC).trim().padLeft(4,'0');
+  console.log(`Adhoc event processing with data: ${stg}, ${day}, ${fsdailyId}, ${etdUTC}`);
+  if (stg != 'STG1' && stg != 'STG2' && stg != 'STG3' || body.stg == '' || body.stg == null) {
+    res.status(400).json({ error: 'stg must be stg1 or stg3' });
+  } else if (day != 'D0' && day != 'D1' && day != 'D2' && day != 'D3' && day != 'D4' && day != 'D5' && day != 'D6' && day != 'D7' || body.day == '' || body.day == null) {
+    res.status(400).json({ error: 'day must be d#; # is in range 0 to 7; ex: d0 is yesterday d1 is today.' });
+  } else if (v(fsdailyId).count() != 7 || v(fsdailyId).isNumeric() === false || body.fsdailyId == '' || body.fsdailyId == null) {
+    res.status(400).json({ error: 'fsDailyId must be 7 digit' });
+  } else if (v(etdUTC).count() != 4 || v(etdUTC).isNumeric() === false || body.etdUTC == '' || body.etdUTC == null) {
+    res.status(400).json({ error: 'etdUTC must be 4 digit utc time, ex: 1500, 0059 etc' });
+  } else {
+    try {
+
+      //////////////////////////////// prep data for adhoc 16 /////////////////////////////////
+      // filter data by flight number
+      let flightData = await getByFsdailyId(stg,fsdailyId,day).then(data => {return data});
+
+
+      // handle no flight found + other exceptions
+      if (flightData == '' || flightData == {}) {
+        res.status(404).json({ error : `flight with dailyId ${fsdailyId} not found for day ${day}`});
+      } else if (v(flightData[0].cancelled).trim() == 'X') {
+        res.status(404).json({ error : `flight with dailyId ${fsdailyId} for day ${day} with local date ${flightData[0].numericFlightDate} is cancelled.`});
+      } else if (v(flightData[0].previousTailNumber).trim() == 'CANX' || v(flightData[0].tailNumber).startsWith('-', 0)) {
+        res.status(404).json({ error : `flight with dailyId ${fsdailyId} for day ${day} with local date ${flightData[0].numericFlightDate} had air turnback or ground turnback or divert-continue etc. You need to login to MVT to change this flight.`});
+      } else if (v(flightData[0].OUTudt).trim() != '' || v(flightData[0].OFFudt).trim() != '' || v(flightData[0].ONudt).trim() != '' || v(flightData[0].INudt).trim() != '') {
+        res.status(404).json({ error : `flight with dailyId ${fsdailyId} for day ${day} should not already have OUT OFF ON IN. Please use RMA (remove arrival) or RMD (remove departure) before sending ETD`});
+      } else {
+
+        //////////////////////////////// prep data for adhoc 16 /////////////////////////////////
+        let pFlightNum = v(flightData[0].identifier).trim().padLeft(4, '0');
+        let date = v.trim(flightData[0].numGMTDate);
+        let origin = v.trim(flightData[0].origin);
+        let dest = v.trim(flightData[0].destination);
+        let std = v(flightData[0].STDudt).trim().padLeft(4, '0');
+        let dropLocation;
+        if (stg == 'STG1') {
+          dropLocation = './sample';
+        } else if (stg == 'STG2') {
+          dropLocation = './sample';
+        } else if (stg == 'STG3') {
+          dropLocation = './sample';
+        }
+        let now = moment(new Date()).format('MM_DD_YYYY_HH_mm_SS_x');
+        let fileName = `mceg_adhoc16_etd_${now}`;
+        let adhocString = `ADH016_${pFlightNum}${date}${origin}${dest}${std}ETD${etdUTC}`;
+        let job = await fs.writeFile(`${dropLocation}/${fileName}.txt`, adhocString).then((err) => {
+         if (err) {
+          console.log(err)
+           res.status(404).json({error: `Error sending File: ${fileName}.txt - ETD for flight ${pFlightNum} departing utc ${date} Failed!!`});
+         } else {
+          res.status(201).json({adhoc: `File: ${fileName}.txt sent at ${now} - ETD sent for flight ${pFlightNum} departing utc ${date} with new ETD: ${etdUTC}`});
+         }
+        });
+        ////////////////////////////////////// end of adhoc 16 /////////////////////////////////
+
+      }
+
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+});
+
+
+////////////////////////  POST ETA EVENT  ////////////////////////////
+/*
+Required params:
+{
+  "stg":"stg1",
+  "day":"d0", ( up to d7 available, d0 is yesterday, d1 is today and so on)
+  "fsdailyId": "4876446", (validate 7 digit)
+  "etaUTC": "1900" (pad with zero, force it to become 4 digit)
+}
+
+conditions: Flight must be seq 10 and NOT have negative tail.
+
+
+*/
+router.post('/eta', async (req, res) => {
+  let body = req.body;
+  let stg = v(body.stg).trim().upperCase();
+  let day = v(body.day).trim().upperCase();
+  let fsdailyId = v(body.fsdailyId).trim();
+  let etaUTC = v(body.etaUTC).trim().padLeft(4,'0');
+  console.log(`Adhoc event processing with data: ${stg}, ${day}, ${fsdailyId}, ${etaUTC}`);
+  if (stg != 'STG1' && stg != 'STG2' && stg != 'STG3' || body.stg == '' || body.stg == null) {
+    res.status(400).json({ error: 'stg must be stg1 or stg3' });
+  } else if (day != 'D0' && day != 'D1' && day != 'D2' && day != 'D3' && day != 'D4' && day != 'D5' && day != 'D6' && day != 'D7' || body.day == '' || body.day == null) {
+    res.status(400).json({ error: 'day must be d#; # is in range 0 to 7; ex: d0 is yesterday d1 is today.' });
+  } else if (v(fsdailyId).count() != 7 || v(fsdailyId).isNumeric() === false || body.fsdailyId == '' || body.fsdailyId == null) {
+    res.status(400).json({ error: 'fsDailyId must be 7 digit' });
+  } else if (v(etaUTC).count() != 4 || v(etaUTC).isNumeric() === false || body.etaUTC == '' || body.etaUTC == null) {
+    res.status(400).json({ error: 'etaUTC must be 4 digit utc time, ex: 1500, 0059 etc' });
+  } else {
+    try {
+
+      //////////////////////////////// prep data for adhoc 16 /////////////////////////////////
+      // filter data by flight number
+      let flightData = await getByFsdailyId(stg,fsdailyId,day).then(data => {return data});
+
+
+      // handle no flight found + other exceptions
+      if (flightData == '' || flightData == {}) {
+        res.status(404).json({ error : `flight with dailyId ${fsdailyId} not found for day ${day}`});
+      } else if (v(flightData[0].cancelled).trim() == 'X') {
+        res.status(404).json({ error : `flight with dailyId ${fsdailyId} for day ${day} with local date ${flightData[0].numericFlightDate} is cancelled.`});
+      } else if (v(flightData[0].previousTailNumber).trim() == 'CANX' || v(flightData[0].tailNumber).startsWith('-', 0)) {
+        res.status(404).json({ error : `flight with dailyId ${fsdailyId} for day ${day} with local date ${flightData[0].numericFlightDate} had air turnback or ground turnback or divert-continue etc. You need to login to MVT to change this flight.`});
+      } else if (v(flightData[0].ONudt).trim() != '' || v(flightData[0].INudt).trim() != '') {
+        res.status(404).json({ error : `flight with dailyId ${fsdailyId} for day ${day} should not already have ON IN. Please use RMA (remove arrival) before sending ETA`});
+      } else {
+
+        //////////////////////////////// prep data for adhoc 16 /////////////////////////////////
+        let pFlightNum = v(flightData[0].identifier).trim().padLeft(4, '0');
+        let date = v.trim(flightData[0].numGMTDate);
+        let origin = v.trim(flightData[0].origin);
+        let dest = v.trim(flightData[0].destination);
+        let std = v(flightData[0].STDudt).trim().padLeft(4, '0');
+        let dropLocation;
+        if (stg == 'STG1') {
+          dropLocation = './sample';
+        } else if (stg == 'STG2') {
+          dropLocation = './sample';
+        } else if (stg == 'STG3') {
+          dropLocation = './sample';
+        }
+        let now = moment(new Date()).format('MM_DD_YYYY_HH_mm_SS_x');
+        let fileName = `mceg_adhoc16_eta_${now}`;
+        let adhocString = `ADH016_${pFlightNum}${date}${origin}${dest}${std}ETA${etaUTC}`;
+        let job = await fs.writeFile(`${dropLocation}/${fileName}.txt`, adhocString).then((err) => {
+         if (err) {
+          console.log(err)
+           res.status(404).json({error: `Error sending File: ${fileName}.txt - ETA for flight ${pFlightNum} departing utc ${date} Failed!!`});
+         } else {
+          res.status(201).json({adhoc: `File: ${fileName}.txt sent at ${now} - ETA sent for flight ${pFlightNum} departing utc ${date} with new ETA: ${etaUTC}`});
+         }
+        });
+        ////////////////////////////////////// end of adhoc 16 /////////////////////////////////
+
+      }
+
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+});
+
+
+////////////////////////  POST ETO EVENT  ////////////////////////////
+/*
+Required params:
+{
+  "stg":"stg1",
+  "day":"d0", ( up to d7 available, d0 is yesterday, d1 is today and so on)
+  "fsdailyId": "4876446", (validate 7 digit)
+  "etoUTC": "1900" (pad with zero, force it to become 4 digit)
+}
+
+conditions: Flight must be seq 10 and NOT have negative tail.
+
+
+*/
+router.post('/eto', async (req, res) => {
+  let body = req.body;
+  let stg = v(body.stg).trim().upperCase();
+  let day = v(body.day).trim().upperCase();
+  let fsdailyId = v(body.fsdailyId).trim();
+  let etoUTC = v(body.etoUTC).trim().padLeft(4,'0');
+  console.log(`Adhoc event processing with data: ${stg}, ${day}, ${fsdailyId}, ${etoUTC}`);
+  if (stg != 'STG1' && stg != 'STG2' && stg != 'STG3' || body.stg == '' || body.stg == null) {
+    res.status(400).json({ error: 'stg must be stg1 or stg3' });
+  } else if (day != 'D0' && day != 'D1' && day != 'D2' && day != 'D3' && day != 'D4' && day != 'D5' && day != 'D6' && day != 'D7' || body.day == '' || body.day == null) {
+    res.status(400).json({ error: 'day must be d#; # is in range 0 to 7; ex: d0 is yesterday d1 is today.' });
+  } else if (v(fsdailyId).count() != 7 || v(fsdailyId).isNumeric() === false || body.fsdailyId == '' || body.fsdailyId == null) {
+    res.status(400).json({ error: 'fsDailyId must be 7 digit' });
+  } else if (v(etoUTC).count() != 4 || v(etoUTC).isNumeric() === false || body.etoUTC == '' || body.etoUTC == null) {
+    res.status(400).json({ error: 'etoUTC must be 4 digit utc time, ex: 1500, 0059 etc' });
+  } else {
+    try {
+
+      //////////////////////////////// prep data for adhoc 16 /////////////////////////////////
+      // filter data by flight number
+      let flightData = await getByFsdailyId(stg,fsdailyId,day).then(data => {return data});
+
+
+      // handle no flight found + other exceptions
+      if (flightData == '' || flightData == {}) {
+        res.status(404).json({ error : `flight with dailyId ${fsdailyId} not found for day ${day}`});
+      } else if (v(flightData[0].cancelled).trim() == 'X') {
+        res.status(404).json({ error : `flight with dailyId ${fsdailyId} for day ${day} with local date ${flightData[0].numericFlightDate} is cancelled.`});
+      } else if (v(flightData[0].previousTailNumber).trim() == 'CANX' || v(flightData[0].tailNumber).startsWith('-', 0)) {
+        res.status(404).json({ error : `flight with dailyId ${fsdailyId} for day ${day} with local date ${flightData[0].numericFlightDate} had air turnback or ground turnback or divert-continue etc. You need to login to MVT to change this flight.`});
+      } else if (v(flightData[0].OFFudt).trim() != '' || v(flightData[0].ONudt).trim() != '' || v(flightData[0].INudt).trim() != '') {
+        res.status(404).json({ error : `flight with dailyId ${fsdailyId} for day ${day} should not already have OFF ON IN`});
+      } else {
+
+        //////////////////////////////// prep data for adhoc 16 /////////////////////////////////
+        let pFlightNum = v(flightData[0].identifier).trim().padLeft(4, '0');
+        let date = v.trim(flightData[0].numGMTDate);
+        let origin = v.trim(flightData[0].origin);
+        let dest = v.trim(flightData[0].destination);
+        let std = v(flightData[0].STDudt).trim().padLeft(4, '0');
+        let dropLocation;
+        if (stg == 'STG1') {
+          dropLocation = './sample';
+        } else if (stg == 'STG2') {
+          dropLocation = './sample';
+        } else if (stg == 'STG3') {
+          dropLocation = './sample';
+        }
+        let now = moment(new Date()).format('MM_DD_YYYY_HH_mm_SS_x');
+        let fileName = `mceg_adhoc16_eto_${now}`;
+        let adhocString = `ADH016_${pFlightNum}${date}${origin}${dest}${std}ETO${etoUTC}`;
+        let job = await fs.writeFile(`${dropLocation}/${fileName}.txt`, adhocString).then((err) => {
+         if (err) {
+          console.log(err)
+           res.status(404).json({error: `Error sending File: ${fileName}.txt - ETO for flight ${pFlightNum} departing utc ${date} Failed!!`});
+         } else {
+          res.status(201).json({adhoc: `File: ${fileName}.txt sent at ${now} - ETO sent for flight ${pFlightNum} departing utc ${date} with new ETO: ${etoUTC}`});
+         }
+        });
+        ////////////////////////////////////// end of adhoc 16 /////////////////////////////////
+
+      }
+
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+});
+
+
+////////////////////////  POST EON EVENT  ////////////////////////////
+/*
+Required params:
+{
+  "stg":"stg1",
+  "day":"d0", ( up to d7 available, d0 is yesterday, d1 is today and so on)
+  "fsdailyId": "4876446", (validate 7 digit)
+  "eonUTC": "1900" (pad with zero, force it to become 4 digit)
+}
+
+conditions: Flight must be seq 10 and NOT have negative tail.
+
+
+*/
+router.post('/eon', async (req, res) => {
+  let body = req.body;
+  let stg = v(body.stg).trim().upperCase();
+  let day = v(body.day).trim().upperCase();
+  let fsdailyId = v(body.fsdailyId).trim();
+  let eonUTC = v(body.eonUTC).trim().padLeft(4,'0');
+  console.log(`Adhoc event processing with data: ${stg}, ${day}, ${fsdailyId}, ${eonUTC}`);
+  if (stg != 'STG1' && stg != 'STG2' && stg != 'STG3' || body.stg == '' || body.stg == null) {
+    res.status(400).json({ error: 'stg must be stg1 or stg3' });
+  } else if (day != 'D0' && day != 'D1' && day != 'D2' && day != 'D3' && day != 'D4' && day != 'D5' && day != 'D6' && day != 'D7' || body.day == '' || body.day == null) {
+    res.status(400).json({ error: 'day must be d#; # is in range 0 to 7; ex: d0 is yesterday d1 is today.' });
+  } else if (v(fsdailyId).count() != 7 || v(fsdailyId).isNumeric() === false || body.fsdailyId == '' || body.fsdailyId == null) {
+    res.status(400).json({ error: 'fsDailyId must be 7 digit' });
+  } else if (v(eonUTC).count() != 4 || v(eonUTC).isNumeric() === false || body.eonUTC == '' || body.eonUTC == null) {
+    res.status(400).json({ error: 'eonUTC must be 4 digit utc time, ex: 1500, 0059 etc' });
+  } else {
+    try {
+
+      //////////////////////////////// prep data for adhoc 16 /////////////////////////////////
+      // filter data by flight number
+      let flightData = await getByFsdailyId(stg,fsdailyId,day).then(data => {return data});
+
+
+      // handle no flight found + other exceptions
+      if (flightData == '' || flightData == {}) {
+        res.status(404).json({ error : `flight with dailyId ${fsdailyId} not found for day ${day}`});
+      } else if (v(flightData[0].cancelled).trim() == 'X') {
+        res.status(404).json({ error : `flight with dailyId ${fsdailyId} for day ${day} with local date ${flightData[0].numericFlightDate} is cancelled.`});
+      } else if (v(flightData[0].previousTailNumber).trim() == 'CANX' || v(flightData[0].tailNumber).startsWith('-', 0)) {
+        res.status(404).json({ error : `flight with dailyId ${fsdailyId} for day ${day} with local date ${flightData[0].numericFlightDate} had air turnback or ground turnback or divert-continue etc. You need to login to MVT to change this flight.`});
+      } else if (v(flightData[0].ONudt).trim() != '' || v(flightData[0].INudt).trim() != '') {
+        res.status(404).json({ error : `flight with dailyId ${fsdailyId} for day ${day} should not already have ON IN`});
+      } else {
+
+        //////////////////////////////// prep data for adhoc 16 /////////////////////////////////
+        let pFlightNum = v(flightData[0].identifier).trim().padLeft(4, '0');
+        let date = v.trim(flightData[0].numGMTDate);
+        let origin = v.trim(flightData[0].origin);
+        let dest = v.trim(flightData[0].destination);
+        let std = v(flightData[0].STDudt).trim().padLeft(4, '0');
+        let dropLocation;
+        if (stg == 'STG1') {
+          dropLocation = './sample';
+        } else if (stg == 'STG2') {
+          dropLocation = './sample';
+        } else if (stg == 'STG3') {
+          dropLocation = './sample';
+        }
+        let now = moment(new Date()).format('MM_DD_YYYY_HH_mm_SS_x');
+        let fileName = `mceg_adhoc16_eon_${now}`;
+        let adhocString = `ADH016_${pFlightNum}${date}${origin}${dest}${std}EON${eonUTC}`;
+        let job = await fs.writeFile(`${dropLocation}/${fileName}.txt`, adhocString).then((err) => {
+         if (err) {
+          console.log(err)
+           res.status(404).json({error: `Error sending File: ${fileName}.txt - EON for flight ${pFlightNum} departing utc ${date} Failed!!`});
+         } else {
+          res.status(201).json({adhoc: `File: ${fileName}.txt sent at ${now} - EON sent for flight ${pFlightNum} departing utc ${date} with new EON: ${eonUTC}`});
+         }
+        });
+        ////////////////////////////////////// end of adhoc 16 /////////////////////////////////
+
+      }
+
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+});
+
 
 module.exports = router;
