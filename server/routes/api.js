@@ -1,3 +1,9 @@
+// all api endpoints
+// for drop location use listed below
+//   /mnt/gcsfile01/STG1/adh_receive/
+//   /mnt/gcsfile01/STG2/adh_receive/
+//   /mnt/gcsfile01/STG3/adh_receive/
+
 const express = require('express');
 const moment = require('moment');
 const fs = require('fs-extra');
@@ -13,6 +19,14 @@ const {
   STG1D5,
   STG1D6,
   STG1D7,
+  STG2D0,
+  STG2D1,
+  STG2D2,
+  STG2D3,
+  STG2D4,
+  STG2D5,
+  STG2D6,
+  STG2D7,
   STG3D0,
   STG3D1,
   STG3D2,
@@ -38,6 +52,12 @@ mongoose
 /////////////////////////////////////////////////////////////////////
 //////////////////////////// Utility functions //////////////////////
 /////////////////////////////////////////////////////////////////////
+
+// validate time
+
+const validateTime = (value) => {
+  return x = moment(value, 'HHmm', true).isValid();
+};
 
 // get individual flight data using flight num
 const getByFlightNum = (stg,flightNum,day) => {
@@ -268,6 +288,232 @@ const getByFlightNum = (stg,flightNum,day) => {
 
     /////////////////////////////////////////////////////////////////////////
     ///////////////////////////// End of stage 1 ////////////////////////////
+    /////////////////////////////////////////////////////////////////////////
+
+    ////////////////////////////////////////////////////////////////////////
+    /////////////////////////// Start of stage 2 ///////////////////////////
+    ////////////////////////////////////////////////////////////////////////
+
+    /////////////////////////  STG2D0  ///////////////////////////////////
+    if (stg == 'STG2' && day == 'D0') {
+      STG2D0.find().exec(function(err, results) {
+        // if mongodb is in the process of deleting and inserting new data.
+        if (results.length < 900) {
+          setTimeout(() => {
+            STG2D0.find({ identifier: `${flightNum}` }).exec(function(err, flights) {
+              if (err) {
+
+                reject(err);
+              } else {
+                resolve(flights);
+              }
+            });
+          }, 5000);
+        } else {
+          STG2D0.find({ identifier: `${flightNum}` }).exec(function(err, flights) {
+            if (err) {
+
+              reject(err);
+            } else {
+              resolve(flights);
+            }
+          });
+        }
+      });
+
+      //////////////////////////////// STG2D1 //////////////////////////////
+    } else if (stg == 'STG2' && day == 'D1') {
+      STG2D1.find().exec(function(err, results) {
+        // if mongodb is in the process of deleting and inserting new data.
+        if (results.length < 900) {
+          setTimeout(() => {
+            STG2D1.find({ identifier: `${flightNum}` }).exec(function(err, flights) {
+              if (err) {
+
+                reject(err);
+              } else {
+                resolve(flights);
+              }
+            });
+          }, 5000);
+        } else {
+          STG2D1.find({ identifier: `${flightNum}` }).exec(function(err, flights) {
+            if (err) {
+
+              reject(err);
+            } else {
+              resolve(flights);
+            }
+          });
+        }
+      });
+
+
+      //////////////////////////////// STG2D2 //////////////////////////////
+    } else if (stg == 'STG2' && day == 'D2') {
+      STG2D2.find().exec(function(err, results) {
+        // if mongodb is in the process of deleting and inserting new data.
+        if (results.length < 900) {
+          setTimeout(() => {
+            STG2D2.find({ identifier: `${flightNum}` }).exec(function(err, flights) {
+              if (err) {
+
+                reject(err);
+              } else {
+                resolve(flights);
+              }
+            });
+          }, 5000);
+        } else {
+          STG2D2.find({ identifier: `${flightNum}` }).exec(function(err, flights) {
+            if (err) {
+
+              reject(err);
+            } else {
+              resolve(flights);
+            }
+          });
+        }
+      });
+
+      //////////////////////////////// STG2D3 //////////////////////////////
+    } else if (stg == 'STG2' && day == 'D3') {
+      STG2D3.find().exec(function(err, results) {
+        // if mongodb is in the process of deleting and inserting new data.
+        if (results.length < 900) {
+          setTimeout(() => {
+            STG2D3.find({ identifier: `${flightNum}` }).exec(function(err, flights) {
+              if (err) {
+
+                reject(err);
+              } else {
+                resolve(flights);
+              }
+            });
+          }, 5000);
+        } else {
+          STG2D3.find({ identifier: `${flightNum}` }).exec(function(err, flights) {
+            if (err) {
+
+              reject(err);
+            } else {
+              resolve(flights);
+            }
+          });
+        }
+      });
+
+      //////////////////////////////// STG2D4 //////////////////////////////
+    } else if (stg == 'STG2' && day == 'D4') {
+      STG2D4.find().exec(function(err, results) {
+        // if mongodb is in the process of deleting and inserting new data.
+        if (results.length < 900) {
+          setTimeout(() => {
+            STG2D4.find({ identifier: `${flightNum}` }).exec(function(err, flights) {
+              if (err) {
+
+                reject(err);
+              } else {
+                resolve(flights);
+              }
+            });
+          }, 5000);
+        } else {
+          STG2D4.find({ identifier: `${flightNum}` }).exec(function(err, flights) {
+            if (err) {
+
+              reject(err);
+            } else {
+              resolve(flights);
+            }
+          });
+        }
+      });
+
+      //////////////////////////////// STG2D5 //////////////////////////////
+    } else if (stg == 'STG2' && day == 'D5') {
+      STG2D5.find().exec(function(err, results) {
+        // if mongodb is in the process of deleting and inserting new data.
+        if (results.length < 900) {
+          setTimeout(() => {
+            STG2D5.find({ identifier: `${flightNum}` }).exec(function(err, flights) {
+              if (err) {
+
+                reject(err);
+              } else {
+                resolve(flights);
+              }
+            });
+          }, 5000);
+        } else {
+          STG2D5.find({ identifier: `${flightNum}` }).exec(function(err, flights) {
+            if (err) {
+
+              reject(err);
+            } else {
+              resolve(flights);
+            }
+          });
+        }
+      });
+
+      //////////////////////////////// STG2D6 //////////////////////////////
+    } else if (stg == 'STG2' && day == 'D6') {
+      STG2D6.find().exec(function(err, results) {
+        // if mongodb is in the process of deleting and inserting new data.
+        if (results.length < 900) {
+          setTimeout(() => {
+            STG2D6.find({ identifier: `${flightNum}` }).exec(function(err, flights) {
+              if (err) {
+
+                reject(err);
+              } else {
+                resolve(flights);
+              }
+            });
+          }, 5000);
+        } else {
+          STG2D6.find({ identifier: `${flightNum}` }).exec(function(err, flights) {
+            if (err) {
+
+              reject(err);
+            } else {
+              resolve(flights);
+            }
+          });
+        }
+      });
+
+      //////////////////////////////// STG2D7 //////////////////////////////
+    } else if (stg == 'STG2' && day == 'D7') {
+      STG2D7.find().exec(function(err, results) {
+        // if mongodb is in the process of deleting and inserting new data.
+        if (results.length < 900) {
+          setTimeout(() => {
+            STG2D7.find({ identifier: `${flightNum}` }).exec(function(err, flights) {
+              if (err) {
+
+                reject(err);
+              } else {
+                resolve(flights);
+              }
+            });
+          }, 5000);
+        } else {
+          STG2D7.find({ identifier: `${flightNum}` }).exec(function(err, flights) {
+            if (err) {
+
+              reject(err);
+            } else {
+              resolve(flights);
+            }
+          });
+        }
+      });
+    }
+
+    /////////////////////////////////////////////////////////////////////////
+    ///////////////////////////// End of stage 2 ////////////////////////////
     /////////////////////////////////////////////////////////////////////////
 
 
@@ -728,6 +974,232 @@ const getByFsdailyId = (stg,fsdailyId,day) => {
 
     /////////////////////////////////////////////////////////////////////////
     ///////////////////////////// End of stage 1 ////////////////////////////
+    /////////////////////////////////////////////////////////////////////////
+
+    ////////////////////////////////////////////////////////////////////////
+    /////////////////////////// Start of stage 2 ///////////////////////////
+    ////////////////////////////////////////////////////////////////////////
+
+    /////////////////////////  STG2D0  ///////////////////////////////////
+    if (stg == 'STG2' && day == 'D0') {
+      STG2D0.find().exec(function(err, results) {
+        // if mongodb is in the process of deleting and inserting new data.
+        if (results.length < 900) {
+          setTimeout(() => {
+            STG2D0.find({ csvFSDailyID: `${fsdailyId}` }).exec(function(err, flights) {
+              if (err) {
+
+                reject(err);
+              } else {
+                resolve(flights);
+              }
+            });
+          }, 5000);
+        } else {
+          STG2D0.find({ csvFSDailyID: `${fsdailyId}` }).exec(function(err, flights) {
+            if (err) {
+
+              reject(err);
+            } else {
+              resolve(flights);
+            }
+          });
+        }
+      });
+
+      //////////////////////////////// STG2D1 //////////////////////////////
+    } else if (stg == 'STG2' && day == 'D1') {
+      STG2D1.find().exec(function(err, results) {
+        // if mongodb is in the process of deleting and inserting new data.
+        if (results.length < 900) {
+          setTimeout(() => {
+            STG2D1.find({ csvFSDailyID: `${fsdailyId}` }).exec(function(err, flights) {
+              if (err) {
+
+                reject(err);
+              } else {
+                resolve(flights);
+              }
+            });
+          }, 5000);
+        } else {
+          STG2D1.find({ csvFSDailyID: `${fsdailyId}` }).exec(function(err, flights) {
+            if (err) {
+
+              reject(err);
+            } else {
+              resolve(flights);
+            }
+          });
+        }
+      });
+
+
+      //////////////////////////////// STG2D2 //////////////////////////////
+    } else if (stg == 'STG2' && day == 'D2') {
+      STG2D2.find().exec(function(err, results) {
+        // if mongodb is in the process of deleting and inserting new data.
+        if (results.length < 900) {
+          setTimeout(() => {
+            STG2D2.find({ csvFSDailyID: `${fsdailyId}` }).exec(function(err, flights) {
+              if (err) {
+
+                reject(err);
+              } else {
+                resolve(flights);
+              }
+            });
+          }, 5000);
+        } else {
+          STG2D2.find({ csvFSDailyID: `${fsdailyId}` }).exec(function(err, flights) {
+            if (err) {
+
+              reject(err);
+            } else {
+              resolve(flights);
+            }
+          });
+        }
+      });
+
+      //////////////////////////////// STG2D3 //////////////////////////////
+    } else if (stg == 'STG2' && day == 'D3') {
+      STG2D3.find().exec(function(err, results) {
+        // if mongodb is in the process of deleting and inserting new data.
+        if (results.length < 900) {
+          setTimeout(() => {
+            STG2D3.find({ csvFSDailyID: `${fsdailyId}` }).exec(function(err, flights) {
+              if (err) {
+
+                reject(err);
+              } else {
+                resolve(flights);
+              }
+            });
+          }, 5000);
+        } else {
+          STG2D3.find({ csvFSDailyID: `${fsdailyId}` }).exec(function(err, flights) {
+            if (err) {
+
+              reject(err);
+            } else {
+              resolve(flights);
+            }
+          });
+        }
+      });
+
+      //////////////////////////////// STG2D4 //////////////////////////////
+    } else if (stg == 'STG2' && day == 'D4') {
+      STG2D4.find().exec(function(err, results) {
+        // if mongodb is in the process of deleting and inserting new data.
+        if (results.length < 900) {
+          setTimeout(() => {
+            STG2D4.find({ csvFSDailyID: `${fsdailyId}` }).exec(function(err, flights) {
+              if (err) {
+
+                reject(err);
+              } else {
+                resolve(flights);
+              }
+            });
+          }, 5000);
+        } else {
+          STG2D4.find({ csvFSDailyID: `${fsdailyId}` }).exec(function(err, flights) {
+            if (err) {
+
+              reject(err);
+            } else {
+              resolve(flights);
+            }
+          });
+        }
+      });
+
+      //////////////////////////////// STG2D5 //////////////////////////////
+    } else if (stg == 'STG2' && day == 'D5') {
+      STG2D5.find().exec(function(err, results) {
+        // if mongodb is in the process of deleting and inserting new data.
+        if (results.length < 900) {
+          setTimeout(() => {
+            STG2D5.find({ csvFSDailyID: `${fsdailyId}` }).exec(function(err, flights) {
+              if (err) {
+
+                reject(err);
+              } else {
+                resolve(flights);
+              }
+            });
+          }, 5000);
+        } else {
+          STG2D5.find({ csvFSDailyID: `${fsdailyId}` }).exec(function(err, flights) {
+            if (err) {
+
+              reject(err);
+            } else {
+              resolve(flights);
+            }
+          });
+        }
+      });
+
+      //////////////////////////////// STG2D6 //////////////////////////////
+    } else if (stg == 'STG2' && day == 'D6') {
+      STG2D6.find().exec(function(err, results) {
+        // if mongodb is in the process of deleting and inserting new data.
+        if (results.length < 900) {
+          setTimeout(() => {
+            STG2D6.find({ csvFSDailyID: `${fsdailyId}` }).exec(function(err, flights) {
+              if (err) {
+
+                reject(err);
+              } else {
+                resolve(flights);
+              }
+            });
+          }, 5000);
+        } else {
+          STG2D6.find({ csvFSDailyID: `${fsdailyId}` }).exec(function(err, flights) {
+            if (err) {
+
+              reject(err);
+            } else {
+              resolve(flights);
+            }
+          });
+        }
+      });
+
+      //////////////////////////////// STG2D7 //////////////////////////////
+    } else if (stg == 'STG2' && day == 'D7') {
+      STG2D7.find().exec(function(err, results) {
+        // if mongodb is in the process of deleting and inserting new data.
+        if (results.length < 900) {
+          setTimeout(() => {
+            STG2D7.find({ csvFSDailyID: `${fsdailyId}` }).exec(function(err, flights) {
+              if (err) {
+
+                reject(err);
+              } else {
+                resolve(flights);
+              }
+            });
+          }, 5000);
+        } else {
+          STG2D7.find({ csvFSDailyID: `${fsdailyId}` }).exec(function(err, flights) {
+            if (err) {
+
+              reject(err);
+            } else {
+              resolve(flights);
+            }
+          });
+        }
+      });
+    }
+
+    /////////////////////////////////////////////////////////////////////////
+    ///////////////////////////// End of stage 2 ////////////////////////////
     /////////////////////////////////////////////////////////////////////////
 
 
@@ -1458,7 +1930,7 @@ router.get('/flight/:stg/:day/:flightNum', (req, res) => {
   if (stg != 'STG1' && stg != 'STG3') {
     res.status(400).json({ error: 'stg must be stg1 or stg3' });
   } else if (day != 'D0' && day != 'D1' && day != 'D2' && day != 'D3' && day != 'D4' && day != 'D5' && day != 'D6' && day != 'D7') {
-    res.status(400).json({ error: 'day must be d#; # is in range 0 to 7; ex: d0 is yesterday d1 is today.' });
+    res.status(400).json({ error: 'day must be d# based on flight local date; # is in range 0 to 7; ex: d0 is yesterday d1 is today and so on' });
   } else if (v(flightNum).count() != 5 || v(flightNum).isNumeric() === false) {
     res.status(400).json({ error: 'flightNum must be min 1 digit max 4 digit' });
   } else {
@@ -1489,7 +1961,7 @@ router.get('/id/:stg/:day/:fsdailyId', (req, res) => {
   if (stg != 'STG1' && stg != 'STG3') {
     res.status(400).json({ error: 'stg must be stg1 or stg3' });
   } else if (day != 'D0' && day != 'D1' && day != 'D2' && day != 'D3' && day != 'D4' && day != 'D5' && day != 'D6' && day != 'D7') {
-    res.status(400).json({ error: 'day must be d#; # is in range 0 to 7; ex: d0 is yesterday d1 is today.' });
+    res.status(400).json({ error: 'day must be d# based on flight local date; # is in range 0 to 7; ex: d0 is yesterday d1 is today and so on' });
   } else if (v(fsdailyId).count() != 7 || v(fsdailyId).isNumeric() === false) {
     res.status(400).json({ error: 'fsDailyId must be 7 digit' });
   } else {
@@ -1573,15 +2045,15 @@ router.post('/out', async (req, res) => {
   let day = v(body.day).trim().upperCase();
   let fsdailyId = v(body.fsdailyId).trim();
   let outUTC = v(body.outUTC).trim().padLeft(4,'0');
-  console.log(`Adhoc event processing with data: ${stg}, ${day}, ${fsdailyId}, ${outUTC}`);
+  let validateOUT = validateTime(outUTC);
   if (stg != 'STG1' && stg != 'STG2' && stg != 'STG3' || body.stg == '' || body.stg == null) {
     res.status(400).json({ error: 'stg must be stg1 or stg3' });
   } else if (day != 'D0' && day != 'D1' && day != 'D2' && day != 'D3' && day != 'D4' && day != 'D5' && day != 'D6' && day != 'D7' || body.day == '' || body.day == null) {
-    res.status(400).json({ error: 'day must be d#; # is in range 0 to 7; ex: d0 is yesterday d1 is today.' });
+    res.status(400).json({ error: 'day must be d# based on flight local date; # is in range 0 to 7; ex: d0 is yesterday d1 is today and so on' });
   } else if (v(fsdailyId).count() != 7 || v(fsdailyId).isNumeric() === false || body.fsdailyId == '' || body.fsdailyId == null) {
     res.status(400).json({ error: 'fsDailyId must be 7 digit' });
-  } else if (v(outUTC).count() != 4 || v(outUTC).isNumeric() === false || body.outUTC == '' || body.outUTC == null) {
-    res.status(400).json({ error: 'outUTC must be 4 digit utc time, ex: 1500, 0059 etc' });
+  } else if (v(outUTC).count() != 4 || v(outUTC).isNumeric() === false || validateOUT == false || body.outUTC == '' || body.outUTC == null) {
+    res.status(400).json({ error: 'outUTC must be 4 digit valid utc time, ex: 1500, 0059 etc' });
   } else {
     try {
 
@@ -1596,9 +2068,9 @@ router.post('/out', async (req, res) => {
       } else if (v(flightData[0].cancelled).trim() == 'X') {
         res.status(404).json({ error : `flight with dailyId ${fsdailyId} for day ${day} with local date ${flightData[0].numericFlightDate} is cancelled.`});
       } else if (v(flightData[0].previousTailNumber).trim() == 'CANX' || v(flightData[0].tailNumber).startsWith('-', 0)) {
-        res.status(404).json({ error : `flight with dailyId ${fsdailyId} for day ${day} with local date ${flightData[0].numericFlightDate} had air turnback or ground turnback or divert-continue etc. You need to login to MVT to change this flight.`});
+        res.status(404).json({ error : `flight with dailyId ${fsdailyId} for day ${day} with local date ${flightData[0].numericFlightDate} has negative tail`});
       } else if (v(flightData[0].OFFudt).trim() != '' || v(flightData[0].ONudt).trim() != '' || v(flightData[0].INudt).trim() != '') {
-        res.status(404).json({ error : `flight with dailyId ${fsdailyId} for day ${day} already has OFF or ON or IN. Please use RMA (remove arrival) or RMD (remove departure) before setting new OUT`});
+        res.status(404).json({ error : `flight with dailyId ${fsdailyId} for day ${day} already have OFF or ON or IN. Please use RMA (remove arrival) or RMD (remove departure) before setting new OUT`});
       } else {
 
         //////////////////////////////// prep data for adhoc 16 /////////////////////////////////
@@ -1659,15 +2131,15 @@ router.post('/off', async (req, res) => {
   let day = v(body.day).trim().upperCase();
   let fsdailyId = v(body.fsdailyId).trim();
   let offUTC = v(body.offUTC).trim().padLeft(4,'0');
-  console.log(`Adhoc event processing with data: ${stg}, ${day}, ${fsdailyId}, ${offUTC}`);
+  let validateOFF = validateTime(offUTC);
   if (stg != 'STG1' && stg != 'STG2' && stg != 'STG3' || body.stg == '' || body.stg == null) {
     res.status(400).json({ error: 'stg must be stg1 or stg3' });
   } else if (day != 'D0' && day != 'D1' && day != 'D2' && day != 'D3' && day != 'D4' && day != 'D5' && day != 'D6' && day != 'D7' || body.day == '' || body.day == null) {
-    res.status(400).json({ error: 'day must be d#; # is in range 0 to 7; ex: d0 is yesterday d1 is today.' });
+    res.status(400).json({ error: 'day must be d# based on flight local date; # is in range 0 to 7; ex: d0 is yesterday d1 is today and so on' });
   } else if (v(fsdailyId).count() != 7 || v(fsdailyId).isNumeric() === false || body.fsdailyId == '' || body.fsdailyId == null) {
     res.status(400).json({ error: 'fsDailyId must be 7 digit' });
-  } else if (v(offUTC).count() != 4 || v(offUTC).isNumeric() === false || body.offUTC == '' || body.offUTC == null) {
-    res.status(400).json({ error: 'offUTC must be 4 digit utc time, ex: 1500, 0059 etc' });
+  } else if (v(offUTC).count() != 4 || v(offUTC).isNumeric() === false || validateOFF == false || body.offUTC == '' || body.offUTC == null) {
+    res.status(400).json({ error: 'offUTC must be 4 digit valid utc time, ex: 1500, 0059 etc' });
   } else {
     try {
 
@@ -1682,11 +2154,11 @@ router.post('/off', async (req, res) => {
       } else if (v(flightData[0].cancelled).trim() == 'X') {
         res.status(404).json({ error : `flight with dailyId ${fsdailyId} for day ${day} with local date ${flightData[0].numericFlightDate} is cancelled.`});
       } else if (v(flightData[0].previousTailNumber).trim() == 'CANX' || v(flightData[0].tailNumber).startsWith('-', 0)) {
-        res.status(404).json({ error : `flight with dailyId ${fsdailyId} for day ${day} with local date ${flightData[0].numericFlightDate} had air turnback or ground turnback or divert-continue etc. You need to login to MVT to change this flight.`});
+        res.status(404).json({ error : `flight with dailyId ${fsdailyId} for day ${day} with local date ${flightData[0].numericFlightDate} has negative tail`});
       } else if (v(flightData[0].OUTudt).trim() == '') {
         res.status(404).json({ error : `flight with dailyId ${fsdailyId} for day ${day} with local date ${flightData[0].numericFlightDate} has no OUT time. Please send OUT event first.`});
       } else if (v(flightData[0].ONudt).trim()!= '' || v(flightData[0].INudt).trim() != '') {
-        res.status(404).json({ error : `flight with dailyId ${fsdailyId} for day ${day} already has ON or IN. Please use RMA (remove arrival) before setting new OFF`});
+        res.status(404).json({ error : `flight with dailyId ${fsdailyId} for day ${day} already have ON or IN. Please use RMA (remove arrival) before setting new OFF`});
       } else {
 
         //////////////////////////////// prep data for adhoc 16 /////////////////////////////////
@@ -1749,15 +2221,15 @@ router.post('/on', async (req, res) => {
   let day = v(body.day).trim().upperCase();
   let fsdailyId = v(body.fsdailyId).trim();
   let onUTC = v(body.onUTC).trim().padLeft(4,'0');
-  console.log(`Adhoc event processing with data: ${stg}, ${day}, ${fsdailyId}, ${onUTC}`);
+  let validateON = validateTime(onUTC);
   if (stg != 'STG1' && stg != 'STG2' && stg != 'STG3' || body.stg == '' || body.stg == null) {
     res.status(400).json({ error: 'stg must be stg1 or stg3' });
   } else if (day != 'D0' && day != 'D1' && day != 'D2' && day != 'D3' && day != 'D4' && day != 'D5' && day != 'D6' && day != 'D7' || body.day == '' || body.day == null) {
-    res.status(400).json({ error: 'day must be d#; # is in range 0 to 7; ex: d0 is yesterday d1 is today.' });
+    res.status(400).json({ error: 'day must be d# based on flight local date; # is in range 0 to 7; ex: d0 is yesterday d1 is today and so on' });
   } else if (v(fsdailyId).count() != 7 || v(fsdailyId).isNumeric() === false || body.fsdailyId == '' || body.fsdailyId == null) {
     res.status(400).json({ error: 'fsDailyId must be 7 digit' });
-  } else if (v(onUTC).count() != 4 || v(onUTC).isNumeric() === false || body.onUTC == '' || body.onUTC == null) {
-    res.status(400).json({ error: 'onUTC must be 4 digit utc time, ex: 1500, 0059 etc' });
+  } else if (v(onUTC).count() != 4 || v(onUTC).isNumeric() === false || validateON == false || body.onUTC == '' || body.onUTC == null) {
+    res.status(400).json({ error: 'onUTC must be 4 digit valid utc time, ex: 1500, 0059 etc' });
   } else {
     try {
 
@@ -1772,7 +2244,7 @@ router.post('/on', async (req, res) => {
       } else if (v(flightData[0].cancelled).trim() == 'X') {
         res.status(404).json({ error : `flight with dailyId ${fsdailyId} for day ${day} with local date ${flightData[0].numericFlightDate} is cancelled.`});
       } else if (v(flightData[0].previousTailNumber).trim() == 'CANX' || v(flightData[0].tailNumber).startsWith('-', 0)) {
-        res.status(404).json({ error : `flight with dailyId ${fsdailyId} for day ${day} with local date ${flightData[0].numericFlightDate} had air turnback or ground turnback or divert-continue etc. You need to login to MVT to change this flight.`});
+        res.status(404).json({ error : `flight with dailyId ${fsdailyId} for day ${day} with local date ${flightData[0].numericFlightDate} has negative tail`});
       } else if (v(flightData[0].OUTudt).trim() == '' || v(flightData[0].OFFudt).trim() == '' || v(flightData[0].INudt).trim() != '') {
         res.status(404).json({ error : `flight with dailyId ${fsdailyId} for day ${day} should already have OUT and OFF value and IN should be empty. Please use RMA (remove arrival) for removing IN`});
       } else {
@@ -1836,15 +2308,15 @@ router.post('/in', async (req, res) => {
   let day = v(body.day).trim().upperCase();
   let fsdailyId = v(body.fsdailyId).trim();
   let inUTC = v(body.inUTC).trim().padLeft(4,'0');
-  console.log(`Adhoc event processing with data: ${stg}, ${day}, ${fsdailyId}, ${inUTC}`);
+  let validateIN = validateTime(inUTC);
   if (stg != 'STG1' && stg != 'STG2' && stg != 'STG3' || body.stg == '' || body.stg == null) {
     res.status(400).json({ error: 'stg must be stg1 or stg3' });
   } else if (day != 'D0' && day != 'D1' && day != 'D2' && day != 'D3' && day != 'D4' && day != 'D5' && day != 'D6' && day != 'D7' || body.day == '' || body.day == null) {
-    res.status(400).json({ error: 'day must be d#; # is in range 0 to 7; ex: d0 is yesterday d1 is today.' });
+    res.status(400).json({ error: 'day must be d# based on flight local date; # is in range 0 to 7; ex: d0 is yesterday d1 is today and so on' });
   } else if (v(fsdailyId).count() != 7 || v(fsdailyId).isNumeric() === false || body.fsdailyId == '' || body.fsdailyId == null) {
     res.status(400).json({ error: 'fsDailyId must be 7 digit' });
-  } else if (v(inUTC).count() != 4 || v(inUTC).isNumeric() === false || body.inUTC == '' || body.inUTC == null) {
-    res.status(400).json({ error: 'inUTC must be 4 digit utc time, ex: 1500, 0059 etc' });
+  } else if (v(inUTC).count() != 4 || v(inUTC).isNumeric() === false || validateIN == false || body.inUTC == '' || body.inUTC == null) {
+    res.status(400).json({ error: 'inUTC must be 4 digit valid utc time, ex: 1500, 0059 etc' });
   } else {
     try {
 
@@ -1859,7 +2331,7 @@ router.post('/in', async (req, res) => {
       } else if (v(flightData[0].cancelled).trim() == 'X') {
         res.status(404).json({ error : `flight with dailyId ${fsdailyId} for day ${day} with local date ${flightData[0].numericFlightDate} is cancelled.`});
       } else if (v(flightData[0].previousTailNumber).trim() == 'CANX' || v(flightData[0].tailNumber).startsWith('-', 0)) {
-        res.status(404).json({ error : `flight with dailyId ${fsdailyId} for day ${day} with local date ${flightData[0].numericFlightDate} had air turnback or ground turnback or divert-continue etc. You need to login to MVT to change this flight.`});
+        res.status(404).json({ error : `flight with dailyId ${fsdailyId} for day ${day} with local date ${flightData[0].numericFlightDate} has negative tail`});
       } else if (v(flightData[0].OUTudt).trim() == '') {
         res.status(404).json({ error : `flight with dailyId ${fsdailyId} for day ${day} with local date ${flightData[0].numericFlightDate} has no OUT time. Please send OUT event first.`});
       } else if (v(flightData[0].OUTudt).trim() == '' || v(flightData[0].OFFudt).trim() == '' || v(flightData[0].ONudt).trim() == '') {
@@ -1925,15 +2397,15 @@ router.post('/etd', async (req, res) => {
   let day = v(body.day).trim().upperCase();
   let fsdailyId = v(body.fsdailyId).trim();
   let etdUTC = v(body.etdUTC).trim().padLeft(4,'0');
-  console.log(`Adhoc event processing with data: ${stg}, ${day}, ${fsdailyId}, ${etdUTC}`);
+  let validateETD = validateTime(etdUTC);
   if (stg != 'STG1' && stg != 'STG2' && stg != 'STG3' || body.stg == '' || body.stg == null) {
     res.status(400).json({ error: 'stg must be stg1 or stg3' });
   } else if (day != 'D0' && day != 'D1' && day != 'D2' && day != 'D3' && day != 'D4' && day != 'D5' && day != 'D6' && day != 'D7' || body.day == '' || body.day == null) {
-    res.status(400).json({ error: 'day must be d#; # is in range 0 to 7; ex: d0 is yesterday d1 is today.' });
+    res.status(400).json({ error: 'day must be d# based on flight local date; # is in range 0 to 7; ex: d0 is yesterday d1 is today and so on' });
   } else if (v(fsdailyId).count() != 7 || v(fsdailyId).isNumeric() === false || body.fsdailyId == '' || body.fsdailyId == null) {
     res.status(400).json({ error: 'fsDailyId must be 7 digit' });
-  } else if (v(etdUTC).count() != 4 || v(etdUTC).isNumeric() === false || body.etdUTC == '' || body.etdUTC == null) {
-    res.status(400).json({ error: 'etdUTC must be 4 digit utc time, ex: 1500, 0059 etc' });
+  } else if (v(etdUTC).count() != 4 || v(etdUTC).isNumeric() === false || validateETD == false || body.etdUTC == '' || body.etdUTC == null) {
+    res.status(400).json({ error: 'etdUTC must be 4 digit valid utc time, ex: 1500, 0059 etc' });
   } else {
     try {
 
@@ -1948,7 +2420,7 @@ router.post('/etd', async (req, res) => {
       } else if (v(flightData[0].cancelled).trim() == 'X') {
         res.status(404).json({ error : `flight with dailyId ${fsdailyId} for day ${day} with local date ${flightData[0].numericFlightDate} is cancelled.`});
       } else if (v(flightData[0].previousTailNumber).trim() == 'CANX' || v(flightData[0].tailNumber).startsWith('-', 0)) {
-        res.status(404).json({ error : `flight with dailyId ${fsdailyId} for day ${day} with local date ${flightData[0].numericFlightDate} had air turnback or ground turnback or divert-continue etc. You need to login to MVT to change this flight.`});
+        res.status(404).json({ error : `flight with dailyId ${fsdailyId} for day ${day} with local date ${flightData[0].numericFlightDate} has negative tail`});
       } else if (v(flightData[0].OUTudt).trim() != '' || v(flightData[0].OFFudt).trim() != '' || v(flightData[0].ONudt).trim() != '' || v(flightData[0].INudt).trim() != '') {
         res.status(404).json({ error : `flight with dailyId ${fsdailyId} for day ${day} should not already have OUT OFF ON IN. Please use RMA (remove arrival) or RMD (remove departure) before sending ETD`});
       } else {
@@ -2010,15 +2482,16 @@ router.post('/eta', async (req, res) => {
   let day = v(body.day).trim().upperCase();
   let fsdailyId = v(body.fsdailyId).trim();
   let etaUTC = v(body.etaUTC).trim().padLeft(4,'0');
+  let validateETA = validateTime(etaUTC);
   console.log(`Adhoc event processing with data: ${stg}, ${day}, ${fsdailyId}, ${etaUTC}`);
   if (stg != 'STG1' && stg != 'STG2' && stg != 'STG3' || body.stg == '' || body.stg == null) {
     res.status(400).json({ error: 'stg must be stg1 or stg3' });
   } else if (day != 'D0' && day != 'D1' && day != 'D2' && day != 'D3' && day != 'D4' && day != 'D5' && day != 'D6' && day != 'D7' || body.day == '' || body.day == null) {
-    res.status(400).json({ error: 'day must be d#; # is in range 0 to 7; ex: d0 is yesterday d1 is today.' });
+    res.status(400).json({ error: 'day must be d# based on flight local date; # is in range 0 to 7; ex: d0 is yesterday d1 is today and so on' });
   } else if (v(fsdailyId).count() != 7 || v(fsdailyId).isNumeric() === false || body.fsdailyId == '' || body.fsdailyId == null) {
     res.status(400).json({ error: 'fsDailyId must be 7 digit' });
-  } else if (v(etaUTC).count() != 4 || v(etaUTC).isNumeric() === false || body.etaUTC == '' || body.etaUTC == null) {
-    res.status(400).json({ error: 'etaUTC must be 4 digit utc time, ex: 1500, 0059 etc' });
+  } else if (v(etaUTC).count() != 4 || v(etaUTC).isNumeric() === false || validateETA == false || body.etaUTC == '' || body.etaUTC == null) {
+    res.status(400).json({ error: 'etaUTC must be 4 digit valid utc time, ex: 1500, 0059 etc' });
   } else {
     try {
 
@@ -2033,7 +2506,7 @@ router.post('/eta', async (req, res) => {
       } else if (v(flightData[0].cancelled).trim() == 'X') {
         res.status(404).json({ error : `flight with dailyId ${fsdailyId} for day ${day} with local date ${flightData[0].numericFlightDate} is cancelled.`});
       } else if (v(flightData[0].previousTailNumber).trim() == 'CANX' || v(flightData[0].tailNumber).startsWith('-', 0)) {
-        res.status(404).json({ error : `flight with dailyId ${fsdailyId} for day ${day} with local date ${flightData[0].numericFlightDate} had air turnback or ground turnback or divert-continue etc. You need to login to MVT to change this flight.`});
+        res.status(404).json({ error : `flight with dailyId ${fsdailyId} for day ${day} with local date ${flightData[0].numericFlightDate} has negative tail`});
       } else if (v(flightData[0].ONudt).trim() != '' || v(flightData[0].INudt).trim() != '') {
         res.status(404).json({ error : `flight with dailyId ${fsdailyId} for day ${day} should not already have ON IN. Please use RMA (remove arrival) before sending ETA`});
       } else {
@@ -2095,15 +2568,16 @@ router.post('/eto', async (req, res) => {
   let day = v(body.day).trim().upperCase();
   let fsdailyId = v(body.fsdailyId).trim();
   let etoUTC = v(body.etoUTC).trim().padLeft(4,'0');
+  let validateETO = validateTime(etoUTC);
   console.log(`Adhoc event processing with data: ${stg}, ${day}, ${fsdailyId}, ${etoUTC}`);
   if (stg != 'STG1' && stg != 'STG2' && stg != 'STG3' || body.stg == '' || body.stg == null) {
     res.status(400).json({ error: 'stg must be stg1 or stg3' });
   } else if (day != 'D0' && day != 'D1' && day != 'D2' && day != 'D3' && day != 'D4' && day != 'D5' && day != 'D6' && day != 'D7' || body.day == '' || body.day == null) {
-    res.status(400).json({ error: 'day must be d#; # is in range 0 to 7; ex: d0 is yesterday d1 is today.' });
+    res.status(400).json({ error: 'day must be d# based on flight local date; # is in range 0 to 7; ex: d0 is yesterday d1 is today and so on' });
   } else if (v(fsdailyId).count() != 7 || v(fsdailyId).isNumeric() === false || body.fsdailyId == '' || body.fsdailyId == null) {
     res.status(400).json({ error: 'fsDailyId must be 7 digit' });
-  } else if (v(etoUTC).count() != 4 || v(etoUTC).isNumeric() === false || body.etoUTC == '' || body.etoUTC == null) {
-    res.status(400).json({ error: 'etoUTC must be 4 digit utc time, ex: 1500, 0059 etc' });
+  } else if (v(etoUTC).count() != 4 || v(etoUTC).isNumeric() === false || validateETO == false || body.etoUTC == '' || body.etoUTC == null) {
+    res.status(400).json({ error: 'etoUTC must be 4 digit valid utc time, ex: 1500, 0059 etc' });
   } else {
     try {
 
@@ -2118,7 +2592,7 @@ router.post('/eto', async (req, res) => {
       } else if (v(flightData[0].cancelled).trim() == 'X') {
         res.status(404).json({ error : `flight with dailyId ${fsdailyId} for day ${day} with local date ${flightData[0].numericFlightDate} is cancelled.`});
       } else if (v(flightData[0].previousTailNumber).trim() == 'CANX' || v(flightData[0].tailNumber).startsWith('-', 0)) {
-        res.status(404).json({ error : `flight with dailyId ${fsdailyId} for day ${day} with local date ${flightData[0].numericFlightDate} had air turnback or ground turnback or divert-continue etc. You need to login to MVT to change this flight.`});
+        res.status(404).json({ error : `flight with dailyId ${fsdailyId} for day ${day} with local date ${flightData[0].numericFlightDate} has negative tail`});
       } else if (v(flightData[0].OFFudt).trim() != '' || v(flightData[0].ONudt).trim() != '' || v(flightData[0].INudt).trim() != '') {
         res.status(404).json({ error : `flight with dailyId ${fsdailyId} for day ${day} should not already have OFF ON IN`});
       } else {
@@ -2180,15 +2654,16 @@ router.post('/eon', async (req, res) => {
   let day = v(body.day).trim().upperCase();
   let fsdailyId = v(body.fsdailyId).trim();
   let eonUTC = v(body.eonUTC).trim().padLeft(4,'0');
+  let validateEON = validateTime(eonUTC);
   console.log(`Adhoc event processing with data: ${stg}, ${day}, ${fsdailyId}, ${eonUTC}`);
   if (stg != 'STG1' && stg != 'STG2' && stg != 'STG3' || body.stg == '' || body.stg == null) {
     res.status(400).json({ error: 'stg must be stg1 or stg3' });
   } else if (day != 'D0' && day != 'D1' && day != 'D2' && day != 'D3' && day != 'D4' && day != 'D5' && day != 'D6' && day != 'D7' || body.day == '' || body.day == null) {
-    res.status(400).json({ error: 'day must be d#; # is in range 0 to 7; ex: d0 is yesterday d1 is today.' });
+    res.status(400).json({ error: 'day must be d# based on flight local date; # is in range 0 to 7; ex: d0 is yesterday d1 is today and so on' });
   } else if (v(fsdailyId).count() != 7 || v(fsdailyId).isNumeric() === false || body.fsdailyId == '' || body.fsdailyId == null) {
     res.status(400).json({ error: 'fsDailyId must be 7 digit' });
-  } else if (v(eonUTC).count() != 4 || v(eonUTC).isNumeric() === false || body.eonUTC == '' || body.eonUTC == null) {
-    res.status(400).json({ error: 'eonUTC must be 4 digit utc time, ex: 1500, 0059 etc' });
+  } else if (v(eonUTC).count() != 4 || v(eonUTC).isNumeric() === false || validateEON == true || body.eonUTC == '' || body.eonUTC == null) {
+    res.status(400).json({ error: 'eonUTC must be 4 digit valid utc time, ex: 1500, 0059 etc' });
   } else {
     try {
 
@@ -2203,7 +2678,7 @@ router.post('/eon', async (req, res) => {
       } else if (v(flightData[0].cancelled).trim() == 'X') {
         res.status(404).json({ error : `flight with dailyId ${fsdailyId} for day ${day} with local date ${flightData[0].numericFlightDate} is cancelled.`});
       } else if (v(flightData[0].previousTailNumber).trim() == 'CANX' || v(flightData[0].tailNumber).startsWith('-', 0)) {
-        res.status(404).json({ error : `flight with dailyId ${fsdailyId} for day ${day} with local date ${flightData[0].numericFlightDate} had air turnback or ground turnback or divert-continue etc. You need to login to MVT to change this flight.`});
+        res.status(404).json({ error : `flight with dailyId ${fsdailyId} for day ${day} with local date ${flightData[0].numericFlightDate} has negative tail`});
       } else if (v(flightData[0].ONudt).trim() != '' || v(flightData[0].INudt).trim() != '') {
         res.status(404).json({ error : `flight with dailyId ${fsdailyId} for day ${day} should not already have ON IN`});
       } else {
@@ -2252,7 +2727,7 @@ Required params:
   "stg":"stg1",
   "day":"d0", ( up to d7 available, d0 is yesterday, d1 is today and so on)
   "fsdailyId": "4876446", (validate 7 digit)
-  "tailNum": "1900" (must be 3 digit)
+  "tailNum": "190" (must be 3 digit)
 }
 
 conditions: Flight must be seq 10 and NOT have negative tail.
@@ -2269,7 +2744,7 @@ router.post('/sub', async (req, res) => {
   if (stg != 'STG1' && stg != 'STG2' && stg != 'STG3' || body.stg == '' || body.stg == null) {
     res.status(400).json({ error: 'stg must be stg1 or stg3' });
   } else if (day != 'D0' && day != 'D1' && day != 'D2' && day != 'D3' && day != 'D4' && day != 'D5' && day != 'D6' && day != 'D7' || body.day == '' || body.day == null) {
-    res.status(400).json({ error: 'day must be d#; # is in range 0 to 7; ex: d0 is yesterday d1 is today.' });
+    res.status(400).json({ error: 'day must be d# based on flight local date; # is in range 0 to 7; ex: d0 is yesterday d1 is today and so on' });
   } else if (v(fsdailyId).count() != 7 || v(fsdailyId).isNumeric() === false || body.fsdailyId == '' || body.fsdailyId == null) {
     res.status(400).json({ error: 'fsDailyId must be 7 digit' });
   } else if (v(tailNum).count() != 3 || v(tailNum).isNumeric() === false || body.tailNum == '' || body.tailNum == null) {
@@ -2348,7 +2823,7 @@ router.post('/cnl', async (req, res) => {
   if (stg != 'STG1' && stg != 'STG2' && stg != 'STG3' || body.stg == '' || body.stg == null) {
     res.status(400).json({ error: 'stg must be stg1 or stg3' });
   } else if (day != 'D0' && day != 'D1' && day != 'D2' && day != 'D3' && day != 'D4' && day != 'D5' && day != 'D6' && day != 'D7' || body.day == '' || body.day == null) {
-    res.status(400).json({ error: 'day must be d#; # is in range 0 to 7; ex: d0 is yesterday d1 is today.' });
+    res.status(400).json({ error: 'day must be d# based on flight local date; # is in range 0 to 7; ex: d0 is yesterday d1 is today and so on' });
   } else if (v(fsdailyId).count() != 7 || v(fsdailyId).isNumeric() === false || body.fsdailyId == '' || body.fsdailyId == null) {
     res.status(400).json({ error: 'fsDailyId must be 7 digit' });
   } else {
@@ -2365,7 +2840,7 @@ router.post('/cnl', async (req, res) => {
       } else if (v(flightData[0].cancelled).trim() == 'X') {
         res.status(404).json({ error : `flight with dailyId ${fsdailyId} for day ${day} with local date ${flightData[0].numericFlightDate} already cancelled.`});
       } else if (v(flightData[0].previousTailNumber).trim() == 'CANX' || v(flightData[0].tailNumber).startsWith('-', 0)) {
-        res.status(404).json({ error : `flight with dailyId ${fsdailyId} for day ${day} with local date ${flightData[0].numericFlightDate} already has negative tail number`});
+        res.status(404).json({ error : `flight with dailyId ${fsdailyId} for day ${day} with local date ${flightData[0].numericFlightDate} already have negative tail number`});
       } else {
 
         //////////////////////////////// prep data for adhoc 16 /////////////////////////////////
@@ -2429,7 +2904,7 @@ router.post('/del', async (req, res) => {
   if (stg != 'STG1' && stg != 'STG2' && stg != 'STG3' || body.stg == '' || body.stg == null) {
     res.status(400).json({ error: 'stg must be stg1 or stg3' });
   } else if (day != 'D0' && day != 'D1' && day != 'D2' && day != 'D3' && day != 'D4' && day != 'D5' && day != 'D6' && day != 'D7' || body.day == '' || body.day == null) {
-    res.status(400).json({ error: 'day must be d#; # is in range 0 to 7; ex: d0 is yesterday d1 is today.' });
+    res.status(400).json({ error: 'day must be d# based on flight local date; # is in range 0 to 7; ex: d0 is yesterday d1 is today and so on' });
   } else if (v(fsdailyId).count() != 7 || v(fsdailyId).isNumeric() === false || body.fsdailyId == '' || body.fsdailyId == null) {
     res.status(400).json({ error: 'fsDailyId must be 7 digit' });
   } else {
@@ -2490,7 +2965,7 @@ Required params:
   "stg":"stg1",
   "day":"d0", ( up to d7 available, d0 is yesterday, d1 is today and so on)
   "fsdailyId": "4876446", (validate 7 digit)
-  "depGate": "1900" (pad with blank space to maintain 4 character)
+  "depGate": "A14" (pad with blank space to maintain 4 character)
 }
 
 conditions: Flight must be seq 10 and NOT have negative tail.
@@ -2507,7 +2982,7 @@ router.post('/gtd', async (req, res) => {
   if (stg != 'STG1' && stg != 'STG2' && stg != 'STG3' || body.stg == '' || body.stg == null) {
     res.status(400).json({ error: 'stg must be stg1 or stg3' });
   } else if (day != 'D0' && day != 'D1' && day != 'D2' && day != 'D3' && day != 'D4' && day != 'D5' && day != 'D6' && day != 'D7' || body.day == '' || body.day == null) {
-    res.status(400).json({ error: 'day must be d#; # is in range 0 to 7; ex: d0 is yesterday d1 is today.' });
+    res.status(400).json({ error: 'day must be d# based on flight local date; # is in range 0 to 7; ex: d0 is yesterday d1 is today and so on' });
   } else if (v(fsdailyId).count() != 7 || v(fsdailyId).isNumeric() === false || body.fsdailyId == '' || body.fsdailyId == null) {
     res.status(400).json({ error: 'fsDailyId must be 7 digit' });
   } else if (v(depGate).count() != 4 || body.depGate == '' || body.depGate == null) {
@@ -2526,7 +3001,7 @@ router.post('/gtd', async (req, res) => {
       } else if (v(flightData[0].cancelled).trim() == 'X') {
         res.status(404).json({ error : `flight with dailyId ${fsdailyId} for day ${day} with local date ${flightData[0].numericFlightDate} is cancelled.`});
       } else if (v(flightData[0].previousTailNumber).trim() == 'CANX' || v(flightData[0].tailNumber).startsWith('-', 0)) {
-        res.status(404).json({ error : `flight with dailyId ${fsdailyId} for day ${day} with local date ${flightData[0].numericFlightDate} had air turnback or ground turnback or divert-continue etc. You need to login to MVT to change this flight.`});
+        res.status(404).json({ error : `flight with dailyId ${fsdailyId} for day ${day} with local date ${flightData[0].numericFlightDate} has negative tail`});
       } else {
 
         //////////////////////////////// prep data for adhoc 16 /////////////////////////////////
@@ -2574,7 +3049,7 @@ Required params:
   "stg":"stg1",
   "day":"d0", ( up to d7 available, d0 is yesterday, d1 is today and so on)
   "fsdailyId": "4876446", (validate 7 digit)
-  "arrGate": "1900" (pad with blank space to maintain 4 character)
+  "arrGate": "A14" (pad with blank space to maintain 4 character)
 }
 
 conditions: Flight must be seq 10 and NOT have negative tail.
@@ -2591,7 +3066,7 @@ router.post('/gta', async (req, res) => {
   if (stg != 'STG1' && stg != 'STG2' && stg != 'STG3' || body.stg == '' || body.stg == null) {
     res.status(400).json({ error: 'stg must be stg1 or stg3' });
   } else if (day != 'D0' && day != 'D1' && day != 'D2' && day != 'D3' && day != 'D4' && day != 'D5' && day != 'D6' && day != 'D7' || body.day == '' || body.day == null) {
-    res.status(400).json({ error: 'day must be d#; # is in range 0 to 7; ex: d0 is yesterday d1 is today.' });
+    res.status(400).json({ error: 'day must be d# based on flight local date; # is in range 0 to 7; ex: d0 is yesterday d1 is today and so on' });
   } else if (v(fsdailyId).count() != 7 || v(fsdailyId).isNumeric() === false || body.fsdailyId == '' || body.fsdailyId == null) {
     res.status(400).json({ error: 'fsDailyId must be 7 digit' });
   } else if (v(arrGate).count() != 4 || body.arrGate == '' || body.arrGate == null) {
@@ -2610,7 +3085,7 @@ router.post('/gta', async (req, res) => {
       } else if (v(flightData[0].cancelled).trim() == 'X') {
         res.status(404).json({ error : `flight with dailyId ${fsdailyId} for day ${day} with local date ${flightData[0].numericFlightDate} is cancelled.`});
       } else if (v(flightData[0].previousTailNumber).trim() == 'CANX' || v(flightData[0].tailNumber).startsWith('-', 0)) {
-        res.status(404).json({ error : `flight with dailyId ${fsdailyId} for day ${day} with local date ${flightData[0].numericFlightDate} had air turnback or ground turnback or divert-continue etc. You need to login to MVT to change this flight.`});
+        res.status(404).json({ error : `flight with dailyId ${fsdailyId} for day ${day} with local date ${flightData[0].numericFlightDate} has negative tail`});
       } else {
 
         //////////////////////////////// prep data for adhoc 16 /////////////////////////////////
@@ -2673,7 +3148,7 @@ router.post('/rin', async (req, res) => {
   if (stg != 'STG1' && stg != 'STG2' && stg != 'STG3' || body.stg == '' || body.stg == null) {
     res.status(400).json({ error: 'stg must be stg1 or stg3' });
   } else if (day != 'D0' && day != 'D1' && day != 'D2' && day != 'D3' && day != 'D4' && day != 'D5' && day != 'D6' && day != 'D7' || body.day == '' || body.day == null) {
-    res.status(400).json({ error: 'day must be d#; # is in range 0 to 7; ex: d0 is yesterday d1 is today.' });
+    res.status(400).json({ error: 'day must be d# based on flight local date; # is in range 0 to 7; ex: d0 is yesterday d1 is today and so on' });
   } else if (v(fsdailyId).count() != 7 || v(fsdailyId).isNumeric() === false || body.fsdailyId == '' || body.fsdailyId == null) {
     res.status(400).json({ error: 'fsDailyId must be 7 digit' });
   } else {
@@ -2688,7 +3163,7 @@ router.post('/rin', async (req, res) => {
       if (flightData == '' || flightData == {}) {
         res.status(404).json({ error : `flight with dailyId ${fsdailyId} not found for day ${day}`});
       } else if (v(flightData[0].tailNumber).startsWith('-', 0) == false) {
-        res.status(404).json({ error : `flight with dailyId ${fsdailyId} for day ${day} with local date ${flightData[0].numericFlightDate} does not have a negative tail.`});
+        res.status(404).json({ error : `flight with dailyId ${fsdailyId} for day ${day} with local date ${flightData[0].numericFlightDate} does not is on a negative tail`});
       } else {
 
         //////////////////////////////// prep data for adhoc 16 /////////////////////////////////
@@ -2751,7 +3226,7 @@ router.post('/rem', async (req, res) => {
   if (stg != 'STG1' && stg != 'STG2' && stg != 'STG3' || body.stg == '' || body.stg == null) {
     res.status(400).json({ error: 'stg must be stg1 or stg3' });
   } else if (day != 'D0' && day != 'D1' && day != 'D2' && day != 'D3' && day != 'D4' && day != 'D5' && day != 'D6' && day != 'D7' || body.day == '' || body.day == null) {
-    res.status(400).json({ error: 'day must be d#; # is in range 0 to 7; ex: d0 is yesterday d1 is today.' });
+    res.status(400).json({ error: 'day must be d# based on flight local date; # is in range 0 to 7; ex: d0 is yesterday d1 is today and so on' });
   } else if (v(fsdailyId).count() != 7 || v(fsdailyId).isNumeric() === false || body.fsdailyId == '' || body.fsdailyId == null) {
     res.status(400).json({ error: 'fsDailyId must be 7 digit' });
   } else {
@@ -2766,7 +3241,7 @@ router.post('/rem', async (req, res) => {
       if (flightData == '' || flightData == {}) {
         res.status(404).json({ error : `flight with dailyId ${fsdailyId} not found for day ${day}`});
       } else if (v(flightData[0].tailNumber).startsWith('-', 0) == true) {
-        res.status(404).json({ error : `flight with dailyId ${fsdailyId} for day ${day} with local date ${flightData[0].numericFlightDate} already have a negative tail.`});
+        res.status(404).json({ error : `flight with dailyId ${fsdailyId} for day ${day} with local date ${flightData[0].numericFlightDate} already is on a negative tail`});
       } else {
 
         //////////////////////////////// prep data for adhoc 16 /////////////////////////////////
@@ -2814,7 +3289,7 @@ Required params:
   "stg":"stg1",
   "day":"d0", ( up to d7 available, d0 is yesterday, d1 is today and so on)
   "fsdailyId": "4876446", (validate 7 digit)
-  "tailNum": "1900" (must be 3 digit)
+  "tailNum": "190" (must be 3 digit)
 }
 
 conditions: Flight must have negative tail.
@@ -2831,7 +3306,7 @@ router.post('/asn', async (req, res) => {
   if (stg != 'STG1' && stg != 'STG2' && stg != 'STG3' || body.stg == '' || body.stg == null) {
     res.status(400).json({ error: 'stg must be stg1 or stg3' });
   } else if (day != 'D0' && day != 'D1' && day != 'D2' && day != 'D3' && day != 'D4' && day != 'D5' && day != 'D6' && day != 'D7' || body.day == '' || body.day == null) {
-    res.status(400).json({ error: 'day must be d#; # is in range 0 to 7; ex: d0 is yesterday d1 is today.' });
+    res.status(400).json({ error: 'day must be d# based on flight local date; # is in range 0 to 7; ex: d0 is yesterday d1 is today and so on' });
   } else if (v(fsdailyId).count() != 7 || v(fsdailyId).isNumeric() === false || body.fsdailyId == '' || body.fsdailyId == null) {
     res.status(400).json({ error: 'fsDailyId must be 7 digit' });
   } else if (v(tailNum).count() != 3 || v(tailNum).isNumeric() === false || body.tailNum == '' || body.tailNum == null) {
@@ -2911,7 +3386,7 @@ router.post('/udd', async (req, res) => {
   if (stg != 'STG1' && stg != 'STG2' && stg != 'STG3' || body.stg == '' || body.stg == null) {
     res.status(400).json({ error: 'stg must be stg1 or stg3' });
   } else if (day != 'D0' && day != 'D1' && day != 'D2' && day != 'D3' && day != 'D4' && day != 'D5' && day != 'D6' && day != 'D7' || body.day == '' || body.day == null) {
-    res.status(400).json({ error: 'day must be d#; # is in range 0 to 7; ex: d0 is yesterday d1 is today.' });
+    res.status(400).json({ error: 'day must be d# based on flight local date; # is in range 0 to 7; ex: d0 is yesterday d1 is today and so on' });
   } else if (v(fsdailyId).count() != 7 || v(fsdailyId).isNumeric() === false || body.fsdailyId == '' || body.fsdailyId == null) {
     res.status(400).json({ error: 'fsDailyId must be 7 digit' });
   } else {
@@ -2926,7 +3401,7 @@ router.post('/udd', async (req, res) => {
       if (flightData == '' || flightData == {}) {
         res.status(404).json({ error : `flight with dailyId ${fsdailyId} not found for day ${day}`});
       } else if (v(flightData[0].tailNumber).startsWith('-', 0) == true) {
-        res.status(404).json({ error : `flight with dailyId ${fsdailyId} for day ${day} with local date ${flightData[0].numericFlightDate} have a negative tail.`});
+        res.status(404).json({ error : `flight with dailyId ${fsdailyId} for day ${day} with local date ${flightData[0].numericFlightDate} is on a negative tail`});
       } else if (v(flightData[0].ETDudt).trim() == v(flightData[0].STDudt).trim()) {
         res.status(404).json({ error : `flight with dailyId ${fsdailyId} for day ${day} with local date ${flightData[0].numericFlightDate} have ETD same as STD.`});
       } else {
@@ -2991,7 +3466,7 @@ router.post('/uda', async (req, res) => {
   if (stg != 'STG1' && stg != 'STG2' && stg != 'STG3' || body.stg == '' || body.stg == null) {
     res.status(400).json({ error: 'stg must be stg1 or stg3' });
   } else if (day != 'D0' && day != 'D1' && day != 'D2' && day != 'D3' && day != 'D4' && day != 'D5' && day != 'D6' && day != 'D7' || body.day == '' || body.day == null) {
-    res.status(400).json({ error: 'day must be d#; # is in range 0 to 7; ex: d0 is yesterday d1 is today.' });
+    res.status(400).json({ error: 'day must be d# based on flight local date; # is in range 0 to 7; ex: d0 is yesterday d1 is today and so on' });
   } else if (v(fsdailyId).count() != 7 || v(fsdailyId).isNumeric() === false || body.fsdailyId == '' || body.fsdailyId == null) {
     res.status(400).json({ error: 'fsDailyId must be 7 digit' });
   } else {
@@ -3006,7 +3481,7 @@ router.post('/uda', async (req, res) => {
       if (flightData == '' || flightData == {}) {
         res.status(404).json({ error : `flight with dailyId ${fsdailyId} not found for day ${day}`});
       } else if (v(flightData[0].tailNumber).startsWith('-', 0) == true) {
-        res.status(404).json({ error : `flight with dailyId ${fsdailyId} for day ${day} with local date ${flightData[0].numericFlightDate} have a negative tail.`});
+        res.status(404).json({ error : `flight with dailyId ${fsdailyId} for day ${day} with local date ${flightData[0].numericFlightDate} is on a negative tail`});
       } else if (v(flightData[0].ETAudt).trim() == v(flightData[0].STAudt).trim()) {
         res.status(404).json({ error : `flight with dailyId ${fsdailyId} for day ${day} with local date ${flightData[0].numericFlightDate} have ETA same as STA.`});
       } else {
@@ -3070,7 +3545,7 @@ router.post('/rmd', async (req, res) => {
   if (stg != 'STG1' && stg != 'STG2' && stg != 'STG3' || body.stg == '' || body.stg == null) {
     res.status(400).json({ error: 'stg must be stg1 or stg3' });
   } else if (day != 'D0' && day != 'D1' && day != 'D2' && day != 'D3' && day != 'D4' && day != 'D5' && day != 'D6' && day != 'D7' || body.day == '' || body.day == null) {
-    res.status(400).json({ error: 'day must be d#; # is in range 0 to 7; ex: d0 is yesterday d1 is today.' });
+    res.status(400).json({ error: 'day must be d# based on flight local date; # is in range 0 to 7; ex: d0 is yesterday d1 is today and so on' });
   } else if (v(fsdailyId).count() != 7 || v(fsdailyId).isNumeric() === false || body.fsdailyId == '' || body.fsdailyId == null) {
     res.status(400).json({ error: 'fsDailyId must be 7 digit' });
   } else {
@@ -3085,7 +3560,7 @@ router.post('/rmd', async (req, res) => {
       if (flightData == '' || flightData == {}) {
         res.status(404).json({ error : `flight with dailyId ${fsdailyId} not found for day ${day}`});
       } else if (v(flightData[0].tailNumber).startsWith('-', 0) == true) {
-        res.status(404).json({ error : `flight with dailyId ${fsdailyId} for day ${day} with local date ${flightData[0].numericFlightDate} have a negative tail.`});
+        res.status(404).json({ error : `flight with dailyId ${fsdailyId} for day ${day} with local date ${flightData[0].numericFlightDate} is on a negative tail`});
       } else if (v(flightData[0].OUTudt).trim() == '' && v(flightData[0].OFFudt).trim() == '') {
         res.status(404).json({ error : `flight with dailyId ${fsdailyId} for day ${day} with local date ${flightData[0].numericFlightDate} have OUT and OFF already empty.`});
       } else {
@@ -3149,7 +3624,7 @@ router.post('/rma', async (req, res) => {
   if (stg != 'STG1' && stg != 'STG2' && stg != 'STG3' || body.stg == '' || body.stg == null) {
     res.status(400).json({ error: 'stg must be stg1 or stg3' });
   } else if (day != 'D0' && day != 'D1' && day != 'D2' && day != 'D3' && day != 'D4' && day != 'D5' && day != 'D6' && day != 'D7' || body.day == '' || body.day == null) {
-    res.status(400).json({ error: 'day must be d#; # is in range 0 to 7; ex: d0 is yesterday d1 is today.' });
+    res.status(400).json({ error: 'day must be d# based on flight local date; # is in range 0 to 7; ex: d0 is yesterday d1 is today and so on' });
   } else if (v(fsdailyId).count() != 7 || v(fsdailyId).isNumeric() === false || body.fsdailyId == '' || body.fsdailyId == null) {
     res.status(400).json({ error: 'fsDailyId must be 7 digit' });
   } else {
@@ -3164,7 +3639,7 @@ router.post('/rma', async (req, res) => {
       if (flightData == '' || flightData == {}) {
         res.status(404).json({ error : `flight with dailyId ${fsdailyId} not found for day ${day}`});
       } else if (v(flightData[0].tailNumber).startsWith('-', 0) == true) {
-        res.status(404).json({ error : `flight with dailyId ${fsdailyId} for day ${day} with local date ${flightData[0].numericFlightDate} have a negative tail.`});
+        res.status(404).json({ error : `flight with dailyId ${fsdailyId} for day ${day} with local date ${flightData[0].numericFlightDate} is on a negative tail`});
       } else if (v(flightData[0].ONudt).trim() == '' && v(flightData[0].INudt).trim() == '') {
         res.status(404).json({ error : `flight with dailyId ${fsdailyId} for day ${day} with local date ${flightData[0].numericFlightDate} have ON and IN already empty.`});
       } else {
@@ -3228,7 +3703,7 @@ router.post('/grd', async (req, res) => {
   if (stg != 'STG1' && stg != 'STG2' && stg != 'STG3' || body.stg == '' || body.stg == null) {
     res.status(400).json({ error: 'stg must be stg1 or stg3' });
   } else if (day != 'D0' && day != 'D1' && day != 'D2' && day != 'D3' && day != 'D4' && day != 'D5' && day != 'D6' && day != 'D7' || body.day == '' || body.day == null) {
-    res.status(400).json({ error: 'day must be d#; # is in range 0 to 7; ex: d0 is yesterday d1 is today.' });
+    res.status(400).json({ error: 'day must be d# based on flight local date; # is in range 0 to 7; ex: d0 is yesterday d1 is today and so on' });
   } else if (v(fsdailyId).count() != 7 || v(fsdailyId).isNumeric() === false || body.fsdailyId == '' || body.fsdailyId == null) {
     res.status(400).json({ error: 'fsDailyId must be 7 digit' });
   } else {
@@ -3243,7 +3718,7 @@ router.post('/grd', async (req, res) => {
       if (flightData == '' || flightData == {}) {
         res.status(404).json({ error : `flight with dailyId ${fsdailyId} not found for day ${day}`});
       } else if (v(flightData[0].tailNumber).startsWith('-', 0) == true) {
-        res.status(404).json({ error : `flight with dailyId ${fsdailyId} for day ${day} with local date ${flightData[0].numericFlightDate} have a negative tail.`});
+        res.status(404).json({ error : `flight with dailyId ${fsdailyId} for day ${day} with local date ${flightData[0].numericFlightDate} is on a negative tail`});
       } else if (v(flightData[0].OFFudt).trim() != '' || v(flightData[0].ONudt).trim() != '' || v(flightData[0].INudt).trim() != '') {
         res.status(404).json({ error : `flight with dailyId ${fsdailyId} for day ${day} with local date ${flightData[0].numericFlightDate} should have OFF ON and IN empty.`});
       } else {
@@ -3307,7 +3782,7 @@ router.post('/air', async (req, res) => {
   if (stg != 'STG1' && stg != 'STG2' && stg != 'STG3' || body.stg == '' || body.stg == null) {
     res.status(400).json({ error: 'stg must be stg1 or stg3' });
   } else if (day != 'D0' && day != 'D1' && day != 'D2' && day != 'D3' && day != 'D4' && day != 'D5' && day != 'D6' && day != 'D7' || body.day == '' || body.day == null) {
-    res.status(400).json({ error: 'day must be d#; # is in range 0 to 7; ex: d0 is yesterday d1 is today.' });
+    res.status(400).json({ error: 'day must be d# based on flight local date; # is in range 0 to 7; ex: d0 is yesterday d1 is today and so on' });
   } else if (v(fsdailyId).count() != 7 || v(fsdailyId).isNumeric() === false || body.fsdailyId == '' || body.fsdailyId == null) {
     res.status(400).json({ error: 'fsDailyId must be 7 digit' });
   } else {
@@ -3322,7 +3797,7 @@ router.post('/air', async (req, res) => {
       if (flightData == '' || flightData == {}) {
         res.status(404).json({ error : `flight with dailyId ${fsdailyId} not found for day ${day}`});
       } else if (v(flightData[0].tailNumber).startsWith('-', 0) == true) {
-        res.status(404).json({ error : `flight with dailyId ${fsdailyId} for day ${day} with local date ${flightData[0].numericFlightDate} have a negative tail.`});
+        res.status(404).json({ error : `flight with dailyId ${fsdailyId} for day ${day} with local date ${flightData[0].numericFlightDate} is on a negative tail`});
       } else if (v(flightData[0].ONudt).trim() != '' || v(flightData[0].INudt).trim() != '') {
         res.status(404).json({ error : `flight with dailyId ${fsdailyId} for day ${day} with local date ${flightData[0].numericFlightDate} should have ON and IN empty.`});
       } else {
@@ -3390,7 +3865,7 @@ router.post('/dvc', async (req, res) => {
   if (stg != 'STG1' && stg != 'STG2' && stg != 'STG3' || body.stg == '' || body.stg == null) {
     res.status(400).json({ error: 'stg must be stg1 or stg3' });
   } else if (day != 'D0' && day != 'D1' && day != 'D2' && day != 'D3' && day != 'D4' && day != 'D5' && day != 'D6' && day != 'D7' || body.day == '' || body.day == null) {
-    res.status(400).json({ error: 'day must be d#; # is in range 0 to 7; ex: d0 is yesterday d1 is today.' });
+    res.status(400).json({ error: 'day must be d# based on flight local date; # is in range 0 to 7; ex: d0 is yesterday d1 is today and so on' });
   } else if (v(fsdailyId).count() != 7 || v(fsdailyId).isNumeric() === false || body.fsdailyId == '' || body.fsdailyId == null) {
     res.status(400).json({ error: 'fsDailyId must be 7 digit' });
   } else if (v(divertCity).count() != 3 || v(divertCity).isAlpha() === false || body.divertCity == '' || body.divertCity == null) {
@@ -3460,7 +3935,7 @@ Required params:
   "destination":"BOS",
   "stdUTC":"1234",
   "staUTC":"1345",
-  "nextDayCrossover":true, (This is true or false. false means it will not crossover next day. true means it will.)
+  "nextDayCrossover":"1", (This is true or false. false means it will not crossover next day. true means it will.)
   "tailNum":"245",
 
 }
@@ -3478,7 +3953,9 @@ router.post('/new', async (req, res) => {
   let origin = v(body.origin).trim().upperCase();
   let destination = v(body.destination).trim().upperCase();
   let stdUTC = v(body.stdUTC).trim().padLeft(4,'0');
+  let validateSTD = validateTime(stdUTC);
   let staUTC = v(body.staUTC).trim().padLeft(4,'0');
+  let validateSTA = validateTime(staUTC);
   let nextDayCrossover = v(body.nextDayCrossover).trim();
   let tailNum = v(body.tailNum).trim();
   if (stg != 'STG1' && stg != 'STG2' && stg != 'STG3' || body.stg == '' || body.stg == null) {
@@ -3489,37 +3966,22 @@ router.post('/new', async (req, res) => {
     res.status(400).json({ error: 'utcOriginDate must be in the format YYYYMMDD.' });
   } else if (v(origin).count() != 3 || v(origin).isAlpha() == false || body.origin == '' || body.origin == null) {
     res.status(400).json({ error: 'origin must be airport code EX: JFK' });
-  } else if (!v.count(destination) >= 1 && !v.count(destination) <= 3 && !v(destination).isAlpha() && !v(destination).isUpperCase()) {
+  } else if (v(destination).count() != 3 || v(destination).isAlpha() == false || body.destination == '' || body.destination == null) {
     res.status(400).json({ error: 'destination must be airport code EX: JFK' });
-  } else if (!v.count(stdUTC) == 4 && isNaN(stdUTC)) {
-    res.status(400).json({ error: 'stdUTC must be 4 digit time value in 24hr format like 0025, 1545 etc' });
-  } else if (!v.count(staUTC) == 4 && isNaN(staUTC)) {
-    res.status(400).json({ error: 'staUTC must be 4 digit time value in 24hr format like 0025, 1545 etc' });
-  } else if (!typeof(nextDayCrossover) === "boolean") {
-    res.status(400).json({ error: 'nextDayCrossover must be either true or false' });
-  } else if (!v.count(tailNum) == 3 && isNaN(tailNum)) {
+  } else if (v.count(stdUTC) != 4 || isNaN(stdUTC) || validateSTD == false || body.stdUTC == '' || body.stdUTC == null) {
+    res.status(400).json({ error: 'stdUTC must be 4 digit valid time value in 24hr format like 0025, 1545 etc' });
+  } else if (v.count(staUTC) != 4 || isNaN(staUTC) || validateSTA == false || body.staUTC == '' || body.staUTC == null) {
+    res.status(400).json({ error: 'staUTC must be 4 digit valid time value in 24hr format like 0025, 1545 etc' });
+  } else if (nextDayCrossover != "1" && nextDayCrossover != "0" || body.nextDayCrossover == '' || body.nextDayCrossover == null) {
+    res.status(400).json({ error: 'nextDayCrossover must be either 1 or 0 which indicates true and false' });
+  } else if (v.count(tailNum) != 3 || isNaN(tailNum) || body.tailNum == '' || body.tailNum == null) {
     res.status(400).json({ error: 'tailNum must be 3 digit' });
   } else {
     try {
 
-      //////////////////////////////// prep data for adhoc 16 /////////////////////////////////
-      // filter data by flight number
-      let flightData = await getByFsdailyId(stg,fsdailyId,day).then(data => {return data});
 
-
-      // handle no flight found + other exceptions
-      if (flightData == '' || flightData == {}) {
-        res.status(404).json({ error : `flight with dailyId ${fsdailyId} not found for day ${day}`});
-      } else if (v(flightData[0].tailNumber).startsWith('-', 0) || v(flightData[0].sequence).trim() != '10') {
-        res.status(404).json({ error : `flight with dailyId ${fsdailyId} for day ${day} with local date ${flightData[0].numericFlightDate} has negative tail or is not seq 10`});
-      } else {
 
         //////////////////////////////// prep data for adhoc 16 /////////////////////////////////
-        let pFlightNum = v(flightData[0].identifier).trim().padLeft(4, '0');
-        let date = v.trim(flightData[0].numGMTDate);
-        let origin = v.trim(flightData[0].origin);
-        let dest = v.trim(flightData[0].destination);
-        let std = v(flightData[0].STDudt).trim().padLeft(4, '0');
         let dropLocation;
         if (stg == 'STG1') {
           dropLocation = './sample';
@@ -3530,20 +3992,18 @@ router.post('/new', async (req, res) => {
         }
         let now = moment(new Date()).format('MM_DD_YYYY_HH_mm_SS_x');
         let fileName = `mceg_adhoc16_new_${now}`;
-        let adhocString = `ADH016_${pFlightNum}${date}${origin}${dest}${std}NEW${etaUTC}${divertCity}`;
+        let adhocString = `ADH016_${flightNum}${utcOriginDate}${origin}${destination}${stdUTC}NEW${staUTC}${nextDayCrossover}${tailNum}`;
         let job = await fs.writeFile(`${dropLocation}/${fileName}.txt`, adhocString).then((err) => {
          if (err) {
           console.log(err)
-           res.status(404).json({error: `Error sending File: ${fileName}.txt - NEW for flight ${pFlightNum} departing utc ${date} Failed!!`});
+           res.status(404).json({error: `Error sending File: ${fileName}.txt - NEW for flight ${flightNum} departing utc ${utcOriginDate} Failed!!`});
          } else {
-          res.status(201).json({adhoc: `File: ${fileName}.txt sent at ${now} - NEW sent for flight ${pFlightNum} departing utc ${date} with divert city ${divertCity}, ETA ${etaUTC}`});
+          res.status(201).json({adhoc: `File: ${fileName}.txt sent at ${now} - NEW sent for flight ${flightNum} departing utc ${utcOriginDate}`});
          }
         });
         ////////////////////////////////////// end of adhoc 16 /////////////////////////////////
 
-      }
-
-    } catch (error) {
+      } catch (error) {
       console.log(error);
     }
   }
