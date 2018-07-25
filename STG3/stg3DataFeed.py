@@ -5,13 +5,14 @@ import glob
 from pathlib import Path
 import traceback
 from collections import OrderedDict
-from pymongo import MongoClient
+import pandas as pd
+import pymongo
 from apscheduler.schedulers.blocking import BlockingScheduler
 
 ##################################################################################################################
 ############################################# STG3 Day 0 (yesterday) ############################################
 def STG3D0_job():
-    print('Starting Stage 3 day 0 data feed.')
+    print('Starting Stage 1 day 0 data feed.')
     # mlab remote mongodb location
     uri = 'mongodb://0.0.0.0:27017/'
 
@@ -161,6 +162,22 @@ def STG3D0_job():
             with open(f'{local_directory}/STG3D0/data.json', 'w') as f:
                 json.dump(rows, f)
 
+            try:
+              mng_client = pymongo.MongoClient(uri)
+              mng_db = mng_client['MCEG']
+              collection_name = 'STG3D0'
+              db_cm = mng_db[collection_name]
+              cdir = Path(os.getcwd())
+              file_res = f'{cdir}/STG3D0/data.csv'
+
+              data = pd.read_csv(file_res)
+              data_json = json.loads(data.to_json(orient='records'))
+              x = db_cm.delete_many({})
+              db_cm.insert(data_json)
+            except Exception as e:
+              print("type error: " + str(e))
+              print(traceback.format_exc())
+
 
         else:
             # if file is not available abort the script
@@ -172,96 +189,12 @@ def STG3D0_job():
 
     call_adhoc_4_and_check_for_response_csv(stageReceive,stageSend,currentDirectory,currentDate)
 
-    def csv2mongo(uri_string, csvfile, database_name,collection_name,delete_collection_before_import):
-        response_dict = OrderedDict()
-        try:
-            mc = MongoClient(uri_string)
-            db = mc[database_name]
-            collection = db[collection_name]
-
-            if delete_collection_before_import == True:
-                db.collection.delete_many({})
-            # open the csv file.
-            csvhandle = csv.reader(open(csvfile, 'r'), delimiter=',')
-
-            rowindex = 0
-            mongoindex = 0
-            error_list = []
-
-            for row in csvhandle:
-
-                if rowindex == 0:
-                    column_headers = row
-                    cleaned_headers = []
-                    for c in column_headers:
-                        c = c.replace(".", "")
-                        c = c.replace("(", "")
-                        c = c.replace(")", "")
-                        c = c.replace("$", "-")
-                        c = c.replace(" ", "_")
-                        cleaned_headers.append(c)
-                else:
-
-                    record = OrderedDict(zip(cleaned_headers, row))
-                    try:
-                        myobjectid = collection.insert(record)
-                        mongoindex += 1
-
-                    except:
-                        error_message = "Error on row " + \
-                            str(rowindex) + ". " + str(sys.exc_info())
-                        error_list.append(error_message)
-
-                rowindex += 1
-
-            if error_list:
-                response_dict['num_rows_imported'] = rowindex
-                response_dict['num_rows_errors'] = len(error_list)
-                response_dict['errors'] = error_list
-                response_dict['code'] = 400
-                response_dict['message'] = "Completed with errors"
-            else:
-
-                response_dict['num_rows_imported'] = mongoindex
-                response_dict['num_csv_rows'] = rowindex
-                response_dict['code'] = 200
-                response_dict['message'] = "Completed."
-
-        except:
-            response_dict['code'] = 500
-            response_dict['errors'] = [traceback.print_exc()]
-
-        return response_dict
-
-
-
-    mc = MongoClient(uri)
-    db = mc['MCEG']
-    collection = db["STG3D0"].delete_many({})
-    # print(collection)
-
-
-    # current directory
-    currentDirectory = Path(os.getcwd())
-    csv_file = f'{currentDirectory}/STG3D0/data.csv'
-    database = 'MCEG'
-    collection = 'STG3D0'
-    delete_collection = True
-
-    result = csv2mongo(
-        uri,
-        csv_file,
-        database,
-        collection,
-        delete_collection)
-    # output the JSON transaction summary
-    print(json.dumps(result, indent=4))
-    print('Finished Stage 3 day 0')
+    print('Finished Stage 1 day 0')
 
 ##################################################################################################################
 ############################################################## STG3 Day 1 (Today) ################################
 def STG3D1_job():
-    print('Starting Stage 3 day 1 data feed.')
+    print('Starting Stage 1 day 1 data feed.')
     # mlab remote mongodb location
     uri = 'mongodb://0.0.0.0:27017/'
 
@@ -411,6 +344,21 @@ def STG3D1_job():
             with open(f'{local_directory}/STG3D1/data.json', 'w') as f:
                 json.dump(rows, f)
 
+            try:
+              mng_client = pymongo.MongoClient(uri)
+              mng_db = mng_client['MCEG']
+              collection_name = 'STG3D1'
+              db_cm = mng_db[collection_name]
+              cdir = Path(os.getcwd())
+              file_res = f'{cdir}/STG3D1/data.csv'
+
+              data = pd.read_csv(file_res)
+              data_json = json.loads(data.to_json(orient='records'))
+              x = db_cm.delete_many({})
+              db_cm.insert(data_json)
+            except Exception as e:
+              print("type error: " + str(e))
+              print(traceback.format_exc())
 
         else:
             # if file is not available abort the script
@@ -421,97 +369,12 @@ def STG3D1_job():
     check_if_folder_exist(stageReceive)
 
     call_adhoc_4_and_check_for_response_csv(stageReceive,stageSend,currentDirectory,currentDate)
-
-    def csv2mongo(uri_string, csvfile, database_name,collection_name,delete_collection_before_import):
-        response_dict = OrderedDict()
-        try:
-            mc = MongoClient(uri_string)
-            db = mc[database_name]
-            collection = db[collection_name]
-
-            if delete_collection_before_import == True:
-                db.collection.delete_many({})
-            # open the csv file.
-            csvhandle = csv.reader(open(csvfile, 'r'), delimiter=',')
-
-            rowindex = 0
-            mongoindex = 0
-            error_list = []
-
-            for row in csvhandle:
-
-                if rowindex == 0:
-                    column_headers = row
-                    cleaned_headers = []
-                    for c in column_headers:
-                        c = c.replace(".", "")
-                        c = c.replace("(", "")
-                        c = c.replace(")", "")
-                        c = c.replace("$", "-")
-                        c = c.replace(" ", "_")
-                        cleaned_headers.append(c)
-                else:
-
-                    record = OrderedDict(zip(cleaned_headers, row))
-                    try:
-                        myobjectid = collection.insert(record)
-                        mongoindex += 1
-
-                    except:
-                        error_message = "Error on row " + \
-                            str(rowindex) + ". " + str(sys.exc_info())
-                        error_list.append(error_message)
-
-                rowindex += 1
-
-            if error_list:
-                response_dict['num_rows_imported'] = rowindex
-                response_dict['num_rows_errors'] = len(error_list)
-                response_dict['errors'] = error_list
-                response_dict['code'] = 400
-                response_dict['message'] = "Completed with errors"
-            else:
-
-                response_dict['num_rows_imported'] = mongoindex
-                response_dict['num_csv_rows'] = rowindex
-                response_dict['code'] = 200
-                response_dict['message'] = "Completed."
-
-        except:
-            response_dict['code'] = 500
-            response_dict['errors'] = [traceback.print_exc()]
-
-        return response_dict
-
-
-
-    mc = MongoClient(uri)
-    db = mc['MCEG']
-    collection = db["STG3D1"].delete_many({})
-    # print(collection)
-
-
-    # current directory
-    currentDirectory = Path(os.getcwd())
-    csv_file = f'{currentDirectory}/STG3D1/data.csv'
-    database = 'MCEG'
-    collection = 'STG3D1'
-    delete_collection = True
-
-    result = csv2mongo(
-        uri,
-        csv_file,
-        database,
-        collection,
-        delete_collection)
-    # output the JSON transaction summary
-    print(json.dumps(result, indent=4))
-    print('Finished Stage 3 day 1')
+    print('Finished Stage 1 day 1')
 
 ##################################################################################################################
 #################################################### STG3 Day 2 (tomorrow) #######################################
 def STG3D2_job():
-    print('Starting Stage 3 day 2 data feed.')
+    print('Starting Stage 1 day 2 data feed.')
     # mlab remote mongodb location
     uri = 'mongodb://0.0.0.0:27017/'
 
@@ -660,6 +523,21 @@ def STG3D2_job():
             with open(f'{local_directory}/STG3D2/data.json', 'w') as f:
                 json.dump(rows, f)
 
+            try:
+              mng_client = pymongo.MongoClient(uri)
+              mng_db = mng_client['MCEG']
+              collection_name = 'STG3D2'
+              db_cm = mng_db[collection_name]
+              cdir = Path(os.getcwd())
+              file_res = f'{cdir}/STG3D2/data.csv'
+
+              data = pd.read_csv(file_res)
+              data_json = json.loads(data.to_json(orient='records'))
+              x = db_cm.delete_many({})
+              db_cm.insert(data_json)
+            except Exception as e:
+              print("type error: " + str(e))
+              print(traceback.format_exc())
 
         else:
             # if file is not available abort the script
@@ -671,97 +549,12 @@ def STG3D2_job():
 
     call_adhoc_4_and_check_for_response_csv(stageReceive,stageSend,currentDirectory,currentDate)
 
-    def csv2mongo(uri_string, csvfile, database_name,collection_name,delete_collection_before_import):
-        response_dict = OrderedDict()
-        try:
-            mc = MongoClient(uri_string)
-            db = mc[database_name]
-            collection = db[collection_name]
-
-            if delete_collection_before_import == True:
-                db.collection.delete_many({})
-            # open the csv file.
-            csvhandle = csv.reader(open(csvfile, 'r'), delimiter=',')
-
-            rowindex = 0
-            mongoindex = 0
-            error_list = []
-
-            for row in csvhandle:
-
-                if rowindex == 0:
-                    column_headers = row
-                    cleaned_headers = []
-                    for c in column_headers:
-                        c = c.replace(".", "")
-                        c = c.replace("(", "")
-                        c = c.replace(")", "")
-                        c = c.replace("$", "-")
-                        c = c.replace(" ", "_")
-                        cleaned_headers.append(c)
-                else:
-
-                    record = OrderedDict(zip(cleaned_headers, row))
-                    try:
-                        myobjectid = collection.insert(record)
-                        mongoindex += 1
-
-                    except:
-                        error_message = "Error on row " + \
-                            str(rowindex) + ". " + str(sys.exc_info())
-                        error_list.append(error_message)
-
-                rowindex += 1
-
-            if error_list:
-                response_dict['num_rows_imported'] = rowindex
-                response_dict['num_rows_errors'] = len(error_list)
-                response_dict['errors'] = error_list
-                response_dict['code'] = 400
-                response_dict['message'] = "Completed with errors"
-            else:
-
-                response_dict['num_rows_imported'] = mongoindex
-                response_dict['num_csv_rows'] = rowindex
-                response_dict['code'] = 200
-                response_dict['message'] = "Completed."
-
-        except:
-            response_dict['code'] = 500
-            response_dict['errors'] = [traceback.print_exc()]
-
-        return response_dict
-
-
-
-    mc = MongoClient(uri)
-    db = mc['MCEG']
-    collection = db["STG3D2"].delete_many({})
-    # print(collection)
-
-
-    # current directory
-    currentDirectory = Path(os.getcwd())
-    csv_file = f'{currentDirectory}/STG3D2/data.csv'
-    database = 'MCEG'
-    collection = 'STG3D2'
-    delete_collection = True
-
-    result = csv2mongo(
-        uri,
-        csv_file,
-        database,
-        collection,
-        delete_collection)
-    # output the JSON transaction summary
-    print(json.dumps(result, indent=4))
-
-    print('Finished Stage 3 day 2')
+    print('Finished Stage 1 day 2')
 
 ##################################################################################################################
 ############################################## STG3 Day 3 ########################################################
 def STG3D3_job():
-    print('Starting Stage 3 day 3 data feed.')
+    print('Starting Stage 1 day 3 data feed.')
     # mlab remote mongodb location
     uri = 'mongodb://0.0.0.0:27017/'
 
@@ -910,6 +703,21 @@ def STG3D3_job():
             with open(f'{local_directory}/STG3D3/data.json', 'w') as f:
                 json.dump(rows, f)
 
+            try:
+              mng_client = pymongo.MongoClient(uri)
+              mng_db = mng_client['MCEG']
+              collection_name = 'STG3D3'
+              db_cm = mng_db[collection_name]
+              cdir = Path(os.getcwd())
+              file_res = f'{cdir}/STG3D3/data.csv'
+
+              data = pd.read_csv(file_res)
+              data_json = json.loads(data.to_json(orient='records'))
+              x = db_cm.delete_many({})
+              db_cm.insert(data_json)
+            except Exception as e:
+              print("type error: " + str(e))
+              print(traceback.format_exc())
 
         else:
             # if file is not available abort the script
@@ -921,96 +729,13 @@ def STG3D3_job():
 
     call_adhoc_4_and_check_for_response_csv(stageReceive,stageSend,currentDirectory,currentDate)
 
-    def csv2mongo(uri_string, csvfile, database_name,collection_name,delete_collection_before_import):
-        response_dict = OrderedDict()
-        try:
-            mc = MongoClient(uri_string)
-            db = mc[database_name]
-            collection = db[collection_name]
 
-            if delete_collection_before_import == True:
-                db.collection.delete_many({})
-            # open the csv file.
-            csvhandle = csv.reader(open(csvfile, 'r'), delimiter=',')
-
-            rowindex = 0
-            mongoindex = 0
-            error_list = []
-
-            for row in csvhandle:
-
-                if rowindex == 0:
-                    column_headers = row
-                    cleaned_headers = []
-                    for c in column_headers:
-                        c = c.replace(".", "")
-                        c = c.replace("(", "")
-                        c = c.replace(")", "")
-                        c = c.replace("$", "-")
-                        c = c.replace(" ", "_")
-                        cleaned_headers.append(c)
-                else:
-
-                    record = OrderedDict(zip(cleaned_headers, row))
-                    try:
-                        myobjectid = collection.insert(record)
-                        mongoindex += 1
-
-                    except:
-                        error_message = "Error on row " + \
-                            str(rowindex) + ". " + str(sys.exc_info())
-                        error_list.append(error_message)
-
-                rowindex += 1
-
-            if error_list:
-                response_dict['num_rows_imported'] = rowindex
-                response_dict['num_rows_errors'] = len(error_list)
-                response_dict['errors'] = error_list
-                response_dict['code'] = 400
-                response_dict['message'] = "Completed with errors"
-            else:
-
-                response_dict['num_rows_imported'] = mongoindex
-                response_dict['num_csv_rows'] = rowindex
-                response_dict['code'] = 200
-                response_dict['message'] = "Completed."
-
-        except:
-            response_dict['code'] = 500
-            response_dict['errors'] = [traceback.print_exc()]
-
-        return response_dict
-
-
-
-    mc = MongoClient(uri)
-    db = mc['MCEG']
-    collection = db["STG3D3"].delete_many({})
-    # print(collection)
-
-
-    # current directory
-    currentDirectory = Path(os.getcwd())
-    csv_file = f'{currentDirectory}/STG3D3/data.csv'
-    database = 'MCEG'
-    collection = 'STG3D3'
-    delete_collection = True
-
-    result = csv2mongo(
-        uri,
-        csv_file,
-        database,
-        collection,
-        delete_collection)
-    # output the JSON transaction summary
-    print(json.dumps(result, indent=4))
-    print('Finished Stage 3 day 3')
+    print('Finished Stage 1 day 3')
 
 ##################################################################################################################
 ############################################ STG3 Day 4 ########################################################
 def STG3D4_job():
-    print('Starting Stage 3 day 4 data feed.')
+    print('Starting Stage 1 day 4 data feed.')
     # mlab remote mongodb location
     uri = 'mongodb://0.0.0.0:27017/'
 
@@ -1158,7 +883,21 @@ def STG3D4_job():
 
             with open(f'{local_directory}/STG3D4/data.json', 'w') as f:
                 json.dump(rows, f)
+            try:
+              mng_client = pymongo.MongoClient(uri)
+              mng_db = mng_client['MCEG']
+              collection_name = 'STG3D4'
+              db_cm = mng_db[collection_name]
+              cdir = Path(os.getcwd())
+              file_res = f'{cdir}/STG3D4/data.csv'
 
+              data = pd.read_csv(file_res)
+              data_json = json.loads(data.to_json(orient='records'))
+              x = db_cm.delete_many({})
+              db_cm.insert(data_json)
+            except Exception as e:
+              print("type error: " + str(e))
+              print(traceback.format_exc())
 
         else:
             # if file is not available abort the script
@@ -1170,96 +909,13 @@ def STG3D4_job():
 
     call_adhoc_4_and_check_for_response_csv(stageReceive,stageSend,currentDirectory,currentDate)
 
-    def csv2mongo(uri_string, csvfile, database_name,collection_name,delete_collection_before_import):
-        response_dict = OrderedDict()
-        try:
-            mc = MongoClient(uri_string)
-            db = mc[database_name]
-            collection = db[collection_name]
 
-            if delete_collection_before_import == True:
-                db.collection.delete_many({})
-            # open the csv file.
-            csvhandle = csv.reader(open(csvfile, 'r'), delimiter=',')
-
-            rowindex = 0
-            mongoindex = 0
-            error_list = []
-
-            for row in csvhandle:
-
-                if rowindex == 0:
-                    column_headers = row
-                    cleaned_headers = []
-                    for c in column_headers:
-                        c = c.replace(".", "")
-                        c = c.replace("(", "")
-                        c = c.replace(")", "")
-                        c = c.replace("$", "-")
-                        c = c.replace(" ", "_")
-                        cleaned_headers.append(c)
-                else:
-
-                    record = OrderedDict(zip(cleaned_headers, row))
-                    try:
-                        myobjectid = collection.insert(record)
-                        mongoindex += 1
-
-                    except:
-                        error_message = "Error on row " + \
-                            str(rowindex) + ". " + str(sys.exc_info())
-                        error_list.append(error_message)
-
-                rowindex += 1
-
-            if error_list:
-                response_dict['num_rows_imported'] = rowindex
-                response_dict['num_rows_errors'] = len(error_list)
-                response_dict['errors'] = error_list
-                response_dict['code'] = 400
-                response_dict['message'] = "Completed with errors"
-            else:
-
-                response_dict['num_rows_imported'] = mongoindex
-                response_dict['num_csv_rows'] = rowindex
-                response_dict['code'] = 200
-                response_dict['message'] = "Completed."
-
-        except:
-            response_dict['code'] = 500
-            response_dict['errors'] = [traceback.print_exc()]
-
-        return response_dict
-
-
-
-    mc = MongoClient(uri)
-    db = mc['MCEG']
-    collection = db["STG3D4"].delete_many({})
-    # print(collection)
-
-
-    # current directory
-    currentDirectory = Path(os.getcwd())
-    csv_file = f'{currentDirectory}/STG3D4/data.csv'
-    database = 'MCEG'
-    collection = 'STG3D4'
-    delete_collection = True
-
-    result = csv2mongo(
-        uri,
-        csv_file,
-        database,
-        collection,
-        delete_collection)
-    # output the JSON transaction summary
-    print(json.dumps(result, indent=4))
-    print('Finished Stage 3 day 4')
+    print('Finished Stage 1 day 4')
 
 ##################################################################################################################
 ############################################# STG3 Day 5 ######################################################
 def STG3D5_job():
-    print('Starting Stage 3 day 5 data feed.')
+    print('Starting Stage 1 day 5 data feed.')
     # mlab remote mongodb location
     uri = 'mongodb://0.0.0.0:27017/'
 
@@ -1407,7 +1063,21 @@ def STG3D5_job():
 
             with open(f'{local_directory}/STG3D5/data.json', 'w') as f:
                 json.dump(rows, f)
+            try:
+              mng_client = pymongo.MongoClient(uri)
+              mng_db = mng_client['MCEG']
+              collection_name = 'STG3D5'
+              db_cm = mng_db[collection_name]
+              cdir = Path(os.getcwd())
+              file_res = f'{cdir}/STG3D5/data.csv'
 
+              data = pd.read_csv(file_res)
+              data_json = json.loads(data.to_json(orient='records'))
+              x = db_cm.delete_many({})
+              db_cm.insert(data_json)
+            except Exception as e:
+              print("type error: " + str(e))
+              print(traceback.format_exc())
 
         else:
             # if file is not available abort the script
@@ -1419,96 +1089,13 @@ def STG3D5_job():
 
     call_adhoc_4_and_check_for_response_csv(stageReceive,stageSend,currentDirectory,currentDate)
 
-    def csv2mongo(uri_string, csvfile, database_name,collection_name,delete_collection_before_import):
-        response_dict = OrderedDict()
-        try:
-            mc = MongoClient(uri_string)
-            db = mc[database_name]
-            collection = db[collection_name]
 
-            if delete_collection_before_import == True:
-                db.collection.delete_many({})
-            # open the csv file.
-            csvhandle = csv.reader(open(csvfile, 'r'), delimiter=',')
-
-            rowindex = 0
-            mongoindex = 0
-            error_list = []
-
-            for row in csvhandle:
-
-                if rowindex == 0:
-                    column_headers = row
-                    cleaned_headers = []
-                    for c in column_headers:
-                        c = c.replace(".", "")
-                        c = c.replace("(", "")
-                        c = c.replace(")", "")
-                        c = c.replace("$", "-")
-                        c = c.replace(" ", "_")
-                        cleaned_headers.append(c)
-                else:
-
-                    record = OrderedDict(zip(cleaned_headers, row))
-                    try:
-                        myobjectid = collection.insert(record)
-                        mongoindex += 1
-
-                    except:
-                        error_message = "Error on row " + \
-                            str(rowindex) + ". " + str(sys.exc_info())
-                        error_list.append(error_message)
-
-                rowindex += 1
-
-            if error_list:
-                response_dict['num_rows_imported'] = rowindex
-                response_dict['num_rows_errors'] = len(error_list)
-                response_dict['errors'] = error_list
-                response_dict['code'] = 400
-                response_dict['message'] = "Completed with errors"
-            else:
-
-                response_dict['num_rows_imported'] = mongoindex
-                response_dict['num_csv_rows'] = rowindex
-                response_dict['code'] = 200
-                response_dict['message'] = "Completed."
-
-        except:
-            response_dict['code'] = 500
-            response_dict['errors'] = [traceback.print_exc()]
-
-        return response_dict
-
-
-
-    mc = MongoClient(uri)
-    db = mc['MCEG']
-    collection = db["STG3D5"].delete_many({})
-    # print(collection)
-
-
-    # current directory
-    currentDirectory = Path(os.getcwd())
-    csv_file = f'{currentDirectory}/STG3D5/data.csv'
-    database = 'MCEG'
-    collection = 'STG3D5'
-    delete_collection = True
-
-    result = csv2mongo(
-        uri,
-        csv_file,
-        database,
-        collection,
-        delete_collection)
-    # output the JSON transaction summary
-    print(json.dumps(result, indent=4))
-    print('Finished Stage 3 day 5')
+    print('Finished Stage 1 day 5')
 
 ##################################################################################################################
 ################################################ STG3 Day 6 ######################################################
 def STG3D6_job():
-    print('Starting Stage 3 day 6 data feed.')
+    print('Starting Stage 1 day 6 data feed.')
     # mlab remote mongodb location
     uri = 'mongodb://0.0.0.0:27017/'
 
@@ -1656,7 +1243,21 @@ def STG3D6_job():
 
             with open(f'{local_directory}/STG3D6/data.json', 'w') as f:
                 json.dump(rows, f)
+            try:
+              mng_client = pymongo.MongoClient(uri)
+              mng_db = mng_client['MCEG']
+              collection_name = 'STG3D6'
+              db_cm = mng_db[collection_name]
+              cdir = Path(os.getcwd())
+              file_res = f'{cdir}/STG3D6/data.csv'
 
+              data = pd.read_csv(file_res)
+              data_json = json.loads(data.to_json(orient='records'))
+              x = db_cm.delete_many({})
+              db_cm.insert(data_json)
+            except Exception as e:
+              print("type error: " + str(e))
+              print(traceback.format_exc())
 
         else:
             # if file is not available abort the script
@@ -1668,96 +1269,13 @@ def STG3D6_job():
 
     call_adhoc_4_and_check_for_response_csv(stageReceive,stageSend,currentDirectory,currentDate)
 
-    def csv2mongo(uri_string, csvfile, database_name,collection_name,delete_collection_before_import):
-        response_dict = OrderedDict()
-        try:
-            mc = MongoClient(uri_string)
-            db = mc[database_name]
-            collection = db[collection_name]
 
-            if delete_collection_before_import == True:
-                db.collection.delete_many({})
-            # open the csv file.
-            csvhandle = csv.reader(open(csvfile, 'r'), delimiter=',')
-
-            rowindex = 0
-            mongoindex = 0
-            error_list = []
-
-            for row in csvhandle:
-
-                if rowindex == 0:
-                    column_headers = row
-                    cleaned_headers = []
-                    for c in column_headers:
-                        c = c.replace(".", "")
-                        c = c.replace("(", "")
-                        c = c.replace(")", "")
-                        c = c.replace("$", "-")
-                        c = c.replace(" ", "_")
-                        cleaned_headers.append(c)
-                else:
-
-                    record = OrderedDict(zip(cleaned_headers, row))
-                    try:
-                        myobjectid = collection.insert(record)
-                        mongoindex += 1
-
-                    except:
-                        error_message = "Error on row " + \
-                            str(rowindex) + ". " + str(sys.exc_info())
-                        error_list.append(error_message)
-
-                rowindex += 1
-
-            if error_list:
-                response_dict['num_rows_imported'] = rowindex
-                response_dict['num_rows_errors'] = len(error_list)
-                response_dict['errors'] = error_list
-                response_dict['code'] = 400
-                response_dict['message'] = "Completed with errors"
-            else:
-
-                response_dict['num_rows_imported'] = mongoindex
-                response_dict['num_csv_rows'] = rowindex
-                response_dict['code'] = 200
-                response_dict['message'] = "Completed."
-
-        except:
-            response_dict['code'] = 500
-            response_dict['errors'] = [traceback.print_exc()]
-
-        return response_dict
-
-
-
-    mc = MongoClient(uri)
-    db = mc['MCEG']
-    collection = db["STG3D6"].delete_many({})
-    # print(collection)
-
-
-    # current directory
-    currentDirectory = Path(os.getcwd())
-    csv_file = f'{currentDirectory}/STG3D6/data.csv'
-    database = 'MCEG'
-    collection = 'STG3D6'
-    delete_collection = True
-
-    result = csv2mongo(
-        uri,
-        csv_file,
-        database,
-        collection,
-        delete_collection)
-    # output the JSON transaction summary
-    print(json.dumps(result, indent=4))
-    print('Finished Stage 3 day 6')
+    print('Finished Stage 1 day 6')
 
 ##################################################################################################################
 ################################################# STG Day 7 #####################################################
 def STG3D7_job():
-    print('Starting Stage 3 day 7 data feed.')
+    print('Starting Stage 1 day 7 data feed.')
     # mlab remote mongodb location
     uri = 'mongodb://0.0.0.0:27017/'
 
@@ -1905,7 +1423,21 @@ def STG3D7_job():
 
             with open(f'{local_directory}/STG3D7/data.json', 'w') as f:
                 json.dump(rows, f)
+            try:
+              mng_client = pymongo.MongoClient(uri)
+              mng_db = mng_client['MCEG']
+              collection_name = 'STG3D7'
+              db_cm = mng_db[collection_name]
+              cdir = Path(os.getcwd())
+              file_res = f'{cdir}/STG3D7/data.csv'
 
+              data = pd.read_csv(file_res)
+              data_json = json.loads(data.to_json(orient='records'))
+              x = db_cm.delete_many({})
+              db_cm.insert(data_json)
+            except Exception as e:
+              print("type error: " + str(e))
+              print(traceback.format_exc())
 
         else:
             # if file is not available abort the script
@@ -1917,102 +1449,19 @@ def STG3D7_job():
 
     call_adhoc_4_and_check_for_response_csv(stageReceive,stageSend,currentDirectory,currentDate)
 
-    def csv2mongo(uri_string, csvfile, database_name,collection_name,delete_collection_before_import):
-        response_dict = OrderedDict()
-        try:
-            mc = MongoClient(uri_string)
-            db = mc[database_name]
-            collection = db[collection_name]
 
-            if delete_collection_before_import == True:
-                db.collection.delete_many({})
-            # open the csv file.
-            csvhandle = csv.reader(open(csvfile, 'r'), delimiter=',')
-
-            rowindex = 0
-            mongoindex = 0
-            error_list = []
-
-            for row in csvhandle:
-
-                if rowindex == 0:
-                    column_headers = row
-                    cleaned_headers = []
-                    for c in column_headers:
-                        c = c.replace(".", "")
-                        c = c.replace("(", "")
-                        c = c.replace(")", "")
-                        c = c.replace("$", "-")
-                        c = c.replace(" ", "_")
-                        cleaned_headers.append(c)
-                else:
-
-                    record = OrderedDict(zip(cleaned_headers, row))
-                    try:
-                        myobjectid = collection.insert(record)
-                        mongoindex += 1
-
-                    except:
-                        error_message = "Error on row " + \
-                            str(rowindex) + ". " + str(sys.exc_info())
-                        error_list.append(error_message)
-
-                rowindex += 1
-
-            if error_list:
-                response_dict['num_rows_imported'] = rowindex
-                response_dict['num_rows_errors'] = len(error_list)
-                response_dict['errors'] = error_list
-                response_dict['code'] = 400
-                response_dict['message'] = "Completed with errors"
-            else:
-
-                response_dict['num_rows_imported'] = mongoindex
-                response_dict['num_csv_rows'] = rowindex
-                response_dict['code'] = 200
-                response_dict['message'] = "Completed."
-
-        except:
-            response_dict['code'] = 500
-            response_dict['errors'] = [traceback.print_exc()]
-
-        return response_dict
-
-
-
-    mc = MongoClient(uri)
-    db = mc['MCEG']
-    collection = db["STG3D7"].delete_many({})
-    # print(collection)
-
-
-    # current directory
-    currentDirectory = Path(os.getcwd())
-    csv_file = f'{currentDirectory}/STG3D7/data.csv'
-    database = 'MCEG'
-    collection = 'STG3D7'
-    delete_collection = True
-
-    result = csv2mongo(
-        uri,
-        csv_file,
-        database,
-        collection,
-        delete_collection)
-    # output the JSON transaction summary
-    print(json.dumps(result, indent=4))
-    print('Finished Stage 3 day 7')
+    print('Finished Stage 1 day 7')
 
 ##########################################################################################################################
 ############################################# End of function defination #################################################
 
 scheduler = BlockingScheduler()
-scheduler.add_job(STG3D0_job, 'interval', seconds=35)
-scheduler.add_job(STG3D1_job, 'interval', seconds=35)
-scheduler.add_job(STG3D2_job, 'interval', seconds=35)
-scheduler.add_job(STG3D3_job, 'interval', seconds=35)
-scheduler.add_job(STG3D4_job, 'interval', seconds=35)
-scheduler.add_job(STG3D5_job, 'interval', seconds=35)
-scheduler.add_job(STG3D6_job, 'interval', seconds=35)
-scheduler.add_job(STG3D7_job, 'interval', seconds=35)
+scheduler.add_job(STG3D0_job, 'interval', seconds=30)
+scheduler.add_job(STG3D1_job, 'interval', seconds=30)
+scheduler.add_job(STG3D2_job, 'interval', seconds=30)
+scheduler.add_job(STG3D3_job, 'interval', seconds=30)
+scheduler.add_job(STG3D4_job, 'interval', seconds=30)
+scheduler.add_job(STG3D5_job, 'interval', seconds=30)
+scheduler.add_job(STG3D6_job, 'interval', seconds=30)
+scheduler.add_job(STG3D7_job, 'interval', seconds=30)
 scheduler.start()

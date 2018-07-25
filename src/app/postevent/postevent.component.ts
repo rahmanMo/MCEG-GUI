@@ -2,6 +2,7 @@ import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/cor
 import { Flight } from '../models/flight';
 import { AdhocEvent } from '../models/adhoc-event';
 import * as v from 'voca';
+import * as moment from 'moment';
 import { FlightsService } from '../services/flights.service';
 
 @Component({
@@ -13,6 +14,7 @@ export class PosteventComponent implements OnInit, OnChanges {
 
   @Input() inputFlight: Flight;
   @Input() env;
+  @Input() selectedDay;
   public options: Pickadate.DateOptions = {
     format: 'yyyymmdd',
     formatSubmit: 'yyyymmdd',
@@ -45,9 +47,69 @@ export class PosteventComponent implements OnInit, OnChanges {
     'AIR',
     'DVC'
   ];
+
+  days = [
+    { text: moment(new Date())
+      .add(-1, 'days')
+      .format('DD MMM YYYY')
+      .toString()
+      .toUpperCase(),
+      value: 'd0'
+    },
+    { text: moment(new Date())
+      .format('DD MMM YYYY')
+      .toString()
+      .toUpperCase(),
+      value: 'd1'
+    },
+    { text: moment(new Date())
+      .add(1, 'days')
+      .format('DD MMM YYYY')
+      .toString()
+      .toUpperCase(),
+      value: 'd2'
+    },
+    { text: moment(new Date())
+      .add(2, 'days')
+      .format('DD MMM YYYY')
+      .toString()
+      .toUpperCase(),
+      value: 'd3'
+    },
+    { text: moment(new Date())
+      .add(3, 'days')
+      .format('DD MMM YYYY')
+      .toString()
+      .toUpperCase(),
+      value: 'd4'
+    },
+    { text: moment(new Date())
+      .add(4, 'days')
+      .format('DD MMM YYYY')
+      .toString()
+      .toUpperCase(),
+      value: 'd5'
+    },
+    { text: moment(new Date())
+      .add(5, 'days')
+      .format('DD MMM YYYY')
+      .toString()
+      .toUpperCase(),
+      value: 'd6'
+    },
+    { text: moment(new Date())
+      .add(6, 'days')
+      .format('DD MMM YYYY')
+      .toString()
+      .toUpperCase(),
+      value: 'd7'
+    }
+  ];
+
   environment;
-  environments = [ 'STG1', 'STG3'];
+  environments = [ 'STG1', 'STG2', 'STG3'];
   selctedEvent;
+  fsDailyId;
   utcDate;
   flightNum;
   origin;
@@ -70,19 +132,24 @@ export class PosteventComponent implements OnInit, OnChanges {
   adhocMessage;
   fileName;
   timestamp;
+  responseString;
 
   constructor(private flightsService: FlightsService) {}
 
   ngOnInit() {
     if (this.env === 'STG1') {
       this.environment = 'STG1';
+    } else if (this.env === 'STG2') {
+      this.environment = 'STG2';
     } else if (this.env === 'STG3') {
       this.environment = 'STG3';
     }
+
   }
 
   reset() {
     this.utcDate = null;
+    this.fsDailyId = null;
     this.flightNum = null;
     this.origin = null;
     this.destination = null;
@@ -105,15 +172,9 @@ export class PosteventComponent implements OnInit, OnChanges {
 
   onSubmitOUT(event: Event) {
     event.preventDefault();
-    this.adhocMessage
-    = `ADH016_${this.flightNum}${this.utcDate}${this.origin}${this.destination}${this.stdUTC}${this.selctedEvent}${this.outUTC}`;
-    const adhocEvent: AdhocEvent = {
-      stg: this.environment,
-      adhoc16: this.adhocMessage
-    };
-    this.flightsService.postEvent(adhocEvent).subscribe(data => {
-      this.fileName = data['fileName'];
-      this.timestamp = data['timestamp'];
+    this.flightsService.postOUT(this.environment, this.selectedDay, this.fsDailyId, this.outUTC).subscribe(data => {
+      this.responseString = data;
+      console.log(data);
       this.reset();
     });
   }

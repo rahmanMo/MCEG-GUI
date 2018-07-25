@@ -138,6 +138,16 @@ export class FlightsService {
       catchError(this.handleError('postEvent', []))
     );
   }
+  postOUT(stg, day, fsdailyId, outUTC): Observable<any> {
+    return this.http.post('/api/out', {stg: stg, day: day, fsdailyId: fsdailyId, outUTC: outUTC}, this.httpOptions)
+    .pipe(
+      map((response: Response) => {
+        console.log(response);
+      return response['message']; })
+    ).pipe(
+      catchError(this.handleError('postEvent', []))
+    );
+  }
 
 
 }

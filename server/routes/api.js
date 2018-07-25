@@ -1674,6 +1674,242 @@ router.get('/stg1/d7', (req, res) => {
 });
 
 //////////////////////////////////////////////////////////////////////////
+//////////////////////////// STG2 ///////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+router.get('/stg2/d0', (req, res) => {
+  console.log('Requesting flights for stage 2 day 0');
+  STG2D0.find().exec(function(err, results) {
+    // if mongodb is in the process of deleting and inserting new data.
+    if (results.length < 900) {
+      setTimeout(() => {
+        STG2D0.find({}).exec(function(err, flights) {
+          if (err) {
+            console.log('Error getting the flights from stage 2 day 0');
+            console.log(err);
+          } else {
+            res.json(flights);
+          }
+        });
+      }, 5000);
+    } else {
+      STG2D0.find({}).exec(function(err, flights) {
+        if (err) {
+          console.log('Error getting the flights from stage 2 day 0');
+          console.log(err);
+        } else {
+          res.json(flights);
+        }
+      });
+    }
+  });
+});
+
+/////////////////////////////////////////////////////////////////////////////
+router.get('/stg2/d1', (req, res) => {
+  console.log('Requesting flights for stage 2 day 1');
+  STG2D1.find().exec(function(err, results) {
+    // if mongodb is in the process of deleting and inserting new data.
+    if (results.length < 900) {
+      setTimeout(() => {
+        STG2D1.find({}).exec(function(err, flights) {
+          if (err) {
+            console.log('Error getting the flights from stage 2 day 1');
+            console.log(err);
+          } else {
+            res.json(flights);
+          }
+        });
+      }, 5000);
+    } else {
+      STG2D1.find({}).exec(function(err, flights) {
+        if (err) {
+          console.log('Error getting the flights from stage 2 day 1');
+          console.log(err);
+        } else {
+          res.json(flights);
+        }
+      });
+    }
+  });
+});
+
+/////////////////////////////////////////////////////////////////////////////
+router.get('/stg2/d2', (req, res) => {
+  console.log('Requesting flights for stage 2 day 2');
+  STG2D2.find().exec(function(err, results) {
+    // if mongodb is in the process of deleting and inserting new data.
+    if (results.length < 900) {
+      setTimeout(() => {
+        STG2D2.find({}).exec(function(err, flights) {
+          if (err) {
+            console.log('Error getting the flights from stage 2 day 2');
+            console.log(err);
+          } else {
+            res.json(flights);
+          }
+        });
+      }, 5000);
+    } else {
+      STG2D2.find({}).exec(function(err, flights) {
+        if (err) {
+          console.log('Error getting the flights from stage 2 day 2');
+          console.log(err);
+        } else {
+          res.json(flights);
+        }
+      });
+    }
+  });
+});
+
+/////////////////////////////////////////////////////////////////////////////
+router.get('/stg2/d3', (req, res) => {
+  console.log('Requesting flights for stage 2 day 3');
+  STG2D3.find().exec(function(err, results) {
+    // if mongodb is in the process of deleting and inserting new data.
+    if (results.length < 900) {
+      setTimeout(() => {
+        STG2D3.find({}).exec(function(err, flights) {
+          if (err) {
+            console.log('Error getting the flights from stage 2 day 3');
+            console.log(err);
+          } else {
+            res.json(flights);
+          }
+        });
+      }, 5000);
+    } else {
+      STG2D3.find({}).exec(function(err, flights) {
+        if (err) {
+          console.log('Error getting the flights from stage 2 day 3');
+          console.log(err);
+        } else {
+          res.json(flights);
+        }
+      });
+    }
+  });
+});
+
+/////////////////////////////////////////////////////////////////////////////
+router.get('/stg2/d4', (req, res) => {
+  console.log('Requesting flights for stage 2 day 4');
+  STG2D4.find().exec(function(err, results) {
+    // if mongodb is in the process of deleting and inserting new data.
+    if (results.length < 900) {
+      setTimeout(() => {
+        STG2D4.find({}).exec(function(err, flights) {
+          if (err) {
+            console.log('Error getting the flights from stage 2 day 4');
+            console.log(err);
+          } else {
+            res.json(flights);
+          }
+        });
+      }, 5000);
+    } else {
+      STG2D4.find({}).exec(function(err, flights) {
+        if (err) {
+          console.log('Error getting the flights from stage 2 day 4');
+          console.log(err);
+        } else {
+          res.json(flights);
+        }
+      });
+    }
+  });
+});
+
+/////////////////////////////////////////////////////////////////////////////
+router.get('/stg2/d5', (req, res) => {
+  console.log('Requesting flights for stage 2 day 5');
+  STG2D5.find().exec(function(err, results) {
+    // if mongodb is in the process of deleting and inserting new data.
+    if (results.length < 900) {
+      setTimeout(() => {
+        STG2D5.find({}).exec(function(err, flights) {
+          if (err) {
+            console.log('Error getting the flights from stage 2 day 5');
+            console.log(err);
+          } else {
+            res.json(flights);
+          }
+        });
+      }, 5000);
+    } else {
+      STG2D5.find({}).exec(function(err, flights) {
+        if (err) {
+          console.log('Error getting the flights from stage 2 day 5');
+          console.log(err);
+        } else {
+          res.json(flights);
+        }
+      });
+    }
+  });
+});
+
+/////////////////////////////////////////////////////////////////////////////
+router.get('/stg2/d6', (req, res) => {
+  console.log('Requesting flights for stage 2 day 6');
+  STG2D6.find().exec(function(err, results) {
+    // if mongodb is in the process of deleting and inserting new data.
+    if (results.length < 900) {
+      setTimeout(() => {
+        STG2D6.find({}).exec(function(err, flights) {
+          if (err) {
+            console.log('Error getting the flights from stage 2 day 6');
+            console.log(err);
+          } else {
+            res.json(flights);
+          }
+        });
+      }, 5000);
+    } else {
+      STG2D6.find({}).exec(function(err, flights) {
+        if (err) {
+          console.log('Error getting the flights from stage 2 day 6');
+          console.log(err);
+        } else {
+          res.json(flights);
+        }
+      });
+    }
+  });
+});
+
+/////////////////////////////////////////////////////////////////////////////
+router.get('/stg2/d7', (req, res) => {
+  console.log('Requesting flights for stage 2 day 7');
+  STG2D7.find().exec(function(err, results) {
+    // if mongodb is in the process of deleting and inserting new data.
+    if (results.length < 900) {
+      setTimeout(() => {
+        STG2D7.find({}).exec(function(err, flights) {
+          if (err) {
+            console.log('Error getting the flights from stage 2 day 7');
+            console.log(err);
+          } else {
+            res.json(flights);
+          }
+        });
+      }, 5000);
+    } else {
+      STG2D7.find({}).exec(function(err, flights) {
+        if (err) {
+          console.log('Error getting the flights from stage 2 day 7');
+          console.log(err);
+        } else {
+          res.json(flights);
+        }
+      });
+    }
+  });
+});
+
+//////////////////////////////////////////////////////////////////////////
 //////////////////////////// STG3 ///////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////
 
@@ -2096,7 +2332,7 @@ router.post('/out', async (req, res) => {
           console.log(err)
            res.status(404).json({error: `Error sending File: ${fileName}.txt - OUT for flight ${pFlightNum} departing utc ${date} Failed!!`});
          } else {
-          res.status(201).json({adhoc: `File: ${fileName}.txt sent at ${now} - OUT sent for flight ${pFlightNum} departing utc ${date} with new OUT: ${out}`});
+          res.status(201).json({message: `File: ${fileName}.txt sent at ${now} - OUT sent for flight ${pFlightNum} departing utc ${date} with new OUT: ${out}`});
          }
         });
         ////////////////////////////////////// end of adhoc 16 /////////////////////////////////
@@ -2185,7 +2421,7 @@ router.post('/off', async (req, res) => {
           console.log(err)
            res.status(404).json({error: `Error sending File: ${fileName}.txt - OFF for flight ${pFlightNum} departing utc ${date} Failed!!`});
          } else {
-          res.status(201).json({adhoc: `File: ${fileName}.txt sent at ${now} - OFF sent for flight ${pFlightNum} departing utc ${date} with new OFF: ${off}`});
+          res.status(201).json({message: `File: ${fileName}.txt sent at ${now} - OFF sent for flight ${pFlightNum} departing utc ${date} with new OFF: ${off}`});
          }
         });
         ////////////////////////////////////// end of adhoc 16 /////////////////////////////////
@@ -2272,7 +2508,7 @@ router.post('/on', async (req, res) => {
           console.log(err)
            res.status(404).json({error: `Error sending File: ${fileName}.txt - ON for flight ${pFlightNum} departing utc ${date} Failed!!`});
          } else {
-          res.status(201).json({adhoc: `File: ${fileName}.txt sent at ${now} - ON sent for flight ${pFlightNum} departing utc ${date} with new ON: ${on}`});
+          res.status(201).json({message: `File: ${fileName}.txt sent at ${now} - ON sent for flight ${pFlightNum} departing utc ${date} with new ON: ${on}`});
          }
         });
         ////////////////////////////////////// end of adhoc 16 /////////////////////////////////
@@ -2361,7 +2597,7 @@ router.post('/in', async (req, res) => {
           console.log(err)
            res.status(404).json({error: `Error sending File: ${fileName}.txt - IN for flight ${pFlightNum} departing utc ${date} Failed!!`});
          } else {
-          res.status(201).json({adhoc: `File: ${fileName}.txt sent at ${now} - IN sent for flight ${pFlightNum} departing utc ${date} with new IN: ${inUTC}`});
+          res.status(201).json({message: `File: ${fileName}.txt sent at ${now} - IN sent for flight ${pFlightNum} departing utc ${date} with new IN: ${inUTC}`});
          }
         });
         ////////////////////////////////////// end of adhoc 16 /////////////////////////////////
@@ -2447,7 +2683,7 @@ router.post('/etd', async (req, res) => {
           console.log(err)
            res.status(404).json({error: `Error sending File: ${fileName}.txt - ETD for flight ${pFlightNum} departing utc ${date} Failed!!`});
          } else {
-          res.status(201).json({adhoc: `File: ${fileName}.txt sent at ${now} - ETD sent for flight ${pFlightNum} departing utc ${date} with new ETD: ${etdUTC}`});
+          res.status(201).json({message: `File: ${fileName}.txt sent at ${now} - ETD sent for flight ${pFlightNum} departing utc ${date} with new ETD: ${etdUTC}`});
          }
         });
         ////////////////////////////////////// end of adhoc 16 /////////////////////////////////
@@ -2533,7 +2769,7 @@ router.post('/eta', async (req, res) => {
           console.log(err)
            res.status(404).json({error: `Error sending File: ${fileName}.txt - ETA for flight ${pFlightNum} departing utc ${date} Failed!!`});
          } else {
-          res.status(201).json({adhoc: `File: ${fileName}.txt sent at ${now} - ETA sent for flight ${pFlightNum} departing utc ${date} with new ETA: ${etaUTC}`});
+          res.status(201).json({message: `File: ${fileName}.txt sent at ${now} - ETA sent for flight ${pFlightNum} departing utc ${date} with new ETA: ${etaUTC}`});
          }
         });
         ////////////////////////////////////// end of adhoc 16 /////////////////////////////////
@@ -2619,7 +2855,7 @@ router.post('/eto', async (req, res) => {
           console.log(err)
            res.status(404).json({error: `Error sending File: ${fileName}.txt - ETO for flight ${pFlightNum} departing utc ${date} Failed!!`});
          } else {
-          res.status(201).json({adhoc: `File: ${fileName}.txt sent at ${now} - ETO sent for flight ${pFlightNum} departing utc ${date} with new ETO: ${etoUTC}`});
+          res.status(201).json({message: `File: ${fileName}.txt sent at ${now} - ETO sent for flight ${pFlightNum} departing utc ${date} with new ETO: ${etoUTC}`});
          }
         });
         ////////////////////////////////////// end of adhoc 16 /////////////////////////////////
@@ -2705,7 +2941,7 @@ router.post('/eon', async (req, res) => {
           console.log(err)
            res.status(404).json({error: `Error sending File: ${fileName}.txt - EON for flight ${pFlightNum} departing utc ${date} Failed!!`});
          } else {
-          res.status(201).json({adhoc: `File: ${fileName}.txt sent at ${now} - EON sent for flight ${pFlightNum} departing utc ${date} with new EON: ${eonUTC}`});
+          res.status(201).json({message: `File: ${fileName}.txt sent at ${now} - EON sent for flight ${pFlightNum} departing utc ${date} with new EON: ${eonUTC}`});
          }
         });
         ////////////////////////////////////// end of adhoc 16 /////////////////////////////////
@@ -2786,7 +3022,7 @@ router.post('/sub', async (req, res) => {
           console.log(err)
            res.status(404).json({error: `Error sending File: ${fileName}.txt - SUB for flight ${pFlightNum} departing utc ${date} Failed!!`});
          } else {
-          res.status(201).json({adhoc: `File: ${fileName}.txt sent at ${now} - SUB sent for flight ${pFlightNum} departing utc ${date} with new tail: ${tailNum}`});
+          res.status(201).json({message: `File: ${fileName}.txt sent at ${now} - SUB sent for flight ${pFlightNum} departing utc ${date} with new tail: ${tailNum}`});
          }
         });
         ////////////////////////////////////// end of adhoc 16 /////////////////////////////////
@@ -2865,7 +3101,7 @@ router.post('/cnl', async (req, res) => {
           console.log(err)
            res.status(404).json({error: `Error sending File: ${fileName}.txt - CNL for flight ${pFlightNum} departing utc ${date} Failed!!`});
          } else {
-          res.status(201).json({adhoc: `File: ${fileName}.txt sent at ${now} - CNL sent for flight ${pFlightNum} departing utc ${date}`});
+          res.status(201).json({message: `File: ${fileName}.txt sent at ${now} - CNL sent for flight ${pFlightNum} departing utc ${date}`});
          }
         });
         ////////////////////////////////////// end of adhoc 16 /////////////////////////////////
@@ -2942,7 +3178,7 @@ router.post('/del', async (req, res) => {
           console.log(err)
            res.status(404).json({error: `Error sending File: ${fileName}.txt - DEL for flight ${pFlightNum} departing utc ${date} Failed!!`});
          } else {
-          res.status(201).json({adhoc: `File: ${fileName}.txt sent at ${now} - DEL sent for flight ${pFlightNum} departing utc ${date}`});
+          res.status(201).json({message: `File: ${fileName}.txt sent at ${now} - DEL sent for flight ${pFlightNum} departing utc ${date}`});
          }
         });
         ////////////////////////////////////// end of adhoc 16 /////////////////////////////////
@@ -3026,7 +3262,7 @@ router.post('/gtd', async (req, res) => {
           console.log(err)
            res.status(404).json({error: `Error sending File: ${fileName}.txt - GTD for flight ${pFlightNum} departing utc ${date} Failed!!`});
          } else {
-          res.status(201).json({adhoc: `File: ${fileName}.txt sent at ${now} - GTD sent for flight ${pFlightNum} departing utc ${date} with new departure gate: ${depGate}`});
+          res.status(201).json({message: `File: ${fileName}.txt sent at ${now} - GTD sent for flight ${pFlightNum} departing utc ${date} with new departure gate: ${depGate}`});
          }
         });
         ////////////////////////////////////// end of adhoc 16 /////////////////////////////////
@@ -3110,7 +3346,7 @@ router.post('/gta', async (req, res) => {
           console.log(err)
            res.status(404).json({error: `Error sending File: ${fileName}.txt - GTA for flight ${pFlightNum} departing utc ${date} Failed!!`});
          } else {
-          res.status(201).json({adhoc: `File: ${fileName}.txt sent at ${now} - GTA sent for flight ${pFlightNum} departing utc ${date} with new arrival gate: ${arrGate}`});
+          res.status(201).json({message: `File: ${fileName}.txt sent at ${now} - GTA sent for flight ${pFlightNum} departing utc ${date} with new arrival gate: ${arrGate}`});
          }
         });
         ////////////////////////////////////// end of adhoc 16 /////////////////////////////////
@@ -3188,7 +3424,7 @@ router.post('/rin', async (req, res) => {
           console.log(err)
            res.status(404).json({error: `Error sending File: ${fileName}.txt - RIN for flight ${pFlightNum} departing utc ${date} Failed!!`});
          } else {
-          res.status(201).json({adhoc: `File: ${fileName}.txt sent at ${now} - RIN sent for flight ${pFlightNum} departing utc ${date}`});
+          res.status(201).json({message: `File: ${fileName}.txt sent at ${now} - RIN sent for flight ${pFlightNum} departing utc ${date}`});
          }
         });
         ////////////////////////////////////// end of adhoc 16 /////////////////////////////////
@@ -3266,7 +3502,7 @@ router.post('/rem', async (req, res) => {
           console.log(err)
            res.status(404).json({error: `Error sending File: ${fileName}.txt - REM for flight ${pFlightNum} departing utc ${date} Failed!!`});
          } else {
-          res.status(201).json({adhoc: `File: ${fileName}.txt sent at ${now} - REM sent for flight ${pFlightNum} departing utc ${date}`});
+          res.status(201).json({message: `File: ${fileName}.txt sent at ${now} - REM sent for flight ${pFlightNum} departing utc ${date}`});
          }
         });
         ////////////////////////////////////// end of adhoc 16 /////////////////////////////////
@@ -3348,7 +3584,7 @@ router.post('/asn', async (req, res) => {
           console.log(err)
            res.status(404).json({error: `Error sending File: ${fileName}.txt - ASN for flight ${pFlightNum} departing utc ${date} Failed!!`});
          } else {
-          res.status(201).json({adhoc: `File: ${fileName}.txt sent at ${now} - ASN sent for flight ${pFlightNum} departing utc ${date} with new tail: ${tailNum}`});
+          res.status(201).json({message: `File: ${fileName}.txt sent at ${now} - ASN sent for flight ${pFlightNum} departing utc ${date} with new tail: ${tailNum}`});
          }
         });
         ////////////////////////////////////// end of adhoc 16 /////////////////////////////////
@@ -3428,7 +3664,7 @@ router.post('/udd', async (req, res) => {
           console.log(err)
            res.status(404).json({error: `Error sending File: ${fileName}.txt - UDD for flight ${pFlightNum} departing utc ${date} Failed!!`});
          } else {
-          res.status(201).json({adhoc: `File: ${fileName}.txt sent at ${now} - UDD sent for flight ${pFlightNum} departing utc ${date}`});
+          res.status(201).json({message: `File: ${fileName}.txt sent at ${now} - UDD sent for flight ${pFlightNum} departing utc ${date}`});
          }
         });
         ////////////////////////////////////// end of adhoc 16 /////////////////////////////////
@@ -3508,7 +3744,7 @@ router.post('/uda', async (req, res) => {
           console.log(err)
            res.status(404).json({error: `Error sending File: ${fileName}.txt - UDA for flight ${pFlightNum} departing utc ${date} Failed!!`});
          } else {
-          res.status(201).json({adhoc: `File: ${fileName}.txt sent at ${now} - UDA sent for flight ${pFlightNum} departing utc ${date}`});
+          res.status(201).json({message: `File: ${fileName}.txt sent at ${now} - UDA sent for flight ${pFlightNum} departing utc ${date}`});
          }
         });
         ////////////////////////////////////// end of adhoc 16 /////////////////////////////////
@@ -3587,7 +3823,7 @@ router.post('/rmd', async (req, res) => {
           console.log(err)
            res.status(404).json({error: `Error sending File: ${fileName}.txt - RMD for flight ${pFlightNum} departing utc ${date} Failed!!`});
          } else {
-          res.status(201).json({adhoc: `File: ${fileName}.txt sent at ${now} - RMD sent for flight ${pFlightNum} departing utc ${date}`});
+          res.status(201).json({message: `File: ${fileName}.txt sent at ${now} - RMD sent for flight ${pFlightNum} departing utc ${date}`});
          }
         });
         ////////////////////////////////////// end of adhoc 16 /////////////////////////////////
@@ -3666,7 +3902,7 @@ router.post('/rma', async (req, res) => {
           console.log(err)
            res.status(404).json({error: `Error sending File: ${fileName}.txt - RMA for flight ${pFlightNum} departing utc ${date} Failed!!`});
          } else {
-          res.status(201).json({adhoc: `File: ${fileName}.txt sent at ${now} - RMA sent for flight ${pFlightNum} departing utc ${date}`});
+          res.status(201).json({message: `File: ${fileName}.txt sent at ${now} - RMA sent for flight ${pFlightNum} departing utc ${date}`});
          }
         });
         ////////////////////////////////////// end of adhoc 16 /////////////////////////////////
@@ -3745,7 +3981,7 @@ router.post('/grd', async (req, res) => {
           console.log(err)
            res.status(404).json({error: `Error sending File: ${fileName}.txt - GRD for flight ${pFlightNum} departing utc ${date} Failed!!`});
          } else {
-          res.status(201).json({adhoc: `File: ${fileName}.txt sent at ${now} - GRD sent for flight ${pFlightNum} departing utc ${date}`});
+          res.status(201).json({message: `File: ${fileName}.txt sent at ${now} - GRD sent for flight ${pFlightNum} departing utc ${date}`});
          }
         });
         ////////////////////////////////////// end of adhoc 16 /////////////////////////////////
@@ -3824,7 +4060,7 @@ router.post('/air', async (req, res) => {
           console.log(err)
            res.status(404).json({error: `Error sending File: ${fileName}.txt - AIR for flight ${pFlightNum} departing utc ${date} Failed!!`});
          } else {
-          res.status(201).json({adhoc: `File: ${fileName}.txt sent at ${now} - AIR sent for flight ${pFlightNum} departing utc ${date}`});
+          res.status(201).json({message: `File: ${fileName}.txt sent at ${now} - AIR sent for flight ${pFlightNum} departing utc ${date}`});
          }
         });
         ////////////////////////////////////// end of adhoc 16 /////////////////////////////////
@@ -3909,7 +4145,7 @@ router.post('/dvc', async (req, res) => {
           console.log(err)
            res.status(404).json({error: `Error sending File: ${fileName}.txt - DVC for flight ${pFlightNum} departing utc ${date} Failed!!`});
          } else {
-          res.status(201).json({adhoc: `File: ${fileName}.txt sent at ${now} - DVC sent for flight ${pFlightNum} departing utc ${date} with divert city ${divertCity}, ETA ${etaUTC}`});
+          res.status(201).json({message: `File: ${fileName}.txt sent at ${now} - DVC sent for flight ${pFlightNum} departing utc ${date} with divert city ${divertCity}, ETA ${etaUTC}`});
          }
         });
         ////////////////////////////////////// end of adhoc 16 /////////////////////////////////
@@ -3998,7 +4234,7 @@ router.post('/new', async (req, res) => {
           console.log(err)
            res.status(404).json({error: `Error sending File: ${fileName}.txt - NEW for flight ${flightNum} departing utc ${utcOriginDate} Failed!!`});
          } else {
-          res.status(201).json({adhoc: `File: ${fileName}.txt sent at ${now} - NEW sent for flight ${flightNum} departing utc ${utcOriginDate}`});
+          res.status(201).json({message: `File: ${fileName}.txt sent at ${now} - NEW sent for flight ${flightNum} departing utc ${utcOriginDate}`});
          }
         });
         ////////////////////////////////////// end of adhoc 16 /////////////////////////////////

@@ -144,6 +144,7 @@ export class DataDemoComponent implements OnInit, OnDestroy, AfterViewInit {
   ];
 
   date: string;
+  selectedDay: string;
   data = [];
   env = 'STG1';
   rowData: Flight;
@@ -165,6 +166,7 @@ export class DataDemoComponent implements OnInit, OnDestroy, AfterViewInit {
       .toString()
       .toUpperCase();
     this.data = sampleData;
+    this.selectedDay = 'd0';
   }
 
   // comment this out when building for prod
