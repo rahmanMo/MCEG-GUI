@@ -142,8 +142,7 @@ export class FlightsService {
     return this.http.post('/api/out', {stg: stg, day: day, fsdailyId: fsdailyId, outUTC: outUTC}, this.httpOptions)
     .pipe(
       map((response: Response) => {
-        console.log(response);
-      return response['message']; })
+      return response; })
     ).pipe(
       catchError(this.handleError('postEvent', []))
     );

@@ -18,8 +18,20 @@
           <span class="color-red" *ngIf="selctedEvent == 'GTD'">ADH016_{{flightNum!}}{{utcDate!}}{{origin!}}{{destination!}}{{stdUTC!}}{{selctedEvent!}}{{gtd!}}</span>
           <span class="color-red" *ngIf="selctedEvent == 'GTA'">ADH016_{{flightNum!}}{{utcDate!}}{{origin!}}{{destination!}}{{stdUTC!}}{{selctedEvent!}}{{gta!}}</span>
         </p>
-        <p class="center">Last Event Response:</p>
-        <p *ngIf="responseString"><span class="color-red">{{ responseString! }}</span></p>
+        <ul class="collection">
+            <li class="collection-item center">
+                <p class="center color-gary">Last Event Response:</p>
+                <div *ngIf="buttonEnable == false" class="progress">
+                    <div class="indeterminate"></div>
+                </div>
+            </li>
+            <li class="collection-item center">
+                <span class="color-red">{{ responseMessage! }}</span>
+                <span class="color-red">{{ responseError! }}</span>
+            </li>
+        </ul>
+        <!-- <h6 *ngIf="responseMessage"><span class="color-red">{{ responseMessage! }}</span></h6>
+        <h6 *ngIf="responseError"><span class="color-red">{{ responseError! }}</span></h6> -->
       </li>
     </ul>
   </div>
@@ -81,7 +93,8 @@
               type="submit"
               value="Post"
               [disabled]="dailyId.invalid
-              || out.invalid ">POST</button>
+              || out.invalid
+              || buttonEnable == false">POST</button>
       <button type="reset" value="Reset" class="waves-effect waves-light btn" (click)="reset()">RESET</button>
     </div>
   </form>

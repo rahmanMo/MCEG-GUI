@@ -132,7 +132,9 @@ export class PosteventComponent implements OnInit, OnChanges {
   adhocMessage;
   fileName;
   timestamp;
-  responseString;
+  responseMessage;
+  responseError;
+  buttonEnable = true;
 
   constructor(private flightsService: FlightsService) {}
 
@@ -172,10 +174,13 @@ export class PosteventComponent implements OnInit, OnChanges {
 
   onSubmitOUT(event: Event) {
     event.preventDefault();
+    this.buttonEnable = false;
     this.flightsService.postOUT(this.environment, this.selectedDay, this.fsDailyId, this.outUTC).subscribe(data => {
-      this.responseString = data;
+      this.responseMessage = data['message'];
+      this.responseError = data['error'];
       console.log(data);
       this.reset();
+      this.buttonEnable = true;
     });
   }
   onSubmitOFF(event: Event) {
@@ -492,6 +497,7 @@ export class PosteventComponent implements OnInit, OnChanges {
         this.origin = v(data.origin).trim().upperCase();
         this.destination = v(data.destination).trim().upperCase();
         this.stdUTC =  v(data.STDudt).trim().padLeft(4, '0');
+        this.fsDailyId = v(data.csvFSDailyID).trim();
       }
   }
 }
