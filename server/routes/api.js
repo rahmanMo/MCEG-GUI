@@ -2232,11 +2232,11 @@ router.post('/send', async (req, res) => {
         //////////////////////////////// prep data for adhoc 16 /////////////////////////////////
         let dropLocation;
         if (stg == 'STG1') {
-          dropLocation = './sample';
+          dropLocation = '/mnt/gcsfile01/STG1/adh_receive';
         } else if (stg == 'STG2') {
-          dropLocation = './sample';
+          dropLocation = '/mnt/gcsfile01/STG2/adh_receive';
         } else if (stg == 'STG3') {
-          dropLocation = './sample';
+          dropLocation = '/mnt/gcsfile01/STG3/adh_receive';
         }
         let now = moment(new Date()).format('MM_DD_YYYY_HH_mm_ss_x');
         let timestamp = moment(new Date()).format('MMM-DD-YYYY | HH:mm:SS');
@@ -2318,11 +2318,11 @@ router.post('/out', async (req, res) => {
         let out = v(outUTC).padLeft(4, '0');
         let dropLocation;
         if (stg == 'STG1') {
-          dropLocation = './sample';
+          dropLocation = '/mnt/gcsfile01/STG1/adh_receive';
         } else if (stg == 'STG2') {
-          dropLocation = './sample';
+          dropLocation = '/mnt/gcsfile01/STG2/adh_receive';
         } else if (stg == 'STG3') {
-          dropLocation = './sample';
+          dropLocation = '/mnt/gcsfile01/STG3/adh_receive';
         }
         let now = moment(new Date()).format('MM_DD_YYYY_HH_mm_ss_x');
         let fileName = `mceg_adhoc16_out_${now}`;
@@ -2407,11 +2407,11 @@ router.post('/off', async (req, res) => {
         let off = v(offUTC).padLeft(4, '0');
         let dropLocation;
         if (stg == 'STG1') {
-          dropLocation = './sample';
+          dropLocation = '/mnt/gcsfile01/STG1/adh_receive';
         } else if (stg == 'STG2') {
-          dropLocation = './sample';
+          dropLocation = '/mnt/gcsfile01/STG2/adh_receive';
         } else if (stg == 'STG3') {
-          dropLocation = './sample';
+          dropLocation = '/mnt/gcsfile01/STG3/adh_receive';
         }
         let now = moment(new Date()).format('MM_DD_YYYY_HH_mm_ss_x');
         let fileName = `mceg_adhoc16_off_${now}`;
@@ -2494,11 +2494,11 @@ router.post('/on', async (req, res) => {
         let on = v(onUTC).padLeft(4, '0');
         let dropLocation;
         if (stg == 'STG1') {
-          dropLocation = './sample';
+          dropLocation = '/mnt/gcsfile01/STG1/adh_receive';
         } else if (stg == 'STG2') {
-          dropLocation = './sample';
+          dropLocation = '/mnt/gcsfile01/STG2/adh_receive';
         } else if (stg == 'STG3') {
-          dropLocation = './sample';
+          dropLocation = '/mnt/gcsfile01/STG3/adh_receive';
         }
         let now = moment(new Date()).format('MM_DD_YYYY_HH_mm_ss_x');
         let fileName = `mceg_adhoc16_on_${now}`;
@@ -2583,11 +2583,11 @@ router.post('/in', async (req, res) => {
         let onUTC = v(flightData[0].ONudt).trim().padLeft(4, '0');
         let dropLocation;
         if (stg == 'STG1') {
-          dropLocation = './sample';
+          dropLocation = '/mnt/gcsfile01/STG1/adh_receive';
         } else if (stg == 'STG2') {
-          dropLocation = './sample';
+          dropLocation = '/mnt/gcsfile01/STG2/adh_receive';
         } else if (stg == 'STG3') {
-          dropLocation = './sample';
+          dropLocation = '/mnt/gcsfile01/STG3/adh_receive';
         }
         let now = moment(new Date()).format('MM_DD_YYYY_HH_mm_ss_x');
         let fileName = `mceg_adhoc16_in_${now}`;
@@ -2669,11 +2669,11 @@ router.post('/etd', async (req, res) => {
         let std = v(flightData[0].STDudt).trim().padLeft(4, '0');
         let dropLocation;
         if (stg == 'STG1') {
-          dropLocation = './sample';
+          dropLocation = '/mnt/gcsfile01/STG1/adh_receive';
         } else if (stg == 'STG2') {
-          dropLocation = './sample';
+          dropLocation = '/mnt/gcsfile01/STG2/adh_receive';
         } else if (stg == 'STG3') {
-          dropLocation = './sample';
+          dropLocation = '/mnt/gcsfile01/STG3/adh_receive';
         }
         let now = moment(new Date()).format('MM_DD_YYYY_HH_mm_ss_x');
         let fileName = `mceg_adhoc16_etd_${now}`;
@@ -2755,11 +2755,11 @@ router.post('/eta', async (req, res) => {
         let std = v(flightData[0].STDudt).trim().padLeft(4, '0');
         let dropLocation;
         if (stg == 'STG1') {
-          dropLocation = './sample';
+          dropLocation = '/mnt/gcsfile01/STG1/adh_receive';
         } else if (stg == 'STG2') {
-          dropLocation = './sample';
+          dropLocation = '/mnt/gcsfile01/STG2/adh_receive';
         } else if (stg == 'STG3') {
-          dropLocation = './sample';
+          dropLocation = '/mnt/gcsfile01/STG3/adh_receive';
         }
         let now = moment(new Date()).format('MM_DD_YYYY_HH_mm_ss_x');
         let fileName = `mceg_adhoc16_eta_${now}`;
@@ -2841,11 +2841,11 @@ router.post('/eto', async (req, res) => {
         let std = v(flightData[0].STDudt).trim().padLeft(4, '0');
         let dropLocation;
         if (stg == 'STG1') {
-          dropLocation = './sample';
+          dropLocation = '/mnt/gcsfile01/STG1/adh_receive';
         } else if (stg == 'STG2') {
-          dropLocation = './sample';
+          dropLocation = '/mnt/gcsfile01/STG2/adh_receive';
         } else if (stg == 'STG3') {
-          dropLocation = './sample';
+          dropLocation = '/mnt/gcsfile01/STG3/adh_receive';
         }
         let now = moment(new Date()).format('MM_DD_YYYY_HH_mm_ss_x');
         let fileName = `mceg_adhoc16_eto_${now}`;
@@ -2927,11 +2927,11 @@ router.post('/eon', async (req, res) => {
         let std = v(flightData[0].STDudt).trim().padLeft(4, '0');
         let dropLocation;
         if (stg == 'STG1') {
-          dropLocation = './sample';
+          dropLocation = '/mnt/gcsfile01/STG1/adh_receive';
         } else if (stg == 'STG2') {
-          dropLocation = './sample';
+          dropLocation = '/mnt/gcsfile01/STG2/adh_receive';
         } else if (stg == 'STG3') {
-          dropLocation = './sample';
+          dropLocation = '/mnt/gcsfile01/STG3/adh_receive';
         }
         let now = moment(new Date()).format('MM_DD_YYYY_HH_mm_ss_x');
         let fileName = `mceg_adhoc16_eon_${now}`;
@@ -3008,11 +3008,11 @@ router.post('/sub', async (req, res) => {
         let std = v(flightData[0].STDudt).trim().padLeft(4, '0');
         let dropLocation;
         if (stg == 'STG1') {
-          dropLocation = './sample';
+          dropLocation = '/mnt/gcsfile01/STG1/adh_receive';
         } else if (stg == 'STG2') {
-          dropLocation = './sample';
+          dropLocation = '/mnt/gcsfile01/STG2/adh_receive';
         } else if (stg == 'STG3') {
-          dropLocation = './sample';
+          dropLocation = '/mnt/gcsfile01/STG3/adh_receive';
         }
         let now = moment(new Date()).format('MM_DD_YYYY_HH_mm_ss_x');
         let fileName = `mceg_adhoc16_sub_${now}`;
@@ -3087,11 +3087,11 @@ router.post('/cnl', async (req, res) => {
         let std = v(flightData[0].STDudt).trim().padLeft(4, '0');
         let dropLocation;
         if (stg == 'STG1') {
-          dropLocation = './sample';
+          dropLocation = '/mnt/gcsfile01/STG1/adh_receive';
         } else if (stg == 'STG2') {
-          dropLocation = './sample';
+          dropLocation = '/mnt/gcsfile01/STG2/adh_receive';
         } else if (stg == 'STG3') {
-          dropLocation = './sample';
+          dropLocation = '/mnt/gcsfile01/STG3/adh_receive';
         }
         let now = moment(new Date()).format('MM_DD_YYYY_HH_mm_ss_x');
         let fileName = `mceg_adhoc16_cnl_${now}`;
@@ -3164,11 +3164,11 @@ router.post('/del', async (req, res) => {
         let std = v(flightData[0].STDudt).trim().padLeft(4, '0');
         let dropLocation;
         if (stg == 'STG1') {
-          dropLocation = './sample';
+          dropLocation = '/mnt/gcsfile01/STG1/adh_receive';
         } else if (stg == 'STG2') {
-          dropLocation = './sample';
+          dropLocation = '/mnt/gcsfile01/STG2/adh_receive';
         } else if (stg == 'STG3') {
-          dropLocation = './sample';
+          dropLocation = '/mnt/gcsfile01/STG3/adh_receive';
         }
         let now = moment(new Date()).format('MM_DD_YYYY_HH_mm_ss_x');
         let fileName = `mceg_adhoc16_del_${now}`;
@@ -3248,11 +3248,11 @@ router.post('/gtd', async (req, res) => {
         let std = v(flightData[0].STDudt).trim().padLeft(4, '0');
         let dropLocation;
         if (stg == 'STG1') {
-          dropLocation = './sample';
+          dropLocation = '/mnt/gcsfile01/STG1/adh_receive';
         } else if (stg == 'STG2') {
-          dropLocation = './sample';
+          dropLocation = '/mnt/gcsfile01/STG2/adh_receive';
         } else if (stg == 'STG3') {
-          dropLocation = './sample';
+          dropLocation = '/mnt/gcsfile01/STG3/adh_receive';
         }
         let now = moment(new Date()).format('MM_DD_YYYY_HH_mm_ss_x');
         let fileName = `mceg_adhoc16_gtd_${now}`;
@@ -3332,11 +3332,11 @@ router.post('/gta', async (req, res) => {
         let std = v(flightData[0].STDudt).trim().padLeft(4, '0');
         let dropLocation;
         if (stg == 'STG1') {
-          dropLocation = './sample';
+          dropLocation = '/mnt/gcsfile01/STG1/adh_receive';
         } else if (stg == 'STG2') {
-          dropLocation = './sample';
+          dropLocation = '/mnt/gcsfile01/STG2/adh_receive';
         } else if (stg == 'STG3') {
-          dropLocation = './sample';
+          dropLocation = '/mnt/gcsfile01/STG3/adh_receive';
         }
         let now = moment(new Date()).format('MM_DD_YYYY_HH_mm_ss_x');
         let fileName = `mceg_adhoc16_gta_${now}`;
@@ -3410,11 +3410,11 @@ router.post('/rin', async (req, res) => {
         let std = v(flightData[0].STDudt).trim().padLeft(4, '0');
         let dropLocation;
         if (stg == 'STG1') {
-          dropLocation = './sample';
+          dropLocation = '/mnt/gcsfile01/STG1/adh_receive';
         } else if (stg == 'STG2') {
-          dropLocation = './sample';
+          dropLocation = '/mnt/gcsfile01/STG2/adh_receive';
         } else if (stg == 'STG3') {
-          dropLocation = './sample';
+          dropLocation = '/mnt/gcsfile01/STG3/adh_receive';
         }
         let now = moment(new Date()).format('MM_DD_YYYY_HH_mm_ss_x');
         let fileName = `mceg_adhoc16_rin_${now}`;
@@ -3488,11 +3488,11 @@ router.post('/rem', async (req, res) => {
         let std = v(flightData[0].STDudt).trim().padLeft(4, '0');
         let dropLocation;
         if (stg == 'STG1') {
-          dropLocation = './sample';
+          dropLocation = '/mnt/gcsfile01/STG1/adh_receive';
         } else if (stg == 'STG2') {
-          dropLocation = './sample';
+          dropLocation = '/mnt/gcsfile01/STG2/adh_receive';
         } else if (stg == 'STG3') {
-          dropLocation = './sample';
+          dropLocation = '/mnt/gcsfile01/STG3/adh_receive';
         }
         let now = moment(new Date()).format('MM_DD_YYYY_HH_mm_ss_x');
         let fileName = `mceg_adhoc16_rem_${now}`;
@@ -3570,11 +3570,11 @@ router.post('/asn', async (req, res) => {
         let std = v(flightData[0].STDudt).trim().padLeft(4, '0');
         let dropLocation;
         if (stg == 'STG1') {
-          dropLocation = './sample';
+          dropLocation = '/mnt/gcsfile01/STG1/adh_receive';
         } else if (stg == 'STG2') {
-          dropLocation = './sample';
+          dropLocation = '/mnt/gcsfile01/STG2/adh_receive';
         } else if (stg == 'STG3') {
-          dropLocation = './sample';
+          dropLocation = '/mnt/gcsfile01/STG3/adh_receive';
         }
         let now = moment(new Date()).format('MM_DD_YYYY_HH_mm_ss_x');
         let fileName = `mceg_adhoc16_asn_${now}`;
@@ -3650,11 +3650,11 @@ router.post('/udd', async (req, res) => {
         let std = v(flightData[0].STDudt).trim().padLeft(4, '0');
         let dropLocation;
         if (stg == 'STG1') {
-          dropLocation = './sample';
+          dropLocation = '/mnt/gcsfile01/STG1/adh_receive';
         } else if (stg == 'STG2') {
-          dropLocation = './sample';
+          dropLocation = '/mnt/gcsfile01/STG2/adh_receive';
         } else if (stg == 'STG3') {
-          dropLocation = './sample';
+          dropLocation = '/mnt/gcsfile01/STG3/adh_receive';
         }
         let now = moment(new Date()).format('MM_DD_YYYY_HH_mm_ss_x');
         let fileName = `mceg_adhoc16_udd_${now}`;
@@ -3730,11 +3730,11 @@ router.post('/uda', async (req, res) => {
         let std = v(flightData[0].STDudt).trim().padLeft(4, '0');
         let dropLocation;
         if (stg == 'STG1') {
-          dropLocation = './sample';
+          dropLocation = '/mnt/gcsfile01/STG1/adh_receive';
         } else if (stg == 'STG2') {
-          dropLocation = './sample';
+          dropLocation = '/mnt/gcsfile01/STG2/adh_receive';
         } else if (stg == 'STG3') {
-          dropLocation = './sample';
+          dropLocation = '/mnt/gcsfile01/STG3/adh_receive';
         }
         let now = moment(new Date()).format('MM_DD_YYYY_HH_mm_ss_x');
         let fileName = `mceg_adhoc16_uda_${now}`;
@@ -3809,11 +3809,11 @@ router.post('/rmd', async (req, res) => {
         let std = v(flightData[0].STDudt).trim().padLeft(4, '0');
         let dropLocation;
         if (stg == 'STG1') {
-          dropLocation = './sample';
+          dropLocation = '/mnt/gcsfile01/STG1/adh_receive';
         } else if (stg == 'STG2') {
-          dropLocation = './sample';
+          dropLocation = '/mnt/gcsfile01/STG2/adh_receive';
         } else if (stg == 'STG3') {
-          dropLocation = './sample';
+          dropLocation = '/mnt/gcsfile01/STG3/adh_receive';
         }
         let now = moment(new Date()).format('MM_DD_YYYY_HH_mm_ss_x');
         let fileName = `mceg_adhoc16_rmd_${now}`;
@@ -3888,11 +3888,11 @@ router.post('/rma', async (req, res) => {
         let std = v(flightData[0].STDudt).trim().padLeft(4, '0');
         let dropLocation;
         if (stg == 'STG1') {
-          dropLocation = './sample';
+          dropLocation = '/mnt/gcsfile01/STG1/adh_receive';
         } else if (stg == 'STG2') {
-          dropLocation = './sample';
+          dropLocation = '/mnt/gcsfile01/STG2/adh_receive';
         } else if (stg == 'STG3') {
-          dropLocation = './sample';
+          dropLocation = '/mnt/gcsfile01/STG3/adh_receive';
         }
         let now = moment(new Date()).format('MM_DD_YYYY_HH_mm_ss_x');
         let fileName = `mceg_adhoc16_rma_${now}`;
@@ -3967,11 +3967,11 @@ router.post('/grd', async (req, res) => {
         let std = v(flightData[0].STDudt).trim().padLeft(4, '0');
         let dropLocation;
         if (stg == 'STG1') {
-          dropLocation = './sample';
+          dropLocation = '/mnt/gcsfile01/STG1/adh_receive';
         } else if (stg == 'STG2') {
-          dropLocation = './sample';
+          dropLocation = '/mnt/gcsfile01/STG2/adh_receive';
         } else if (stg == 'STG3') {
-          dropLocation = './sample';
+          dropLocation = '/mnt/gcsfile01/STG3/adh_receive';
         }
         let now = moment(new Date()).fogrdt('MM_DD_YYYY_HH_mm_ss_x');
         let fileName = `mceg_adhoc16_grd_${now}`;
@@ -4046,11 +4046,11 @@ router.post('/air', async (req, res) => {
         let std = v(flightData[0].STDudt).trim().padLeft(4, '0');
         let dropLocation;
         if (stg == 'STG1') {
-          dropLocation = './sample';
+          dropLocation = '/mnt/gcsfile01/STG1/adh_receive';
         } else if (stg == 'STG2') {
-          dropLocation = './sample';
+          dropLocation = '/mnt/gcsfile01/STG2/adh_receive';
         } else if (stg == 'STG3') {
-          dropLocation = './sample';
+          dropLocation = '/mnt/gcsfile01/STG3/adh_receive';
         }
         let now = moment(new Date()).foairt('MM_DD_YYYY_HH_mm_ss_x');
         let fileName = `mceg_adhoc16_air_${now}`;
@@ -4131,11 +4131,11 @@ router.post('/dvc', async (req, res) => {
         let std = v(flightData[0].STDudt).trim().padLeft(4, '0');
         let dropLocation;
         if (stg == 'STG1') {
-          dropLocation = './sample';
+          dropLocation = '/mnt/gcsfile01/STG1/adh_receive';
         } else if (stg == 'STG2') {
-          dropLocation = './sample';
+          dropLocation = '/mnt/gcsfile01/STG2/adh_receive';
         } else if (stg == 'STG3') {
-          dropLocation = './sample';
+          dropLocation = '/mnt/gcsfile01/STG3/adh_receive';
         }
         let now = moment(new Date()).format('MM_DD_YYYY_HH_mm_ss_x');
         let fileName = `mceg_adhoc16_dvc_${now}`;
@@ -4220,11 +4220,11 @@ router.post('/new', async (req, res) => {
         //////////////////////////////// prep data for adhoc 16 /////////////////////////////////
         let dropLocation;
         if (stg == 'STG1') {
-          dropLocation = './sample';
+          dropLocation = '/mnt/gcsfile01/STG1/adh_receive';
         } else if (stg == 'STG2') {
-          dropLocation = './sample';
+          dropLocation = '/mnt/gcsfile01/STG2/adh_receive';
         } else if (stg == 'STG3') {
-          dropLocation = './sample';
+          dropLocation = '/mnt/gcsfile01/STG3/adh_receive';
         }
         let now = moment(new Date()).format('MM_DD_YYYY_HH_mm_ss_x');
         let fileName = `mceg_adhoc16_new_${now}`;
