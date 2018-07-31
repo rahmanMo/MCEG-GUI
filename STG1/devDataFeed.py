@@ -14,7 +14,7 @@ from apscheduler.schedulers.blocking import BlockingScheduler
 def STG1D0_job():
     print('Starting Stage 1 day 0 data feed.')
     # mlab remote mongodb location
-    uri = 'mongodb://0.0.0.0:27017/'
+    uri = 'mongodb://localhost:27017/'
 
     # request drop location
     stageSend = Path('//gscfile01/SharedFile/QA_MVC/STG1/adh_receive')
@@ -196,7 +196,7 @@ def STG1D0_job():
 def STG1D1_job():
     print('Starting Stage 1 day 1 data feed.')
     # mlab remote mongodb location
-    uri = 'mongodb://0.0.0.0:27017/'
+    uri = 'mongodb://localhost:27017/'
 
     # request drop location
     stageSend = Path('//gscfile01/SharedFile/QA_MVC/STG1/adh_receive')
@@ -376,7 +376,7 @@ def STG1D1_job():
 def STG1D2_job():
     print('Starting Stage 1 day 2 data feed.')
     # mlab remote mongodb location
-    uri = 'mongodb://0.0.0.0:27017/'
+    uri = 'mongodb://localhost:27017/'
 
     # request drop location
     stageSend = Path('//gscfile01/SharedFile/QA_MVC/STG1/adh_receive')
@@ -556,7 +556,7 @@ def STG1D2_job():
 def STG1D3_job():
     print('Starting Stage 1 day 3 data feed.')
     # mlab remote mongodb location
-    uri = 'mongodb://0.0.0.0:27017/'
+    uri = 'mongodb://localhost:27017/'
 
     # request drop location
     stageSend = Path('//gscfile01/SharedFile/QA_MVC/STG1/adh_receive')
@@ -737,7 +737,7 @@ def STG1D3_job():
 def STG1D4_job():
     print('Starting Stage 1 day 4 data feed.')
     # mlab remote mongodb location
-    uri = 'mongodb://0.0.0.0:27017/'
+    uri = 'mongodb://localhost:27017/'
 
     # request drop location
     stageSend = Path('//gscfile01/SharedFile/QA_MVC/STG1/adh_receive')
@@ -917,7 +917,7 @@ def STG1D4_job():
 def STG1D5_job():
     print('Starting Stage 1 day 5 data feed.')
     # mlab remote mongodb location
-    uri = 'mongodb://0.0.0.0:27017/'
+    uri = 'mongodb://localhost:27017/'
 
     # request drop location
     stageSend = Path('//gscfile01/SharedFile/QA_MVC/STG1/adh_receive')
@@ -1097,7 +1097,7 @@ def STG1D5_job():
 def STG1D6_job():
     print('Starting Stage 1 day 6 data feed.')
     # mlab remote mongodb location
-    uri = 'mongodb://0.0.0.0:27017/'
+    uri = 'mongodb://localhost:27017/'
 
     # request drop location
     stageSend = Path('//gscfile01/SharedFile/QA_MVC/STG1/adh_receive')
@@ -1277,7 +1277,7 @@ def STG1D6_job():
 def STG1D7_job():
     print('Starting Stage 1 day 7 data feed.')
     # mlab remote mongodb location
-    uri = 'mongodb://0.0.0.0:27017/'
+    uri = 'mongodb://localhost:27017/'
 
     # request drop location
     stageSend = Path('//gscfile01/SharedFile/QA_MVC/STG1/adh_receive')

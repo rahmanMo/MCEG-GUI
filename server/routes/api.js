@@ -64,6 +64,8 @@ const getByFlightNum = (stg,flightNum,day) => {
 
   return new Promise(function(resolve, reject) {
 
+    flightNum = Number(flightNum);
+
     ////////////////////////////////////////////////////////////////////////
     /////////////////////////// Start of stage 1 ///////////////////////////
     ////////////////////////////////////////////////////////////////////////
@@ -74,7 +76,7 @@ const getByFlightNum = (stg,flightNum,day) => {
         // if mongodb is in the process of deleting and inserting new data.
         if (results.length < 900) {
           setTimeout(() => {
-            STG1D0.find({ identifier: `${flightNum}` }).exec(function(err, flights) {
+            STG1D0.find({ identifier: flightNum }).exec(function(err, flights) {
               if (err) {
 
                 reject(err);
@@ -84,7 +86,7 @@ const getByFlightNum = (stg,flightNum,day) => {
             });
           }, 5000);
         } else {
-          STG1D0.find({ identifier: `${flightNum}` }).exec(function(err, flights) {
+          STG1D0.find({ identifier: flightNum }).exec(function(err, flights) {
             if (err) {
 
               reject(err);
@@ -101,7 +103,7 @@ const getByFlightNum = (stg,flightNum,day) => {
         // if mongodb is in the process of deleting and inserting new data.
         if (results.length < 900) {
           setTimeout(() => {
-            STG1D1.find({ identifier: `${flightNum}` }).exec(function(err, flights) {
+            STG1D1.find({ identifier: flightNum }).exec(function(err, flights) {
               if (err) {
 
                 reject(err);
@@ -111,7 +113,7 @@ const getByFlightNum = (stg,flightNum,day) => {
             });
           }, 5000);
         } else {
-          STG1D1.find({ identifier: `${flightNum}` }).exec(function(err, flights) {
+          STG1D1.find({ identifier: flightNum }).exec(function(err, flights) {
             if (err) {
 
               reject(err);
@@ -129,7 +131,7 @@ const getByFlightNum = (stg,flightNum,day) => {
         // if mongodb is in the process of deleting and inserting new data.
         if (results.length < 900) {
           setTimeout(() => {
-            STG1D2.find({ identifier: `${flightNum}` }).exec(function(err, flights) {
+            STG1D2.find({ identifier: flightNum }).exec(function(err, flights) {
               if (err) {
 
                 reject(err);
@@ -139,7 +141,7 @@ const getByFlightNum = (stg,flightNum,day) => {
             });
           }, 5000);
         } else {
-          STG1D2.find({ identifier: `${flightNum}` }).exec(function(err, flights) {
+          STG1D2.find({ identifier: flightNum }).exec(function(err, flights) {
             if (err) {
 
               reject(err);
@@ -156,7 +158,7 @@ const getByFlightNum = (stg,flightNum,day) => {
         // if mongodb is in the process of deleting and inserting new data.
         if (results.length < 900) {
           setTimeout(() => {
-            STG1D3.find({ identifier: `${flightNum}` }).exec(function(err, flights) {
+            STG1D3.find({ identifier: flightNum }).exec(function(err, flights) {
               if (err) {
 
                 reject(err);
@@ -166,7 +168,7 @@ const getByFlightNum = (stg,flightNum,day) => {
             });
           }, 5000);
         } else {
-          STG1D3.find({ identifier: `${flightNum}` }).exec(function(err, flights) {
+          STG1D3.find({ identifier: flightNum }).exec(function(err, flights) {
             if (err) {
 
               reject(err);
@@ -183,7 +185,7 @@ const getByFlightNum = (stg,flightNum,day) => {
         // if mongodb is in the process of deleting and inserting new data.
         if (results.length < 900) {
           setTimeout(() => {
-            STG1D4.find({ identifier: `${flightNum}` }).exec(function(err, flights) {
+            STG1D4.find({ identifier: flightNum }).exec(function(err, flights) {
               if (err) {
 
                 reject(err);
@@ -193,7 +195,7 @@ const getByFlightNum = (stg,flightNum,day) => {
             });
           }, 5000);
         } else {
-          STG1D4.find({ identifier: `${flightNum}` }).exec(function(err, flights) {
+          STG1D4.find({ identifier: flightNum }).exec(function(err, flights) {
             if (err) {
 
               reject(err);
@@ -210,7 +212,7 @@ const getByFlightNum = (stg,flightNum,day) => {
         // if mongodb is in the process of deleting and inserting new data.
         if (results.length < 900) {
           setTimeout(() => {
-            STG1D5.find({ identifier: `${flightNum}` }).exec(function(err, flights) {
+            STG1D5.find({ identifier: flightNum }).exec(function(err, flights) {
               if (err) {
 
                 reject(err);
@@ -220,7 +222,7 @@ const getByFlightNum = (stg,flightNum,day) => {
             });
           }, 5000);
         } else {
-          STG1D5.find({ identifier: `${flightNum}` }).exec(function(err, flights) {
+          STG1D5.find({ identifier: flightNum }).exec(function(err, flights) {
             if (err) {
 
               reject(err);
@@ -237,7 +239,7 @@ const getByFlightNum = (stg,flightNum,day) => {
         // if mongodb is in the process of deleting and inserting new data.
         if (results.length < 900) {
           setTimeout(() => {
-            STG1D6.find({ identifier: `${flightNum}` }).exec(function(err, flights) {
+            STG1D6.find({ identifier: flightNum }).exec(function(err, flights) {
               if (err) {
 
                 reject(err);
@@ -247,7 +249,7 @@ const getByFlightNum = (stg,flightNum,day) => {
             });
           }, 5000);
         } else {
-          STG1D6.find({ identifier: `${flightNum}` }).exec(function(err, flights) {
+          STG1D6.find({ identifier: flightNum }).exec(function(err, flights) {
             if (err) {
 
               reject(err);
@@ -264,7 +266,7 @@ const getByFlightNum = (stg,flightNum,day) => {
         // if mongodb is in the process of deleting and inserting new data.
         if (results.length < 900) {
           setTimeout(() => {
-            STG1D7.find({ identifier: `${flightNum}` }).exec(function(err, flights) {
+            STG1D7.find({ identifier: flightNum }).exec(function(err, flights) {
               if (err) {
 
                 reject(err);
@@ -274,7 +276,7 @@ const getByFlightNum = (stg,flightNum,day) => {
             });
           }, 5000);
         } else {
-          STG1D7.find({ identifier: `${flightNum}` }).exec(function(err, flights) {
+          STG1D7.find({ identifier: flightNum }).exec(function(err, flights) {
             if (err) {
 
               reject(err);
@@ -300,7 +302,7 @@ const getByFlightNum = (stg,flightNum,day) => {
         // if mongodb is in the process of deleting and inserting new data.
         if (results.length < 900) {
           setTimeout(() => {
-            STG2D0.find({ identifier: `${flightNum}` }).exec(function(err, flights) {
+            STG2D0.find({ identifier: flightNum }).exec(function(err, flights) {
               if (err) {
 
                 reject(err);
@@ -310,7 +312,7 @@ const getByFlightNum = (stg,flightNum,day) => {
             });
           }, 5000);
         } else {
-          STG2D0.find({ identifier: `${flightNum}` }).exec(function(err, flights) {
+          STG2D0.find({ identifier: flightNum }).exec(function(err, flights) {
             if (err) {
 
               reject(err);
@@ -327,7 +329,7 @@ const getByFlightNum = (stg,flightNum,day) => {
         // if mongodb is in the process of deleting and inserting new data.
         if (results.length < 900) {
           setTimeout(() => {
-            STG2D1.find({ identifier: `${flightNum}` }).exec(function(err, flights) {
+            STG2D1.find({ identifier: flightNum }).exec(function(err, flights) {
               if (err) {
 
                 reject(err);
@@ -337,7 +339,7 @@ const getByFlightNum = (stg,flightNum,day) => {
             });
           }, 5000);
         } else {
-          STG2D1.find({ identifier: `${flightNum}` }).exec(function(err, flights) {
+          STG2D1.find({ identifier: flightNum }).exec(function(err, flights) {
             if (err) {
 
               reject(err);
@@ -355,7 +357,7 @@ const getByFlightNum = (stg,flightNum,day) => {
         // if mongodb is in the process of deleting and inserting new data.
         if (results.length < 900) {
           setTimeout(() => {
-            STG2D2.find({ identifier: `${flightNum}` }).exec(function(err, flights) {
+            STG2D2.find({ identifier: flightNum }).exec(function(err, flights) {
               if (err) {
 
                 reject(err);
@@ -365,7 +367,7 @@ const getByFlightNum = (stg,flightNum,day) => {
             });
           }, 5000);
         } else {
-          STG2D2.find({ identifier: `${flightNum}` }).exec(function(err, flights) {
+          STG2D2.find({ identifier: flightNum }).exec(function(err, flights) {
             if (err) {
 
               reject(err);
@@ -382,7 +384,7 @@ const getByFlightNum = (stg,flightNum,day) => {
         // if mongodb is in the process of deleting and inserting new data.
         if (results.length < 900) {
           setTimeout(() => {
-            STG2D3.find({ identifier: `${flightNum}` }).exec(function(err, flights) {
+            STG2D3.find({ identifier: flightNum }).exec(function(err, flights) {
               if (err) {
 
                 reject(err);
@@ -392,7 +394,7 @@ const getByFlightNum = (stg,flightNum,day) => {
             });
           }, 5000);
         } else {
-          STG2D3.find({ identifier: `${flightNum}` }).exec(function(err, flights) {
+          STG2D3.find({ identifier: flightNum }).exec(function(err, flights) {
             if (err) {
 
               reject(err);
@@ -409,7 +411,7 @@ const getByFlightNum = (stg,flightNum,day) => {
         // if mongodb is in the process of deleting and inserting new data.
         if (results.length < 900) {
           setTimeout(() => {
-            STG2D4.find({ identifier: `${flightNum}` }).exec(function(err, flights) {
+            STG2D4.find({ identifier: flightNum }).exec(function(err, flights) {
               if (err) {
 
                 reject(err);
@@ -419,7 +421,7 @@ const getByFlightNum = (stg,flightNum,day) => {
             });
           }, 5000);
         } else {
-          STG2D4.find({ identifier: `${flightNum}` }).exec(function(err, flights) {
+          STG2D4.find({ identifier: flightNum }).exec(function(err, flights) {
             if (err) {
 
               reject(err);
@@ -436,7 +438,7 @@ const getByFlightNum = (stg,flightNum,day) => {
         // if mongodb is in the process of deleting and inserting new data.
         if (results.length < 900) {
           setTimeout(() => {
-            STG2D5.find({ identifier: `${flightNum}` }).exec(function(err, flights) {
+            STG2D5.find({ identifier: flightNum }).exec(function(err, flights) {
               if (err) {
 
                 reject(err);
@@ -446,7 +448,7 @@ const getByFlightNum = (stg,flightNum,day) => {
             });
           }, 5000);
         } else {
-          STG2D5.find({ identifier: `${flightNum}` }).exec(function(err, flights) {
+          STG2D5.find({ identifier: flightNum }).exec(function(err, flights) {
             if (err) {
 
               reject(err);
@@ -463,7 +465,7 @@ const getByFlightNum = (stg,flightNum,day) => {
         // if mongodb is in the process of deleting and inserting new data.
         if (results.length < 900) {
           setTimeout(() => {
-            STG2D6.find({ identifier: `${flightNum}` }).exec(function(err, flights) {
+            STG2D6.find({ identifier: flightNum }).exec(function(err, flights) {
               if (err) {
 
                 reject(err);
@@ -473,7 +475,7 @@ const getByFlightNum = (stg,flightNum,day) => {
             });
           }, 5000);
         } else {
-          STG2D6.find({ identifier: `${flightNum}` }).exec(function(err, flights) {
+          STG2D6.find({ identifier: flightNum }).exec(function(err, flights) {
             if (err) {
 
               reject(err);
@@ -490,7 +492,7 @@ const getByFlightNum = (stg,flightNum,day) => {
         // if mongodb is in the process of deleting and inserting new data.
         if (results.length < 900) {
           setTimeout(() => {
-            STG2D7.find({ identifier: `${flightNum}` }).exec(function(err, flights) {
+            STG2D7.find({ identifier: flightNum }).exec(function(err, flights) {
               if (err) {
 
                 reject(err);
@@ -500,7 +502,7 @@ const getByFlightNum = (stg,flightNum,day) => {
             });
           }, 5000);
         } else {
-          STG2D7.find({ identifier: `${flightNum}` }).exec(function(err, flights) {
+          STG2D7.find({ identifier: flightNum }).exec(function(err, flights) {
             if (err) {
 
               reject(err);
@@ -527,7 +529,7 @@ const getByFlightNum = (stg,flightNum,day) => {
         // if mongodb is in the process of deleting and inserting new data.
         if (results.length < 900) {
           setTimeout(() => {
-            STG3D0.find({ identifier: `${flightNum}` }).exec(function(err, flights) {
+            STG3D0.find({ identifier: flightNum }).exec(function(err, flights) {
               if (err) {
 
                 reject(err);
@@ -537,7 +539,7 @@ const getByFlightNum = (stg,flightNum,day) => {
             });
           }, 5000);
         } else {
-          STG3D0.find({ identifier: `${flightNum}` }).exec(function(err, flights) {
+          STG3D0.find({ identifier: flightNum }).exec(function(err, flights) {
             if (err) {
 
               reject(err);
@@ -554,7 +556,7 @@ const getByFlightNum = (stg,flightNum,day) => {
         // if mongodb is in the process of deleting and inserting new data.
         if (results.length < 900) {
           setTimeout(() => {
-            STG3D1.find({ identifier: `${flightNum}` }).exec(function(err, flights) {
+            STG3D1.find({ identifier: flightNum }).exec(function(err, flights) {
               if (err) {
 
                 reject(err);
@@ -564,7 +566,7 @@ const getByFlightNum = (stg,flightNum,day) => {
             });
           }, 5000);
         } else {
-          STG3D1.find({ identifier: `${flightNum}` }).exec(function(err, flights) {
+          STG3D1.find({ identifier: flightNum }).exec(function(err, flights) {
             if (err) {
 
               reject(err);
@@ -582,7 +584,7 @@ const getByFlightNum = (stg,flightNum,day) => {
         // if mongodb is in the process of deleting and inserting new data.
         if (results.length < 900) {
           setTimeout(() => {
-            STG3D2.find({ identifier: `${flightNum}` }).exec(function(err, flights) {
+            STG3D2.find({ identifier: flightNum }).exec(function(err, flights) {
               if (err) {
 
                 reject(err);
@@ -592,7 +594,7 @@ const getByFlightNum = (stg,flightNum,day) => {
             });
           }, 5000);
         } else {
-          STG3D2.find({ identifier: `${flightNum}` }).exec(function(err, flights) {
+          STG3D2.find({ identifier: flightNum }).exec(function(err, flights) {
             if (err) {
 
               reject(err);
@@ -609,7 +611,7 @@ const getByFlightNum = (stg,flightNum,day) => {
         // if mongodb is in the process of deleting and inserting new data.
         if (results.length < 900) {
           setTimeout(() => {
-            STG3D3.find({ identifier: `${flightNum}` }).exec(function(err, flights) {
+            STG3D3.find({ identifier: flightNum }).exec(function(err, flights) {
               if (err) {
 
                 reject(err);
@@ -619,7 +621,7 @@ const getByFlightNum = (stg,flightNum,day) => {
             });
           }, 5000);
         } else {
-          STG3D3.find({ identifier: `${flightNum}` }).exec(function(err, flights) {
+          STG3D3.find({ identifier: flightNum }).exec(function(err, flights) {
             if (err) {
 
               reject(err);
@@ -636,7 +638,7 @@ const getByFlightNum = (stg,flightNum,day) => {
         // if mongodb is in the process of deleting and inserting new data.
         if (results.length < 900) {
           setTimeout(() => {
-            STG3D4.find({ identifier: `${flightNum}` }).exec(function(err, flights) {
+            STG3D4.find({ identifier: flightNum }).exec(function(err, flights) {
               if (err) {
 
                 reject(err);
@@ -646,7 +648,7 @@ const getByFlightNum = (stg,flightNum,day) => {
             });
           }, 5000);
         } else {
-          STG3D4.find({ identifier: `${flightNum}` }).exec(function(err, flights) {
+          STG3D4.find({ identifier: flightNum }).exec(function(err, flights) {
             if (err) {
 
               reject(err);
@@ -663,7 +665,7 @@ const getByFlightNum = (stg,flightNum,day) => {
         // if mongodb is in the process of deleting and inserting new data.
         if (results.length < 900) {
           setTimeout(() => {
-            STG3D5.find({ identifier: `${flightNum}` }).exec(function(err, flights) {
+            STG3D5.find({ identifier: flightNum }).exec(function(err, flights) {
               if (err) {
 
                 reject(err);
@@ -673,7 +675,7 @@ const getByFlightNum = (stg,flightNum,day) => {
             });
           }, 5000);
         } else {
-          STG3D5.find({ identifier: `${flightNum}` }).exec(function(err, flights) {
+          STG3D5.find({ identifier: flightNum }).exec(function(err, flights) {
             if (err) {
 
               reject(err);
@@ -690,7 +692,7 @@ const getByFlightNum = (stg,flightNum,day) => {
         // if mongodb is in the process of deleting and inserting new data.
         if (results.length < 900) {
           setTimeout(() => {
-            STG3D6.find({ identifier: `${flightNum}` }).exec(function(err, flights) {
+            STG3D6.find({ identifier: flightNum }).exec(function(err, flights) {
               if (err) {
 
                 reject(err);
@@ -700,7 +702,7 @@ const getByFlightNum = (stg,flightNum,day) => {
             });
           }, 5000);
         } else {
-          STG3D6.find({ identifier: `${flightNum}` }).exec(function(err, flights) {
+          STG3D6.find({ identifier: flightNum }).exec(function(err, flights) {
             if (err) {
 
               reject(err);
@@ -717,7 +719,7 @@ const getByFlightNum = (stg,flightNum,day) => {
         // if mongodb is in the process of deleting and inserting new data.
         if (results.length < 900) {
           setTimeout(() => {
-            STG3D7.find({ identifier: `${flightNum}` }).exec(function(err, flights) {
+            STG3D7.find({ identifier: flightNum }).exec(function(err, flights) {
               if (err) {
 
                 reject(err);
@@ -727,7 +729,7 @@ const getByFlightNum = (stg,flightNum,day) => {
             });
           }, 5000);
         } else {
-          STG3D7.find({ identifier: `${flightNum}` }).exec(function(err, flights) {
+          STG3D7.find({ identifier: flightNum }).exec(function(err, flights) {
             if (err) {
 
               reject(err);
@@ -750,6 +752,8 @@ const getByFsdailyId = (stg,fsdailyId,day) => {
 
   return new Promise(function(resolve, reject) {
 
+    fsdailyId = Number(fsdailyId);
+
     ////////////////////////////////////////////////////////////////////////
     /////////////////////////// Start of stage 1 ///////////////////////////
     ////////////////////////////////////////////////////////////////////////
@@ -760,7 +764,7 @@ const getByFsdailyId = (stg,fsdailyId,day) => {
         // if mongodb is in the process of deleting and inserting new data.
         if (results.length < 900) {
           setTimeout(() => {
-            STG1D0.find({ csvFSDailyID: `${fsdailyId}` }).exec(function(err, flights) {
+            STG1D0.find({ csvFSDailyID: fsdailyId }).exec(function(err, flights) {
               if (err) {
 
                 reject(err);
@@ -770,7 +774,7 @@ const getByFsdailyId = (stg,fsdailyId,day) => {
             });
           }, 5000);
         } else {
-          STG1D0.find({ csvFSDailyID: `${fsdailyId}` }).exec(function(err, flights) {
+          STG1D0.find({ csvFSDailyID: fsdailyId }).exec(function(err, flights) {
             if (err) {
 
               reject(err);
@@ -787,7 +791,7 @@ const getByFsdailyId = (stg,fsdailyId,day) => {
         // if mongodb is in the process of deleting and inserting new data.
         if (results.length < 900) {
           setTimeout(() => {
-            STG1D1.find({ csvFSDailyID: `${fsdailyId}` }).exec(function(err, flights) {
+            STG1D1.find({ csvFSDailyID: fsdailyId }).exec(function(err, flights) {
               if (err) {
 
                 reject(err);
@@ -797,7 +801,7 @@ const getByFsdailyId = (stg,fsdailyId,day) => {
             });
           }, 5000);
         } else {
-          STG1D1.find({ csvFSDailyID: `${fsdailyId}` }).exec(function(err, flights) {
+          STG1D1.find({ csvFSDailyID: fsdailyId }).exec(function(err, flights) {
             if (err) {
 
               reject(err);
@@ -815,7 +819,7 @@ const getByFsdailyId = (stg,fsdailyId,day) => {
         // if mongodb is in the process of deleting and inserting new data.
         if (results.length < 900) {
           setTimeout(() => {
-            STG1D2.find({ csvFSDailyID: `${fsdailyId}` }).exec(function(err, flights) {
+            STG1D2.find({ csvFSDailyID: fsdailyId }).exec(function(err, flights) {
               if (err) {
 
                 reject(err);
@@ -825,7 +829,7 @@ const getByFsdailyId = (stg,fsdailyId,day) => {
             });
           }, 5000);
         } else {
-          STG1D2.find({ csvFSDailyID: `${fsdailyId}` }).exec(function(err, flights) {
+          STG1D2.find({ csvFSDailyID: fsdailyId }).exec(function(err, flights) {
             if (err) {
 
               reject(err);
@@ -842,7 +846,7 @@ const getByFsdailyId = (stg,fsdailyId,day) => {
         // if mongodb is in the process of deleting and inserting new data.
         if (results.length < 900) {
           setTimeout(() => {
-            STG1D3.find({ csvFSDailyID: `${fsdailyId}` }).exec(function(err, flights) {
+            STG1D3.find({ csvFSDailyID: fsdailyId }).exec(function(err, flights) {
               if (err) {
 
                 reject(err);
@@ -852,7 +856,7 @@ const getByFsdailyId = (stg,fsdailyId,day) => {
             });
           }, 5000);
         } else {
-          STG1D3.find({ csvFSDailyID: `${fsdailyId}` }).exec(function(err, flights) {
+          STG1D3.find({ csvFSDailyID: fsdailyId }).exec(function(err, flights) {
             if (err) {
 
               reject(err);
@@ -869,7 +873,7 @@ const getByFsdailyId = (stg,fsdailyId,day) => {
         // if mongodb is in the process of deleting and inserting new data.
         if (results.length < 900) {
           setTimeout(() => {
-            STG1D4.find({ csvFSDailyID: `${fsdailyId}` }).exec(function(err, flights) {
+            STG1D4.find({ csvFSDailyID: fsdailyId }).exec(function(err, flights) {
               if (err) {
 
                 reject(err);
@@ -879,7 +883,7 @@ const getByFsdailyId = (stg,fsdailyId,day) => {
             });
           }, 5000);
         } else {
-          STG1D4.find({ csvFSDailyID: `${fsdailyId}` }).exec(function(err, flights) {
+          STG1D4.find({ csvFSDailyID: fsdailyId }).exec(function(err, flights) {
             if (err) {
 
               reject(err);
@@ -896,7 +900,7 @@ const getByFsdailyId = (stg,fsdailyId,day) => {
         // if mongodb is in the process of deleting and inserting new data.
         if (results.length < 900) {
           setTimeout(() => {
-            STG1D5.find({ csvFSDailyID: `${fsdailyId}` }).exec(function(err, flights) {
+            STG1D5.find({ csvFSDailyID: fsdailyId }).exec(function(err, flights) {
               if (err) {
 
                 reject(err);
@@ -906,7 +910,7 @@ const getByFsdailyId = (stg,fsdailyId,day) => {
             });
           }, 5000);
         } else {
-          STG1D5.find({ csvFSDailyID: `${fsdailyId}` }).exec(function(err, flights) {
+          STG1D5.find({ csvFSDailyID: fsdailyId }).exec(function(err, flights) {
             if (err) {
 
               reject(err);
@@ -923,7 +927,7 @@ const getByFsdailyId = (stg,fsdailyId,day) => {
         // if mongodb is in the process of deleting and inserting new data.
         if (results.length < 900) {
           setTimeout(() => {
-            STG1D6.find({ csvFSDailyID: `${fsdailyId}` }).exec(function(err, flights) {
+            STG1D6.find({ csvFSDailyID: fsdailyId }).exec(function(err, flights) {
               if (err) {
 
                 reject(err);
@@ -933,7 +937,7 @@ const getByFsdailyId = (stg,fsdailyId,day) => {
             });
           }, 5000);
         } else {
-          STG1D6.find({ csvFSDailyID: `${fsdailyId}` }).exec(function(err, flights) {
+          STG1D6.find({ csvFSDailyID: fsdailyId }).exec(function(err, flights) {
             if (err) {
 
               reject(err);
@@ -950,7 +954,7 @@ const getByFsdailyId = (stg,fsdailyId,day) => {
         // if mongodb is in the process of deleting and inserting new data.
         if (results.length < 900) {
           setTimeout(() => {
-            STG1D7.find({ csvFSDailyID: `${fsdailyId}` }).exec(function(err, flights) {
+            STG1D7.find({ csvFSDailyID: fsdailyId }).exec(function(err, flights) {
               if (err) {
 
                 reject(err);
@@ -960,7 +964,7 @@ const getByFsdailyId = (stg,fsdailyId,day) => {
             });
           }, 5000);
         } else {
-          STG1D7.find({ csvFSDailyID: `${fsdailyId}` }).exec(function(err, flights) {
+          STG1D7.find({ csvFSDailyID: fsdailyId }).exec(function(err, flights) {
             if (err) {
 
               reject(err);
@@ -986,7 +990,7 @@ const getByFsdailyId = (stg,fsdailyId,day) => {
         // if mongodb is in the process of deleting and inserting new data.
         if (results.length < 900) {
           setTimeout(() => {
-            STG2D0.find({ csvFSDailyID: `${fsdailyId}` }).exec(function(err, flights) {
+            STG2D0.find({ csvFSDailyID: fsdailyId }).exec(function(err, flights) {
               if (err) {
 
                 reject(err);
@@ -996,7 +1000,7 @@ const getByFsdailyId = (stg,fsdailyId,day) => {
             });
           }, 5000);
         } else {
-          STG2D0.find({ csvFSDailyID: `${fsdailyId}` }).exec(function(err, flights) {
+          STG2D0.find({ csvFSDailyID: fsdailyId }).exec(function(err, flights) {
             if (err) {
 
               reject(err);
@@ -1013,7 +1017,7 @@ const getByFsdailyId = (stg,fsdailyId,day) => {
         // if mongodb is in the process of deleting and inserting new data.
         if (results.length < 900) {
           setTimeout(() => {
-            STG2D1.find({ csvFSDailyID: `${fsdailyId}` }).exec(function(err, flights) {
+            STG2D1.find({ csvFSDailyID: fsdailyId }).exec(function(err, flights) {
               if (err) {
 
                 reject(err);
@@ -1023,7 +1027,7 @@ const getByFsdailyId = (stg,fsdailyId,day) => {
             });
           }, 5000);
         } else {
-          STG2D1.find({ csvFSDailyID: `${fsdailyId}` }).exec(function(err, flights) {
+          STG2D1.find({ csvFSDailyID: fsdailyId }).exec(function(err, flights) {
             if (err) {
 
               reject(err);
@@ -1041,7 +1045,7 @@ const getByFsdailyId = (stg,fsdailyId,day) => {
         // if mongodb is in the process of deleting and inserting new data.
         if (results.length < 900) {
           setTimeout(() => {
-            STG2D2.find({ csvFSDailyID: `${fsdailyId}` }).exec(function(err, flights) {
+            STG2D2.find({ csvFSDailyID: fsdailyId }).exec(function(err, flights) {
               if (err) {
 
                 reject(err);
@@ -1051,7 +1055,7 @@ const getByFsdailyId = (stg,fsdailyId,day) => {
             });
           }, 5000);
         } else {
-          STG2D2.find({ csvFSDailyID: `${fsdailyId}` }).exec(function(err, flights) {
+          STG2D2.find({ csvFSDailyID: fsdailyId }).exec(function(err, flights) {
             if (err) {
 
               reject(err);
@@ -1068,7 +1072,7 @@ const getByFsdailyId = (stg,fsdailyId,day) => {
         // if mongodb is in the process of deleting and inserting new data.
         if (results.length < 900) {
           setTimeout(() => {
-            STG2D3.find({ csvFSDailyID: `${fsdailyId}` }).exec(function(err, flights) {
+            STG2D3.find({ csvFSDailyID: fsdailyId }).exec(function(err, flights) {
               if (err) {
 
                 reject(err);
@@ -1078,7 +1082,7 @@ const getByFsdailyId = (stg,fsdailyId,day) => {
             });
           }, 5000);
         } else {
-          STG2D3.find({ csvFSDailyID: `${fsdailyId}` }).exec(function(err, flights) {
+          STG2D3.find({ csvFSDailyID: fsdailyId }).exec(function(err, flights) {
             if (err) {
 
               reject(err);
@@ -1095,7 +1099,7 @@ const getByFsdailyId = (stg,fsdailyId,day) => {
         // if mongodb is in the process of deleting and inserting new data.
         if (results.length < 900) {
           setTimeout(() => {
-            STG2D4.find({ csvFSDailyID: `${fsdailyId}` }).exec(function(err, flights) {
+            STG2D4.find({ csvFSDailyID: fsdailyId }).exec(function(err, flights) {
               if (err) {
 
                 reject(err);
@@ -1105,7 +1109,7 @@ const getByFsdailyId = (stg,fsdailyId,day) => {
             });
           }, 5000);
         } else {
-          STG2D4.find({ csvFSDailyID: `${fsdailyId}` }).exec(function(err, flights) {
+          STG2D4.find({ csvFSDailyID: fsdailyId }).exec(function(err, flights) {
             if (err) {
 
               reject(err);
@@ -1122,7 +1126,7 @@ const getByFsdailyId = (stg,fsdailyId,day) => {
         // if mongodb is in the process of deleting and inserting new data.
         if (results.length < 900) {
           setTimeout(() => {
-            STG2D5.find({ csvFSDailyID: `${fsdailyId}` }).exec(function(err, flights) {
+            STG2D5.find({ csvFSDailyID: fsdailyId }).exec(function(err, flights) {
               if (err) {
 
                 reject(err);
@@ -1132,7 +1136,7 @@ const getByFsdailyId = (stg,fsdailyId,day) => {
             });
           }, 5000);
         } else {
-          STG2D5.find({ csvFSDailyID: `${fsdailyId}` }).exec(function(err, flights) {
+          STG2D5.find({ csvFSDailyID: fsdailyId }).exec(function(err, flights) {
             if (err) {
 
               reject(err);
@@ -1149,7 +1153,7 @@ const getByFsdailyId = (stg,fsdailyId,day) => {
         // if mongodb is in the process of deleting and inserting new data.
         if (results.length < 900) {
           setTimeout(() => {
-            STG2D6.find({ csvFSDailyID: `${fsdailyId}` }).exec(function(err, flights) {
+            STG2D6.find({ csvFSDailyID: fsdailyId }).exec(function(err, flights) {
               if (err) {
 
                 reject(err);
@@ -1159,7 +1163,7 @@ const getByFsdailyId = (stg,fsdailyId,day) => {
             });
           }, 5000);
         } else {
-          STG2D6.find({ csvFSDailyID: `${fsdailyId}` }).exec(function(err, flights) {
+          STG2D6.find({ csvFSDailyID: fsdailyId }).exec(function(err, flights) {
             if (err) {
 
               reject(err);
@@ -1176,7 +1180,7 @@ const getByFsdailyId = (stg,fsdailyId,day) => {
         // if mongodb is in the process of deleting and inserting new data.
         if (results.length < 900) {
           setTimeout(() => {
-            STG2D7.find({ csvFSDailyID: `${fsdailyId}` }).exec(function(err, flights) {
+            STG2D7.find({ csvFSDailyID: fsdailyId }).exec(function(err, flights) {
               if (err) {
 
                 reject(err);
@@ -1186,7 +1190,7 @@ const getByFsdailyId = (stg,fsdailyId,day) => {
             });
           }, 5000);
         } else {
-          STG2D7.find({ csvFSDailyID: `${fsdailyId}` }).exec(function(err, flights) {
+          STG2D7.find({ csvFSDailyID: fsdailyId }).exec(function(err, flights) {
             if (err) {
 
               reject(err);
@@ -1213,7 +1217,7 @@ const getByFsdailyId = (stg,fsdailyId,day) => {
         // if mongodb is in the process of deleting and inserting new data.
         if (results.length < 900) {
           setTimeout(() => {
-            STG3D0.find({ csvFSDailyID: `${fsdailyId}` }).exec(function(err, flights) {
+            STG3D0.find({ csvFSDailyID: fsdailyId }).exec(function(err, flights) {
               if (err) {
 
                 reject(err);
@@ -1223,7 +1227,7 @@ const getByFsdailyId = (stg,fsdailyId,day) => {
             });
           }, 5000);
         } else {
-          STG3D0.find({ csvFSDailyID: `${fsdailyId}` }).exec(function(err, flights) {
+          STG3D0.find({ csvFSDailyID: fsdailyId }).exec(function(err, flights) {
             if (err) {
 
               reject(err);
@@ -1240,7 +1244,7 @@ const getByFsdailyId = (stg,fsdailyId,day) => {
         // if mongodb is in the process of deleting and inserting new data.
         if (results.length < 900) {
           setTimeout(() => {
-            STG3D1.find({ csvFSDailyID: `${fsdailyId}` }).exec(function(err, flights) {
+            STG3D1.find({ csvFSDailyID: fsdailyId }).exec(function(err, flights) {
               if (err) {
 
                 reject(err);
@@ -1250,7 +1254,7 @@ const getByFsdailyId = (stg,fsdailyId,day) => {
             });
           }, 5000);
         } else {
-          STG3D1.find({ csvFSDailyID: `${fsdailyId}` }).exec(function(err, flights) {
+          STG3D1.find({ csvFSDailyID: fsdailyId }).exec(function(err, flights) {
             if (err) {
 
               reject(err);
@@ -1268,7 +1272,7 @@ const getByFsdailyId = (stg,fsdailyId,day) => {
         // if mongodb is in the process of deleting and inserting new data.
         if (results.length < 900) {
           setTimeout(() => {
-            STG3D2.find({ csvFSDailyID: `${fsdailyId}` }).exec(function(err, flights) {
+            STG3D2.find({ csvFSDailyID: fsdailyId }).exec(function(err, flights) {
               if (err) {
 
                 reject(err);
@@ -1278,7 +1282,7 @@ const getByFsdailyId = (stg,fsdailyId,day) => {
             });
           }, 5000);
         } else {
-          STG3D2.find({ csvFSDailyID: `${fsdailyId}` }).exec(function(err, flights) {
+          STG3D2.find({ csvFSDailyID: fsdailyId }).exec(function(err, flights) {
             if (err) {
 
               reject(err);
@@ -1295,7 +1299,7 @@ const getByFsdailyId = (stg,fsdailyId,day) => {
         // if mongodb is in the process of deleting and inserting new data.
         if (results.length < 900) {
           setTimeout(() => {
-            STG3D3.find({ csvFSDailyID: `${fsdailyId}` }).exec(function(err, flights) {
+            STG3D3.find({ csvFSDailyID: fsdailyId }).exec(function(err, flights) {
               if (err) {
 
                 reject(err);
@@ -1305,7 +1309,7 @@ const getByFsdailyId = (stg,fsdailyId,day) => {
             });
           }, 5000);
         } else {
-          STG3D3.find({ csvFSDailyID: `${fsdailyId}` }).exec(function(err, flights) {
+          STG3D3.find({ csvFSDailyID: fsdailyId }).exec(function(err, flights) {
             if (err) {
 
               reject(err);
@@ -1322,7 +1326,7 @@ const getByFsdailyId = (stg,fsdailyId,day) => {
         // if mongodb is in the process of deleting and inserting new data.
         if (results.length < 900) {
           setTimeout(() => {
-            STG3D4.find({ csvFSDailyID: `${fsdailyId}` }).exec(function(err, flights) {
+            STG3D4.find({ csvFSDailyID: fsdailyId }).exec(function(err, flights) {
               if (err) {
 
                 reject(err);
@@ -1332,7 +1336,7 @@ const getByFsdailyId = (stg,fsdailyId,day) => {
             });
           }, 5000);
         } else {
-          STG3D4.find({ csvFSDailyID: `${fsdailyId}` }).exec(function(err, flights) {
+          STG3D4.find({ csvFSDailyID: fsdailyId }).exec(function(err, flights) {
             if (err) {
 
               reject(err);
@@ -1349,7 +1353,7 @@ const getByFsdailyId = (stg,fsdailyId,day) => {
         // if mongodb is in the process of deleting and inserting new data.
         if (results.length < 900) {
           setTimeout(() => {
-            STG3D5.find({ csvFSDailyID: `${fsdailyId}` }).exec(function(err, flights) {
+            STG3D5.find({ csvFSDailyID: fsdailyId }).exec(function(err, flights) {
               if (err) {
 
                 reject(err);
@@ -1359,7 +1363,7 @@ const getByFsdailyId = (stg,fsdailyId,day) => {
             });
           }, 5000);
         } else {
-          STG3D5.find({ csvFSDailyID: `${fsdailyId}` }).exec(function(err, flights) {
+          STG3D5.find({ csvFSDailyID: fsdailyId }).exec(function(err, flights) {
             if (err) {
 
               reject(err);
@@ -1376,7 +1380,7 @@ const getByFsdailyId = (stg,fsdailyId,day) => {
         // if mongodb is in the process of deleting and inserting new data.
         if (results.length < 900) {
           setTimeout(() => {
-            STG3D6.find({ csvFSDailyID: `${fsdailyId}` }).exec(function(err, flights) {
+            STG3D6.find({ csvFSDailyID: fsdailyId }).exec(function(err, flights) {
               if (err) {
 
                 reject(err);
@@ -1386,7 +1390,7 @@ const getByFsdailyId = (stg,fsdailyId,day) => {
             });
           }, 5000);
         } else {
-          STG3D6.find({ csvFSDailyID: `${fsdailyId}` }).exec(function(err, flights) {
+          STG3D6.find({ csvFSDailyID: fsdailyId }).exec(function(err, flights) {
             if (err) {
 
               reject(err);
@@ -1403,7 +1407,7 @@ const getByFsdailyId = (stg,fsdailyId,day) => {
         // if mongodb is in the process of deleting and inserting new data.
         if (results.length < 900) {
           setTimeout(() => {
-            STG3D7.find({ csvFSDailyID: `${fsdailyId}` }).exec(function(err, flights) {
+            STG3D7.find({ csvFSDailyID: fsdailyId }).exec(function(err, flights) {
               if (err) {
 
                 reject(err);
@@ -1413,7 +1417,7 @@ const getByFsdailyId = (stg,fsdailyId,day) => {
             });
           }, 5000);
         } else {
-          STG3D7.find({ csvFSDailyID: `${fsdailyId}` }).exec(function(err, flights) {
+          STG3D7.find({ csvFSDailyID: fsdailyId }).exec(function(err, flights) {
             if (err) {
 
               reject(err);
@@ -2161,17 +2165,23 @@ router.get('/stg3/d7', (req, res) => {
 router.get('/flight/:stg/:day/:flightNum', (req, res) => {
   let stg = v(req.params.stg).trim().upperCase();
   let day = v(req.params.day).trim().upperCase();
-  let flightNum = v(req.params.flightNum).trim().pad(5, ' ');
+  let flightNum = v(req.params.flightNum).trim().padLeft(4, '0');
 
   if (stg != 'STG1' && stg != 'STG3') {
     res.json({ error: 'stg must be stg1 or stg3' });
   } else if (day != 'D0' && day != 'D1' && day != 'D2' && day != 'D3' && day != 'D4' && day != 'D5' && day != 'D6' && day != 'D7') {
     res.json({ error: 'day must be d# based on flight local date; # is in range 0 to 7; ex: d0 is yesterday d1 is today and so on' });
-  } else if (v(flightNum).count() != 5 || v(flightNum).isNumeric() === false) {
+  } else if (v(flightNum).count() != 4 || v(flightNum).isNumeric() === false) {
     res.json({ error: 'flightNum must be min 1 digit max 4 digit' });
   } else {
 
-    getByFlightNum(stg,flightNum,day).then(flights => res.json(flights));
+    getByFlightNum(stg,flightNum,day).then(flights => {
+      if (flights == [] || flights == '') {
+        res.json({ message: 'no flights found' });
+      } else {
+        res.json(flights);
+      }
+    });
 
   }
 });
@@ -2194,7 +2204,7 @@ router.get('/id/:stg/:day/:fsdailyId', (req, res) => {
   let day = v(req.params.day).trim().upperCase();
   let fsdailyId = v(req.params.fsdailyId).trim();
 
-  if (stg != 'STG1' && stg != 'STG3') {
+  if (stg != 'STG1' && stg != 'STG2' && stg != 'STG3') {
     res.json({ error: 'stg must be stg1 or stg3' });
   } else if (day != 'D0' && day != 'D1' && day != 'D2' && day != 'D3' && day != 'D4' && day != 'D5' && day != 'D6' && day != 'D7') {
     res.json({ error: 'day must be d# based on flight local date; # is in range 0 to 7; ex: d0 is yesterday d1 is today and so on' });
@@ -2202,7 +2212,13 @@ router.get('/id/:stg/:day/:fsdailyId', (req, res) => {
     res.json({ error: 'fsDailyId must be 7 digit' });
   } else {
 
-    getByFsdailyId(stg,fsdailyId,day).then(flight => res.json(flight));
+    getByFsdailyId(stg,fsdailyId,day).then(flight => {
+      if (flight == [] || flight == '') {
+        res.json({ message: 'no flight found' });
+      } else {
+        res.json(flight);
+      }
+    });
 
   }
 });

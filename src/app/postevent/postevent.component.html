@@ -99,3 +99,49 @@
     </div>
   </form>
 </div>
+
+
+<!-- OFF -->
+<div *ngIf="selctedEvent == 'OFF' && environment != null">
+  <form (ngSubmit)="onSubmitOFF($event)">
+    <div class="row" >
+      <mz-input-container class="col s3 offset-s3">
+        <input mz-input
+          [label]="'FS-DailyId'"
+          placeholder=""
+          name="daily_id"
+          [(ngModel)]="fsDailyId"
+          #dailyId="ngModel"
+          minlength="7"
+          maxlength="7"
+          pattern="^[0-9]*$"
+          required
+          type="text">
+      </mz-input-container>
+      <mz-input-container class="col s3 offset-s0">
+        <input mz-input
+          [label]="'OFF in UTC (hhmm)'"
+          placeholder=""
+          (blur)="$event.target.value = padWithZero($event.target.value); offUTC = padWithZero($event.target.value)"
+          name="flight_off_utc"
+          [(ngModel)]="offUTC"
+          #off="ngModel"
+          minlength="1"
+          maxlength="4"
+          pattern="^[0-9]*$"
+          required
+          type="text">
+      </mz-input-container>
+    </div>
+    <!-- submit -->
+    <div class="row center">
+      <button class="waves-effect waves-light btn"
+              type="submit"
+              value="Post"
+              [disabled]="dailyId.invalid
+              || off.invalid
+              || buttonEnable == false">POST</button>
+      <button type="reset" value="Reset" class="waves-effect waves-light btn" (click)="reset()">RESET</button>
+    </div>
+  </form>
+</div>
