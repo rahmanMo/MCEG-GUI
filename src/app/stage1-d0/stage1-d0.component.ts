@@ -144,7 +144,7 @@ export class Stage1D0Component implements OnInit, OnDestroy {
 
   date: string;
   data = [];
-  env = 'STG-1';
+  env = 'STG1';
   rowData: Flight;
   configuration;
   configurationExtra;
@@ -194,34 +194,34 @@ export class Stage1D0Component implements OnInit, OnDestroy {
       const dailyId = $event.value.row.csvFSDailyID;
       this.rowData = this.data.find(row => row.csvFSDailyID === dailyId);
       if (
-        this.rowData.OUTudt !== '' &&
-        this.rowData.OFFudt === '' &&
-        this.rowData.ONudt === '' &&
-        this.rowData.INudt === ''
+        this.rowData.OUTudt !== null &&
+        this.rowData.OFFudt === null &&
+        this.rowData.ONudt === null &&
+        this.rowData.INudt === null
       ) {
         this.depflightStatus = 'Flight';
         this.arrflightStatus = 'Taxiing';
       } else if (
-        this.rowData.OUTudt !== '' &&
-        this.rowData.OFFudt !== '' &&
-        this.rowData.ONudt === '' &&
-        this.rowData.INudt === ''
+        this.rowData.OUTudt !== null &&
+        this.rowData.OFFudt !== null &&
+        this.rowData.ONudt === null &&
+        this.rowData.INudt === null
       ) {
         this.depflightStatus = 'IN';
         this.arrflightStatus = 'Flight';
       } else if (
-        this.rowData.OUTudt !== '' &&
-        this.rowData.OFFudt !== '' &&
-        this.rowData.ONudt !== '' &&
-        this.rowData.INudt === ''
+        this.rowData.OUTudt !== null &&
+        this.rowData.OFFudt !== null &&
+        this.rowData.ONudt !== null &&
+        this.rowData.INudt === null
       ) {
         this.depflightStatus = 'Flight';
         this.arrflightStatus = 'Landed';
       } else if (
-        this.rowData.OUTudt !== '' &&
-        this.rowData.OFFudt !== '' &&
-        this.rowData.ONudt !== '' &&
-        this.rowData.INudt !== ''
+        this.rowData.OUTudt !== null &&
+        this.rowData.OFFudt !== null &&
+        this.rowData.ONudt !== null &&
+        this.rowData.INudt !== null
       ) {
         this.depflightStatus = 'Flight';
         this.arrflightStatus = 'Arrived';
@@ -233,34 +233,34 @@ export class Stage1D0Component implements OnInit, OnDestroy {
         this.depflightStatus = 'DEP Delayed';
       }
       if (
-        this.rowData.OUTudt !== '' &&
-        this.rowData.OFFudt === '' &&
-        this.rowData.ONudt === '' &&
-        this.rowData.INudt === ''
+        this.rowData.OUTudt !== null &&
+        this.rowData.OFFudt === null &&
+        this.rowData.ONudt === null &&
+        this.rowData.INudt === null
       ) {
         this.depflightStatus = 'Flight';
         this.arrflightStatus = 'Taxiing';
       } else if (
-        this.rowData.OUTudt !== '' &&
-        this.rowData.OFFudt !== '' &&
-        this.rowData.ONudt === '' &&
-        this.rowData.INudt === ''
+        this.rowData.OUTudt !== null &&
+        this.rowData.OFFudt !== null &&
+        this.rowData.ONudt === null &&
+        this.rowData.INudt === null
       ) {
         this.depflightStatus = 'IN';
         this.arrflightStatus = 'Flight';
       } else if (
-        this.rowData.OUTudt !== '' &&
-        this.rowData.OFFudt !== '' &&
-        this.rowData.ONudt !== '' &&
-        this.rowData.INudt === ''
+        this.rowData.OUTudt !== null &&
+        this.rowData.OFFudt !== null &&
+        this.rowData.ONudt !== null &&
+        this.rowData.INudt === null
       ) {
         this.depflightStatus = 'Flight';
         this.arrflightStatus = 'Landed';
       } else if (
-        this.rowData.OUTudt !== '' &&
-        this.rowData.OFFudt !== '' &&
-        this.rowData.ONudt !== '' &&
-        this.rowData.INudt !== ''
+        this.rowData.OUTudt !== null &&
+        this.rowData.OFFudt !== null &&
+        this.rowData.ONudt !== null &&
+        this.rowData.INudt !== null
       ) {
         this.depflightStatus = 'Flight';
         this.arrflightStatus = 'Arrived';

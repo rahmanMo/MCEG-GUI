@@ -30,8 +30,6 @@
                 <span class="color-red">{{ responseError! }}</span>
             </li>
         </ul>
-        <!-- <h6 *ngIf="responseMessage"><span class="color-red">{{ responseMessage! }}</span></h6>
-        <h6 *ngIf="responseError"><span class="color-red">{{ responseError! }}</span></h6> -->
       </li>
     </ul>
   </div>
@@ -140,6 +138,52 @@
               value="Post"
               [disabled]="dailyId.invalid
               || off.invalid
+              || buttonEnable == false">POST</button>
+      <button type="reset" value="Reset" class="waves-effect waves-light btn" (click)="reset()">RESET</button>
+    </div>
+  </form>
+</div>
+
+
+<!-- ON -->
+<div *ngIf="selctedEvent == 'ON_' && environment != null">
+  <form (ngSubmit)="onSubmitON($event)">
+    <div class="row" >
+      <mz-input-container class="col s3 offset-s3">
+        <input mz-input
+          [label]="'FS-DailyId'"
+          placeholder=""
+          name="daily_id"
+          [(ngModel)]="fsDailyId"
+          #dailyId="ngModel"
+          minlength="7"
+          maxlength="7"
+          pattern="^[0-9]*$"
+          required
+          type="text">
+      </mz-input-container>
+      <mz-input-container class="col s3 offset-s0">
+        <input mz-input
+          [label]="'ON in UTC (hhmm)'"
+          placeholder=""
+          (blur)="$event.target.value = padWithZero($event.target.value); onUTC = padWithZero($event.target.value)"
+          name="flight_on_utc"
+          [(ngModel)]="onUTC"
+          #on="ngModel"
+          minlength="1"
+          maxlength="4"
+          pattern="^[0-9]*$"
+          required
+          type="text">
+      </mz-input-container>
+    </div>
+    <!-- submit -->
+    <div class="row center">
+      <button class="waves-effect waves-light btn"
+              type="submit"
+              value="Post"
+              [disabled]="dailyId.invalid
+              || on.invalid
               || buttonEnable == false">POST</button>
       <button type="reset" value="Reset" class="waves-effect waves-light btn" (click)="reset()">RESET</button>
     </div>

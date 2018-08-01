@@ -1,22 +1,15 @@
-import { Component, OnInit, ViewEncapsulation, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Flight } from '../models/flight';
-import { FlightsService } from '../services/flights.service';
-// import { Observable } from 'rxjs/Observable';
 import { ConfigService } from '../services/config-service';
 import { ConfigServiceExtra } from '../services/config-service-extra';
-// import { sampleData } from '../../assets/data';
 import { PapaParseService } from 'ngx-papaparse';
-import * as moment from 'moment';
-
-
+import * as v from 'voca';
 @Component({
-  selector: 'app-stage1-d5',
-  templateUrl: './stage1-d5.component.html',
-  styleUrls: ['./stage1-d5.component.scss'],
-  providers: [ConfigService],
-  encapsulation: ViewEncapsulation.Emulated
+  selector: 'app-data-view',
+  templateUrl: './data-view.component.html',
+  styleUrls: ['./data-view.component.scss']
 })
-export class Stage1D5Component implements OnInit, OnDestroy {
+export class DataViewComponent implements OnInit, OnDestroy, OnChanges {
 
   basicColumns = [
     { key: 'identifier', title: 'Flight#' },
@@ -71,6 +64,7 @@ export class Stage1D5Component implements OnInit, OnDestroy {
     { key: 'EONutc', title: 'EON-UTC' },
     { key: 'STAGMTVariance', title: 'UTC-Offset' }
   ];
+
   allColumns = [
     { key: 'recordStatus', title: 'Record Status' },
     { key: 'lastDateModified', title: 'Last Date Modified' },
@@ -142,9 +136,10 @@ export class Stage1D5Component implements OnInit, OnDestroy {
     { key: 'CTFlightNumber', title: 'CT Flight Number' }
   ];
 
-  date: string;
-  data = [];
-  env = 'STG-1';
+  @Input() date: string;
+  @Input() selectedDay: string;
+  @Input() data = [];
+  @Input() env;
   rowData: Flight;
   configuration;
   configurationExtra;
@@ -153,39 +148,20 @@ export class Stage1D5Component implements OnInit, OnDestroy {
   depflightStatus;
   arrflightStatus;
 
-  constructor(private flightsService: FlightsService, private papa: PapaParseService) {
+  constructor(
+    private papa: PapaParseService
+  ) {
     this.configuration = ConfigService.config;
     this.configurationExtra = ConfigServiceExtra.config;
-    this.date = moment(new Date())
-    .add(4, 'days')
-    .format('DD-MMMM-YYYY')
-    .toString()
-    .toUpperCase();
   }
 
   // comment this out when building for prod
-  // ngOnInit() {
-  //   this.data = sampleData;
-  //   this.date = moment(new Date())
-  //     .format('DD MMMM, YYYY')
-  //     .toString()
-  //     .toUpperCase();
-  // }
-
-  // enable this when building for prod
-  interval: any;
   ngOnInit() {
-    this.refreshData();
-    this.interval = setInterval(() => {
-      this.refreshData();
-    }, 10000);
+    this.totalCount = this.data.length;
   }
 
-  refreshData() {
-    this.flightsService.getStg1d5().subscribe(data => {
-      this.data = data;
-      this.totalCount = this.data.length;
-    });
+  ngOnChanges(changes: SimpleChanges) {
+    this.totalCount = this.data.length;
   }
 
   eventEmitted($event) {
@@ -194,34 +170,34 @@ export class Stage1D5Component implements OnInit, OnDestroy {
       const dailyId = $event.value.row.csvFSDailyID;
       this.rowData = this.data.find(row => row.csvFSDailyID === dailyId);
       if (
-        this.rowData.OUTudt !== null &&
-        this.rowData.OFFudt === null &&
-        this.rowData.ONudt === null &&
-        this.rowData.INudt === null
+        this.rowData.OUTudt !== '' &&
+        this.rowData.OFFudt === '' &&
+        this.rowData.ONudt === '' &&
+        this.rowData.INudt === ''
       ) {
         this.depflightStatus = 'Flight';
         this.arrflightStatus = 'Taxiing';
       } else if (
-        this.rowData.OUTudt !== null &&
-        this.rowData.OFFudt !== null &&
-        this.rowData.ONudt === null &&
-        this.rowData.INudt === null
+        this.rowData.OUTudt !== '' &&
+        this.rowData.OFFudt !== '' &&
+        this.rowData.ONudt === '' &&
+        this.rowData.INudt === ''
       ) {
         this.depflightStatus = 'IN';
         this.arrflightStatus = 'Flight';
       } else if (
-        this.rowData.OUTudt !== null &&
-        this.rowData.OFFudt !== null &&
-        this.rowData.ONudt !== null &&
-        this.rowData.INudt === null
+        this.rowData.OUTudt !== '' &&
+        this.rowData.OFFudt !== '' &&
+        this.rowData.ONudt !== '' &&
+        this.rowData.INudt === ''
       ) {
         this.depflightStatus = 'Flight';
         this.arrflightStatus = 'Landed';
       } else if (
-        this.rowData.OUTudt !== null &&
-        this.rowData.OFFudt !== null &&
-        this.rowData.ONudt !== null &&
-        this.rowData.INudt !== null
+        this.rowData.OUTudt !== '' &&
+        this.rowData.OFFudt !== '' &&
+        this.rowData.ONudt !== '' &&
+        this.rowData.INudt !== ''
       ) {
         this.depflightStatus = 'Flight';
         this.arrflightStatus = 'Arrived';
@@ -233,34 +209,34 @@ export class Stage1D5Component implements OnInit, OnDestroy {
         this.depflightStatus = 'DEP Delayed';
       }
       if (
-        this.rowData.OUTudt !== null &&
-        this.rowData.OFFudt === null &&
-        this.rowData.ONudt === null &&
-        this.rowData.INudt === null
+        this.rowData.OUTudt !== '' &&
+        this.rowData.OFFudt === '' &&
+        this.rowData.ONudt === '' &&
+        this.rowData.INudt === ''
       ) {
         this.depflightStatus = 'Flight';
         this.arrflightStatus = 'Taxiing';
       } else if (
-        this.rowData.OUTudt !== null &&
-        this.rowData.OFFudt !== null &&
-        this.rowData.ONudt === null &&
-        this.rowData.INudt === null
+        this.rowData.OUTudt !== '' &&
+        this.rowData.OFFudt !== '' &&
+        this.rowData.ONudt === '' &&
+        this.rowData.INudt === ''
       ) {
         this.depflightStatus = 'IN';
         this.arrflightStatus = 'Flight';
       } else if (
-        this.rowData.OUTudt !== null &&
-        this.rowData.OFFudt !== null &&
-        this.rowData.ONudt !== null &&
-        this.rowData.INudt === null
+        this.rowData.OUTudt !== '' &&
+        this.rowData.OFFudt !== '' &&
+        this.rowData.ONudt !== '' &&
+        this.rowData.INudt === ''
       ) {
         this.depflightStatus = 'Flight';
         this.arrflightStatus = 'Landed';
       } else if (
-        this.rowData.OUTudt !== null &&
-        this.rowData.OFFudt !== null &&
-        this.rowData.ONudt !== null &&
-        this.rowData.INudt !== null
+        this.rowData.OUTudt !== '' &&
+        this.rowData.OFFudt !== '' &&
+        this.rowData.ONudt !== '' &&
+        this.rowData.INudt !== ''
       ) {
         this.depflightStatus = 'Flight';
         this.arrflightStatus = 'Arrived';
@@ -283,7 +259,7 @@ export class Stage1D5Component implements OnInit, OnDestroy {
     const data = this.data;
     const csvData = this.papa.unparse(data);
     // console.log(csvData);
-    const csv = new Blob([csvData], {type: 'text/csv;charset=utf-8;'});
+    const csv = new Blob([csvData], { type: 'text/csv;charset=utf-8;' });
     let fileName: string;
     if (this.fileName === undefined || this.fileName === '') {
       fileName = `${this.env}-${this.date}.csv`;
@@ -293,24 +269,22 @@ export class Stage1D5Component implements OnInit, OnDestroy {
     // IE11 & Edge
     if (navigator.msSaveBlob) {
       const blob = new Blob([csvData], {
-        'type': 'text/csv;charset=utf8;'
+        type: 'text/csv;charset=utf8;'
       });
       navigator.msSaveBlob(blob, fileName);
     } else {
-        // In FF link must be added to DOM to be clicked
-        const link = document.createElement('a');
-        link.href = window.URL.createObjectURL(csv);
-        link.setAttribute('download', fileName);
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
+      // In FF link must be added to DOM to be clicked
+      const link = document.createElement('a');
+      link.href = window.URL.createObjectURL(csv);
+      link.setAttribute('download', fileName);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
     }
-
   }
 
   ngOnDestroy() {
-    clearInterval(this.interval);
-    this.data =  null;
+    this.data = null;
     this.rowData = null;
     this.configuration = null;
   }

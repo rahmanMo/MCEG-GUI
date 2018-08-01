@@ -196,16 +196,13 @@ export class PosteventComponent implements OnInit, OnChanges {
   }
   onSubmitON(event: Event) {
     event.preventDefault();
-    this.adhocMessage
-    = `ADH016_${this.flightNum}${this.utcDate}${this.origin}${this.destination}${this.stdUTC}${this.selctedEvent}${this.onUTC}`;
-    const adhocEvent: AdhocEvent = {
-      stg: this.environment,
-      adhoc16: this.adhocMessage
-    };
-    this.flightsService.postEvent(adhocEvent).subscribe(data => {
-      this.fileName = data['fileName'];
-      this.timestamp = data['timestamp'];
+    this.buttonEnable = false;
+    this.flightsService.postON(this.environment, this.selectedDay, this.fsDailyId, this.onUTC).subscribe(data => {
+      this.responseMessage = data['message'];
+      this.responseError = data['error'];
+      // console.log(data);
       this.reset();
+      this.buttonEnable = true;
     });
   }
   onSubmitIN(event: Event) {

@@ -148,7 +148,16 @@ export class FlightsService {
     );
   }
   postOFF(stg, day, fsdailyId, offUTC): Observable<any> {
-    return this.http.post('/api/off', {stg: stg, day: day, fsdailyId: fsdailyId, outUTC: offUTC}, this.httpOptions)
+    return this.http.post('/api/off', {stg: stg, day: day, fsdailyId: fsdailyId, offUTC: offUTC}, this.httpOptions)
+    .pipe(
+      map((response: Response) => {
+      return response; })
+    ).pipe(
+      catchError(this.handleError('postEvent', []))
+    );
+  }
+  postON(stg, day, fsdailyId, onUTC): Observable<any> {
+    return this.http.post('/api/on', {stg: stg, day: day, fsdailyId: fsdailyId, onUTC: onUTC}, this.httpOptions)
     .pipe(
       map((response: Response) => {
       return response; })

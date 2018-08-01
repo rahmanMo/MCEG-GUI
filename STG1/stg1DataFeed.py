@@ -170,7 +170,7 @@ def STG1D0_job():
               cdir = Path(os.getcwd())
               file_res = f'{cdir}/STG1D0/data.csv'
 
-              data = pd.read_csv(file_res)
+              data = pd.read_csv(file_res,dtype=str,na_filter=False)
               data_json = json.loads(data.to_json(orient='records'))
               x = db_cm.delete_many({})
               db_cm.insert(data_json)
@@ -352,7 +352,7 @@ def STG1D1_job():
               cdir = Path(os.getcwd())
               file_res = f'{cdir}/STG1D1/data.csv'
 
-              data = pd.read_csv(file_res)
+              data = pd.read_csv(file_res,dtype=str,na_filter=False)
               data_json = json.loads(data.to_json(orient='records'))
               x = db_cm.delete_many({})
               db_cm.insert(data_json)
@@ -531,7 +531,7 @@ def STG1D2_job():
               cdir = Path(os.getcwd())
               file_res = f'{cdir}/STG1D2/data.csv'
 
-              data = pd.read_csv(file_res)
+              data = pd.read_csv(file_res,dtype=str,na_filter=False)
               data_json = json.loads(data.to_json(orient='records'))
               x = db_cm.delete_many({})
               db_cm.insert(data_json)
@@ -711,7 +711,7 @@ def STG1D3_job():
               cdir = Path(os.getcwd())
               file_res = f'{cdir}/STG1D3/data.csv'
 
-              data = pd.read_csv(file_res)
+              data = pd.read_csv(file_res,dtype=str,na_filter=False)
               data_json = json.loads(data.to_json(orient='records'))
               x = db_cm.delete_many({})
               db_cm.insert(data_json)
@@ -891,7 +891,7 @@ def STG1D4_job():
               cdir = Path(os.getcwd())
               file_res = f'{cdir}/STG1D4/data.csv'
 
-              data = pd.read_csv(file_res)
+              data = pd.read_csv(file_res,dtype=str,na_filter=False)
               data_json = json.loads(data.to_json(orient='records'))
               x = db_cm.delete_many({})
               db_cm.insert(data_json)
@@ -1071,7 +1071,7 @@ def STG1D5_job():
               cdir = Path(os.getcwd())
               file_res = f'{cdir}/STG1D5/data.csv'
 
-              data = pd.read_csv(file_res)
+              data = pd.read_csv(file_res,dtype=str,na_filter=False)
               data_json = json.loads(data.to_json(orient='records'))
               x = db_cm.delete_many({})
               db_cm.insert(data_json)
@@ -1251,7 +1251,7 @@ def STG1D6_job():
               cdir = Path(os.getcwd())
               file_res = f'{cdir}/STG1D6/data.csv'
 
-              data = pd.read_csv(file_res)
+              data = pd.read_csv(file_res,dtype=str,na_filter=False)
               data_json = json.loads(data.to_json(orient='records'))
               x = db_cm.delete_many({})
               db_cm.insert(data_json)
@@ -1431,7 +1431,7 @@ def STG1D7_job():
               cdir = Path(os.getcwd())
               file_res = f'{cdir}/STG1D7/data.csv'
 
-              data = pd.read_csv(file_res)
+              data = pd.read_csv(file_res,dtype=str,na_filter=False)
               data_json = json.loads(data.to_json(orient='records'))
               x = db_cm.delete_many({})
               db_cm.insert(data_json)
