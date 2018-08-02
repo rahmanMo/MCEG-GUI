@@ -25,6 +25,32 @@
   <mz-dropdown-item><a routerLink="stg1/d7">{{ day7 }}</a></mz-dropdown-item>
 </mz-dropdown>
 <mz-dropdown
+  [id]="'dropdown-stg2'"
+  [belowOrigin]="true"
+  [constrainWidth]="false"
+  [dropdownButtonId]="'stg2'"
+  [gutter]="true"
+  [hover]="false"
+  [inDuration]="300"
+  [outDuration]="300"
+  [stopPropagation]="true">
+  <mz-dropdown-item><a routerLink="stg2/d0">{{ day0 }}</a></mz-dropdown-item>
+  <mz-dropdown-divider></mz-dropdown-divider>
+  <mz-dropdown-item><a routerLink="stg2/d1">{{ day1 }}</a></mz-dropdown-item>
+  <mz-dropdown-divider></mz-dropdown-divider>
+  <mz-dropdown-item><a routerLink="stg2/d2">{{ day2 }}</a></mz-dropdown-item>
+  <mz-dropdown-divider></mz-dropdown-divider>
+  <mz-dropdown-item><a routerLink="stg2/d3">{{ day3 }}</a></mz-dropdown-item>
+  <mz-dropdown-divider></mz-dropdown-divider>
+  <mz-dropdown-item><a routerLink="stg2/d4">{{ day4 }}</a></mz-dropdown-item>
+  <mz-dropdown-divider></mz-dropdown-divider>
+  <mz-dropdown-item><a routerLink="stg2/d5">{{ day5 }}</a></mz-dropdown-item>
+  <mz-dropdown-divider></mz-dropdown-divider>
+  <mz-dropdown-item><a routerLink="stg2/d6">{{ day6 }}</a></mz-dropdown-item>
+  <mz-dropdown-divider></mz-dropdown-divider>
+  <mz-dropdown-item><a routerLink="stg2/d7">{{ day7 }}</a></mz-dropdown-item>
+</mz-dropdown>
+<mz-dropdown
   [id]="'dropdown-stg3'"
   [belowOrigin]="true"
   [constrainWidth]="false"
@@ -66,6 +92,10 @@
       <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:
         true}">
         <a class="waves-effect waves-light" id="stg1">MVT-STAGE1</a>
+      </li>
+      <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:
+        true}">
+        <a class="waves-effect waves-light" id="stg2">MVT-STAGE2</a>
       </li>
       <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:
         true}">

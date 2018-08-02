@@ -12,6 +12,14 @@ import { Stage1D4Component } from './stage1-d4/stage1-d4.component';
 import { Stage1D5Component } from './stage1-d5/stage1-d5.component';
 import { Stage1D6Component } from './stage1-d6/stage1-d6.component';
 import { Stage1D7Component } from './stage1-d7/stage1-d7.component';
+import { Stage2D0Component } from './stage2-d0/stage2-d0.component';
+import { Stage2D1Component } from './stage2-d1/stage2-d1.component';
+import { Stage2D2Component } from './stage2-d2/stage2-d2.component';
+import { Stage2D3Component } from './stage2-d3/stage2-d3.component';
+import { Stage2D4Component } from './stage2-d4/stage2-d4.component';
+import { Stage2D5Component } from './stage2-d5/stage2-d5.component';
+import { Stage2D6Component } from './stage2-d6/stage2-d6.component';
+import { Stage2D7Component } from './stage2-d7/stage2-d7.component';
 import { Stage3D0Component } from './stage3-d0/stage3-d0.component';
 import { Stage3D1Component } from './stage3-d1/stage3-d1.component';
 import { Stage3D2Component } from './stage3-d2/stage3-d2.component';
@@ -33,6 +41,14 @@ const routes: Routes = [
   { path: 'stg1/d5', component: Stage1D5Component },
   { path: 'stg1/d6', component: Stage1D6Component },
   { path: 'stg1/d7', component: Stage1D7Component },
+  { path: 'stg2/d0', component: Stage2D0Component },
+  { path: 'stg2/d1', component: Stage2D1Component },
+  { path: 'stg2/d2', component: Stage2D2Component },
+  { path: 'stg2/d3', component: Stage2D3Component },
+  { path: 'stg2/d4', component: Stage2D4Component },
+  { path: 'stg2/d5', component: Stage2D5Component },
+  { path: 'stg2/d6', component: Stage2D6Component },
+  { path: 'stg2/d7', component: Stage2D7Component },
   { path: 'stg3/d0', component: Stage3D0Component },
   { path: 'stg3/d1', component: Stage3D1Component },
   { path: 'stg3/d2', component: Stage3D2Component },
