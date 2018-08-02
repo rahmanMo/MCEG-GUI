@@ -43,6 +43,13 @@ import { Stage3D7Component } from './stage3-d7/stage3-d7.component';
 import { PosteventComponent } from './postevent/postevent.component';
 import { Stage2D0Component } from './stage2-d0/stage2-d0.component';
 import { DataViewComponent } from './data-view/data-view.component';
+import { Stage2D1Component } from './stage2-d1/stage2-d1.component';
+import { Stage2D2Component } from './stage2-d2/stage2-d2.component';
+import { Stage2D3Component } from './stage2-d3/stage2-d3.component';
+import { Stage2D4Component } from './stage2-d4/stage2-d4.component';
+import { Stage2D5Component } from './stage2-d5/stage2-d5.component';
+import { Stage2D6Component } from './stage2-d6/stage2-d6.component';
+import { Stage2D7Component } from './stage2-d7/stage2-d7.component';
 
 @NgModule({
   declarations: [
@@ -70,7 +77,14 @@ import { DataViewComponent } from './data-view/data-view.component';
     Stage3D7Component,
     PosteventComponent,
     Stage2D0Component,
-    DataViewComponent
+    DataViewComponent,
+    Stage2D1Component,
+    Stage2D2Component,
+    Stage2D3Component,
+    Stage2D4Component,
+    Stage2D5Component,
+    Stage2D6Component,
+    Stage2D7Component
   ],
   imports: [
     BrowserModule,

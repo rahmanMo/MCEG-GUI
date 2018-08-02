@@ -6,7 +6,20 @@
   </div>
   <a class="waves-effect waves-light btn download" (click)="downloadCSV()">Download Data</a>
 </div>
-<mz-tab [fixedTabWidth]="'true'">
+<div *ngIf="data == [] || data.length == 0" class="card-panel center" style="width: 100%">
+  <div class="preloader-wrapper active">
+    <div class="spinner-layer spinner-teal">
+      <div class="circle-clipper left">
+        <div class="circle"></div>
+      </div><div class="gap-patch">
+        <div class="circle"></div>
+      </div><div class="circle-clipper right">
+        <div class="circle"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<mz-tab *ngIf="data.length != 0" [fixedTabWidth]="'true'">
   <mz-tab-item [label]="'Basic Info'">
     <div class="card-panel" style="width: 100%;">
       <ngx-table [configuration]="configuration" [data]="data" [columns]="basicColumns" (event)="eventEmitted($event)">
@@ -52,7 +65,7 @@
 </mz-tab>
 
 <mz-tab [fixedTabWidth]="true">
-  <mz-tab-item [label]="'Flight Data'">
+  <mz-tab-item *ngIf="data.length != 0" [label]="'Flight Data'">
     <div class="card-panel" style="width: 100%; min-height: 500px;">
       <h5 class="center">Click on flight to see all attribute</h5>
       <!-- <pre> {{ rowData | json }} </pre> -->

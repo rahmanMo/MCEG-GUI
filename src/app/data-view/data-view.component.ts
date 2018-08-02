@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, OnChanges, SimpleChanges, ViewEncapsulation } from '@angular/core';
 import { Flight } from '../models/flight';
 import { ConfigService } from '../services/config-service';
 import { ConfigServiceExtra } from '../services/config-service-extra';
@@ -7,7 +7,8 @@ import * as v from 'voca';
 @Component({
   selector: 'app-data-view',
   templateUrl: './data-view.component.html',
-  styleUrls: ['./data-view.component.scss']
+  styleUrls: ['./data-view.component.scss'],
+  encapsulation: ViewEncapsulation.Emulated
 })
 export class DataViewComponent implements OnInit, OnDestroy, OnChanges {
 
@@ -155,7 +156,6 @@ export class DataViewComponent implements OnInit, OnDestroy, OnChanges {
     this.configurationExtra = ConfigServiceExtra.config;
   }
 
-  // comment this out when building for prod
   ngOnInit() {
     this.totalCount = this.data.length;
   }
@@ -166,7 +166,6 @@ export class DataViewComponent implements OnInit, OnDestroy, OnChanges {
 
   eventEmitted($event) {
     if ($event.event === 'onClick') {
-      // console.log($event.value.row.csvFSDailyID);
       const dailyId = $event.value.row.csvFSDailyID;
       this.rowData = this.data.find(row => row.csvFSDailyID === dailyId);
       if (
@@ -251,14 +250,16 @@ export class DataViewComponent implements OnInit, OnDestroy, OnChanges {
         this.depflightStatus = 'Flight';
         this.arrflightStatus = 'Cancelled';
       }
-      // console.log(this.rowData);
+      if (v(this.rowData.tailNumber).startsWith('-', 0) === true) {
+        this.depflightStatus = 'Negative';
+        this.arrflightStatus = 'Tail';
+      }
     }
   }
 
   downloadCSV() {
     const data = this.data;
     const csvData = this.papa.unparse(data);
-    // console.log(csvData);
     const csv = new Blob([csvData], { type: 'text/csv;charset=utf-8;' });
     let fileName: string;
     if (this.fileName === undefined || this.fileName === '') {
