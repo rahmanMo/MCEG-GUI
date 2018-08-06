@@ -32,11 +32,11 @@ Clone repo and do `sudo npm install` or if you are using Yarn run `yarn` command
 Use the `sudo ng build --prod` for a production build on gui. 
 Install pm2 `sudo npm install pm2@latest -g` for production process management for Node.js.
 
-`cd STG1` then run `sudo nohup python3 stg1DataFeed.py` for stage 1 data feed.
+`cd STG1` then run `nohup python3 stg1DataFeed.py </dev/null >/dev/null 2>&1 &` for stage 1 data feed.
 
-`cd ..` go back to main directory.
+`cd STG2` then run `nohup python3 stg2DataFeed.py </dev/null >/dev/null 2>&1 &` for stage 1 data feed.
 
-`cd STG3` then run `sudo nohup python3 stg3DataFeed.py` for stage 3 data feed.
+`cd STG3` then run `nohup python3 stg3DataFeed.py </dev/null >/dev/null 2>&1 &` for stage 1 data feed.
 
 `cd ..` to main directory and run `sudo pm2 start server.js -i max`
 
