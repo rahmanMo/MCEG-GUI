@@ -34,9 +34,9 @@ Install pm2 `sudo npm install pm2@latest -g` for production process management f
 
 `cd STG1` then run `nohup python3 stg1DataFeed.py </dev/null >/dev/null 2>&1 &` for stage 1 data feed.
 
-`cd STG2` then run `nohup python3 stg2DataFeed.py </dev/null >/dev/null 2>&1 &` for stage 1 data feed.
+`cd STG2` then run `nohup python3 stg2DataFeed.py </dev/null >/dev/null 2>&1 &` for stage 2 data feed.
 
-`cd STG3` then run `nohup python3 stg3DataFeed.py </dev/null >/dev/null 2>&1 &` for stage 1 data feed.
+`cd STG3` then run `nohup python3 stg3DataFeed.py </dev/null >/dev/null 2>&1 &` for stage 3 data feed.
 
 `cd ..` to main directory and run `sudo pm2 start server.js -i max`
 
