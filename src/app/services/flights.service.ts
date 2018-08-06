@@ -212,8 +212,8 @@ export class FlightsService {
       catchError(this.handleError('postEvent', []))
     );
   }
-  postIN(stg, day, fsdailyId, etdUTC): Observable<any> {
-    return this.http.post('/api/in', {stg: stg, day: day, fsdailyId: fsdailyId, etdUTC: etdUTC}, this.httpOptions)
+  postIN(stg, day, fsdailyId, inUTC): Observable<any> {
+    return this.http.post('/api/in', {stg: stg, day: day, fsdailyId: fsdailyId, inUTC: inUTC}, this.httpOptions)
     .pipe(
       map((response: Response) => {
       return response; })

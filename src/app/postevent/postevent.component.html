@@ -1,5 +1,6 @@
 <div class="row">
   <h5 class="center">Input data to post event or click on flight to autofill flight data.</h5>
+  <h5 class="center">**** Wait roughly 30 second for data to update on table after posting an event ****</h5>
   <div class="col s8 offset-s2">
     <ul class="collection">
       <li class="collection-item center">
@@ -38,8 +39,8 @@
                 </div>
             </li>
             <li *ngIf="responseMessage || responseError" class="collection-item center">
-                <span class="color-teal">Success: {{ responseMessage! }}</span>
-                <span class="color-red">Error: {{ responseError! }}</span>
+                <span *ngIf="responseMessage" class="color-teal">Success: {{ responseMessage! }}</span>
+                <span *ngIf="responseError" class="color-red">Error: {{ responseError! }}</span>
             </li>
         </ul>
       </li>
@@ -408,10 +409,10 @@
         <input mz-input
           [label]="'EON in UTC (hhmm)'"
           placeholder=""
-          (blur)="$event.target.value = padWithZero($event.target.value); etoUTC = padWithZero($event.target.value)"
+          (blur)="$event.target.value = padWithZero($event.target.value); eonUTC = padWithZero($event.target.value)"
           name="flight_eon_utc"
-          [(ngModel)]="etoUTC"
-          #eto="ngModel"
+          [(ngModel)]="eonUTC"
+          #eon="ngModel"
           minlength="1"
           maxlength="4"
           pattern="^[0-9]*$"
@@ -425,7 +426,7 @@
               type="submit"
               value="Post"
               [disabled]="dailyId.invalid
-              || eto.invalid
+              || eon.invalid
               || buttonEnable == false">POST</button>
       <button type="reset" value="Reset" class="waves-effect waves-light btn" (click)="reset()">RESET</button>
     </div>
@@ -454,7 +455,6 @@
         <input mz-input
           [label]="'Tail Number (3 digit)'"
           placeholder=""
-          (blur)="$event.target.value = padWithZero($event.target.value); newTail = padWithZero($event.target.value)"
           name="flight_eon_utc"
           [(ngModel)]="newTail"
           #tail="ngModel"
@@ -683,7 +683,6 @@
         <input mz-input
           [label]="'Tail Number (3 digit)'"
           placeholder=""
-          (blur)="$event.target.value = padWithZero($event.target.value); newTail = padWithZero($event.target.value)"
           name="flight_eon_utc"
           [(ngModel)]="newTail"
           #tail="ngModel"
@@ -1084,7 +1083,6 @@
         <input mz-input
           [label]="'Tail Number (3 digit)'"
           placeholder=""
-          (blur)="$event.target.value = padWithZero($event.target.value); newTail = padWithZero($event.target.value)"
           name="flight_eon_utc"
           [(ngModel)]="newTail"
           #tail="ngModel"

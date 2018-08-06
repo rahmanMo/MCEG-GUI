@@ -2178,7 +2178,7 @@ router.get('/flight/:stg/:day/:flightNum', (req, res) => {
     res.json({ error: 'stg must be stg1 or stg3' });
   } else if (day != 'D0' && day != 'D1' && day != 'D2' && day != 'D3' && day != 'D4' && day != 'D5' && day != 'D6' && day != 'D7') {
     res.json({ error: 'day must be d# based on flight local date; # is in range 0 to 7; ex: d0 is yesterday d1 is today and so on' });
-  } else if (v(flightNum).count() > 4 || v(flightNum).count() < 1 || v(flightNum).isNumeric() === false) {
+  } else if (v(flightNum).count() > 4 || v(flightNum).count() < 1 || v(flightNum).isNumeric() == false) {
     res.json({ error: 'flightNum must be min 1 digit max 4 digit' });
   } else {
 
@@ -2215,7 +2215,7 @@ router.get('/id/:stg/:day/:fsdailyId', (req, res) => {
     res.json({ error: 'stg must be stg1 or stg3' });
   } else if (day != 'D0' && day != 'D1' && day != 'D2' && day != 'D3' && day != 'D4' && day != 'D5' && day != 'D6' && day != 'D7') {
     res.json({ error: 'day must be d# based on flight local date; # is in range 0 to 7; ex: d0 is yesterday d1 is today and so on' });
-  } else if (v(fsdailyId).count() != 7 || v(fsdailyId).isNumeric() === false) {
+  } else if (v(fsdailyId).count() != 7 || v(fsdailyId).isNumeric() == false) {
     res.json({ error: 'fsDailyId must be 7 digit' });
   } else {
 
@@ -2246,7 +2246,7 @@ router.post('/send', async (req, res) => {
   let body = req.body;
   let stg = v(body.stg).trim().upperCase();
   let adhoc16 = body.adhoc16;
-  console.log(`Adhoc event processing with data: ${stg} and ${adhoc16}`);
+  // console.log(`Adhoc event processing with data: ${stg} and ${adhoc16}`);
   if (stg != 'STG1' && stg != 'STG2' && stg != 'STG3') {
     res.json({ error: 'stg must be stg1 or stg3' });
   } else {
@@ -2309,9 +2309,9 @@ router.post('/out', async (req, res) => {
     res.json({ error: 'stg must be stg1 or stg3' });
   } else if (day != 'D0' && day != 'D1' && day != 'D2' && day != 'D3' && day != 'D4' && day != 'D5' && day != 'D6' && day != 'D7' || body.day == '' || body.day == null) {
     res.json({ error: 'day must be d# based on flight local date; # is in range 0 to 7; ex: d0 is yesterday d1 is today and so on' });
-  } else if (v(fsdailyId).count() != 7 || v(fsdailyId).isNumeric() === false || body.fsdailyId == '' || body.fsdailyId == null) {
+  } else if (v(fsdailyId).count() != 7 || v(fsdailyId).isNumeric() == false || body.fsdailyId == '' || body.fsdailyId == null) {
     res.json({ error: 'fsDailyId must be 7 digit' });
-  } else if (v(outUTC).count() != 4 || v(outUTC).isNumeric() === false || validateOUT == false || body.outUTC == '' || body.outUTC == null) {
+  } else if (v(outUTC).count() != 4 || v(outUTC).isNumeric() == false || validateOUT == false || body.outUTC == '' || body.outUTC == null) {
     res.json({ error: 'outUTC must be 4 digit valid utc time, ex: 1500, 0059 etc' });
   } else {
     try {
@@ -2395,9 +2395,9 @@ router.post('/off', async (req, res) => {
     res.json({ error: 'stg must be stg1 or stg3' });
   } else if (day != 'D0' && day != 'D1' && day != 'D2' && day != 'D3' && day != 'D4' && day != 'D5' && day != 'D6' && day != 'D7' || body.day == '' || body.day == null) {
     res.json({ error: 'day must be d# based on flight local date; # is in range 0 to 7; ex: d0 is yesterday d1 is today and so on' });
-  } else if (v(fsdailyId).count() != 7 || v(fsdailyId).isNumeric() === false || body.fsdailyId == '' || body.fsdailyId == null) {
+  } else if (v(fsdailyId).count() != 7 || v(fsdailyId).isNumeric() == false || body.fsdailyId == '' || body.fsdailyId == null) {
     res.json({ error: 'fsDailyId must be 7 digit' });
-  } else if (v(offUTC).count() != 4 || v(offUTC).isNumeric() === false || validateOFF == false || body.offUTC == '' || body.offUTC == null) {
+  } else if (v(offUTC).count() != 4 || v(offUTC).isNumeric() == false || validateOFF == false || body.offUTC == '' || body.offUTC == null) {
     res.json({ error: 'offUTC must be 4 digit valid utc time, ex: 1500, 0059 etc' });
   } else {
     try {
@@ -2485,9 +2485,9 @@ router.post('/on', async (req, res) => {
     res.json({ error: 'stg must be stg1 or stg3' });
   } else if (day != 'D0' && day != 'D1' && day != 'D2' && day != 'D3' && day != 'D4' && day != 'D5' && day != 'D6' && day != 'D7' || body.day == '' || body.day == null) {
     res.json({ error: 'day must be d# based on flight local date; # is in range 0 to 7; ex: d0 is yesterday d1 is today and so on' });
-  } else if (v(fsdailyId).count() != 7 || v(fsdailyId).isNumeric() === false || body.fsdailyId == '' || body.fsdailyId == null) {
+  } else if (v(fsdailyId).count() != 7 || v(fsdailyId).isNumeric() == false || body.fsdailyId == '' || body.fsdailyId == null) {
     res.json({ error: 'fsDailyId must be 7 digit' });
-  } else if (v(onUTC).count() != 4 || v(onUTC).isNumeric() === false || validateON == false || body.onUTC == '' || body.onUTC == null) {
+  } else if (v(onUTC).count() != 4 || v(onUTC).isNumeric() == false || validateON == false || body.onUTC == '' || body.onUTC == null) {
     res.json({ error: 'onUTC must be 4 digit valid utc time, ex: 1500, 0059 etc' });
   } else {
     try {
@@ -2572,9 +2572,9 @@ router.post('/in', async (req, res) => {
     res.json({ error: 'stg must be stg1 or stg3' });
   } else if (day != 'D0' && day != 'D1' && day != 'D2' && day != 'D3' && day != 'D4' && day != 'D5' && day != 'D6' && day != 'D7' || body.day == '' || body.day == null) {
     res.json({ error: 'day must be d# based on flight local date; # is in range 0 to 7; ex: d0 is yesterday d1 is today and so on' });
-  } else if (v(fsdailyId).count() != 7 || v(fsdailyId).isNumeric() === false || body.fsdailyId == '' || body.fsdailyId == null) {
+  } else if (v(fsdailyId).count() != 7 || v(fsdailyId).isNumeric() == false || body.fsdailyId == '' || body.fsdailyId == null) {
     res.json({ error: 'fsDailyId must be 7 digit' });
-  } else if (v(inUTC).count() != 4 || v(inUTC).isNumeric() === false || validateIN == false || body.inUTC == '' || body.inUTC == null) {
+  } else if (v(inUTC).count() != 4 || v(inUTC).isNumeric() == false || validateIN == false || body.inUTC == '' || body.inUTC == null) {
     res.json({ error: 'inUTC must be 4 digit valid utc time, ex: 1500, 0059 etc' });
   } else {
     try {
@@ -2661,9 +2661,9 @@ router.post('/etd', async (req, res) => {
     res.json({ error: 'stg must be stg1 or stg3' });
   } else if (day != 'D0' && day != 'D1' && day != 'D2' && day != 'D3' && day != 'D4' && day != 'D5' && day != 'D6' && day != 'D7' || body.day == '' || body.day == null) {
     res.json({ error: 'day must be d# based on flight local date; # is in range 0 to 7; ex: d0 is yesterday d1 is today and so on' });
-  } else if (v(fsdailyId).count() != 7 || v(fsdailyId).isNumeric() === false || body.fsdailyId == '' || body.fsdailyId == null) {
+  } else if (v(fsdailyId).count() != 7 || v(fsdailyId).isNumeric() == false || body.fsdailyId == '' || body.fsdailyId == null) {
     res.json({ error: 'fsDailyId must be 7 digit' });
-  } else if (v(etdUTC).count() != 4 || v(etdUTC).isNumeric() === false || validateETD == false || body.etdUTC == '' || body.etdUTC == null) {
+  } else if (v(etdUTC).count() != 4 || v(etdUTC).isNumeric() == false || validateETD == false || body.etdUTC == '' || body.etdUTC == null) {
     res.json({ error: 'etdUTC must be 4 digit valid utc time, ex: 1500, 0059 etc' });
   } else {
     try {
@@ -2742,14 +2742,14 @@ router.post('/eta', async (req, res) => {
   let fsdailyId = v(body.fsdailyId).trim();
   let etaUTC = v(body.etaUTC).trim().padLeft(4,'0');
   let validateETA = validateTime(etaUTC);
-  console.log(`Adhoc event processing with data: ${stg}, ${day}, ${fsdailyId}, ${etaUTC}`);
+  // // console.log(`Adhoc event processing with data: ${stg}, ${day}, ${fsdailyId}, ${etaUTC}`);
   if (stg != 'STG1' && stg != 'STG2' && stg != 'STG3' || body.stg == '' || body.stg == null) {
     res.json({ error: 'stg must be stg1 or stg3' });
   } else if (day != 'D0' && day != 'D1' && day != 'D2' && day != 'D3' && day != 'D4' && day != 'D5' && day != 'D6' && day != 'D7' || body.day == '' || body.day == null) {
     res.json({ error: 'day must be d# based on flight local date; # is in range 0 to 7; ex: d0 is yesterday d1 is today and so on' });
-  } else if (v(fsdailyId).count() != 7 || v(fsdailyId).isNumeric() === false || body.fsdailyId == '' || body.fsdailyId == null) {
+  } else if (v(fsdailyId).count() != 7 || v(fsdailyId).isNumeric() == false || body.fsdailyId == '' || body.fsdailyId == null) {
     res.json({ error: 'fsDailyId must be 7 digit' });
-  } else if (v(etaUTC).count() != 4 || v(etaUTC).isNumeric() === false || validateETA == false || body.etaUTC == '' || body.etaUTC == null) {
+  } else if (v(etaUTC).count() != 4 || v(etaUTC).isNumeric() == false || validateETA == false || body.etaUTC == '' || body.etaUTC == null) {
     res.json({ error: 'etaUTC must be 4 digit valid utc time, ex: 1500, 0059 etc' });
   } else {
     try {
@@ -2828,14 +2828,14 @@ router.post('/eto', async (req, res) => {
   let fsdailyId = v(body.fsdailyId).trim();
   let etoUTC = v(body.etoUTC).trim().padLeft(4,'0');
   let validateETO = validateTime(etoUTC);
-  console.log(`Adhoc event processing with data: ${stg}, ${day}, ${fsdailyId}, ${etoUTC}`);
+  // // console.log(`Adhoc event processing with data: ${stg}, ${day}, ${fsdailyId}, ${etoUTC}`);
   if (stg != 'STG1' && stg != 'STG2' && stg != 'STG3' || body.stg == '' || body.stg == null) {
     res.json({ error: 'stg must be stg1 or stg3' });
   } else if (day != 'D0' && day != 'D1' && day != 'D2' && day != 'D3' && day != 'D4' && day != 'D5' && day != 'D6' && day != 'D7' || body.day == '' || body.day == null) {
     res.json({ error: 'day must be d# based on flight local date; # is in range 0 to 7; ex: d0 is yesterday d1 is today and so on' });
-  } else if (v(fsdailyId).count() != 7 || v(fsdailyId).isNumeric() === false || body.fsdailyId == '' || body.fsdailyId == null) {
+  } else if (v(fsdailyId).count() != 7 || v(fsdailyId).isNumeric() == false || body.fsdailyId == '' || body.fsdailyId == null) {
     res.json({ error: 'fsDailyId must be 7 digit' });
-  } else if (v(etoUTC).count() != 4 || v(etoUTC).isNumeric() === false || validateETO == false || body.etoUTC == '' || body.etoUTC == null) {
+  } else if (v(etoUTC).count() != 4 || v(etoUTC).isNumeric() == false || validateETO == false || body.etoUTC == '' || body.etoUTC == null) {
     res.json({ error: 'etoUTC must be 4 digit valid utc time, ex: 1500, 0059 etc' });
   } else {
     try {
@@ -2914,14 +2914,14 @@ router.post('/eon', async (req, res) => {
   let fsdailyId = v(body.fsdailyId).trim();
   let eonUTC = v(body.eonUTC).trim().padLeft(4,'0');
   let validateEON = validateTime(eonUTC);
-  console.log(`Adhoc event processing with data: ${stg}, ${day}, ${fsdailyId}, ${eonUTC}`);
+  // console.log(`Adhoc event processing with data: ${stg}, ${day}, ${fsdailyId}, ${eonUTC}`);
   if (stg != 'STG1' && stg != 'STG2' && stg != 'STG3' || body.stg == '' || body.stg == null) {
     res.json({ error: 'stg must be stg1 or stg3' });
   } else if (day != 'D0' && day != 'D1' && day != 'D2' && day != 'D3' && day != 'D4' && day != 'D5' && day != 'D6' && day != 'D7' || body.day == '' || body.day == null) {
     res.json({ error: 'day must be d# based on flight local date; # is in range 0 to 7; ex: d0 is yesterday d1 is today and so on' });
-  } else if (v(fsdailyId).count() != 7 || v(fsdailyId).isNumeric() === false || body.fsdailyId == '' || body.fsdailyId == null) {
+  } else if (v(fsdailyId).count() != 7 || v(fsdailyId).isNumeric() == false || body.fsdailyId == '' || body.fsdailyId == null) {
     res.json({ error: 'fsDailyId must be 7 digit' });
-  } else if (v(eonUTC).count() != 4 || v(eonUTC).isNumeric() === false || validateEON == true || body.eonUTC == '' || body.eonUTC == null) {
+  } else if (v(eonUTC).count() != 4 || v(eonUTC).isNumeric() == false || validateEON == false || body.eonUTC == '' || body.eonUTC == null) {
     res.json({ error: 'eonUTC must be 4 digit valid utc time, ex: 1500, 0059 etc' });
   } else {
     try {
@@ -2999,14 +2999,14 @@ router.post('/sub', async (req, res) => {
   let day = v(body.day).trim().upperCase();
   let fsdailyId = v(body.fsdailyId).trim();
   let tailNum = v(body.tailNum).trim();
-  console.log(`Adhoc event processing with data: ${stg}, ${day}, ${fsdailyId}, ${tailNum}`);
+  // console.log(`Adhoc event processing with data: ${stg}, ${day}, ${fsdailyId}, ${tailNum}`);
   if (stg != 'STG1' && stg != 'STG2' && stg != 'STG3' || body.stg == '' || body.stg == null) {
     res.json({ error: 'stg must be stg1 or stg3' });
   } else if (day != 'D0' && day != 'D1' && day != 'D2' && day != 'D3' && day != 'D4' && day != 'D5' && day != 'D6' && day != 'D7' || body.day == '' || body.day == null) {
     res.json({ error: 'day must be d# based on flight local date; # is in range 0 to 7; ex: d0 is yesterday d1 is today and so on' });
-  } else if (v(fsdailyId).count() != 7 || v(fsdailyId).isNumeric() === false || body.fsdailyId == '' || body.fsdailyId == null) {
+  } else if (v(fsdailyId).count() != 7 || v(fsdailyId).isNumeric() == false || body.fsdailyId == '' || body.fsdailyId == null) {
     res.json({ error: 'fsDailyId must be 7 digit' });
-  } else if (v(tailNum).count() != 3 || v(tailNum).isNumeric() === false || body.tailNum == '' || body.tailNum == null) {
+  } else if (v(tailNum).count() != 3 || v(tailNum).isNumeric() == false || body.tailNum == '' || body.tailNum == null) {
     res.json({ error: 'tailNum must be 3 digit' });
   } else {
     try {
@@ -3078,12 +3078,12 @@ router.post('/cnl', async (req, res) => {
   let stg = v(body.stg).trim().upperCase();
   let day = v(body.day).trim().upperCase();
   let fsdailyId = v(body.fsdailyId).trim();
-  console.log(`Adhoc event processing with data: ${stg}, ${day}, ${fsdailyId}`);
+  // console.log(`Adhoc event processing with data: ${stg}, ${day}, ${fsdailyId}`);
   if (stg != 'STG1' && stg != 'STG2' && stg != 'STG3' || body.stg == '' || body.stg == null) {
     res.json({ error: 'stg must be stg1 or stg3' });
   } else if (day != 'D0' && day != 'D1' && day != 'D2' && day != 'D3' && day != 'D4' && day != 'D5' && day != 'D6' && day != 'D7' || body.day == '' || body.day == null) {
     res.json({ error: 'day must be d# based on flight local date; # is in range 0 to 7; ex: d0 is yesterday d1 is today and so on' });
-  } else if (v(fsdailyId).count() != 7 || v(fsdailyId).isNumeric() === false || body.fsdailyId == '' || body.fsdailyId == null) {
+  } else if (v(fsdailyId).count() != 7 || v(fsdailyId).isNumeric() == false || body.fsdailyId == '' || body.fsdailyId == null) {
     res.json({ error: 'fsDailyId must be 7 digit' });
   } else {
     try {
@@ -3159,12 +3159,12 @@ router.post('/del', async (req, res) => {
   let day = v(body.day).trim().upperCase();
   let fsdailyId = v(body.fsdailyId).trim();
   let tailNum = v(body.tailNum).trim();
-  console.log(`Adhoc event processing with data: ${stg}, ${day}, ${fsdailyId}`);
+  // console.log(`Adhoc event processing with data: ${stg}, ${day}, ${fsdailyId}`);
   if (stg != 'STG1' && stg != 'STG2' && stg != 'STG3' || body.stg == '' || body.stg == null) {
     res.json({ error: 'stg must be stg1 or stg3' });
   } else if (day != 'D0' && day != 'D1' && day != 'D2' && day != 'D3' && day != 'D4' && day != 'D5' && day != 'D6' && day != 'D7' || body.day == '' || body.day == null) {
     res.json({ error: 'day must be d# based on flight local date; # is in range 0 to 7; ex: d0 is yesterday d1 is today and so on' });
-  } else if (v(fsdailyId).count() != 7 || v(fsdailyId).isNumeric() === false || body.fsdailyId == '' || body.fsdailyId == null) {
+  } else if (v(fsdailyId).count() != 7 || v(fsdailyId).isNumeric() == false || body.fsdailyId == '' || body.fsdailyId == null) {
     res.json({ error: 'fsDailyId must be 7 digit' });
   } else {
     try {
@@ -3237,12 +3237,12 @@ router.post('/gtd', async (req, res) => {
   let day = v(body.day).trim().upperCase();
   let fsdailyId = v(body.fsdailyId).trim();
   let depGate = v(body.depGate).trim().padLeft(4,' ');
-  console.log(`Adhoc event processing with data: ${stg}, ${day}, ${fsdailyId}, ${depGate}`);
+  // console.log(`Adhoc event processing with data: ${stg}, ${day}, ${fsdailyId}, ${depGate}`);
   if (stg != 'STG1' && stg != 'STG2' && stg != 'STG3' || body.stg == '' || body.stg == null) {
     res.json({ error: 'stg must be stg1 or stg3' });
   } else if (day != 'D0' && day != 'D1' && day != 'D2' && day != 'D3' && day != 'D4' && day != 'D5' && day != 'D6' && day != 'D7' || body.day == '' || body.day == null) {
     res.json({ error: 'day must be d# based on flight local date; # is in range 0 to 7; ex: d0 is yesterday d1 is today and so on' });
-  } else if (v(fsdailyId).count() != 7 || v(fsdailyId).isNumeric() === false || body.fsdailyId == '' || body.fsdailyId == null) {
+  } else if (v(fsdailyId).count() != 7 || v(fsdailyId).isNumeric() == false || body.fsdailyId == '' || body.fsdailyId == null) {
     res.json({ error: 'fsDailyId must be 7 digit' });
   } else if (v(depGate).count() != 4 || body.depGate == '' || body.depGate == null) {
     res.json({ error: 'depGate must be min 1 and max 4 character' });
@@ -3321,12 +3321,12 @@ router.post('/gta', async (req, res) => {
   let day = v(body.day).trim().upperCase();
   let fsdailyId = v(body.fsdailyId).trim();
   let arrGate = v(body.arrGate).trim().padLeft(4,' ');
-  console.log(`Adhoc event processing with data: ${stg}, ${day}, ${fsdailyId}, ${arrGate}`);
+  // console.log(`Adhoc event processing with data: ${stg}, ${day}, ${fsdailyId}, ${arrGate}`);
   if (stg != 'STG1' && stg != 'STG2' && stg != 'STG3' || body.stg == '' || body.stg == null) {
     res.json({ error: 'stg must be stg1 or stg3' });
   } else if (day != 'D0' && day != 'D1' && day != 'D2' && day != 'D3' && day != 'D4' && day != 'D5' && day != 'D6' && day != 'D7' || body.day == '' || body.day == null) {
     res.json({ error: 'day must be d# based on flight local date; # is in range 0 to 7; ex: d0 is yesterday d1 is today and so on' });
-  } else if (v(fsdailyId).count() != 7 || v(fsdailyId).isNumeric() === false || body.fsdailyId == '' || body.fsdailyId == null) {
+  } else if (v(fsdailyId).count() != 7 || v(fsdailyId).isNumeric() == false || body.fsdailyId == '' || body.fsdailyId == null) {
     res.json({ error: 'fsDailyId must be 7 digit' });
   } else if (v(arrGate).count() != 4 || body.arrGate == '' || body.arrGate == null) {
     res.json({ error: 'arrGate must be min 1 and max 4 character' });
@@ -3403,12 +3403,12 @@ router.post('/rin', async (req, res) => {
   let stg = v(body.stg).trim().upperCase();
   let day = v(body.day).trim().upperCase();
   let fsdailyId = v(body.fsdailyId).trim();
-  console.log(`Adhoc event processing with data: ${stg}, ${day}, ${fsdailyId}`);
+  // console.log(`Adhoc event processing with data: ${stg}, ${day}, ${fsdailyId}`);
   if (stg != 'STG1' && stg != 'STG2' && stg != 'STG3' || body.stg == '' || body.stg == null) {
     res.json({ error: 'stg must be stg1 or stg3' });
   } else if (day != 'D0' && day != 'D1' && day != 'D2' && day != 'D3' && day != 'D4' && day != 'D5' && day != 'D6' && day != 'D7' || body.day == '' || body.day == null) {
     res.json({ error: 'day must be d# based on flight local date; # is in range 0 to 7; ex: d0 is yesterday d1 is today and so on' });
-  } else if (v(fsdailyId).count() != 7 || v(fsdailyId).isNumeric() === false || body.fsdailyId == '' || body.fsdailyId == null) {
+  } else if (v(fsdailyId).count() != 7 || v(fsdailyId).isNumeric() == false || body.fsdailyId == '' || body.fsdailyId == null) {
     res.json({ error: 'fsDailyId must be 7 digit' });
   } else {
     try {
@@ -3481,12 +3481,12 @@ router.post('/rem', async (req, res) => {
   let stg = v(body.stg).trim().upperCase();
   let day = v(body.day).trim().upperCase();
   let fsdailyId = v(body.fsdailyId).trim();
-  console.log(`Adhoc event processing with data: ${stg}, ${day}, ${fsdailyId}`);
+  // console.log(`Adhoc event processing with data: ${stg}, ${day}, ${fsdailyId}`);
   if (stg != 'STG1' && stg != 'STG2' && stg != 'STG3' || body.stg == '' || body.stg == null) {
     res.json({ error: 'stg must be stg1 or stg3' });
   } else if (day != 'D0' && day != 'D1' && day != 'D2' && day != 'D3' && day != 'D4' && day != 'D5' && day != 'D6' && day != 'D7' || body.day == '' || body.day == null) {
     res.json({ error: 'day must be d# based on flight local date; # is in range 0 to 7; ex: d0 is yesterday d1 is today and so on' });
-  } else if (v(fsdailyId).count() != 7 || v(fsdailyId).isNumeric() === false || body.fsdailyId == '' || body.fsdailyId == null) {
+  } else if (v(fsdailyId).count() != 7 || v(fsdailyId).isNumeric() == false || body.fsdailyId == '' || body.fsdailyId == null) {
     res.json({ error: 'fsDailyId must be 7 digit' });
   } else {
     try {
@@ -3561,14 +3561,14 @@ router.post('/asn', async (req, res) => {
   let day = v(body.day).trim().upperCase();
   let fsdailyId = v(body.fsdailyId).trim();
   let tailNum = v(body.tailNum).trim();
-  console.log(`Adhoc event processing with data: ${stg}, ${day}, ${fsdailyId}, ${tailNum}`);
+  // console.log(`Adhoc event processing with data: ${stg}, ${day}, ${fsdailyId}, ${tailNum}`);
   if (stg != 'STG1' && stg != 'STG2' && stg != 'STG3' || body.stg == '' || body.stg == null) {
     res.json({ error: 'stg must be stg1 or stg3' });
   } else if (day != 'D0' && day != 'D1' && day != 'D2' && day != 'D3' && day != 'D4' && day != 'D5' && day != 'D6' && day != 'D7' || body.day == '' || body.day == null) {
     res.json({ error: 'day must be d# based on flight local date; # is in range 0 to 7; ex: d0 is yesterday d1 is today and so on' });
-  } else if (v(fsdailyId).count() != 7 || v(fsdailyId).isNumeric() === false || body.fsdailyId == '' || body.fsdailyId == null) {
+  } else if (v(fsdailyId).count() != 7 || v(fsdailyId).isNumeric() == false || body.fsdailyId == '' || body.fsdailyId == null) {
     res.json({ error: 'fsDailyId must be 7 digit' });
-  } else if (v(tailNum).count() != 3 || v(tailNum).isNumeric() === false || body.tailNum == '' || body.tailNum == null) {
+  } else if (v(tailNum).count() != 3 || v(tailNum).isNumeric() == false || body.tailNum == '' || body.tailNum == null) {
     res.json({ error: 'tailNum must be 3 digit' });
   } else {
     try {
@@ -3641,12 +3641,12 @@ router.post('/udd', async (req, res) => {
   let stg = v(body.stg).trim().upperCase();
   let day = v(body.day).trim().upperCase();
   let fsdailyId = v(body.fsdailyId).trim();
-  console.log(`Adhoc event processing with data: ${stg}, ${day}, ${fsdailyId}`);
+  // console.log(`Adhoc event processing with data: ${stg}, ${day}, ${fsdailyId}`);
   if (stg != 'STG1' && stg != 'STG2' && stg != 'STG3' || body.stg == '' || body.stg == null) {
     res.json({ error: 'stg must be stg1 or stg3' });
   } else if (day != 'D0' && day != 'D1' && day != 'D2' && day != 'D3' && day != 'D4' && day != 'D5' && day != 'D6' && day != 'D7' || body.day == '' || body.day == null) {
     res.json({ error: 'day must be d# based on flight local date; # is in range 0 to 7; ex: d0 is yesterday d1 is today and so on' });
-  } else if (v(fsdailyId).count() != 7 || v(fsdailyId).isNumeric() === false || body.fsdailyId == '' || body.fsdailyId == null) {
+  } else if (v(fsdailyId).count() != 7 || v(fsdailyId).isNumeric() == false || body.fsdailyId == '' || body.fsdailyId == null) {
     res.json({ error: 'fsDailyId must be 7 digit' });
   } else {
     try {
@@ -3721,12 +3721,12 @@ router.post('/uda', async (req, res) => {
   let stg = v(body.stg).trim().upperCase();
   let day = v(body.day).trim().upperCase();
   let fsdailyId = v(body.fsdailyId).trim();
-  console.log(`Adhoc event processing with data: ${stg}, ${day}, ${fsdailyId}`);
+  // console.log(`Adhoc event processing with data: ${stg}, ${day}, ${fsdailyId}`);
   if (stg != 'STG1' && stg != 'STG2' && stg != 'STG3' || body.stg == '' || body.stg == null) {
     res.json({ error: 'stg must be stg1 or stg3' });
   } else if (day != 'D0' && day != 'D1' && day != 'D2' && day != 'D3' && day != 'D4' && day != 'D5' && day != 'D6' && day != 'D7' || body.day == '' || body.day == null) {
     res.json({ error: 'day must be d# based on flight local date; # is in range 0 to 7; ex: d0 is yesterday d1 is today and so on' });
-  } else if (v(fsdailyId).count() != 7 || v(fsdailyId).isNumeric() === false || body.fsdailyId == '' || body.fsdailyId == null) {
+  } else if (v(fsdailyId).count() != 7 || v(fsdailyId).isNumeric() == false || body.fsdailyId == '' || body.fsdailyId == null) {
     res.json({ error: 'fsDailyId must be 7 digit' });
   } else {
     try {
@@ -3800,12 +3800,12 @@ router.post('/rmd', async (req, res) => {
   let stg = v(body.stg).trim().upperCase();
   let day = v(body.day).trim().upperCase();
   let fsdailyId = v(body.fsdailyId).trim();
-  console.log(`Adhoc event processing with data: ${stg}, ${day}, ${fsdailyId}`);
+  // console.log(`Adhoc event processing with data: ${stg}, ${day}, ${fsdailyId}`);
   if (stg != 'STG1' && stg != 'STG2' && stg != 'STG3' || body.stg == '' || body.stg == null) {
     res.json({ error: 'stg must be stg1 or stg3' });
   } else if (day != 'D0' && day != 'D1' && day != 'D2' && day != 'D3' && day != 'D4' && day != 'D5' && day != 'D6' && day != 'D7' || body.day == '' || body.day == null) {
     res.json({ error: 'day must be d# based on flight local date; # is in range 0 to 7; ex: d0 is yesterday d1 is today and so on' });
-  } else if (v(fsdailyId).count() != 7 || v(fsdailyId).isNumeric() === false || body.fsdailyId == '' || body.fsdailyId == null) {
+  } else if (v(fsdailyId).count() != 7 || v(fsdailyId).isNumeric() == false || body.fsdailyId == '' || body.fsdailyId == null) {
     res.json({ error: 'fsDailyId must be 7 digit' });
   } else {
     try {
@@ -3879,12 +3879,12 @@ router.post('/rma', async (req, res) => {
   let stg = v(body.stg).trim().upperCase();
   let day = v(body.day).trim().upperCase();
   let fsdailyId = v(body.fsdailyId).trim();
-  console.log(`Adhoc event processing with data: ${stg}, ${day}, ${fsdailyId}`);
+  // console.log(`Adhoc event processing with data: ${stg}, ${day}, ${fsdailyId}`);
   if (stg != 'STG1' && stg != 'STG2' && stg != 'STG3' || body.stg == '' || body.stg == null) {
     res.json({ error: 'stg must be stg1 or stg3' });
   } else if (day != 'D0' && day != 'D1' && day != 'D2' && day != 'D3' && day != 'D4' && day != 'D5' && day != 'D6' && day != 'D7' || body.day == '' || body.day == null) {
     res.json({ error: 'day must be d# based on flight local date; # is in range 0 to 7; ex: d0 is yesterday d1 is today and so on' });
-  } else if (v(fsdailyId).count() != 7 || v(fsdailyId).isNumeric() === false || body.fsdailyId == '' || body.fsdailyId == null) {
+  } else if (v(fsdailyId).count() != 7 || v(fsdailyId).isNumeric() == false || body.fsdailyId == '' || body.fsdailyId == null) {
     res.json({ error: 'fsDailyId must be 7 digit' });
   } else {
     try {
@@ -3958,12 +3958,12 @@ router.post('/grd', async (req, res) => {
   let stg = v(body.stg).trim().upperCase();
   let day = v(body.day).trim().upperCase();
   let fsdailyId = v(body.fsdailyId).trim();
-  console.log(`Adhoc event processing with data: ${stg}, ${day}, ${fsdailyId}`);
+  // console.log(`Adhoc event processing with data: ${stg}, ${day}, ${fsdailyId}`);
   if (stg != 'STG1' && stg != 'STG2' && stg != 'STG3' || body.stg == '' || body.stg == null) {
     res.json({ error: 'stg must be stg1 or stg3' });
   } else if (day != 'D0' && day != 'D1' && day != 'D2' && day != 'D3' && day != 'D4' && day != 'D5' && day != 'D6' && day != 'D7' || body.day == '' || body.day == null) {
     res.json({ error: 'day must be d# based on flight local date; # is in range 0 to 7; ex: d0 is yesterday d1 is today and so on' });
-  } else if (v(fsdailyId).count() != 7 || v(fsdailyId).isNumeric() === false || body.fsdailyId == '' || body.fsdailyId == null) {
+  } else if (v(fsdailyId).count() != 7 || v(fsdailyId).isNumeric() == false || body.fsdailyId == '' || body.fsdailyId == null) {
     res.json({ error: 'fsDailyId must be 7 digit' });
   } else {
     try {
@@ -3996,7 +3996,7 @@ router.post('/grd', async (req, res) => {
         } else if (stg == 'STG3') {
           dropLocation = '/mnt/gcsfile01/STG3/adh_receive';
         }
-        let now = moment(new Date()).fogrdt('MM_DD_YYYY_HH_mm_ss_x');
+        let now = moment(new Date()).format('MM_DD_YYYY_HH_mm_ss_x');
         let fileName = `mceg_adhoc16_grd_${now}`;
         let adhocStgrdg = `ADH016_${pFlightNum}${date}${origin}${dest}${std}GRD`;
         let job = await fs.writeFile(`${dropLocation}/${fileName}.txt`, adhocStgrdg).then((err) => {
@@ -4037,12 +4037,12 @@ router.post('/air', async (req, res) => {
   let stg = v(body.stg).trim().upperCase();
   let day = v(body.day).trim().upperCase();
   let fsdailyId = v(body.fsdailyId).trim();
-  console.log(`Adhoc event processing with data: ${stg}, ${day}, ${fsdailyId}`);
+  // console.log(`Adhoc event processing with data: ${stg}, ${day}, ${fsdailyId}`);
   if (stg != 'STG1' && stg != 'STG2' && stg != 'STG3' || body.stg == '' || body.stg == null) {
     res.json({ error: 'stg must be stg1 or stg3' });
   } else if (day != 'D0' && day != 'D1' && day != 'D2' && day != 'D3' && day != 'D4' && day != 'D5' && day != 'D6' && day != 'D7' || body.day == '' || body.day == null) {
     res.json({ error: 'day must be d# based on flight local date; # is in range 0 to 7; ex: d0 is yesterday d1 is today and so on' });
-  } else if (v(fsdailyId).count() != 7 || v(fsdailyId).isNumeric() === false || body.fsdailyId == '' || body.fsdailyId == null) {
+  } else if (v(fsdailyId).count() != 7 || v(fsdailyId).isNumeric() == false || body.fsdailyId == '' || body.fsdailyId == null) {
     res.json({ error: 'fsDailyId must be 7 digit' });
   } else {
     try {
@@ -4075,7 +4075,7 @@ router.post('/air', async (req, res) => {
         } else if (stg == 'STG3') {
           dropLocation = '/mnt/gcsfile01/STG3/adh_receive';
         }
-        let now = moment(new Date()).foairt('MM_DD_YYYY_HH_mm_ss_x');
+        let now = moment(new Date()).format('MM_DD_YYYY_HH_mm_ss_x');
         let fileName = `mceg_adhoc16_air_${now}`;
         let adhocStairg = `ADH016_${pFlightNum}${date}${origin}${dest}${std}AIR`;
         let job = await fs.writeFile(`${dropLocation}/${fileName}.txt`, adhocStairg).then((err) => {
@@ -4120,16 +4120,16 @@ router.post('/dvc', async (req, res) => {
   let fsdailyId = v(body.fsdailyId).trim();
   let divertCity = v(body.divertCity).trim().upperCase();
   let etaUTC = v(body.etaUTC).trim().padLeft(4,'0');
-  console.log(`Adhoc event processing with data: ${stg}, ${day}, ${fsdailyId}, ${divertCity}, ${etaUTC}`);
+  // console.log(`Adhoc event processing with data: ${stg}, ${day}, ${fsdailyId}, ${divertCity}, ${etaUTC}`);
   if (stg != 'STG1' && stg != 'STG2' && stg != 'STG3' || body.stg == '' || body.stg == null) {
     res.json({ error: 'stg must be stg1 or stg3' });
   } else if (day != 'D0' && day != 'D1' && day != 'D2' && day != 'D3' && day != 'D4' && day != 'D5' && day != 'D6' && day != 'D7' || body.day == '' || body.day == null) {
     res.json({ error: 'day must be d# based on flight local date; # is in range 0 to 7; ex: d0 is yesterday d1 is today and so on' });
-  } else if (v(fsdailyId).count() != 7 || v(fsdailyId).isNumeric() === false || body.fsdailyId == '' || body.fsdailyId == null) {
+  } else if (v(fsdailyId).count() != 7 || v(fsdailyId).isNumeric() == false || body.fsdailyId == '' || body.fsdailyId == null) {
     res.json({ error: 'fsDailyId must be 7 digit' });
-  } else if (v(divertCity).count() != 3 || v(divertCity).isAlpha() === false || body.divertCity == '' || body.divertCity == null) {
+  } else if (v(divertCity).count() != 3 || v(divertCity).isAlpha() == false || body.divertCity == '' || body.divertCity == null) {
     res.json({ error: 'divertCity must be 3 character EX: JFK' });
-  } else if (v(etaUTC).count() != 4 || v(etaUTC).isNumeric() === false || body.etaUTC == '' || body.etaUTC == null) {
+  } else if (v(etaUTC).count() != 4 || v(etaUTC).isNumeric() == false || body.etaUTC == '' || body.etaUTC == null) {
     res.json({ error: 'etaUTC must be 4 digit utc time, ex: 1500, 0059 etc' });
   } else {
     try {
