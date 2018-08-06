@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Flight } from '../models/flight';
 import { AdhocEvent } from '../models/adhoc-event';
 import { Observable } from 'rxjs/Observable';
-// import { MessageService } from './message.service';
 import { of } from 'rxjs/observable/of';
 import { catchError, map } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -213,6 +212,203 @@ export class FlightsService {
       catchError(this.handleError('postEvent', []))
     );
   }
-
-
+  postIN(stg, day, fsdailyId, etdUTC): Observable<any> {
+    return this.http.post('/api/in', {stg: stg, day: day, fsdailyId: fsdailyId, etdUTC: etdUTC}, this.httpOptions)
+    .pipe(
+      map((response: Response) => {
+      return response; })
+    ).pipe(
+      catchError(this.handleError('postEvent', []))
+    );
+  }
+  postETD(stg, day, fsdailyId, etdUTC): Observable<any> {
+    return this.http.post('/api/etd', {stg: stg, day: day, fsdailyId: fsdailyId, etdUTC: etdUTC}, this.httpOptions)
+    .pipe(
+      map((response: Response) => {
+      return response; })
+    ).pipe(
+      catchError(this.handleError('postEvent', []))
+    );
+  }
+  postETA(stg, day, fsdailyId, etaUTC): Observable<any> {
+    return this.http.post('/api/eta', {stg: stg, day: day, fsdailyId: fsdailyId, etaUTC: etaUTC}, this.httpOptions)
+    .pipe(
+      map((response: Response) => {
+      return response; })
+    ).pipe(
+      catchError(this.handleError('postEvent', []))
+    );
+  }
+  postETO(stg, day, fsdailyId, etoUTC): Observable<any> {
+    return this.http.post('/api/eto', {stg: stg, day: day, fsdailyId: fsdailyId, etoUTC: etoUTC}, this.httpOptions)
+    .pipe(
+      map((response: Response) => {
+      return response; })
+    ).pipe(
+      catchError(this.handleError('postEvent', []))
+    );
+  }
+  postEON(stg, day, fsdailyId, eonUTC): Observable<any> {
+    return this.http.post('/api/eon', {stg: stg, day: day, fsdailyId: fsdailyId, eonUTC: eonUTC}, this.httpOptions)
+    .pipe(
+      map((response: Response) => {
+      return response; })
+    ).pipe(
+      catchError(this.handleError('postEvent', []))
+    );
+  }
+  postSUB(stg, day, fsdailyId, tailNum): Observable<any> {
+    return this.http.post('/api/sub', {stg: stg, day: day, fsdailyId: fsdailyId, tailNum: tailNum}, this.httpOptions)
+    .pipe(
+      map((response: Response) => {
+      return response; })
+    ).pipe(
+      catchError(this.handleError('postEvent', []))
+    );
+  }
+  postCNL(stg, day, fsdailyId): Observable<any> {
+    return this.http.post('/api/cnl', {stg: stg, day: day, fsdailyId: fsdailyId}, this.httpOptions)
+    .pipe(
+      map((response: Response) => {
+      return response; })
+    ).pipe(
+      catchError(this.handleError('postEvent', []))
+    );
+  }
+  postDEL(stg, day, fsdailyId): Observable<any> {
+    return this.http.post('/api/del', {stg: stg, day: day, fsdailyId: fsdailyId}, this.httpOptions)
+    .pipe(
+      map((response: Response) => {
+      return response; })
+    ).pipe(
+      catchError(this.handleError('postEvent', []))
+    );
+  }
+  postGTD(stg, day, fsdailyId, depGate): Observable<any> {
+    return this.http.post('/api/gtd', {stg: stg, day: day, fsdailyId: fsdailyId, depGate: depGate}, this.httpOptions)
+    .pipe(
+      map((response: Response) => {
+      return response; })
+    ).pipe(
+      catchError(this.handleError('postEvent', []))
+    );
+  }
+  postGTA(stg, day, fsdailyId, arrGate): Observable<any> {
+    return this.http.post('/api/gta', {stg: stg, day: day, fsdailyId: fsdailyId, arrGate: arrGate}, this.httpOptions)
+    .pipe(
+      map((response: Response) => {
+      return response; })
+    ).pipe(
+      catchError(this.handleError('postEvent', []))
+    );
+  }
+  postRIN(stg, day, fsdailyId): Observable<any> {
+    return this.http.post('/api/rin', {stg: stg, day: day, fsdailyId: fsdailyId}, this.httpOptions)
+    .pipe(
+      map((response: Response) => {
+      return response; })
+    ).pipe(
+      catchError(this.handleError('postEvent', []))
+    );
+  }
+  postREM(stg, day, fsdailyId): Observable<any> {
+    return this.http.post('/api/rem', {stg: stg, day: day, fsdailyId: fsdailyId}, this.httpOptions)
+    .pipe(
+      map((response: Response) => {
+      return response; })
+    ).pipe(
+      catchError(this.handleError('postEvent', []))
+    );
+  }
+  postASN(stg, day, fsdailyId, tailNum): Observable<any> {
+    return this.http.post('/api/asn', {stg: stg, day: day, fsdailyId: fsdailyId, tailNum: tailNum}, this.httpOptions)
+    .pipe(
+      map((response: Response) => {
+      return response; })
+    ).pipe(
+      catchError(this.handleError('postEvent', []))
+    );
+  }
+  postUDD(stg, day, fsdailyId): Observable<any> {
+    return this.http.post('/api/udd', {stg: stg, day: day, fsdailyId: fsdailyId}, this.httpOptions)
+    .pipe(
+      map((response: Response) => {
+      return response; })
+    ).pipe(
+      catchError(this.handleError('postEvent', []))
+    );
+  }
+  postUDA(stg, day, fsdailyId): Observable<any> {
+    return this.http.post('/api/uda', {stg: stg, day: day, fsdailyId: fsdailyId}, this.httpOptions)
+    .pipe(
+      map((response: Response) => {
+      return response; })
+    ).pipe(
+      catchError(this.handleError('postEvent', []))
+    );
+  }
+  postRMD(stg, day, fsdailyId): Observable<any> {
+    return this.http.post('/api/rmd', {stg: stg, day: day, fsdailyId: fsdailyId}, this.httpOptions)
+    .pipe(
+      map((response: Response) => {
+      return response; })
+    ).pipe(
+      catchError(this.handleError('postEvent', []))
+    );
+  }
+  postRMA(stg, day, fsdailyId): Observable<any> {
+    return this.http.post('/api/rma', {stg: stg, day: day, fsdailyId: fsdailyId}, this.httpOptions)
+    .pipe(
+      map((response: Response) => {
+      return response; })
+    ).pipe(
+      catchError(this.handleError('postEvent', []))
+    );
+  }
+  postGRD(stg, day, fsdailyId): Observable<any> {
+    return this.http.post('/api/grd', {stg: stg, day: day, fsdailyId: fsdailyId}, this.httpOptions)
+    .pipe(
+      map((response: Response) => {
+      return response; })
+    ).pipe(
+      catchError(this.handleError('postEvent', []))
+    );
+  }
+  postAIR(stg, day, fsdailyId): Observable<any> {
+    return this.http.post('/api/air', {stg: stg, day: day, fsdailyId: fsdailyId}, this.httpOptions)
+    .pipe(
+      map((response: Response) => {
+      return response; })
+    ).pipe(
+      catchError(this.handleError('postEvent', []))
+    );
+  }
+  postDVC(stg, day, fsdailyId, divertCity, etaUTC): Observable<any> {
+    return this.http.post('/api/dvc', {stg: stg, day: day, fsdailyId: fsdailyId, divertCity: divertCity, etaUTC: etaUTC}, this.httpOptions)
+    .pipe(
+      map((response: Response) => {
+      return response; })
+    ).pipe(
+      catchError(this.handleError('postEvent', []))
+    );
+  }
+  postNEW(stg, flightNum, utcOriginDate, origin, destination, stdUTC, staUTC, nextDayCrossover, tailNum): Observable<any> {
+    return this.http.post('/api/new', {
+      stg: stg,
+      flightNum: flightNum,
+      utcOriginDate: utcOriginDate,
+      origin: origin,
+      destination: destination,
+      stdUTC: stdUTC,
+      staUTC: staUTC,
+      nextDayCrossover: nextDayCrossover,
+      tailNum: tailNum
+    }, this.httpOptions)
+    .pipe(
+      map((response: Response) => {
+      return response; })
+    ).pipe(
+      catchError(this.handleError('postEvent', []))
+    );
+  }
 }

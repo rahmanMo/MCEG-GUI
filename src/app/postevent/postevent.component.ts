@@ -25,8 +25,8 @@ export class PosteventComponent implements OnInit, OnChanges {
   events = [
     'OUT',
     'OFF',
-    'ON_',
-    'IN_',
+    'ON',
+    'IN',
     'ETD',
     'ETA',
     'ETO',
@@ -45,7 +45,8 @@ export class PosteventComponent implements OnInit, OnChanges {
     'RMA',
     'GRD',
     'AIR',
-    'DVC'
+    'DVC',
+    'NEW'
   ];
 
   days = [
@@ -207,268 +208,241 @@ export class PosteventComponent implements OnInit, OnChanges {
   }
   onSubmitIN(event: Event) {
     event.preventDefault();
-    this.adhocMessage
-    = `ADH016_${this.flightNum}${this.utcDate}${this.origin}${this.destination}${this.stdUTC}${this.selctedEvent}${this.inUTC}`;
-    const adhocEvent: AdhocEvent = {
-      stg: this.environment,
-      adhoc16: this.adhocMessage
-    };
-    this.flightsService.postEvent(adhocEvent).subscribe(data => {
-      this.fileName = data['fileName'];
-      this.timestamp = data['timestamp'];
+    this.buttonEnable = false;
+    this.flightsService.postIN(this.environment, this.selectedDay, this.fsDailyId, this.inUTC).subscribe(data => {
+      this.responseMessage = data['message'];
+      this.responseError = data['error'];
+      // console.log(data);
       this.reset();
+      this.buttonEnable = true;
     });
   }
   onSubmitETD(event: Event) {
     event.preventDefault();
-    this.adhocMessage
-    = `ADH016_${this.flightNum}${this.utcDate}${this.origin}${this.destination}${this.stdUTC}${this.selctedEvent}${this.etdUTC}`;
-    const adhocEvent: AdhocEvent = {
-      stg: this.environment,
-      adhoc16: this.adhocMessage
-    };
-    this.flightsService.postEvent(adhocEvent).subscribe(data => {
-      this.fileName = data['fileName'];
-      this.timestamp = data['timestamp'];
+    this.buttonEnable = false;
+    this.flightsService.postETD(this.environment, this.selectedDay, this.fsDailyId, this.etdUTC).subscribe(data => {
+      this.responseMessage = data['message'];
+      this.responseError = data['error'];
+      // console.log(data);
       this.reset();
+      this.buttonEnable = true;
     });
   }
   onSubmitETA(event: Event) {
     event.preventDefault();
-    this.adhocMessage
-    = `ADH016_${this.flightNum}${this.utcDate}${this.origin}${this.destination}${this.stdUTC}${this.selctedEvent}${this.etaUTC}`;
-    const adhocEvent: AdhocEvent = {
-      stg: this.environment,
-      adhoc16: this.adhocMessage
-    };
-    this.flightsService.postEvent(adhocEvent).subscribe(data => {
-      this.fileName = data['fileName'];
-      this.timestamp = data['timestamp'];
+    this.buttonEnable = false;
+    this.flightsService.postETA(this.environment, this.selectedDay, this.fsDailyId, this.etaUTC).subscribe(data => {
+      this.responseMessage = data['message'];
+      this.responseError = data['error'];
+      // console.log(data);
       this.reset();
+      this.buttonEnable = true;
     });
   }
   onSubmitETO(event: Event) {
     event.preventDefault();
-    this.adhocMessage
-    = `ADH016_${this.flightNum}${this.utcDate}${this.origin}${this.destination}${this.stdUTC}${this.selctedEvent}${this.etoUTC}`;
-    const adhocEvent: AdhocEvent = {
-      stg: this.environment,
-      adhoc16: this.adhocMessage
-    };
-    this.flightsService.postEvent(adhocEvent).subscribe(data => {
-      this.fileName = data['fileName'];
-      this.timestamp = data['timestamp'];
+    this.buttonEnable = false;
+    this.flightsService.postETO(this.environment, this.selectedDay, this.fsDailyId, this.etoUTC).subscribe(data => {
+      this.responseMessage = data['message'];
+      this.responseError = data['error'];
+      // console.log(data);
       this.reset();
+      this.buttonEnable = true;
     });
   }
   onSubmitEON(event: Event) {
     event.preventDefault();
-    this.adhocMessage
-    = `ADH016_${this.flightNum}${this.utcDate}${this.origin}${this.destination}${this.stdUTC}${this.selctedEvent}${this.eonUTC}`;
-    const adhocEvent: AdhocEvent = {
-      stg: this.environment,
-      adhoc16: this.adhocMessage
-    };
-    this.flightsService.postEvent(adhocEvent).subscribe(data => {
-      this.fileName = data['fileName'];
-      this.timestamp = data['timestamp'];
+    this.buttonEnable = false;
+    this.flightsService.postEON(this.environment, this.selectedDay, this.fsDailyId, this.eonUTC).subscribe(data => {
+      this.responseMessage = data['message'];
+      this.responseError = data['error'];
+      // console.log(data);
       this.reset();
+      this.buttonEnable = true;
     });
   }
   onSubmitSUB(event: Event) {
     event.preventDefault();
-    this.adhocMessage
-    = `ADH016_${this.flightNum}${this.utcDate}${this.origin}${this.destination}${this.stdUTC}${this.selctedEvent}${this.newTail}`;
-    const adhocEvent: AdhocEvent = {
-      stg: this.environment,
-      adhoc16: this.adhocMessage
-    };
-    this.flightsService.postEvent(adhocEvent).subscribe(data => {
-      this.fileName = data['fileName'];
-      this.timestamp = data['timestamp'];
+    this.buttonEnable = false;
+    this.flightsService.postSUB(this.environment, this.selectedDay, this.fsDailyId, this.newTail).subscribe(data => {
+      this.responseMessage = data['message'];
+      this.responseError = data['error'];
+      // console.log(data);
       this.reset();
+      this.buttonEnable = true;
     });
   }
   onSubmitCNL(event: Event) {
     event.preventDefault();
-    this.adhocMessage
-    = `ADH016_${this.flightNum}${this.utcDate}${this.origin}${this.destination}${this.stdUTC}${this.selctedEvent}`;
-    const adhocEvent: AdhocEvent = {
-      stg: this.environment,
-      adhoc16: this.adhocMessage
-    };
-    this.flightsService.postEvent(adhocEvent).subscribe(data => {
-      this.fileName = data['fileName'];
-      this.timestamp = data['timestamp'];
+    this.buttonEnable = false;
+    this.flightsService.postCNL(this.environment, this.selectedDay, this.fsDailyId).subscribe(data => {
+      this.responseMessage = data['message'];
+      this.responseError = data['error'];
+      // console.log(data);
       this.reset();
+      this.buttonEnable = true;
     });
   }
   onSubmitDEL(event: Event) {
     event.preventDefault();
-    this.adhocMessage
-    = `ADH016_${this.flightNum}${this.utcDate}${this.origin}${this.destination}${this.stdUTC}${this.selctedEvent}`;
-    const adhocEvent: AdhocEvent = {
-      stg: this.environment,
-      adhoc16: this.adhocMessage
-    };
-    this.flightsService.postEvent(adhocEvent).subscribe(data => {
-      this.fileName = data['fileName'];
-      this.timestamp = data['timestamp'];
+    this.buttonEnable = false;
+    this.flightsService.postDEL(this.environment, this.selectedDay, this.fsDailyId).subscribe(data => {
+      this.responseMessage = data['message'];
+      this.responseError = data['error'];
+      // console.log(data);
       this.reset();
+      this.buttonEnable = true;
     });
   }
   onSubmitGTD(event: Event) {
     event.preventDefault();
-    this.adhocMessage
-    = `ADH016_${this.flightNum}${this.utcDate}${this.origin}${this.destination}${this.stdUTC}${this.selctedEvent}${this.gtd}`;
-    const adhocEvent: AdhocEvent = {
-      stg: this.environment,
-      adhoc16: this.adhocMessage
-    };
-    this.flightsService.postEvent(adhocEvent).subscribe(data => {
-      this.fileName = data['fileName'];
-      this.timestamp = data['timestamp'];
+    this.buttonEnable = false;
+    this.flightsService.postGTD(this.environment, this.selectedDay, this.fsDailyId, this.gtd).subscribe(data => {
+      this.responseMessage = data['message'];
+      this.responseError = data['error'];
+      // console.log(data);
       this.reset();
+      this.buttonEnable = true;
     });
   }
   onSubmitGTA(event: Event) {
     event.preventDefault();
-    this.adhocMessage
-    = `ADH016_${this.flightNum}${this.utcDate}${this.origin}${this.destination}${this.stdUTC}${this.selctedEvent}${this.gta}`;
-    const adhocEvent: AdhocEvent = {
-      stg: this.environment,
-      adhoc16: this.adhocMessage
-    };
-    this.flightsService.postEvent(adhocEvent).subscribe(data => {
-      this.fileName = data['fileName'];
-      this.timestamp = data['timestamp'];
+    this.buttonEnable = false;
+    this.flightsService.postGTA(this.environment, this.selectedDay, this.fsDailyId, this.gta).subscribe(data => {
+      this.responseMessage = data['message'];
+      this.responseError = data['error'];
+      // console.log(data);
       this.reset();
+      this.buttonEnable = true;
     });
   }
   onSubmitRIN(event: Event) {
     event.preventDefault();
-    this.adhocMessage
-    = `ADH016_${this.flightNum}${this.utcDate}${this.origin}${this.destination}${this.stdUTC}${this.selctedEvent}`;
-    const adhocEvent: AdhocEvent = {
-      stg: this.environment,
-      adhoc16: this.adhocMessage
-    };
-    this.flightsService.postEvent(adhocEvent).subscribe(data => {
-      this.fileName = data['fileName'];
-      this.timestamp = data['timestamp'];
+    this.buttonEnable = false;
+    this.flightsService.postRIN(this.environment, this.selectedDay, this.fsDailyId).subscribe(data => {
+      this.responseMessage = data['message'];
+      this.responseError = data['error'];
+      // console.log(data);
       this.reset();
+      this.buttonEnable = true;
     });
   }
   onSubmitASN(event: Event) {
     event.preventDefault();
-    this.adhocMessage
-    = `ADH016_${this.flightNum}${this.utcDate}${this.origin}${this.destination}${this.stdUTC}${this.selctedEvent}${this.newTail}`;
-    const adhocEvent: AdhocEvent = {
-      stg: this.environment,
-      adhoc16: this.adhocMessage
-    };
-    this.flightsService.postEvent(adhocEvent).subscribe(data => {
-      this.fileName = data['fileName'];
-      this.timestamp = data['timestamp'];
+    this.buttonEnable = false;
+    this.flightsService.postASN(this.environment, this.selectedDay, this.fsDailyId, this.newTail).subscribe(data => {
+      this.responseMessage = data['message'];
+      this.responseError = data['error'];
+      // console.log(data);
       this.reset();
+      this.buttonEnable = true;
     });
   }
   onSubmitREM(event: Event) {
     event.preventDefault();
-    this.adhocMessage
-    = `ADH016_${this.flightNum}${this.utcDate}${this.origin}${this.destination}${this.stdUTC}${this.selctedEvent}`;
-    const adhocEvent: AdhocEvent = {
-      stg: this.environment,
-      adhoc16: this.adhocMessage
-    };
-    this.flightsService.postEvent(adhocEvent).subscribe(data => {
-      this.fileName = data['fileName'];
-      this.timestamp = data['timestamp'];
+    this.buttonEnable = false;
+    this.flightsService.postREM(this.environment, this.selectedDay, this.fsDailyId).subscribe(data => {
+      this.responseMessage = data['message'];
+      this.responseError = data['error'];
+      // console.log(data);
       this.reset();
+      this.buttonEnable = true;
     });
   }
   onSubmitUDD(event: Event) {
     event.preventDefault();
-    this.adhocMessage
-    = `ADH016_${this.flightNum}${this.utcDate}${this.origin}${this.destination}${this.stdUTC}${this.selctedEvent}`;
-    const adhocEvent: AdhocEvent = {
-      stg: this.environment,
-      adhoc16: this.adhocMessage
-    };
-    this.flightsService.postEvent(adhocEvent).subscribe(data => {
-      this.fileName = data['fileName'];
-      this.timestamp = data['timestamp'];
+    this.buttonEnable = false;
+    this.flightsService.postUDD(this.environment, this.selectedDay, this.fsDailyId).subscribe(data => {
+      this.responseMessage = data['message'];
+      this.responseError = data['error'];
+      // console.log(data);
       this.reset();
+      this.buttonEnable = true;
     });
   }
   onSubmitUDA(event: Event) {
     event.preventDefault();
-    this.adhocMessage
-    = `ADH016_${this.flightNum}${this.utcDate}${this.origin}${this.destination}${this.stdUTC}${this.selctedEvent}`;
-    const adhocEvent: AdhocEvent = {
-      stg: this.environment,
-      adhoc16: this.adhocMessage
-    };
-    this.flightsService.postEvent(adhocEvent).subscribe(data => {
-      this.fileName = data['fileName'];
-      this.timestamp = data['timestamp'];
+    this.buttonEnable = false;
+    this.flightsService.postUDA(this.environment, this.selectedDay, this.fsDailyId).subscribe(data => {
+      this.responseMessage = data['message'];
+      this.responseError = data['error'];
+      // console.log(data);
       this.reset();
+      this.buttonEnable = true;
     });
   }
   onSubmitRMD(event: Event) {
     event.preventDefault();
-    this.adhocMessage
-    = `ADH016_${this.flightNum}${this.utcDate}${this.origin}${this.destination}${this.stdUTC}${this.selctedEvent}`;
-    const adhocEvent: AdhocEvent = {
-      stg: this.environment,
-      adhoc16: this.adhocMessage
-    };
-    this.flightsService.postEvent(adhocEvent).subscribe(data => {
-      this.fileName = data['fileName'];
-      this.timestamp = data['timestamp'];
+    this.buttonEnable = false;
+    this.flightsService.postRMD(this.environment, this.selectedDay, this.fsDailyId).subscribe(data => {
+      this.responseMessage = data['message'];
+      this.responseError = data['error'];
+      // console.log(data);
       this.reset();
+      this.buttonEnable = true;
     });
   }
   onSubmitRMA(event: Event) {
     event.preventDefault();
-    this.adhocMessage
-    = `ADH016_${this.flightNum}${this.utcDate}${this.origin}${this.destination}${this.stdUTC}${this.selctedEvent}`;
-    const adhocEvent: AdhocEvent = {
-      stg: this.environment,
-      adhoc16: this.adhocMessage
-    };
-    this.flightsService.postEvent(adhocEvent).subscribe(data => {
-      this.fileName = data['fileName'];
-      this.timestamp = data['timestamp'];
+    this.buttonEnable = false;
+    this.flightsService.postRMA(this.environment, this.selectedDay, this.fsDailyId).subscribe(data => {
+      this.responseMessage = data['message'];
+      this.responseError = data['error'];
+      // console.log(data);
       this.reset();
+      this.buttonEnable = true;
     });
   }
   onSubmitGRD(event: Event) {
     event.preventDefault();
-    this.adhocMessage
-    = `ADH016_${this.flightNum}${this.utcDate}${this.origin}${this.destination}${this.stdUTC}${this.selctedEvent}`;
-    const adhocEvent: AdhocEvent = {
-      stg: this.environment,
-      adhoc16: this.adhocMessage
-    };
-    this.flightsService.postEvent(adhocEvent).subscribe(data => {
-      this.fileName = data['fileName'];
-      this.timestamp = data['timestamp'];
+    this.buttonEnable = false;
+    this.flightsService.postGRD(this.environment, this.selectedDay, this.fsDailyId).subscribe(data => {
+      this.responseMessage = data['message'];
+      this.responseError = data['error'];
+      // console.log(data);
       this.reset();
+      this.buttonEnable = true;
     });
   }
   onSubmitAIR(event: Event) {
     event.preventDefault();
-    this.adhocMessage
-    = `ADH016_${this.flightNum}${this.utcDate}${this.origin}${this.destination}${this.stdUTC}${this.selctedEvent}`;
-    const adhocEvent: AdhocEvent = {
-      stg: this.environment,
-      adhoc16: this.adhocMessage
-    };
-    this.flightsService.postEvent(adhocEvent).subscribe(data => {
-      this.fileName = data['fileName'];
-      this.timestamp = data['timestamp'];
+    this.buttonEnable = false;
+    this.flightsService.postAIR(this.environment, this.selectedDay, this.fsDailyId).subscribe(data => {
+      this.responseMessage = data['message'];
+      this.responseError = data['error'];
+      // console.log(data);
       this.reset();
+      this.buttonEnable = true;
+    });
+  }
+  onSubmitDVC(event: Event) {
+    event.preventDefault();
+    this.buttonEnable = false;
+    this.flightsService.postDVC(this.environment, this.selectedDay, this.fsDailyId, this.diversionCity, this.etaUTC).subscribe(data => {
+      this.responseMessage = data['message'];
+      this.responseError = data['error'];
+      // console.log(data);
+      this.reset();
+      this.buttonEnable = true;
+    });
+  }
+  onSubmitNEW(event: Event) {
+    event.preventDefault();
+    this.buttonEnable = false;
+    this.flightsService.postNEW(this.environment,
+      this.flightNum,
+      this.utcDate,
+      this.origin,
+      this.destination,
+      this.stdUTC,
+      this.staUTC,
+      this.nextDay,
+      this.newTail).subscribe(data => {
+      this.responseMessage = data['message'];
+      this.responseError = data['error'];
+      // console.log(data);
+      this.reset();
+      this.buttonEnable = true;
     });
   }
 
