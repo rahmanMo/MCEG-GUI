@@ -2986,7 +2986,7 @@ Required params:
   "stg":"stg1",
   "day":"d0", ( up to d7 available, d0 is yesterday, d1 is today and so on)
   "fsdailyId": "4876446", (validate 7 digit)
-  "tailNum": "190" (must be 3 digit)
+  "tailNum": "190" (min 3 max 4 digit)
 }
 
 conditions: Flight must be seq 10 and NOT have negative tail.
@@ -2998,7 +2998,7 @@ router.post('/sub', async (req, res) => {
   let stg = v(body.stg).trim().upperCase();
   let day = v(body.day).trim().upperCase();
   let fsdailyId = v(body.fsdailyId).trim();
-  let tailNum = v(body.tailNum).trim();
+  let tailNum = v(body.tailNum).trim().padLeft(4, ' ');
   // console.log(`Adhoc event processing with data: ${stg}, ${day}, ${fsdailyId}, ${tailNum}`);
   if (stg != 'STG1' && stg != 'STG2' && stg != 'STG3' || body.stg == '' || body.stg == null) {
     res.json({ error: 'stg must be stg1 or stg3' });
@@ -3006,8 +3006,8 @@ router.post('/sub', async (req, res) => {
     res.json({ error: 'day must be d# based on flight local date; # is in range 0 to 7; ex: d0 is yesterday d1 is today and so on' });
   } else if (v(fsdailyId).count() != 7 || v(fsdailyId).isNumeric() == false || body.fsdailyId == '' || body.fsdailyId == null) {
     res.json({ error: 'fsDailyId must be 7 digit' });
-  } else if (v(tailNum).count() != 3 || v(tailNum).isNumeric() == false || body.tailNum == '' || body.tailNum == null) {
-    res.json({ error: 'tailNum must be 3 digit' });
+  } else if (v(tailNum).count() != 4 || v(tailNum).isNumeric() == false || body.tailNum == '' || body.tailNum == null) {
+    res.json({ error: 'tailNum must be 3 digit or 4 digit' });
   } else {
     try {
 
@@ -3158,7 +3158,7 @@ router.post('/del', async (req, res) => {
   let stg = v(body.stg).trim().upperCase();
   let day = v(body.day).trim().upperCase();
   let fsdailyId = v(body.fsdailyId).trim();
-  let tailNum = v(body.tailNum).trim();
+  let tailNum = v(body.tailNum).trim().padLeft(4, ' ');
   // console.log(`Adhoc event processing with data: ${stg}, ${day}, ${fsdailyId}`);
   if (stg != 'STG1' && stg != 'STG2' && stg != 'STG3' || body.stg == '' || body.stg == null) {
     res.json({ error: 'stg must be stg1 or stg3' });
@@ -3560,7 +3560,7 @@ router.post('/asn', async (req, res) => {
   let stg = v(body.stg).trim().upperCase();
   let day = v(body.day).trim().upperCase();
   let fsdailyId = v(body.fsdailyId).trim();
-  let tailNum = v(body.tailNum).trim();
+  let tailNum = v(body.tailNum).trim().padLeft(4, ' ');
   // console.log(`Adhoc event processing with data: ${stg}, ${day}, ${fsdailyId}, ${tailNum}`);
   if (stg != 'STG1' && stg != 'STG2' && stg != 'STG3' || body.stg == '' || body.stg == null) {
     res.json({ error: 'stg must be stg1 or stg3' });
@@ -3568,8 +3568,8 @@ router.post('/asn', async (req, res) => {
     res.json({ error: 'day must be d# based on flight local date; # is in range 0 to 7; ex: d0 is yesterday d1 is today and so on' });
   } else if (v(fsdailyId).count() != 7 || v(fsdailyId).isNumeric() == false || body.fsdailyId == '' || body.fsdailyId == null) {
     res.json({ error: 'fsDailyId must be 7 digit' });
-  } else if (v(tailNum).count() != 3 || v(tailNum).isNumeric() == false || body.tailNum == '' || body.tailNum == null) {
-    res.json({ error: 'tailNum must be 3 digit' });
+  } else if (v(tailNum).count() != 4 || v(tailNum).isNumeric() == false || body.tailNum == '' || body.tailNum == null) {
+    res.json({ error: 'tailNum must be 3 digit or 4 digit' });
   } else {
     try {
 
@@ -4216,7 +4216,7 @@ router.post('/new', async (req, res) => {
   let staUTC = v(body.staUTC).trim().padLeft(4,'0');
   let validateSTA = validateTime(staUTC);
   let nextDayCrossover = v(body.nextDayCrossover).trim();
-  let tailNum = v(body.tailNum).trim();
+  let tailNum = v(body.tailNum).trim().padLeft(4, ' ');
   if (stg != 'STG1' && stg != 'STG2' && stg != 'STG3' || body.stg == '' || body.stg == null) {
     res.json({ error: 'stg must be stg1 or stg2 or stg3' });
   } else if (v(flightNum).count() != 4 || v(flightNum).isNumeric() == false || body.flightNum == '' || body.flightNum == null) {
@@ -4233,8 +4233,8 @@ router.post('/new', async (req, res) => {
     res.json({ error: 'staUTC must be 4 digit valid time value in 24hr format like 0025, 1545 etc' });
   } else if (nextDayCrossover != "1" && nextDayCrossover != "0" || body.nextDayCrossover == '' || body.nextDayCrossover == null) {
     res.json({ error: 'nextDayCrossover must be either 1 or 0 which indicates true and false' });
-  } else if (v.count(tailNum) != 3 || isNaN(tailNum) || body.tailNum == '' || body.tailNum == null) {
-    res.json({ error: 'tailNum must be 3 digit' });
+  } else if (v(tailNum).count() != 4 || isNaN(tailNum) || body.tailNum == '' || body.tailNum == null) {
+    res.json({ error: 'tailNum must be 3 digit or 4 digit' });
   } else {
     try {
 

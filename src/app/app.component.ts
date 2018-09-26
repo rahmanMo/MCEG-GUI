@@ -15,6 +15,7 @@ export class AppComponent implements OnInit {
   day5: string;
   day6: string;
   day7: string;
+  year = moment(new Date()).format('YYYY');
 
   ngOnInit() {
     this.day0 = moment(new Date())

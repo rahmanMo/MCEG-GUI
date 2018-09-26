@@ -15,7 +15,7 @@ body {
   margin: 1%;
 }
 
-.btn:hover, .btn-selected, nav, .current {
+.btn:hover, .btn-selected, nav, .current, .bg-red {
   background: #e74c3c !important;
 }
 
@@ -40,6 +40,10 @@ body {
 
 table, .color-gray .card-panel, mz-tab > ul > li > a {
   color: #606060 !important;
+}
+
+.color-white {
+  color: white;
 }
 
 h5, p, .card-panel > h5 {

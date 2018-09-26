@@ -453,13 +453,13 @@
       </mz-input-container>
       <mz-input-container class="col s3 offset-s0">
         <input mz-input
-          [label]="'Tail Number (3 digit)'"
+          [label]="'Tail Number (3 or 4 digit)'"
           placeholder=""
           name="flight_eon_utc"
           [(ngModel)]="newTail"
           #tail="ngModel"
           minlength="3"
-          maxlength="3"
+          maxlength="4"
           pattern="^[0-9]*$"
           required
           type="text">
@@ -681,13 +681,13 @@
       </mz-input-container>
       <mz-input-container class="col s3 offset-s0">
         <input mz-input
-          [label]="'Tail Number (3 digit)'"
+          [label]="'Tail Number (3 or 4 digit)'"
           placeholder=""
           name="flight_eon_utc"
           [(ngModel)]="newTail"
           #tail="ngModel"
           minlength="3"
-          maxlength="3"
+          maxlength="4"
           pattern="^[0-9]*$"
           required
           type="text">
@@ -1081,13 +1081,13 @@
       </mz-select-container>
       <mz-input-container class="col s3">
         <input mz-input
-          [label]="'Tail Number (3 digit)'"
+          [label]="'Tail Number (3 or 4 digit)'"
           placeholder=""
           name="flight_eon_utc"
           [(ngModel)]="newTail"
           #tail="ngModel"
           minlength="3"
-          maxlength="3"
+          maxlength="4"
           pattern="^[0-9]*$"
           required
           type="text">

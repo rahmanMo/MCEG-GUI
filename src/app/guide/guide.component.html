@@ -8,9 +8,14 @@
         </div>
         <div class="row">
           <div class="col s8 offset-s2">
-            <p>Make sure all the time values entered in CSV file are in UTC. ADHOC processor can only process UTC times. It can handle events for flights that are from today, tomorrow and the following day, 3 day total.</p>
+            <p>Make sure all the time values entered in CSV file are in UTC. ADHOC processor can only process UTC times. It can handle events for flights that are from 7 day including today.</p>
           </div>
         </div>
+        <!-- <div class="row">
+          <div class="col s6 offset-s3">
+            <h5><a routerLink="guide#api"><span class="color-red">API Docs</span></a></h5>
+          </div>
+        </div> -->
     </div>
   </div>
   <div class="row center">
@@ -42,7 +47,7 @@
           <p *ngIf="eventName == 'ETD'">Estimated time of departure for a flight. In MVT it changes ETD time in UTC.</p>
           <p *ngIf="eventName == 'ETO'">Estimated Off time for an operated flight. In MVT it changes ETO time in UTC.</p>
           <p *ngIf="eventName == 'EON'">Estimated On Time. In MVT it changes EON time in UTC.</p>
-          <p *ngIf="eventName == 'SUB'">Substitute tail number within the same aircraft equipment family e.g. change in tail number between 32F and 32A.. In MVT it changes tail number to the one you give.</p>
+          <p *ngIf="eventName == 'SUB'">Substitute tail number within the same aircraft equipment family e.g. change in tail number between 32F and 32A. In MVT it changes tail number to the one you give.</p>
           <p *ngIf="eventName == 'CNL'">Cancel. A flight segment that will not be operated/flown but is retained as part of the flight schedule. This does not delete the flight from database. Note: A canceled flight can be reinstated, a deleted flight cannot.</p>
           <p *ngIf="eventName == 'DEL'">Delete flight from Flight Trac system. Note: Use the NEW event if you need to re-add the deleted flight.</p>
           <p *ngIf="eventName == 'GTA'">Arrival gate change. In MVT it will change existing or add if there was no previous arrival gate.</p>
@@ -60,8 +65,17 @@
           <p *ngIf="eventName == 'DVC'">Divert And Continue. Adds an intermediate stop between the departure and arrival stations of the current flight (ex:  DAL - PHX becomes DAL - HOU - PHX) and Continue to the scheduled arrival station. Note: This breaks the flight into two segment, origin to diversion city and diversion city to original destination.</p>
         </div>
       </div>
-
-
+    </div>
+  </div>
+  <div class="row center" ngNonBindable>
+    <div class="card-panel" id="api">
+      <h4>Events</h4>
+      <div class="divider"></div>
+      <div>
+        <h5>OUT</h5>
+        <!-- <pre><code>URL- http://jblsclnxeqamceg.jetblue.com/api/out</code></pre>
+        <pre><code>[{"stg":"stg1","day":"d0","fsdailyId":"4876446","outUTC":"1900"}]</code></pre> -->
+      </div>
     </div>
   </div>
 </div>

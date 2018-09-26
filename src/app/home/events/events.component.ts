@@ -35,6 +35,10 @@ export class EventsComponent implements OnInit {
       active: false
     },
     {
+      type: 'STG2',
+      active: false
+    },
+    {
       type: 'STG3',
       active: false
     }

@@ -31,6 +31,18 @@ export class FlightsService {
     };
   }
 
+  getByFlightNum(stg, day, flightNum): Observable<Flight[]> {
+    return this.http.get<Flight[]>(`/api/flight/${stg}/${day}/${flightNum}`)
+      .pipe(
+        catchError(this.handleError('getByFlightNum', []))
+      );
+  }
+  getByDailyid(stg, day, fsdailyId): Observable<Flight[]> {
+    return this.http.get<Flight[]>(`/api/id/${stg}/${day}/${fsdailyId}`)
+      .pipe(
+        catchError(this.handleError('getByFlightNum', []))
+      );
+  }
   getStg1d0(): Observable<Flight[]> {
     return this.http.get<Flight[]>('/api/stg1/d0')
       .pipe(
