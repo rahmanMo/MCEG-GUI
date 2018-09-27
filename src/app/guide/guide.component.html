@@ -11,11 +11,12 @@
             <p>Make sure all the time values entered in CSV file are in UTC. ADHOC processor can only process UTC times. It can handle events for flights that are from 7 day including today.</p>
           </div>
         </div>
-        <!-- <div class="row">
+        <div class="row">
           <div class="col s6 offset-s3">
-            <h5><a routerLink="guide#api"><span class="color-red">API Docs</span></a></h5>
+            <h5><a download="MCEG-api-doc.pdf" target="_blank" href="/assets/data.ts">
+              Download Api Doc</a></h5>
           </div>
-        </div> -->
+        </div>
     </div>
   </div>
   <div class="row center">
@@ -64,17 +65,6 @@
           <p *ngIf="eventName == 'GRD'">Ground Turnback. A scheduled flight that has left the gate, not yet departed, returns to a gate. Note: Only OUT must be present for that flight.</p>
           <p *ngIf="eventName == 'DVC'">Divert And Continue. Adds an intermediate stop between the departure and arrival stations of the current flight (ex:  DAL - PHX becomes DAL - HOU - PHX) and Continue to the scheduled arrival station. Note: This breaks the flight into two segment, origin to diversion city and diversion city to original destination.</p>
         </div>
-      </div>
-    </div>
-  </div>
-  <div class="row center" ngNonBindable>
-    <div class="card-panel" id="api">
-      <h4>Events</h4>
-      <div class="divider"></div>
-      <div>
-        <h5>OUT</h5>
-        <!-- <pre><code>URL- http://jblsclnxeqamceg.jetblue.com/api/out</code></pre>
-        <pre><code>[{"stg":"stg1","day":"d0","fsdailyId":"4876446","outUTC":"1900"}]</code></pre> -->
       </div>
     </div>
   </div>
