@@ -2503,8 +2503,6 @@ router.post('/on', async (req, res) => {
         res.json({ error : `flight with dailyId ${fsdailyId} for day ${day} with local date ${flightData[0].numericFlightDate} is cancelled.`});
       } else if (v(flightData[0].previousTailNumber).trim() == 'CANX' || v(flightData[0].tailNumber).startsWith('-', 0)) {
         res.json({ error : `flight with dailyId ${fsdailyId} for day ${day} with local date ${flightData[0].numericFlightDate} has negative tail`});
-      } else if (v(flightData[0].OUTudt).trim() == '' || v(flightData[0].OFFudt).trim() == '' || v(flightData[0].INudt).trim() != '') {
-        res.json({ error : `flight with dailyId ${fsdailyId} for day ${day} should already have OUT and OFF value and IN should be empty. Please use RMA (remove arrival) for removing IN`});
       } else {
 
         //////////////////////////////// prep data for adhoc 16 /////////////////////////////////
@@ -2590,10 +2588,6 @@ router.post('/in', async (req, res) => {
         res.json({ error : `flight with dailyId ${fsdailyId} for day ${day} with local date ${flightData[0].numericFlightDate} is cancelled.`});
       } else if (v(flightData[0].previousTailNumber).trim() == 'CANX' || v(flightData[0].tailNumber).startsWith('-', 0)) {
         res.json({ error : `flight with dailyId ${fsdailyId} for day ${day} with local date ${flightData[0].numericFlightDate} has negative tail`});
-      } else if (v(flightData[0].OUTudt).trim() == '') {
-        res.json({ error : `flight with dailyId ${fsdailyId} for day ${day} with local date ${flightData[0].numericFlightDate} has no OUT time. Please send OUT event first.`});
-      } else if (v(flightData[0].OUTudt).trim() == '' || v(flightData[0].OFFudt).trim() == '' || v(flightData[0].ONudt).trim() == '') {
-        res.json({ error : `flight with dailyId ${fsdailyId} for day ${day} should already have OUT OFF ON filled before sending IN.`});
       } else {
 
         //////////////////////////////// prep data for adhoc 16 /////////////////////////////////
@@ -2602,7 +2596,12 @@ router.post('/in', async (req, res) => {
         let origin = v.trim(flightData[0].origin);
         let dest = v.trim(flightData[0].destination);
         let std = v(flightData[0].STDudt).trim().padLeft(4, '0');
-        let onUTC = v(flightData[0].ONudt).trim().padLeft(4, '0');
+        let onUTC;
+        if (v(flightData[0].ONudt).trim() == '') {
+          onUTC = '9999';
+        } else {
+          onUTC = v(flightData[0].ONudt).trim().padLeft(4, '0');
+        }
         let dropLocation;
         if (stg == 'STG1') {
           dropLocation = '/mnt/gcsfile01/STG1/adh_receive';
@@ -2679,8 +2678,6 @@ router.post('/etd', async (req, res) => {
         res.json({ error : `flight with dailyId ${fsdailyId} for day ${day} with local date ${flightData[0].numericFlightDate} is cancelled.`});
       } else if (v(flightData[0].previousTailNumber).trim() == 'CANX' || v(flightData[0].tailNumber).startsWith('-', 0)) {
         res.json({ error : `flight with dailyId ${fsdailyId} for day ${day} with local date ${flightData[0].numericFlightDate} has negative tail`});
-      } else if (v(flightData[0].OUTudt).trim() != '' || v(flightData[0].OFFudt).trim() != '' || v(flightData[0].ONudt).trim() != '' || v(flightData[0].INudt).trim() != '') {
-        res.json({ error : `flight with dailyId ${fsdailyId} for day ${day} should not already have OUT OFF ON IN. Please use RMA (remove arrival) or RMD (remove departure) before sending ETD`});
       } else {
 
         //////////////////////////////// prep data for adhoc 16 /////////////////////////////////
@@ -2765,8 +2762,6 @@ router.post('/eta', async (req, res) => {
         res.json({ error : `flight with dailyId ${fsdailyId} for day ${day} with local date ${flightData[0].numericFlightDate} is cancelled.`});
       } else if (v(flightData[0].previousTailNumber).trim() == 'CANX' || v(flightData[0].tailNumber).startsWith('-', 0)) {
         res.json({ error : `flight with dailyId ${fsdailyId} for day ${day} with local date ${flightData[0].numericFlightDate} has negative tail`});
-      } else if (v(flightData[0].ONudt).trim() != '' || v(flightData[0].INudt).trim() != '') {
-        res.json({ error : `flight with dailyId ${fsdailyId} for day ${day} should not already have ON IN. Please use RMA (remove arrival) before sending ETA`});
       } else {
 
         //////////////////////////////// prep data for adhoc 16 /////////////////////////////////
@@ -2851,8 +2846,6 @@ router.post('/eto', async (req, res) => {
         res.json({ error : `flight with dailyId ${fsdailyId} for day ${day} with local date ${flightData[0].numericFlightDate} is cancelled.`});
       } else if (v(flightData[0].previousTailNumber).trim() == 'CANX' || v(flightData[0].tailNumber).startsWith('-', 0)) {
         res.json({ error : `flight with dailyId ${fsdailyId} for day ${day} with local date ${flightData[0].numericFlightDate} has negative tail`});
-      } else if (v(flightData[0].OFFudt).trim() != '' || v(flightData[0].ONudt).trim() != '' || v(flightData[0].INudt).trim() != '') {
-        res.json({ error : `flight with dailyId ${fsdailyId} for day ${day} should not already have OFF ON IN`});
       } else {
 
         //////////////////////////////// prep data for adhoc 16 /////////////////////////////////
@@ -2937,8 +2930,6 @@ router.post('/eon', async (req, res) => {
         res.json({ error : `flight with dailyId ${fsdailyId} for day ${day} with local date ${flightData[0].numericFlightDate} is cancelled.`});
       } else if (v(flightData[0].previousTailNumber).trim() == 'CANX' || v(flightData[0].tailNumber).startsWith('-', 0)) {
         res.json({ error : `flight with dailyId ${fsdailyId} for day ${day} with local date ${flightData[0].numericFlightDate} has negative tail`});
-      } else if (v(flightData[0].ONudt).trim() != '' || v(flightData[0].INudt).trim() != '') {
-        res.json({ error : `flight with dailyId ${fsdailyId} for day ${day} should not already have ON IN`});
       } else {
 
         //////////////////////////////// prep data for adhoc 16 /////////////////////////////////
@@ -4076,8 +4067,8 @@ router.post('/air', async (req, res) => {
         }
         let now = moment(new Date()).format('MM_DD_YYYY_HH_mm_ss_x');
         let fileName = `mceg_adhoc16_air_${now}`;
-        let adhocStairg = `ADH016_${pFlightNum}${date}${origin}${dest}${std}AIR`;
-        let job = await fs.writeFile(`${dropLocation}/${fileName}.txt`, adhocStairg).then((err) => {
+        let adhocString = `ADH016_${pFlightNum}${date}${origin}${dest}${std}AIR`;
+        let job = await fs.writeFile(`${dropLocation}/${fileName}.txt`, adhocString).then((err) => {
          if (err) {
           console.log(err)
            res.json({error: `Error sending File: ${fileName}.txt - AIR for flight ${pFlightNum} departing utc ${date} Failed!!`});
