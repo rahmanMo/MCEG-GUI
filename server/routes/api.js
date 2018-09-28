@@ -2328,8 +2328,6 @@ router.post('/out', async (req, res) => {
         res.json({ error : `flight with dailyId ${fsdailyId} for day ${day} with local date ${flightData[0].numericFlightDate} is cancelled.`});
       } else if (v(flightData[0].previousTailNumber).trim() == 'CANX' || v(flightData[0].tailNumber).startsWith('-', 0)) {
         res.json({ error : `flight with dailyId ${fsdailyId} for day ${day} with local date ${flightData[0].numericFlightDate} has negative tail`});
-      } else if (v(flightData[0].OFFudt).trim() != '' || v(flightData[0].ONudt).trim() != '' || v(flightData[0].INudt).trim() != '') {
-        res.json({ error : `flight with dailyId ${fsdailyId} for day ${day} already have OFF or ON or IN. Please use RMA (remove arrival) or RMD (remove departure) before setting new OUT`});
       } else {
 
         //////////////////////////////// prep data for adhoc 16 /////////////////////////////////
@@ -2414,10 +2412,6 @@ router.post('/off', async (req, res) => {
         res.json({ error : `flight with dailyId ${fsdailyId} for day ${day} with local date ${flightData[0].numericFlightDate} is cancelled.`});
       } else if (v(flightData[0].previousTailNumber).trim() == 'CANX' || v(flightData[0].tailNumber).startsWith('-', 0)) {
         res.json({ error : `flight with dailyId ${fsdailyId} for day ${day} with local date ${flightData[0].numericFlightDate} has negative tail`});
-      } else if (v(flightData[0].OUTudt).trim() == '') {
-        res.json({ error : `flight with dailyId ${fsdailyId} for day ${day} with local date ${flightData[0].numericFlightDate} has no OUT time. Please send OUT event first.`});
-      } else if (v(flightData[0].ONudt).trim()!= '' || v(flightData[0].INudt).trim() != '') {
-        res.json({ error : `flight with dailyId ${fsdailyId} for day ${day} already have ON or IN. Please use RMA (remove arrival) before setting new OFF`});
       } else {
 
         //////////////////////////////// prep data for adhoc 16 /////////////////////////////////
@@ -2426,7 +2420,12 @@ router.post('/off', async (req, res) => {
         let origin = v.trim(flightData[0].origin);
         let dest = v.trim(flightData[0].destination);
         let std = v(flightData[0].STDudt).trim().padLeft(4, '0');
-        let out = v(flightData[0].OUTudt).trim().padLeft(4, '0');
+        let out;
+        if (v(flightData[0].OUTudt).trim() == '') {
+          out = '9999';
+        } else {
+          out = v(flightData[0].OUTudt).trim().padLeft(4, '0');
+        }
         let off = v(offUTC).padLeft(4, '0');
         let dropLocation;
         if (stg == 'STG1') {
