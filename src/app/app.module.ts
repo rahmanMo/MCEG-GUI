@@ -50,6 +50,7 @@ import { Stage2D4Component } from './stage2-d4/stage2-d4.component';
 import { Stage2D5Component } from './stage2-d5/stage2-d5.component';
 import { Stage2D6Component } from './stage2-d6/stage2-d6.component';
 import { Stage2D7Component } from './stage2-d7/stage2-d7.component';
+import { SearchFlightComponent } from './search-flight/search-flight.component';
 
 @NgModule({
   declarations: [
@@ -84,7 +85,8 @@ import { Stage2D7Component } from './stage2-d7/stage2-d7.component';
     Stage2D4Component,
     Stage2D5Component,
     Stage2D6Component,
-    Stage2D7Component
+    Stage2D7Component,
+    SearchFlightComponent
   ],
   imports: [
     BrowserModule,
