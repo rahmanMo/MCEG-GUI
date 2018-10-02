@@ -2183,11 +2183,9 @@ router.get('/flight/:stg/:day/:flightNum', (req, res) => {
   } else {
 
     getByFlightNum(stg,flightNum,day).then(flights => {
-      if (flights == [] || flights == '') {
-        res.json({ message: 'no flights found' });
-      } else {
+
         res.json(flights);
-      }
+
     });
 
   }
@@ -2220,11 +2218,9 @@ router.get('/id/:stg/:day/:fsdailyId', (req, res) => {
   } else {
 
     getByFsdailyId(stg,fsdailyId,day).then(flight => {
-      if (flight == [] || flight == '') {
-        res.json({ message: 'no flight found' });
-      } else {
+
         res.json(flight);
-      }
+
     });
 
   }

@@ -7,6 +7,9 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 import { EventRow } from '../../models/event-row';
+import { EventService } from '../../services/event.service';
+import { Flight } from '../../models/flight';
+import { FlightsService } from '../../services/flights.service';
 
 @Component({
   selector: 'app-events',
@@ -15,6 +18,7 @@ import { EventRow } from '../../models/event-row';
   encapsulation: ViewEncapsulation.None
 })
 export class EventsComponent implements OnInit {
+  constructor(public eventService: EventService, private flightService: FlightsService) {}
   public options: Pickadate.DateOptions = {
     format: 'yyyymmdd',
     formatSubmit: 'yyyymmdd',
@@ -27,6 +31,7 @@ export class EventsComponent implements OnInit {
 
   eventName: string;
   errorMessage: string;
+  selectedFlight: Flight;
 
   // environment
   env: any = [
@@ -200,6 +205,7 @@ export class EventsComponent implements OnInit {
 
   ngOnInit() {
     this.currentDateTimeUTC();
+    this.eventService.currentFlight.subscribe(data => this.selectedFlight = data);
   }
 
   resetBinding() {
@@ -244,6 +250,7 @@ export class EventsComponent implements OnInit {
 
   // function that handles the event emit
   whichEnv(env) {
+      this.eventService.envChange(env.type);
       this.errorMessage = null;
       this.stage = env.type;
       this.env.forEach(e => {
@@ -254,6 +261,7 @@ export class EventsComponent implements OnInit {
         }
       });
       this.stage = this.stage.toUpperCase();
+
   }
 
   // out form submit

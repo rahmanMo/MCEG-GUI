@@ -9,17 +9,43 @@
     </ul>
   </div>
 </div>
-<form (ngSubmit)="onSubmitOUT($event)">
-  <div class="row center">
-
+<div class="row center">
+  <form (ngSubmit)="getByFlightNum($event)">
     <mz-select-container class="col s3">
       <select mz-select label="'Environment'" [placeholder]="'Environment'" [(ngModel)]="environment" (change)="environment = $event.target.value">
-        <option *ngFor="let e of environments" class="left circle" value="{{ e }}">{{ e }}</option>
+        <option *ngFor="let e of environments" required class="left circle" value="{{ e }}">{{ e }}</option>
       </select>
     </mz-select-container>
     <mz-select-container class="col s3">
       <select mz-select [placeholder]="'Flight Local Date'" label="Days" [(ngModel)]="selectedDay" (change)="selectedDay = $event.target.value">
-        <option *ngFor="let d of days" class="left circle" value="{{ d.value }}">{{ d.value.toUpperCase() }} ( {{
+        <option *ngFor="let d of days" class="left circle" required value="{{ d.value }}">{{ d.value.toUpperCase() }} ( {{
+          d.text
+          }} )</option>
+      </select>
+    </mz-select-container>
+
+    <!-- <div class="row" > -->
+    <mz-input-container class="col s3">
+      <input mz-input [label]="'Flight Number'" placeholder="" name="flight_out_utc" [(ngModel)]="flightNum" #fltNum="ngModel"
+        minlength="1" maxlength="4" pattern="^[0-9]*$" required type="text">
+    </mz-input-container>
+    <!-- </div> -->
+    <!-- submit -->
+    <div class="row center">
+      <button class="waves-effect waves-light btn" type="submit" value="Post" [disabled]="fltNum.invalid
+                  || buttonEnable == false">Search</button>
+      <button type="reset" value="Reset" class="waves-effect waves-light btn" (click)="reset()">RESET</button>
+    </div>
+  </form>
+  <form (ngSubmit)="getByDailyId($event)">
+    <mz-select-container class="col s3">
+      <select mz-select label="'Environment'" [placeholder]="'Environment'" [(ngModel)]="environment" (change)="environment = $event.target.value">
+        <option *ngFor="let e of environments" class="left circle" required value="{{ e }}">{{ e }}</option>
+      </select>
+    </mz-select-container>
+    <mz-select-container class="col s3">
+      <select mz-select [placeholder]="'Flight Local Date'" label="Days" [(ngModel)]="selectedDay" (change)="selectedDay = $event.target.value">
+        <option *ngFor="let d of days" class="left circle" required value="{{ d.value }}">{{ d.value.toUpperCase() }} ( {{
           d.text
           }} )</option>
       </select>
@@ -28,20 +54,67 @@
     <!-- <div class="row" > -->
     <mz-input-container class="col s3">
       <input mz-input [label]="'FS-DailyId'" placeholder="" name="daily_id" [(ngModel)]="fsDailyId" #dailyId="ngModel"
-        minlength="7" maxlength="7" pattern="^[0-9]*$" type="text">
-    </mz-input-container>
-    <mz-input-container class="col s3">
-      <input mz-input [label]="'Flight Number'" placeholder="" name="flight_out_utc" [(ngModel)]="flightNum" #fltNum="ngModel"
-        minlength="1" maxlength="4" pattern="^[0-9]*$" required type="text">
+        minlength="7" maxlength="7" pattern="^[0-9]*$" required type="text">
     </mz-input-container>
     <!-- </div> -->
     <!-- submit -->
     <div class="row center">
       <button class="waves-effect waves-light btn" type="submit" value="Post" [disabled]="dailyId.invalid
-                  || fltNum.invalid
                   || buttonEnable == false">Search</button>
       <button type="reset" value="Reset" class="waves-effect waves-light btn" (click)="reset()">RESET</button>
     </div>
+  </form>
+</div>
 
-  </div>
-</form>
+<!-- <mz-tab *ngIf="flights.length != 0" [fixedTabWidth]="'true'">
+  <mz-tab-item [label]="'Basic Info'">
+    <div class="card-panel" style="width: 100%; min-height: 400px;">
+      <ngx-table [configuration]="configuration" [data]="flights" [columns]="basicColumns">
+      </ngx-table>
+    </div>
+  </mz-tab-item>
+  <mz-tab-item [label]="'Origin Times'">
+    <div class="card-panel" style="width: 100%; min-height: 400px;">
+      <ngx-table [configuration]="configuration" [data]="flights" [columns]="originTimeColumns">
+      </ngx-table>
+    </div>
+  </mz-tab-item>
+  <mz-tab-item [label]="'Destination Times'">
+    <div class="card-panel" style="width: 100%; min-height: 400px;">
+      <ngx-table [configuration]="configuration" [data]="flights" [columns]="destinationTimeColumns">
+      </ngx-table>
+    </div>
+  </mz-tab-item>
+  <mz-tab-item [label]="'Gate Info'">
+    <div class="card-panel" style="width: 100%; min-height: 400px;">
+      <ngx-table [configuration]="configuration" [data]="flights" [columns]="gateColumns">
+      </ngx-table>
+    </div>
+  </mz-tab-item>
+  <mz-tab-item [label]="'Spec Info'">
+    <div class="card-panel" style="width: 100%; min-height: 400px;">
+      <ngx-table [configuration]="configuration" [data]="flights" [columns]="specColumns">
+      </ngx-table>
+    </div>
+  </mz-tab-item>
+  <mz-tab-item [label]="'MISC Info'">
+    <div class="card-panel" style="width: 100%; min-height: 400px;">
+      <ngx-table [configuration]="configuration" [data]="flights" [columns]="miscColumns">
+      </ngx-table>
+    </div>
+  </mz-tab-item>
+  <mz-tab-item [label]="'All Data'">
+    <div class="card-panel" style="width: 100%; min-height: 400px;">
+      <ngx-table class="large-set" [configuration]="configurationExtra" [data]="flights" [columns]="allColumns">
+      </ngx-table>
+    </div>
+  </mz-tab-item>
+</mz-tab> -->
+<p *ngIf="errorMsg">No Flights found</p>
+<div *ngFor="let f of flights">
+
+  <p *ngIf="flights.length != 0">Flight#: {{f.identifier}} || Dailyid: {{f.csvFSDailyID}} || Origin: {{f.origin}} || Destination: {{f.destination}} || Seq: {{f.sequence}}</p>
+  <p *ngIf="flights.length != 0">Tail#: {{f.tailNumber}} || STD-UTC: {{f.STDudt}} || STA-UTC: {{f.STAudt}} || Local-Date: {{f.numericFlightDate}} || UTC-Date:
+    {{f.numGMTDate}}</p>
+  <p *ngIf="flights.length != 0">--------------------------------------------------------------------------------------------------------------------------------------------</p>
+</div>
