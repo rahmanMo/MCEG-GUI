@@ -12,12 +12,12 @@
 <div class="row center">
   <form (ngSubmit)="getByFlightNum($event)">
     <mz-select-container class="col s2">
-      <select mz-select label="'Environment'" [placeholder]="'Environment'" [(ngModel)]="environment" (change)="environment = $event.target.value">
+      <select mz-select label="'Environment'" [placeholder]="'Environment'" name="environment1" #env1="ngModel" [(ngModel)]="environment" (change)="environment = $event.target.value">
         <option *ngFor="let e of environments" required class="left circle" value="{{ e }}">{{ e }}</option>
       </select>
     </mz-select-container>
     <mz-select-container class="col s4">
-      <select mz-select [placeholder]="'Flight Local Date'" label="Flight Local Date" [(ngModel)]="selectedDay" (change)="selectedDay = $event.target.value">
+      <select mz-select [placeholder]="'Flight Local Date'" label="Flight Local Date" name="local-date1" #ld1="ngModel"  [(ngModel)]="selectedDay" (change)="selectedDay = $event.target.value">
         <option *ngFor="let d of days" class="left circle" required value="{{ d.value }}">{{ d.value.toUpperCase() }} (
           {{
           d.text
@@ -34,6 +34,8 @@
     <!-- submit -->
     <div class="col s4 center" style="margin-top: 2.8%;">
       <button class="waves-effect waves-light btn" type="submit" value="Post" [disabled]="fltNum.invalid
+                  || env1.invalid
+                  || ld1.invalid
                   || buttonEnable == false">Search</button>
       <button type="reset" value="Reset" class="waves-effect waves-light btn" (click)="reset()">RESET</button>
     </div>
@@ -42,12 +44,12 @@
 <div class="row">
   <form (ngSubmit)="getByDailyId($event)">
     <mz-select-container class="col s2">
-      <select mz-select label="'Environment'" [placeholder]="'Environment'" [(ngModel)]="environment" (change)="environment = $event.target.value">
+      <select mz-select label="'Environment'" [placeholder]="'Environment'" name="environment2" #env2="ngModel" [(ngModel)]="environment" (change)="environment = $event.target.value">
         <option *ngFor="let e of environments" class="left circle" required value="{{ e }}">{{ e }}</option>
       </select>
     </mz-select-container>
     <mz-select-container class="col s4">
-      <select mz-select [placeholder]="'Flight Local Date'" label="Flight Local Date" [(ngModel)]="selectedDay" (change)="selectedDay = $event.target.value">
+      <select mz-select [placeholder]="'Flight Local Date'" label="Flight Local Date" name="local-date2" #ld2="ngModel" [(ngModel)]="selectedDay" (change)="selectedDay = $event.target.value">
         <option *ngFor="let d of days" class="left circle" required value="{{ d.value }}">{{ d.value.toUpperCase() }} (
           {{
           d.text
@@ -64,6 +66,8 @@
     <!-- submit -->
     <div class="col s4 center" style="margin-top: 2.8%;">
       <button class="waves-effect waves-light btn" type="submit" value="Post" [disabled]="dailyId.invalid
+                  || env2.invalid
+                  || ld2.invalid
                   || buttonEnable == false">Search</button>
       <button type="reset" value="Reset" class="waves-effect waves-light btn" (click)="reset()">RESET</button>
     </div>
@@ -117,10 +121,13 @@
 <p *ngIf="errorMsg">No Flights found</p>
 <div *ngFor="let f of flights">
 
-  <p *ngIf="flights.length != 0"><span class="color-teal">Flight#:</span> {{f.identifier}} || <span class="color-teal">Dailyid:</span> {{f.csvFSDailyID}} || <span class="color-teal">Origin:</span> {{f.origin}} ||
-    <span class="color-teal">Destination:</span> {{f.destination}} || <span class="color-teal">Seq:</span> {{f.sequence}}</p>
-  <p *ngIf="flights.length != 0"><span class="color-teal">Tail#:</span> {{f.tailNumber}} || <span class="color-teal">STD-UTC:</span> {{f.STDudt}} || <span class="color-teal">STA-UTC:</span> {{f.STAudt}} ||
-    <span class="color-teal">Local-Date:</span> {{f.numericFlightDate}} || <span class="color-teal">UTC-Date:</span>
+  <p *ngIf="flights.length != 0" class="color-red"><span class="color-teal">Flight#:</span> {{f.identifier}}  <span class="color-teal">Dailyid:</span> {{f.csvFSDailyID}}  <span class="color-teal">Origin:</span> {{f.origin}}
+    <span class="color-teal">Destination:</span> {{f.destination}}  <span class="color-teal">Seq:</span> {{f.sequence}}</p>
+  <p *ngIf="flights.length != 0" class="color-red"><span class="color-teal">Tail#:</span> {{f.tailNumber}}  <span class="color-teal">STD-UTC:</span> {{f.STDudt}}  <span class="color-teal">STA-UTC:</span> {{f.STAudt}}
+    <span class="color-teal">Local-Date:</span> {{f.numericFlightDate}}  <span class="color-teal">UTC-Date:</span>
     {{f.numGMTDate}}</p>
-  <p *ngIf="flights.length != 0">--------------------------------------------------------------------------</p>
+  <p *ngIf="flights.length != 0" class="color-red"><span class="color-teal">ETD-UTC#:</span> {{f.ETDudt}}  <span class="color-teal">ETA-UTC:</span> {{f.ETAudt}}  <span class="color-teal">Equipment:</span> {{f.OAGEquipmentType}}
+    <span class="color-teal">Origin-Gate:</span> {{f.originGate}}  <span class="color-teal">Destination-Gate:</span>
+    {{f.destinationGate}}</p>
+  <p *ngIf="flights.length != 0" class="color-red">--------------------------------------------------------------------------</p>
 </div>
