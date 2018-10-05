@@ -2174,7 +2174,7 @@ router.get('/flight/:stg/:day/:flightNum', (req, res) => {
   let day = v(req.params.day).trim().upperCase();
   let flightNum = v(req.params.flightNum).trim();
 
-  if (stg != 'STG1' && stg != 'STG3') {
+  if (stg != 'STG1'&& stg != 'STG2' && stg != 'STG3') {
     res.json({ error: 'stg must be stg1 or stg3' });
   } else if (day != 'D0' && day != 'D1' && day != 'D2' && day != 'D3' && day != 'D4' && day != 'D5' && day != 'D6' && day != 'D7') {
     res.json({ error: 'day must be d# based on flight local date; # is in range 0 to 7; ex: d0 is yesterday d1 is today and so on' });
