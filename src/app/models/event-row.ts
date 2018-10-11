@@ -5,6 +5,7 @@ export interface EventRow {
   test_case_id: string;
   previous_flight_num: string;
   flight_number: string;
+  sequence: string;
   next_flight_num: string;
   adhoc_16_string: string;
   actual_out_time_utc: string;
