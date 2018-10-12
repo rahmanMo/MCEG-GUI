@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Flight } from '../models/flight';
-import { AdhocEvent } from '../models/adhoc-event';
 import * as v from 'voca';
 import * as moment from 'moment';
 import { FlightsService } from '../services/flights.service';
@@ -295,18 +294,6 @@ export class SearchFlightComponent implements OnInit {
     this.gta = null;
     this.diversionCity = null;
     this.nextDay = null;
-  }
-
-  onSubmitDVC(event: Event) {
-    event.preventDefault();
-    this.buttonEnable = false;
-    this.flightsService.postDVC(this.environment, this.selectedDay, this.fsDailyId, this.diversionCity, this.etaUTC).subscribe(data => {
-      this.responseMessage = data['message'];
-      this.responseError = data['error'];
-      // console.log(data);
-      this.reset();
-      this.buttonEnable = true;
-    });
   }
 
   getByFlightNum(event: Event) {
