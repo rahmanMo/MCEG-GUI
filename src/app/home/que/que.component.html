@@ -12,7 +12,8 @@
           <span class="index mark">{{i+1}}</span>
           <span *ngIf="event.event_type == 'OUT'"> Make new
             <span class="mark">{{event.event_type}}</span> time for Flight:
-            <span class="mark">{{event.flight_number}}</span> on UTC-Date:
+            <span class="mark">{{event.flight_number}}</span> SEQ:
+            <span class="mark">{{event.sequence}}</span> on UTC-Date:
             <span class="mark">{{ event.flight_origin_date_utc}}</span> @
             <span class="mark">{{event.actual_out_time_utc}}</span> UTC-Time
 
@@ -24,7 +25,8 @@
           <span *ngIf="event.event_type == 'OFF'">
             Make new
             <span class="mark">{{event.event_type}}</span> time for Flight:
-            <span class="mark">{{event.flight_number}}</span> on UTC-Date:
+            <span class="mark">{{event.flight_number}}</span> SEQ:
+            <span class="mark">{{event.sequence}}</span> on UTC-Date:
             <span class="mark">{{ event.flight_origin_date_utc}}</span> @
             <span class="mark">{{event.actual_off_time_utc}}</span> UTC-Time
 
@@ -35,7 +37,8 @@
           <span *ngIf="event.event_type == 'ON'">
             Make new
             <span class="mark">{{event.event_type}}</span> time for Flight:
-            <span class="mark">{{event.flight_number}}</span> on UTC-Date:
+            <span class="mark">{{event.flight_number}}</span> SEQ:
+            <span class="mark">{{event.sequence}}</span> on UTC-Date:
             <span class="mark">{{ event.flight_origin_date_utc}}</span> @
             <span class="mark">{{event.actual_on_time_utc}}</span> UTC-Time
 
@@ -46,7 +49,8 @@
           <span *ngIf="event.event_type == 'IN'">
             Make new
             <span class="mark">{{event.event_type}}</span> time for Flight:
-            <span class="mark">{{event.flight_number}}</span> on UTC-Date:
+            <span class="mark">{{event.flight_number}}</span> SEQ:
+            <span class="mark">{{event.sequence}}</span> on UTC-Date:
             <span class="mark">{{ event.flight_origin_date_utc}}</span> @
             <span class="mark">{{event.actual_in_time_utc}}</span> UTC-Time
 
@@ -57,7 +61,8 @@
           <span *ngIf="event.event_type == 'ETA'">
             Make new
             <span class="mark">{{event.event_type}}</span> time for Flight:
-            <span class="mark">{{event.flight_number}}</span> on UTC-Date:
+            <span class="mark">{{event.flight_number}}</span> SEQ:
+            <span class="mark">{{event.sequence}}</span> on UTC-Date:
             <span class="mark">{{ event.flight_origin_date_utc}}</span> @
             <span class="mark">{{event.actual_eta_time_utc}}</span> UTC-Time
 
@@ -68,7 +73,8 @@
           <span *ngIf="event.event_type == 'ETD'">
             Make new
             <span class="mark">{{event.event_type}}</span> time for Flight:
-            <span class="mark">{{event.flight_number}}</span> on UTC-Date:
+            <span class="mark">{{event.flight_number}}</span> SEQ:
+            <span class="mark">{{event.sequence}}</span> on UTC-Date:
             <span class="mark">{{ event.flight_origin_date_utc}}</span> @
             <span class="mark">{{event.actual_etd_time_utc}}</span> UTC-Time
 
@@ -79,7 +85,8 @@
           <span *ngIf="event.event_type == 'ETO'">
             Make new
             <span class="mark">{{event.event_type}}</span> time for Flight:
-            <span class="mark">{{event.flight_number}}</span> on UTC-Date:
+            <span class="mark">{{event.flight_number}}</span> SEQ:
+            <span class="mark">{{event.sequence}}</span> on UTC-Date:
             <span class="mark">{{ event.flight_origin_date_utc}}</span> @
             <span class="mark">{{event.actual_eto_time_utc}}</span> UTC-Time
 
@@ -90,7 +97,8 @@
           <span *ngIf="event.event_type == 'EON'">
             Make new
             <span class="mark">{{event.event_type}}</span> time for Flight:
-            <span class="mark">{{event.flight_number}}</span> on UTC-Date:
+            <span class="mark">{{event.flight_number}}</span> SEQ:
+            <span class="mark">{{event.sequence}}</span> on UTC-Date:
             <span class="mark">{{ event.flight_origin_date_utc}}</span> @
             <span class="mark">{{event.actual_eon_time_utc}}</span> UTC-Time
 
@@ -100,7 +108,8 @@
           </span>
           <span *ngIf="event.event_type == 'SUB'">
             <span class="mark">{{event.event_type}}</span> Substitute tail number for Flight:
-            <span class="mark">{{event.flight_number}}</span> on UTC-Date:
+            <span class="mark">{{event.flight_number}}</span> SEQ:
+            <span class="mark">{{event.sequence}}</span> on UTC-Date:
             <span class="mark">{{ event.flight_origin_date_utc}}</span> with
             <span class="mark">{{event.new_tail_number}}</span>
 
@@ -110,7 +119,8 @@
           </span>
           <span *ngIf="event.event_type == 'CNL'">
             <span class="mark">{{event.event_type}}</span> Cancel Flight:
-            <span class="mark">{{event.flight_number}}</span> on UTC-Date:
+            <span class="mark">{{event.flight_number}}</span> SEQ:
+            <span class="mark">{{event.sequence}}</span> on UTC-Date:
             <span class="mark">{{ event.flight_origin_date_utc}}</span>
 
             <a href="#!">
@@ -119,7 +129,8 @@
           </span>
           <span *ngIf="event.event_type == 'DEL'">
             <span class="mark">{{event.event_type}}</span> Delete Flight:
-            <span class="mark">{{event.flight_number}}</span> on UTC-Date:
+            <span class="mark">{{event.flight_number}}</span> SEQ:
+            <span class="mark">{{event.sequence}}</span> on UTC-Date:
             <span class="mark">{{ event.flight_origin_date_utc}}</span>
 
             <a href="#!">
@@ -128,7 +139,8 @@
           </span>
           <span *ngIf="event.event_type == 'GTA'">
             <span class="mark">{{event.event_type}}</span> For Flight:
-            <span class="mark">{{event.flight_number}}</span> on UTC-Date:
+            <span class="mark">{{event.flight_number}}</span> SEQ:
+            <span class="mark">{{event.sequence}}</span> on UTC-Date:
             <span class="mark">{{ event.flight_origin_date_utc}}</span>. New Arrival Gate:
             <span class="mark">{{event.arrival_gate}}</span>
 
@@ -138,7 +150,8 @@
           </span>
           <span *ngIf="event.event_type == 'GTD'">
             <span class="mark">{{event.event_type}}</span> For Flight:
-            <span class="mark">{{event.flight_number}}</span> on UTC-Date:
+            <span class="mark">{{event.flight_number}}</span> SEQ:
+            <span class="mark">{{event.sequence}}</span> on UTC-Date:
             <span class="mark">{{ event.flight_origin_date_utc}}</span>. New Departure Gate:
             <span class="mark">{{event.departure_gate}}</span>
 

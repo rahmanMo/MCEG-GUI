@@ -207,13 +207,14 @@ export class EventsComponent implements OnInit {
   ngOnInit() {
     this.currentDateTimeUTC();
     this.eventService.currentFlight.subscribe(data => this.selectedFlight = data);
+    this.sequence = '10';
   }
 
   resetBinding() {
     this.test_case_id = null;
     this.previous_flight_num = null;
     this.flight_number = null;
-    this.sequence = null;
+    this.sequence = '10';
     this.next_flight_num = null;
     this.adhoc_16_string = null;
     this.actual_out_time_utc = null;
