@@ -27,9 +27,15 @@ Clone repo and do `npm install` or if you are using Yarn run `yarn` command to i
 Run `ng serve` for a dev server on gui only. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 For backend run `ng build` to generate `/dist` folder, then `npm run server`. Open `http://localhost:3000`
 
+## Known Issue
+Data is not being refreshed every 30 sec as intended on data feed script.
+Reason: All the processing power is directed to data feed script, therefore it takes longer for MongoDb to make changes to database.
+Solution: Put MongoDb server on a seperate VM and edit the `/server/route/api.js`. Change `const dbURL` and point it to the VM running MongoDB.
+
 ## Prod
 Clone repo and do `sudo npm install` or if you are using Yarn run `yarn` command to install dependencies
-Use the `sudo ng build --prod` for a production build on gui. 
+Use the `sudo ng build --prod` for a production build on gui.
+Make sure MongoDB logs are pointed to to `/dev/null` to avoid space running out issue on VM.
 Install pm2 `sudo npm install pm2@latest -g` for production process management for Node.js.
 
 `cd STG1` then run `nohup python3 stg1DataFeed.py </dev/null >/dev/null 2>&1 &` for stage 1 data feed.
