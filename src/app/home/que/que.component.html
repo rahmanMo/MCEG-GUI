@@ -161,7 +161,8 @@
           </span>
           <span *ngIf="event.event_type == 'RIN'">
             <span class="mark">{{event.event_type}}</span> Reinstate Flight:
-            <span class="mark">{{event.flight_number}}</span> on UTC-Date:
+            <span class="mark">{{event.flight_number}}</span> SEQ:
+            <span class="mark">{{event.sequence}}</span> on UTC-Date:
             <span class="mark">{{ event.flight_origin_date_utc}}</span>
 
             <a href="#!">
@@ -170,7 +171,8 @@
           </span>
           <span *ngIf="event.event_type == 'ASN'">
             <span class="mark">{{event.event_type}}</span> Assign tail number for Flight:
-            <span class="mark">{{event.flight_number}}</span> on UTC-Date:
+            <span class="mark">{{event.flight_number}}</span> SEQ:
+            <span class="mark">{{event.sequence}}</span> on UTC-Date:
             <span class="mark">{{ event.flight_origin_date_utc}}</span> with
             <span class="mark">{{event.new_tail_number}}</span>
 
@@ -180,7 +182,8 @@
           </span>
           <span *ngIf="event.event_type == 'REM'">
             <span class="mark">{{event.event_type}}</span> Remove Flight:
-            <span class="mark">{{event.flight_number}}</span> on UTC-Date:
+            <span class="mark">{{event.flight_number}}</span> SEQ:
+            <span class="mark">{{event.sequence}}</span> on UTC-Date:
             <span class="mark">{{ event.flight_origin_date_utc}}</span>
 
             <a href="#!">
@@ -189,7 +192,8 @@
           </span>
           <span *ngIf="event.event_type == 'UDA'">
             <span class="mark">{{event.event_type}}</span> Undelay arrival for Flight:
-            <span class="mark">{{event.flight_number}}</span> on UTC-Date:
+            <span class="mark">{{event.flight_number}}</span> SEQ:
+            <span class="mark">{{event.sequence}}</span> on UTC-Date:
             <span class="mark">{{ event.flight_origin_date_utc}}</span>
 
             <a href="#!">
@@ -198,7 +202,8 @@
           </span>
           <span *ngIf="event.event_type == 'UDD'">
             <span class="mark">{{event.event_type}}</span> Undelay departure for Flight:
-            <span class="mark">{{event.flight_number}}</span> on UTC-Date:
+            <span class="mark">{{event.flight_number}}</span> SEQ:
+            <span class="mark">{{event.sequence}}</span> on UTC-Date:
             <span class="mark">{{ event.flight_origin_date_utc}}</span>
 
             <a href="#!">
@@ -207,7 +212,8 @@
           </span>
           <span *ngIf="event.event_type == 'RMA'">
             <span class="mark">{{event.event_type}}</span> Remove arrival values for Flight:
-            <span class="mark">{{event.flight_number}}</span> on UTC-Date:
+            <span class="mark">{{event.flight_number}}</span> SEQ:
+            <span class="mark">{{event.sequence}}</span> on UTC-Date:
             <span class="mark">{{ event.flight_origin_date_utc}}</span>
 
             <a href="#!">
@@ -216,7 +222,8 @@
           </span>
           <span *ngIf="event.event_type == 'RMD'">
             <span class="mark">{{event.event_type}}</span> Remove departure values for Flight:
-            <span class="mark">{{event.flight_number}}</span> on UTC-Date:
+            <span class="mark">{{event.flight_number}}</span> SEQ:
+            <span class="mark">{{event.sequence}}</span> on UTC-Date:
             <span class="mark">{{ event.flight_origin_date_utc}}</span>
 
             <a href="#!">
@@ -225,7 +232,8 @@
           </span>
           <span *ngIf="event.event_type == 'AIR'">
             <span class="mark">{{event.event_type}}</span> Make air turnback for Flight:
-            <span class="mark">{{event.flight_number}}</span> on UTC-Date:
+            <span class="mark">{{event.flight_number}}</span> SEQ:
+            <span class="mark">{{event.sequence}}</span> on UTC-Date:
             <span class="mark">{{ event.flight_origin_date_utc}}</span>
 
             <a href="#!">
@@ -234,7 +242,8 @@
           </span>
           <span *ngIf="event.event_type == 'GRD'">
             <span class="mark">{{event.event_type}}</span> Make ground turnback for Flight:
-            <span class="mark">{{event.flight_number}}</span> on UTC-Date:
+            <span class="mark">{{event.flight_number}}</span> SEQ:
+            <span class="mark">{{event.sequence}}</span> on UTC-Date:
             <span class="mark">{{ event.flight_origin_date_utc}}</span>
 
             <a href="#!">
@@ -251,7 +260,8 @@
           </span>
           <span *ngIf="event.event_type == 'DVC'">
             <span class="mark">{{event.event_type}}</span> Divert Flight:
-            <span class="mark">{{event.flight_number}}</span> on UTC-Date:
+            <span class="mark">{{event.flight_number}}</span> SEQ:
+            <span class="mark">{{event.sequence}}</span> on UTC-Date:
             <span class="mark">{{ event.flight_origin_date_utc}}</span> to
             <span class="mark">{{event.diversion_city}}</span> with ETA
             <span class="mark">{{event.actual_eta_time_utc}}</span>
