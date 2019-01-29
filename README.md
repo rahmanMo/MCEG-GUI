@@ -4,9 +4,11 @@ This project is a helper app for MCEG (Movement Control Event Generator). Use th
 ## Prerequisite ()
 1. Node >= 8.11.1
 2. Python >= 3.6.2
-3. pymongo >= 3.6.1
-4. Mongodb
-5. File drop location for Stage 1 and Stage 3 environment Adhoc Processor
+3. APScheduler >= 3.5.3
+4. pandas >= 0.24.0
+5. pymongo >= 3.6.1
+6. Mongodb
+7. File drop location for Stage 1 and Stage 3 environment Adhoc Processor
 #### Make sure on below config
  1. `\\gscfile01\SharedFile\QA_MVC` is available fom the machine this app runs from including all nested sub folders
  2. Python scripts should have permission to delete files from network share `\\gscfile01\SharedFile\QA_MVC`
