@@ -61,7 +61,7 @@ def STG1D0_job():
           adh004String = f'ADH004_{current_date}'
           request_file.close()
           print(f' Sending adhoc 4 request using: {adh004String}')
-          time.sleep(25)
+          time.sleep(30)
         # check if the file exist
         receivedFiles = os.listdir(receive_folder)
         receivePattern = f'MCEG_STG1D0_ADHOC4_{timeStamp}*.csv'
@@ -243,7 +243,7 @@ def STG1D1_job():
           adh004String = f'ADH004_{current_date}'
           request_file.close()
           print(f' Sending adhoc 4 request using: {adh004String}')
-          time.sleep(25)
+          time.sleep(30)
         # check if the file exist
         receivedFiles = os.listdir(receive_folder)
         receivePattern = f'MCEG_STG1D1_ADHOC4_{timeStamp}*.csv'
@@ -422,7 +422,7 @@ def STG1D2_job():
           adh004String = f'ADH004_{current_date}'
           request_file.close()
           print(f' Sending adhoc 4 request using: {adh004String}')
-          time.sleep(25)
+          time.sleep(30)
         # check if the file exist
         receivedFiles = os.listdir(receive_folder)
         receivePattern = f'MCEG_STG1D2_ADHOC4_{timeStamp}*.csv'
@@ -602,7 +602,7 @@ def STG1D3_job():
           adh004String = f'ADH004_{current_date}'
           request_file.close()
           print(f' Sending adhoc 4 request using: {adh004String}')
-          time.sleep(25)
+          time.sleep(30)
         # check if the file exist
         receivedFiles = os.listdir(receive_folder)
         receivePattern = f'MCEG_STG1D3_ADHOC4_{timeStamp}*.csv'
@@ -783,7 +783,7 @@ def STG1D4_job():
           adh004String = f'ADH004_{current_date}'
           request_file.close()
           print(f' Sending adhoc 4 request using: {adh004String}')
-          time.sleep(25)
+          time.sleep(30)
         # check if the file exist
         receivedFiles = os.listdir(receive_folder)
         receivePattern = f'MCEG_STG1D4_ADHOC4_{timeStamp}*.csv'
@@ -963,7 +963,7 @@ def STG1D5_job():
           adh004String = f'ADH004_{current_date}'
           request_file.close()
           print(f' Sending adhoc 4 request using: {adh004String}')
-          time.sleep(25)
+          time.sleep(30)
         # check if the file exist
         receivedFiles = os.listdir(receive_folder)
         receivePattern = f'MCEG_STG1D5_ADHOC4_{timeStamp}*.csv'
@@ -1143,7 +1143,7 @@ def STG1D6_job():
           adh004String = f'ADH004_{current_date}'
           request_file.close()
           print(f' Sending adhoc 4 request using: {adh004String}')
-          time.sleep(25)
+          time.sleep(30)
         # check if the file exist
         receivedFiles = os.listdir(receive_folder)
         receivePattern = f'MCEG_STG1D6_ADHOC4_{timeStamp}*.csv'
@@ -1323,7 +1323,7 @@ def STG1D7_job():
           adh004String = f'ADH004_{current_date}'
           request_file.close()
           print(f' Sending adhoc 4 request using: {adh004String}')
-          time.sleep(25)
+          time.sleep(30)
         # check if the file exist
         receivedFiles = os.listdir(receive_folder)
         receivePattern = f'MCEG_STG1D7_ADHOC4_{timeStamp}*.csv'
