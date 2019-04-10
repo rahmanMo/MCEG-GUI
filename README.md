@@ -2,12 +2,12 @@
 
 This project is a helper app for MCEG (Movement Control Event Generator). Use this app to rapidly create csv file with test data for automation script to consume via Jenkins as well as view flight data of 8 days to help testers.
 ## Prerequisite ()
-1. Node >= 8.11.1
-2. Python >= 3.6.2
-3. APScheduler >= 3.5.3
-4. pandas >= 0.24.0
-5. pymongo >= 3.6.1
-6. Mongodb
+1. Node = 8.11.1
+2. Python = 3.6.2
+3. APScheduler = 3.5.3
+4. pandas = 0.24.0
+5. pymongo = 3.6.1
+6. Mongodb = 3.6.4
 7. File drop location for Stage 1 and Stage 3 environment Adhoc Processor
 #### Make sure on below config
  1. `\\gscfile01\SharedFile\QA_MVC` is available fom the machine this app runs from including all nested sub folders
@@ -34,6 +34,24 @@ For backend run `ng build` to generate `/dist` folder, then `npm run server`. Op
 Data is not being refreshed every 30 sec as intended on data feed script.
 Reason: All the processing power is directed to data feed script, therefore it takes longer for MongoDb to make changes to database.
 Solution: Put MongoDb server on a seperate VM and edit the `/server/route/api.js`. Change `const dbURL` and point it to the VM running MongoDB.
+
+## When shit hits the fan
+There have been exception with APScheduler library. May cause the application to fail. 
+Find all the process related to stage data feed python files by running `ps -ax`
+They look something like this:
+`25757 ?        Sl     1:34 python3 stg1DataFeed.py`
+`25802 ?        Sl     1:31 python3 stg2DataFeed.py`
+`25883 ?        Sl     1:31 python3 stg3DataFeed.py`
+
+Grab all three process id and kill them using kill command. Example: `kill 25757`
+
+Stop Node.js server using `pm2 stop server`
+
+Stop mongodb using `sudo systemctl stop mongod`
+
+All of this will stop all part of the application.
+
+To restart follow the steps described in Prod section
 
 ## Prod
 Clone repo and do `sudo npm install` or if you are using Yarn run `yarn` command to install dependencies
