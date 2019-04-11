@@ -32,7 +32,9 @@ For backend run `ng build` to generate `/dist` folder, then `npm run server`. Op
 
 ## Known Issue
 Data is not being refreshed every 30 sec as intended on data feed script.
+
 Reason: All the processing power is directed to data feed script, therefore it takes longer for MongoDb to make changes to database.
+
 Solution: Put MongoDb server on a seperate VM and edit the `/server/route/api.js`. Change `const dbURL` and point it to the VM running MongoDB.
 
 ## When shit hits the fan
@@ -63,6 +65,8 @@ Stop mongodb using `sudo systemctl stop mongod`
 All of this will stop all part of the application.
 
 ### To restart:
+
+Start mongodb using `sudo systemctl start mongod`
 
 `cd /home/projects/MCEG-GUI` to main app directory
 
