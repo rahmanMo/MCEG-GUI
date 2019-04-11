@@ -36,11 +36,22 @@ Reason: All the processing power is directed to data feed script, therefore it t
 Solution: Put MongoDb server on a seperate VM and edit the `/server/route/api.js`. Change `const dbURL` and point it to the VM running MongoDB.
 
 ## When shit hits the fan
-There have been exception with APScheduler library. May cause the application to fail. 
+Problem: APScheduler have issues after certain periods of time. like 60 - 90 days etc.
+
+Workaround: Shut off all part of the app and restart.
+
+Long term solution: Pending...
+
+### How to:
+
 Find all the process related to stage data feed python files by running `ps -ax`
+
 They look something like this:
+
 `25757 ?        Sl     1:34 python3 stg1DataFeed.py`
+
 `25802 ?        Sl     1:31 python3 stg2DataFeed.py`
+
 `25883 ?        Sl     1:31 python3 stg3DataFeed.py`
 
 Grab all three process id and kill them using kill command. Example: `kill 25757`
