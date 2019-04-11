@@ -62,7 +62,17 @@ Stop mongodb using `sudo systemctl stop mongod`
 
 All of this will stop all part of the application.
 
-To restart follow the steps described in Prod section
+### To restart:
+
+`cd /home/projects/MCEG-GUI` to main app directory
+
+`cd STG1` then run `nohup python3 stg1DataFeed.py </dev/null >/dev/null 2>&1 &` for stage 1 data feed.
+
+`cd STG2` then run `nohup python3 stg2DataFeed.py </dev/null >/dev/null 2>&1 &` for stage 2 data feed.
+
+`cd STG3` then run `nohup python3 stg3DataFeed.py </dev/null >/dev/null 2>&1 &` for stage 3 data feed.
+
+`cd ..` to main directory and run `sudo pm2 start server.js -i max`
 
 ## Prod
 Clone repo and do `sudo npm install` or if you are using Yarn run `yarn` command to install dependencies
