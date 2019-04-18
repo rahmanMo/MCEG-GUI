@@ -4,11 +4,10 @@ This project is a helper app for MCEG (Movement Control Event Generator). Use th
 ## Prerequisite ()
 1. Node = 8.11.1
 2. Python = 3.6.2
-3. APScheduler = 3.5.3
-4. pandas = 0.24.0
-5. pymongo = 3.6.1
-6. Mongodb = 3.6.4
-7. File drop location for Stage 1 and Stage 3 environment Adhoc Processor
+3. pandas = 0.24.0
+4. pymongo = 3.6.1
+5. Mongodb = 3.6.4
+6. File drop location for Stage 1 and Stage 3 environment Adhoc Processor
 #### Make sure on below config
  1. `\\gscfile01\SharedFile\QA_MVC` is available fom the machine this app runs from including all nested sub folders
  2. Python scripts should have permission to delete files from network share `\\gscfile01\SharedFile\QA_MVC`
@@ -18,7 +17,9 @@ This project is a helper app for MCEG (Movement Control Event Generator). Use th
 ## Workflow
 
  - stg*DataFeed.py  pulls data from drop location of stage environment every 30 second for 8 days worth (yesterday + 7 days ahead) which pushes data into local mongodb database.
+
  - Express backend serves json data to Angular client.
+
 **Note:** Home component can generate csv file that can be fed into jenkins for mass event trigger on flights.
 
 
@@ -26,6 +27,8 @@ This project is a helper app for MCEG (Movement Control Event Generator). Use th
 ## Development server
 
 Clone repo and do `npm install` or if you are using Yarn run `yarn` command to install dependencies
+
+Run `pip3 install requirements.txt` to install all python dependencies
 
 Run `ng serve` for a dev server on gui only. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 For backend run `ng build` to generate `/dist` folder, then `npm run server`. Open `http://localhost:3000`
@@ -70,26 +73,33 @@ Start mongodb using `sudo systemctl start mongod`
 
 `cd /home/projects/MCEG-GUI` to main app directory
 
-`cd STG1` then run `nohup python3 stg1DataFeed.py </dev/null >/dev/null 2>&1 &` for stage 1 data feed.
+Run `nohup python3 stg1Feed.py </dev/null >/dev/null 2>&1 &` for stage 1 data feed.
 
-`cd STG2` then run `nohup python3 stg2DataFeed.py </dev/null >/dev/null 2>&1 &` for stage 2 data feed.
+Run `nohup python3 stg2Feed.py </dev/null >/dev/null 2>&1 &` for stage 2 data feed.
 
-`cd STG3` then run `nohup python3 stg3DataFeed.py </dev/null >/dev/null 2>&1 &` for stage 3 data feed.
+Run `nohup python3 stg3Feed.py </dev/null >/dev/null 2>&1 &` for stage 3 data feed.
 
-`cd ..` to main directory and run `sudo pm2 start server.js -i max`
+Run `sudo pm2 start server.js -i max`
 
 ## Prod
-Clone repo and do `sudo npm install` or if you are using Yarn run `yarn` command to install dependencies
-Use the `sudo ng build --prod` for a production build on gui.
+Clone repo and `cd /home/projects/MCEG-GUI` to main app directory
+
+Run `sudo npm install` or if you are using Yarn run `yarn` command to install javascript dependencies
+
+Run `pip3 install requirements.txt` to install all python dependencies
+
+Use the `sudo ng build --prod` for a production build on front-end.
+
 Make sure MongoDB logs are pointed to to `/dev/null` to avoid space running out issue on VM.
+
 Install pm2 `sudo npm install pm2@latest -g` for production process management for Node.js.
 
-`cd STG1` then run `nohup python3 stg1DataFeed.py </dev/null >/dev/null 2>&1 &` for stage 1 data feed.
+Run `nohup python3 stg1Feed.py </dev/null >/dev/null 2>&1 &` for stage 1 data feed.
 
-`cd STG2` then run `nohup python3 stg2DataFeed.py </dev/null >/dev/null 2>&1 &` for stage 2 data feed.
+Run `nohup python3 stg2Feed.py </dev/null >/dev/null 2>&1 &` for stage 2 data feed.
 
-`cd STG3` then run `nohup python3 stg3DataFeed.py </dev/null >/dev/null 2>&1 &` for stage 3 data feed.
+Run `nohup python3 stg3Feed.py </dev/null >/dev/null 2>&1 &` for stage 3 data feed.
 
-`cd ..` to main directory and run `sudo pm2 start server.js -i max`
+Run `sudo pm2 start server.js -i max`
 
 This should start on port 80 in cluster mode.
