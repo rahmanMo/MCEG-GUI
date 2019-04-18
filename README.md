@@ -53,11 +53,7 @@ Find all the process related to stage data feed python files by running `ps -ax`
 
 They look something like this:
 
-`25757 ?        Sl     1:34 python3 stg1DataFeed.py`
-
-`25802 ?        Sl     1:31 python3 stg2DataFeed.py`
-
-`25883 ?        Sl     1:31 python3 stg3DataFeed.py`
+![Process Sceenshot](processScreenshot.png)
 
 Grab all three process id and kill them using kill command. Example: `kill 25757`
 
