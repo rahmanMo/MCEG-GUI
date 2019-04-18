@@ -53,7 +53,7 @@ Find all the process related to stage data feed python files by running `ps -ax`
 
 They look something like this:
 
-![Process Sceenshot](processScreenshot.png)
+![Process Sceenshot](https://github.com/adnanmc/MCEG-GUI/blob/master/processScreenshot.PNG)
 
 Grab all three process id and kill them using kill command. Example: `kill 25757`
 
