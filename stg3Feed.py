@@ -111,12 +111,12 @@ def STG3_CSV_TO_MONGO():
 
     ############################ fake data start ###############################
     # creating fake csv files to test the script comment out this code later
-    for txtFileData in allTxtFileData:
-        fileName = txtFileData['fileName']
-        dateString = txtFileData['dateString']
-        with open(f'{stageReceive}/{fileName}.csv', 'w') as tf:
-            tf.write(f'{dateString}')
-            tf.close()
+    # for txtFileData in allTxtFileData:
+    #     fileName = txtFileData['fileName']
+    #     dateString = txtFileData['dateString']
+    #     with open(f'{stageReceive}/{fileName}.csv', 'w') as tf:
+    #         tf.write(f'{dateString}')
+    #         tf.close()
     ############################ fake data end ###############################
 
     # Wait for all the text files to be processed
