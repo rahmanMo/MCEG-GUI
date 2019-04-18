@@ -35,7 +35,13 @@ testem.log
 try.js
 firebase-debug.log
 /mceg*.txt
-
+scrap.py
+STG1*.csv
+STG2*.csv
+STG3*.csv
+STG1*.json
+STG2*.json
+STG3*.json
 
 # e2e
 /e2e/*.js
