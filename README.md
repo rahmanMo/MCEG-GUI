@@ -55,7 +55,7 @@ They look something like this:
 
 ![Process Sceenshot](https://github.com/adnanmc/MCEG-GUI/blob/master/processScreenshot.PNG)
 
-Grab all three process id and kill them using kill command. Example: `kill 25757`
+Grab all three process id and kill them using kill command. Example: `kill 30011`
 
 Stop Node.js server using `pm2 stop server`
 
