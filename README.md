@@ -71,7 +71,7 @@ All of this will stop all part of the application.
 
 Start mongodb using `sudo systemctl start mongod`
 
-`cd /home/projects/MCEG-GUI` to main app directory
+`cd /home/project/MCEG-GUI` to main app directory
 
 Run `nohup python3 stg1Feed.py </dev/null >/dev/null 2>&1 &` for stage 1 data feed.
 
@@ -82,7 +82,7 @@ Run `nohup python3 stg3Feed.py </dev/null >/dev/null 2>&1 &` for stage 3 data fe
 Run `sudo pm2 start server.js -i max`
 
 ## Prod
-Clone repo and `cd /home/projects/MCEG-GUI` to main app directory
+Clone repo and `cd /home/project/MCEG-GUI` to main app directory
 
 Run `sudo npm install` or if you are using Yarn run `yarn` command to install javascript dependencies
 
