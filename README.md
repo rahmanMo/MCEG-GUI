@@ -16,9 +16,9 @@ This project is a helper app for MCEG (Movement Control Event Generator). Use th
  
 ## Workflow
 
- - stg*DataFeed.py  pulls data from drop location of stage environment every 30 second for 8 days worth (yesterday + 7 days ahead) which pushes data into local mongodb database.
+ - stg*Feed.py  pulls data from drop location of stage environment every 30 second for 8 days worth (yesterday + 7 days ahead) which pushes data into local mongodb database.
 
- - Express backend serves json data to Angular client.
+ - Express backend serves json data from Mongodb to Angular front-end.
 
 **Note:** Home component can generate csv file that can be fed into jenkins for mass event trigger on flights.
 

@@ -120,7 +120,7 @@ def STG3_CSV_TO_MONGO():
     ############################ fake data end ###############################
 
     # Wait for all the text files to be processed
-    time.sleep(25)
+    time.sleep(30)
 
     # check if the csv files came through and copy them to local folder
     receivedFiles = os.listdir(stageReceive)
