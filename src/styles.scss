@@ -1,22 +1,31 @@
+// orange: #FF8200
+// deep blue: #00205B
+// light blue: #099EC9
+
 /* You can add global styles to this file, and also import other style files */
 body {
   background-color: #424949;
+  color: #00205B;
 }
 
 .color-teal {
-  color: #45B39D !important;
+  color: #099EC9 !important;
 }
 
 .btn {
-  background: #45B39D;
+  background: #099EC9;
 }
 
 .btn-evt {
   margin: 1%;
 }
 
-.btn:hover, .btn-selected, nav, .current, .bg-red {
-  background: #e74c3c !important;
+.btn:hover, .btn-selected {
+  background: #FF8200 !important;
+}
+
+nav, .current, .bg-red {
+  background: #00205B !important;
 }
 
 
@@ -35,6 +44,10 @@ body {
 }
 ::-ms-input-placeholder { /* Microsoft Edge */
  color: #D1D1D1 !important;
+}
+
+input:focus {
+  box-shadow: 0 1px 0 0 #099EC9;
 }
 
 
@@ -58,25 +71,32 @@ mz-tab > ul > li > a {
   font-size: 1.1rem !important;
 }
 
+nav ul a:hover {
+  color: #FFF !important;
+  background-color: #FF8200 !important;
+  
+}
+
 .dropdown-content li > a, .dropdown-content li > span {
   font-size: 1rem;
+  color: #00205B !important;
 }
 
 .collection-item, .collection-header, .secondary-content > .normal, h5.normal {
-  color: #45B39D !important;
+  color: #099EC9 !important;
 }
 
 .secondary-content, .color-red, span.color-red, .collection-header > h4 > span, mz-tab > ul > li > a.active {
-  color: #e74c3c !important;
+  color: #00205B !important;
 }
 
 mz-tab > ul > li.indicator {
-  background-color: #e74c3c !important;
+  background-color: #00205B !important;
   height: 3px !important;
 }
 
 input:focus {
-  border-bottom: 1px solid #45B39D !important;
+  border-bottom: 1px solid #099EC9 !important;
 }
 
 
