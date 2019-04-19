@@ -292,5 +292,7 @@ def STG3_CSV_TO_MONGO():
 
 # Run the function forever using infinite loop
 # if memory leaks occur use garbage collection
+import gc
 while True:
     STG3_CSV_TO_MONGO()
+    gc.collect()
